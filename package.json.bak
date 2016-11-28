@@ -7,8 +7,8 @@
     "test": "jest"
   },
   "dependencies": {
-    "@exponent/ex-navigation": "latest",
-    "babel-preset-react-native-stage-0": "1.0.1",
+    "@exponent/ex-navigation": "1.7.0",
+    "babel-preset-react-native-stage-0": "^1.0.1",
     "react": "~15.4.0-rc.4",
     "react-native": "0.38.0"
   },
