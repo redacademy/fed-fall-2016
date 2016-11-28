@@ -1,27 +1,23 @@
 {
-  "name": "changedandfed",
+  "name": "ChangedAndFed",
   "version": "0.0.1",
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest",
-    "storybook": "storybook start -p 7007"
+    "test": "jest"
   },
   "dependencies": {
-    "test": "jest",
-    "@exponent/ex-navigation": "latest",
-    "babel-preset-react-native-stage-0": "1.0.1",
+    "@exponent/ex-navigation": "1.7.0",
+    "babel-preset-react-native-stage-0": "^1.0.1",
     "react": "~15.4.0-rc.4",
     "react-native": "0.38.0"
   },
   "devDependencies": {
-    "@kadira/react-native-storybook": "^2.0.0",
     "babel-jest": "17.0.2",
     "babel-preset-react-native": "1.9.0",
     "jest": "17.0.3",
     "jest-react-native": "17.0.3",
-    "react-test-renderer": "~15.4.0-rc.4",
-    "storybook-readme": "^1.2.0"
+    "react-test-renderer": "~15.4.0-rc.4"
   },
   "jest": {
     "preset": "react-native"
