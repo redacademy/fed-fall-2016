@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, } from 'react'
 import {
   NavigationProvider,
   StackNavigation,
-} from '@exponent/ex-navigation';
+} from '@exponent/ex-navigation'
 
-import { Router } from './navigation/routes.js'
+import { Router, } from './navigation/routes.js'
 
 
 /*
@@ -16,6 +16,6 @@ export default class ChangedAndFed extends Component {
       <NavigationProvider router={Router}>
         <StackNavigation initialRoute={Router.getRoute('navigationLayout')} id="mainStack" />
       </NavigationProvider>
-    );
+    )
   }
 }
