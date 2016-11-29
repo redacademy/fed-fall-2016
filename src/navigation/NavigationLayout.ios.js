@@ -43,6 +43,16 @@ class NavigationLayout extends Component {
             initialRoute={Router.getRoute('about')}
             />
         </TabItem>
+        <TabItem
+          id="home"
+          title="Home"
+          // renderIcon={(isSelected) => renderIcon(isSelected, "info", iconSize)}/
+          >
+          <StackNavigation
+            id="home"
+            initialRoute={Router.getRoute('home')}
+            />
+        </TabItem>
       </TabNavigation>
     );
   }
