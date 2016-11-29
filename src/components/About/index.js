@@ -1,7 +1,8 @@
 import React, { PropTypes, } from 'react';
-import { View, Text } from 'react-native';
-import { styles } from './styles.js'
+import { View, Text, } from 'react-native';
+import { styles, } from './styles.js'
 import SearchBar from '../../containers/SearchBar';
+import LocationHomeOptionsBar from '../LocationHomeOptionsBar'
 
 class AboutContainer extends React.Component {
 
@@ -22,6 +23,7 @@ class AboutContainer extends React.Component {
     render() {
         return (
         <View style={styles.container}>
+        <LocationHomeOptionsBar />
             <Text style={styles.header}>Changed and Fed</Text>
             <Text style={styles.subheader}>Contributors:</Text>
             <Text style={styles.font}>Scott Clayton</Text>
@@ -32,10 +34,9 @@ class AboutContainer extends React.Component {
             <Text style={styles.font}>Tracey Sum</Text>
             <SearchBar />
             <Text style={styles.font}>{this.props.person}</Text>
-
         </View>
         );
     }
 }
 
-export default AboutContainer;
+export default AboutContainer
