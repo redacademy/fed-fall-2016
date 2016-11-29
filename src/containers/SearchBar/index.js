@@ -5,7 +5,11 @@ import { styles } from './style'
 class SearchBar extends Component {
     render(){
         return (
-            <TextInput style={styles.TextInput}/>
+            <TextInput 
+                placeholder="Search"
+                autoCorrect={false}
+                label="O"
+                style={styles.TextInput}/>
         )
     }
 }
