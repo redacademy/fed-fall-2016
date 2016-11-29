@@ -13,9 +13,7 @@ class LocationHomeOptionsBar extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <TouchableHighlight onPress={this._onPressButton}><Text style={styles.button}>R</Text></TouchableHighlight>
-                <TouchableHighlight onPress={this._onPressButton}><Text style={styles.button}>A</Text></TouchableHighlight>
-                <TouchableHighlight onPress={this._onPressButton}><Text style={styles.button}>P</Text></TouchableHighlight>
+                {this.props.children}
             </View>
         )
     }

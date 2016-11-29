@@ -5,8 +5,8 @@ import {
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
-        maxHeight: 250,
-        justifyContent: 'space-between',
+        // maxHeight: 150,
+        // justifyContent: 'space-between',
     },
     button: {
         alignItems: 'center',
@@ -15,11 +15,10 @@ export const styles = StyleSheet.create({
         height: 60,
         width: 60,
         borderRadius: 30,
-        borderColor: 'lightgrey',
+        borderColor: 'grey',
         borderWidth: 1,
     },
     icon: {
         color: 'grey',
-        fontSize: 30
     },
 })
