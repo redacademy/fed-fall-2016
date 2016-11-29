@@ -31,6 +31,8 @@ class AboutContainer extends React.Component {
             <Text style={styles.font}>Shawn McKay</Text>
             <Text style={styles.font}>Tracey Sum</Text>
             <SearchBar />
+            <Text style={styles.font}>{this.props.person}</Text>
+
         </View>
         );
     }
