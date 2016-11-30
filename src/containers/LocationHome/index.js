@@ -1,8 +1,9 @@
-import React, { Component, } from 'react'
+import React, { Component } from 'react'
 import MapView from 'react-native-maps'
-import { styles, } from './style'
+import { styles } from './style'
 import { Text, View } from 'react-native'
-import SearchBar from '../SearchBar/index';
+import SearchBar from '../SearchBar/index'
+import Card from '../../components/Card'
 
 class LocationHome extends Component {
   render() {
@@ -20,6 +21,9 @@ class LocationHome extends Component {
         > 
         <View style={styles.searchContainer}>
           <SearchBar />
+          <Card style={{ flex: 1 }} height={260}>
+            <Text> This will show up on pin push </Text>
+          </Card>
         </View>
         </MapView>
     )

@@ -44,33 +44,6 @@ class AboutContainer extends React.Component {
                 <Text>Im inside the card</Text>
                 <Text>Im inside the card</Text>
                 <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
             </Card>
         );
     }

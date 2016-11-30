@@ -9,11 +9,9 @@ export const styles = StyleSheet.create({
         paddingLeft: 20,
         paddingRight: 20,
         paddingTop: 20,
-        paddingBottom: 30,
         marginTop: 10,
-        marginLeft: 10,
         marginRight: 10,
-        marginBottom: 10,
+        marginLeft: 10,
         borderRadius: 12
     }
 })

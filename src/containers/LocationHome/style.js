@@ -6,7 +6,6 @@ export const styles = StyleSheet.create({
       flexDirection: 'column'
     },
     searchContainer: {
-      padding: 15,
       position: 'absolute',
       bottom: 0,
       width: Dimensions.get('window').width
