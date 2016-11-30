@@ -32,7 +32,7 @@ class NavigationLayout extends Component {
       <TabNavigation
         id="main"
         navigatorUID="main"
-        initialTab="about">
+        initialTab="home">
         <TabItem
           id="about"
           title="About"

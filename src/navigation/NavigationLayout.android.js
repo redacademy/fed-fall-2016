@@ -31,7 +31,7 @@ class NavigationLayout extends Component {
         return (
             <DrawerNavigation
                 id='main'
-                initialItem='about'
+                initialItem='home'
                 drawerWidth={300}
                 renderHeader={this._renderHeader}
                 >
