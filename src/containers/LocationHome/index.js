@@ -4,8 +4,13 @@ import { styles } from './style'
 import { Text, View, Button } from 'react-native'
 import SearchBar from '../SearchBar/index'
 import Card from '../../components/Card'
+import { pinPush } from '../../redux/actions'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
 class LocationHome extends Component {
+  
+  
   render() {
     return (
       <MapView
@@ -31,6 +36,16 @@ class LocationHome extends Component {
   }
 }
 
+function mapStateToProps(state){
+  return {
+    button: state.button
+  }
+}
 
+function mapDispatchToProps(dispatch){
+  return bindActionCreators({
+    pinPush
+  })
+}
 
-export default LocationHome
+export default connect(mapStateToProps, mapDispatchToProps)(LocationHome)
