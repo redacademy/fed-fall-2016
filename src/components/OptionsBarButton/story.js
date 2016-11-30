@@ -10,6 +10,7 @@ import {
 } from 'react-native'
 import CenterDecorator from '../../../storybook/decorators/center.js'
 import { styles } from './styles'
+import Icon from '../Icon/index'
 
 
 storiesOf('OptionsBarButton', module)
@@ -19,7 +20,7 @@ storiesOf('OptionsBarButton', module)
         return <OptionsBarButton>
             <TouchableHighlight style={styles.box} onPress={() => { } }>
                 <View style={styles.button}>
-                    <Text style={styles.icon}>R</Text>
+                    <Icon style={styles.icon} name="location" size={60} color="lightgrey" />
                 </View>
             </TouchableHighlight>
         </OptionsBarButton>
@@ -28,7 +29,7 @@ storiesOf('OptionsBarButton', module)
         return <OptionsBarButton>
             <TouchableHighlight style={styles.box} onPress={() => { } }>
                 <View style={styles.button}>
-                    <Text style={styles.icon}>A</Text>
+                    <Icon style={styles.icon} name="add" size={60} color="lightgrey" />
                 </View>
             </TouchableHighlight>
         </OptionsBarButton>
@@ -37,7 +38,7 @@ storiesOf('OptionsBarButton', module)
         return <OptionsBarButton>
             <TouchableHighlight style={styles.box} onPress={() => { } }>
                 <View style={styles.button}>
-                    <Text style={styles.icon}>P</Text>
+                    <Icon style={styles.icon} name="history" size={60} color="lightgrey" />
                 </View>
             </TouchableHighlight>
         </OptionsBarButton>
