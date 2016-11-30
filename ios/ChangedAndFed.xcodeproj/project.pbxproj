@@ -23,11 +23,11 @@
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		BDB4A7482C1445AE93D2A784 /* libAirMaps.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CF72C8BB135142028CA79AF7 /* libAirMaps.a */; };
+		D01557A71DEF8562002B515F /* icomoon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D01557A61DEF8562002B515F /* icomoon.ttf */; };
 		D038E2591DEE6143008EFE0A /* Itim-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D038E2411DEE6139008EFE0A /* Itim-Regular.ttf */; };
 		D038E25A1DEE6146008EFE0A /* Rubik-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D038E2421DEE6139008EFE0A /* Rubik-Light.ttf */; };
 		D038E25B1DEE614A008EFE0A /* Rubik-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D038E2431DEE6139008EFE0A /* Rubik-Medium.ttf */; };
 		D038E25C1DEE614C008EFE0A /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D038E2441DEE6139008EFE0A /* Rubik-Regular.ttf */; };
-		D078A4601DEEB92700D68A42 /* icomoon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D078A45F1DEEB92700D68A42 /* icomoon.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -189,11 +189,11 @@
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		CF72C8BB135142028CA79AF7 /* libAirMaps.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libAirMaps.a; sourceTree = "<group>"; };
+		D01557A61DEF8562002B515F /* icomoon.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = icomoon.ttf; sourceTree = "<group>"; };
 		D038E2411DEE6139008EFE0A /* Itim-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Itim-Regular.ttf"; sourceTree = "<group>"; };
 		D038E2421DEE6139008EFE0A /* Rubik-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Light.ttf"; sourceTree = "<group>"; };
 		D038E2431DEE6139008EFE0A /* Rubik-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Medium.ttf"; sourceTree = "<group>"; };
 		D038E2441DEE6139008EFE0A /* Rubik-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Regular.ttf"; sourceTree = "<group>"; };
-		D078A45F1DEEB92700D68A42 /* icomoon.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = icomoon.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -364,7 +364,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				D078A45F1DEEB92700D68A42 /* icomoon.ttf */,
+				D01557A61DEF8562002B515F /* icomoon.ttf */,
 				D038E2411DEE6139008EFE0A /* Itim-Regular.ttf */,
 				D038E2421DEE6139008EFE0A /* Rubik-Light.ttf */,
 				D038E2431DEE6139008EFE0A /* Rubik-Medium.ttf */,
@@ -658,7 +658,7 @@
 				D038E2591DEE6143008EFE0A /* Itim-Regular.ttf in Resources */,
 				D038E25A1DEE6146008EFE0A /* Rubik-Light.ttf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				D078A4601DEEB92700D68A42 /* icomoon.ttf in Resources */,
+				D01557A71DEF8562002B515F /* icomoon.ttf in Resources */,
 				D038E25C1DEE614C008EFE0A /* Rubik-Regular.ttf in Resources */,
 				D038E25B1DEE614A008EFE0A /* Rubik-Medium.ttf in Resources */,
 			);
