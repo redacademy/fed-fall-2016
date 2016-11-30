@@ -7,26 +7,22 @@ import {
 import { styles } from './styles'
 import Icon from '../Icon/index'
 
-class OptionsBarButton extends Component {
+
+class BottomButtonListButton extends Component {
     static propTypes = {
 
     }
     render() {
         return (
-            <View>
+            <View style={styles.container}>
             <TouchableHighlight style={styles.box} onPress={this.props.onPress}>
-                <View style={styles.button}>
-                    <Icon style={styles.icon} name="location" size={60} color="lightgrey" />
+                <View style={styles.bar}>
+                    <Text style={styles.icon}>List</Text>
                 </View>
             </TouchableHighlight>
             <TouchableHighlight style={styles.box} onPress={this.props.onPress}>
                 <View style={styles.button}>
-                    <Icon style={styles.icon} name="add" size={60} color="lightgrey" />
-                </View>
-            </TouchableHighlight>
-            <TouchableHighlight style={styles.box} onPress={this.props.onPress}>
-                <View style={styles.button}>
-                    <Icon style={styles.icon} name="history" size={60} color="lightgrey" />
+                    <Icon style={styles.icon} name="sort-list" color="lightgrey" />
                 </View>
             </TouchableHighlight>
             </View>
@@ -34,4 +30,4 @@ class OptionsBarButton extends Component {
     }
 }
 
-export default OptionsBarButton
+export default BottomButtonListButton

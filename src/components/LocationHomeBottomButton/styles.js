@@ -5,20 +5,20 @@ import {
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
+        flexDirection: 'row',
         maxHeight: 250,
         justifyContent: 'space-between',
     },
     button: {
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: 'rgb(253, 253, 253)',
+        backgroundColor: 'white',
         height: 60,
         width: 60,
         borderRadius: 30,
-        shadowColor: 'lightgrey',
-        shadowOpacity: 0.6,
-        shadowOffset: { width: 1, height: -2, },
-        shadowRadius: 3,
+        borderColor: 'lightgrey',
+        borderWidth: 1,
+        marginLeft: 10,
     },
     icon: {
         color: 'grey',

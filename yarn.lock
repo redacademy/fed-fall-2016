@@ -272,13 +272,6 @@ argparse@^1.0.7:
   dependencies:
     sprintf-js "~1.0.2"
 
-argparse@~0.1.15:
-  version "0.1.16"
-  resolved "https://registry.yarnpkg.com/argparse/-/argparse-0.1.16.tgz#cfd01e0fbba3d6caed049fbd758d40f65196f57c"
-  dependencies:
-    underscore "~1.7.0"
-    underscore.string "~2.4.0"
-
 arr-diff@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/arr-diff/-/arr-diff-2.0.0.tgz#8f3b827f955a8bd669697e4a4256ac3ceae356cf"
@@ -404,10 +397,6 @@ asynckit@^0.4.0:
 autobind-decorator@^1.3.2:
   version "1.3.4"
   resolved "https://registry.yarnpkg.com/autobind-decorator/-/autobind-decorator-1.3.4.tgz#b67560e6bbbb68a35c049c82d6351ea0e82d820d"
-
-autolinker@~0.15.0:
-  version "0.15.3"
-  resolved "https://registry.yarnpkg.com/autolinker/-/autolinker-0.15.3.tgz#342417d8f2f3461b14cf09088d5edf8791dc9832"
 
 autoprefixer@^6.3.1, autoprefixer@^6.4.0:
   version "6.5.3"
@@ -3153,10 +3142,6 @@ gh-got@^2.2.0:
     object-assign "^4.0.1"
     pinkie-promise "^2.0.0"
 
-github-markdown-css@^2.4.1:
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/github-markdown-css/-/github-markdown-css-2.4.1.tgz#b4736d84eea8367a03b3248cf546dda3e8dc55e3"
-
 github-username@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/github-username/-/github-username-2.1.0.tgz#200e5a104af42ba08a54096c708d4b6ec2fa256b"
@@ -3421,10 +3406,6 @@ hawk@~3.1.3:
     cryptiles "2.x.x"
     hoek "2.x.x"
     sntp "1.x.x"
-
-highlight.js@=9.6.0:
-  version "9.6.0"
-  resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-9.6.0.tgz#0cf495fff5ac15f73a42c6d0b60fb314093cf006"
 
 hoek@2.x.x:
   version "2.16.3"
@@ -5806,6 +5787,13 @@ react-native-tab-view@^0.0.38:
   version "0.0.38"
   resolved "https://registry.yarnpkg.com/react-native-tab-view/-/react-native-tab-view-0.0.38.tgz#4194bba0abda9f781101c1a995c92733b194461a"
 
+react-native-vector-icons@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-vector-icons/-/react-native-vector-icons-3.0.0.tgz#a2f63757dee4fb89f67eef660e25e86926ae6827"
+  dependencies:
+    lodash "^4.0.0"
+    yargs "^6.3.0"
+
 react-native@0.38.0:
   version "0.38.0"
   resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.38.0.tgz#fa553d467a9e75cbd6a0c15eb1ab88346e0d5d5c"
@@ -5912,12 +5900,6 @@ react-redux@^4.0.0, react-redux@^4.4.5:
     invariant "^2.0.0"
     lodash "^4.2.0"
     loose-envify "^1.1.0"
-
-react-remarkable@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/react-remarkable/-/react-remarkable-1.1.1.tgz#37908ac95894576d0d39187bd289bc2cbb5ac6de"
-  dependencies:
-    remarkable "^1.4.1"
 
 react-simple-di@^1.2.0:
   version "1.2.0"
@@ -6196,13 +6178,6 @@ regjsparser@^0.1.4:
   resolved "https://registry.yarnpkg.com/regjsparser/-/regjsparser-0.1.5.tgz#7ee8f84dc6fa792d3fd0ae228d24bd949ead205c"
   dependencies:
     jsesc "~0.5.0"
-
-remarkable@^1.4.1:
-  version "1.7.1"
-  resolved "https://registry.yarnpkg.com/remarkable/-/remarkable-1.7.1.tgz#aaca4972100b66a642a63a1021ca4bac1be3bff6"
-  dependencies:
-    argparse "~0.1.15"
-    autolinker "~0.15.0"
 
 repeat-element@^1.1.2:
   version "1.1.2"
@@ -6609,14 +6584,6 @@ stat-mode@^0.2.0:
 statuses@~1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/statuses/-/statuses-1.2.1.tgz#dded45cc18256d51ed40aec142489d5c61026d28"
-
-storybook-readme:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/storybook-readme/-/storybook-readme-1.2.0.tgz#d63b6a9ec83d3995a2e24c3fbae2e42e37a3c3c9"
-  dependencies:
-    github-markdown-css "^2.4.1"
-    highlight.js "=9.6.0"
-    react-remarkable "^1.1.1"
 
 stream-browserify@^1.0.0:
   version "1.0.0"
@@ -7049,14 +7016,6 @@ underscore.string@^3.0.3:
   dependencies:
     sprintf-js "^1.0.3"
     util-deprecate "^1.0.2"
-
-underscore.string@~2.4.0:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/underscore.string/-/underscore.string-2.4.0.tgz#8cdd8fbac4e2d2ea1e7e2e8097c42f442280f85b"
-
-underscore@~1.7.0:
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.7.0.tgz#6bbaf0877500d36be34ecaa584e0db9fef035209"
 
 uniq@^1.0.1:
   version "1.0.1"

@@ -1,3 +1,6 @@
 import './About/story'
 import './LocationHomeOptionsBar/story'
-// import './OptionsBarButton/story'
+import './OptionsBarButton/story'
+import './LocationHomeBottomButton/story'
+import './BottomButtonFilterButton/story'
+import './BottomButtonListButton/story'
