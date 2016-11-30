@@ -9,7 +9,15 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 class LocationHome extends Component {
-  
+  constructor(props){
+    super(props)
+
+    this.onPinPush = this.onPinPush.bind(this)
+  }
+
+  onPinPush(){
+    this.props.pinPush()
+  }
   
   render() {
     return (
@@ -24,7 +32,7 @@ class LocationHome extends Component {
         // showsUserLocation      // enable when not using simulator
         // followsUserLocation    // enable when not using simulator
         > 
-        <Button title="test" onPress={() => alert('hi')}>Pin</Button>
+        <Button title="test" onPress={this.onPinPush}>Pin</Button>
         <View style={styles.searchContainer}>
           <SearchBar />
           <Card style={{ flex: 1 }} height={260}>
@@ -43,9 +51,9 @@ function mapStateToProps(state){
 }
 
 function mapDispatchToProps(dispatch){
-  return bindActionCreators({
-    pinPush
-  })
+    return bindActionCreators({
+        pinPush
+    }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LocationHome)
