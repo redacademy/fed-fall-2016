@@ -25,6 +25,15 @@ export const styles = StyleSheet.create({
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height
   },
+  optionsBar: {
+    zIndex: 1,
+    height: 225,
+    width: 80,
+    position: 'absolute',
+    top: 5,
+    right: 0,
+
+  },
   bottomButtons: {
     alignItems: 'flex-end',
     height: 150,
