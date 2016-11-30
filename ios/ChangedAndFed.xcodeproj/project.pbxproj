@@ -27,6 +27,7 @@
 		D038E25A1DEE6146008EFE0A /* Rubik-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D038E2421DEE6139008EFE0A /* Rubik-Light.ttf */; };
 		D038E25B1DEE614A008EFE0A /* Rubik-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D038E2431DEE6139008EFE0A /* Rubik-Medium.ttf */; };
 		D038E25C1DEE614C008EFE0A /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D038E2441DEE6139008EFE0A /* Rubik-Regular.ttf */; };
+		D078A4601DEEB92700D68A42 /* icomoon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D078A45F1DEEB92700D68A42 /* icomoon.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -192,6 +193,7 @@
 		D038E2421DEE6139008EFE0A /* Rubik-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Light.ttf"; sourceTree = "<group>"; };
 		D038E2431DEE6139008EFE0A /* Rubik-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Medium.ttf"; sourceTree = "<group>"; };
 		D038E2441DEE6139008EFE0A /* Rubik-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Regular.ttf"; sourceTree = "<group>"; };
+		D078A45F1DEEB92700D68A42 /* icomoon.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = icomoon.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -362,6 +364,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				D078A45F1DEEB92700D68A42 /* icomoon.ttf */,
 				D038E2411DEE6139008EFE0A /* Itim-Regular.ttf */,
 				D038E2421DEE6139008EFE0A /* Rubik-Light.ttf */,
 				D038E2431DEE6139008EFE0A /* Rubik-Medium.ttf */,
@@ -655,6 +658,7 @@
 				D038E2591DEE6143008EFE0A /* Itim-Regular.ttf in Resources */,
 				D038E25A1DEE6146008EFE0A /* Rubik-Light.ttf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				D078A4601DEEB92700D68A42 /* icomoon.ttf in Resources */,
 				D038E25C1DEE614C008EFE0A /* Rubik-Regular.ttf in Resources */,
 				D038E25B1DEE614A008EFE0A /* Rubik-Medium.ttf in Resources */,
 			);
