@@ -2,7 +2,7 @@ import React, { PropTypes, } from 'react';
 import { View, Text, } from 'react-native';
 import { styles, } from './styles.js'
 import SearchBar from '../../containers/SearchBar';
-
+import Card from '../Card'
 
 class AboutContainer extends React.Component {
 
@@ -22,18 +22,56 @@ class AboutContainer extends React.Component {
 
     render() {
         return (
-        <View style={styles.container}>
-            <Text style={styles.header}>Changed and Fed</Text>
-            <Text style={styles.subheader}>Contributors:</Text>
-            <Text style={styles.font}>Scott Clayton</Text>
-            <Text style={styles.font}>Brandon Fajardo</Text>
-            <Text style={styles.font}>Mackenzie Kieran</Text>
-            <Text style={styles.font}>Fergus MacConnell</Text>
-            <Text style={styles.font}>Shawn McKay</Text>
-            <Text style={styles.font}>Tracey Sum</Text>
-            <SearchBar />
-            <Text style={styles.font}>{this.props.person}</Text>
-        </View>
+            <Card height={500}>
+                <Text>Im inside the card</Text>
+                <Text>Im inside the card</Text>
+                <Text>Im inside the card</Text>
+                <Text>Im inside the card</Text>
+                <Text>Im inside the card</Text>
+                <Text>Im inside the card</Text>
+                <Text>Im inside the card</Text>
+                <Text>Im inside the card</Text>
+                <Text>Im inside the card</Text>
+                <Text>Im inside the card</Text>
+                <Text>Im inside the card</Text>
+                <Text>Im inside the card</Text>
+                <Text>Im inside the card</Text>
+                <Text>Im inside the card</Text>
+                <Text>Im inside the card</Text>
+                <Text>Im inside the card</Text>
+                <Text>Im inside the card</Text>
+                <Text>Im inside the card</Text>
+                <Text>Im inside the card</Text>
+                <Text>Im inside the card</Text>
+                <Text>Im inside the card</Text>
+                <Text>Im inside the card</Text>
+                <Text>Im inside the card</Text>
+                <Text>Im inside the card</Text>
+                <Text>Im inside the card</Text>
+                <Text>Im inside the card</Text>
+                <Text>Im inside the card</Text>
+                <Text>Im inside the card</Text>
+                <Text>Im inside the card</Text>
+                <Text>Im inside the card</Text>
+                <Text>Im inside the card</Text>
+                <Text>Im inside the card</Text>
+                <Text>Im inside the card</Text>
+                <Text>Im inside the card</Text>
+                <Text>Im inside the card</Text>
+                <Text>Im inside the card</Text>
+                <Text>Im inside the card</Text>
+                <Text>Im inside the card</Text>
+                <Text>Im inside the card</Text>
+                <Text>Im inside the card</Text>
+                <Text>Im inside the card</Text>
+                <Text>Im inside the card</Text>
+                <Text>Im inside the card</Text>
+                <Text>Im inside the card</Text>
+                <Text>Im inside the card</Text>
+                <Text>Im inside the card</Text>
+                <Text>Im inside the card</Text>
+                <Text>Im inside the card</Text>
+            </Card>
         );
     }
 }
