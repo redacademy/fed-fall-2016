@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import MapView from 'react-native-maps'
 import { styles } from './style'
-import { Text, View } from 'react-native'
+import { Text, View, Button } from 'react-native'
 import SearchBar from '../SearchBar/index'
 import Card from '../../components/Card'
 
@@ -19,6 +19,7 @@ class LocationHome extends Component {
         // showsUserLocation      // enable when not using simulator
         // followsUserLocation    // enable when not using simulator
         > 
+        <Button title="test" onPress={() => alert('hi')}>Pin</Button>
         <View style={styles.searchContainer}>
           <SearchBar />
           <Card style={{ flex: 1 }} height={260}>
