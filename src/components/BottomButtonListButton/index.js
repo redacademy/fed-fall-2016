@@ -5,6 +5,7 @@ import {
     Text,
 } from 'react-native'
 import { styles } from './styles'
+import Icon from '../Icon/index'
 
 
 class BottomButtonListButton extends Component {
@@ -21,7 +22,7 @@ class BottomButtonListButton extends Component {
             </TouchableHighlight>
             <TouchableHighlight style={styles.box} onPress={this.props.onPress}>
                 <View style={styles.button}>
-                    <Text style={styles.icon}>L</Text>
+                    <Icon style={styles.icon} name="sort-list" color="lightgrey" />
                 </View>
             </TouchableHighlight>
             </View>

@@ -31,5 +31,5 @@ export const styles = StyleSheet.create({
     zIndex: 1,
     marginRight: 5,
     marginBottom: 100
-  }
+  },
 })
