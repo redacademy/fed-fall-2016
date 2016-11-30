@@ -18,9 +18,10 @@ export const styles = StyleSheet.create({
         borderRadius: 30,
         borderColor: 'lightgrey',
         borderWidth: 1,
+        marginLeft: 10,
     },
-    // icon: {
-    //     color: 'grey',
-    //     fontSize: 30
-    // },
+    icon: {
+        color: 'grey',
+        fontSize: 30,
+    },
 })
