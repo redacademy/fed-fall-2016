@@ -13,7 +13,7 @@ class OptionsBarButton extends Component {
         return (
             <TouchableHighlight style={styles.box} onPress={this.props.onPress}>
                 <View style={styles.button}>
-                    <Text style={styles.icon}>R
+                    <Text style={styles.icon}>{this.props.text}
                         </Text>
                 </View>
             </TouchableHighlight>
