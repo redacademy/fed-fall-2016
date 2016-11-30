@@ -31,7 +31,7 @@ export const styles = StyleSheet.create({
     width: 80,
     position: 'absolute',
     top: 5,
-    right: 0,
+    right: 3,
 
   },
   bottomButtons: {
