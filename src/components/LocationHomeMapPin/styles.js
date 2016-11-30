@@ -5,13 +5,13 @@ import {
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
-        // maxHeight: 150,
-        // justifyContent: 'space-between',
+        maxHeight: 250,
+        justifyContent: 'space-between',
     },
     button: {
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: 'white',
+        backgroundColor: 'rgb(253, 253, 253)',
         height: 60,
         width: 60,
         borderRadius: 30,
@@ -22,6 +22,6 @@ export const styles = StyleSheet.create({
     },
     icon: {
         color: 'grey',
-        fontSize: 20
+        fontSize: 30,
     },
 })

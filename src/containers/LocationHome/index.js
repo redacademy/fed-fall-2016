@@ -6,6 +6,8 @@ import SearchBar from '../SearchBar/index'
 import LocationHomeBottomButton from '../../components/LocationHomeBottomButton/index'
 import BottomButtonFilterButton from '../../components/BottomButtonFilterButton/index'
 import BottomButtonListButton from '../../components/BottomButtonListButton/index'
+import LocationHomeOptionsBar from '../../components/LocationHomeOptionsBar'
+import OptionsBarButton from '../../components/OptionsBarButton'
 
 
 const Dimensions = require('Dimensions');
@@ -41,6 +43,13 @@ class LocationHome extends Component {
         // showsUserLocation      // enable when not using simulator
         // followsUserLocation    // enable when not using simulator
         >
+        <View style={styles.optionsBar}>
+          <LocationHomeOptionsBar>
+            <OptionsBarButton onPress={() => { } } iconName={"location"}/>
+            <OptionsBarButton onPress={() => { } } iconName={"add"}/>
+            <OptionsBarButton onPress={() => { } } iconName={"user"}/>
+          </LocationHomeOptionsBar>
+        </View>
         <View style={styles.bottomButtons} >{bottomButtonStatus}</View>
         <View style={styles.searchContainer}>
           <SearchBar />
