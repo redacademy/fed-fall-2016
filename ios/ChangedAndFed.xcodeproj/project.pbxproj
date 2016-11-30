@@ -23,6 +23,10 @@
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		BDB4A7482C1445AE93D2A784 /* libAirMaps.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CF72C8BB135142028CA79AF7 /* libAirMaps.a */; };
+		D038E2591DEE6143008EFE0A /* Itim-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D038E2411DEE6139008EFE0A /* Itim-Regular.ttf */; };
+		D038E25A1DEE6146008EFE0A /* Rubik-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D038E2421DEE6139008EFE0A /* Rubik-Light.ttf */; };
+		D038E25B1DEE614A008EFE0A /* Rubik-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D038E2431DEE6139008EFE0A /* Rubik-Medium.ttf */; };
+		D038E25C1DEE614C008EFE0A /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D038E2441DEE6139008EFE0A /* Rubik-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,13 +107,6 @@
 			remoteGlobalIDString = 58B5119B1A9E6C1200147676;
 			remoteInfo = RCTText;
 		};
-		CA62958B1DEE4197002C3060 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 61A9C0833BCC4625B89A093E /* AirMaps.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 11FA5C511C4A1296003AC2EE;
-			remoteInfo = AirMaps;
-		};
 		CA6295351DEE3BB7002C3060 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 00C302BB1ABCB91800DB3ED1 /* RCTImage.xcodeproj */;
@@ -159,6 +156,13 @@
 			remoteGlobalIDString = 2D2A28131D9B038B00D4039D;
 			remoteInfo = "React-tvOS";
 		};
+		D038E2461DEE6139008EFE0A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 61A9C0833BCC4625B89A093E /* AirMaps.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 11FA5C511C4A1296003AC2EE;
+			remoteInfo = AirMaps;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -184,6 +188,10 @@
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		CF72C8BB135142028CA79AF7 /* libAirMaps.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libAirMaps.a; sourceTree = "<group>"; };
+		D038E2411DEE6139008EFE0A /* Itim-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Itim-Regular.ttf"; sourceTree = "<group>"; };
+		D038E2421DEE6139008EFE0A /* Rubik-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Light.ttf"; sourceTree = "<group>"; };
+		D038E2431DEE6139008EFE0A /* Rubik-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Medium.ttf"; sourceTree = "<group>"; };
+		D038E2441DEE6139008EFE0A /* Rubik-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Regular.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -354,6 +362,10 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				D038E2411DEE6139008EFE0A /* Itim-Regular.ttf */,
+				D038E2421DEE6139008EFE0A /* Rubik-Light.ttf */,
+				D038E2431DEE6139008EFE0A /* Rubik-Medium.ttf */,
+				D038E2441DEE6139008EFE0A /* Rubik-Regular.ttf */,
 				13B07FAE1A68108700A75B9A /* ChangedAndFed */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* ChangedAndFedTests */,
@@ -372,10 +384,10 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		CA62952C1DEE3BB5002C3060 /* Products */ = {
+		D038E2351DEE6124008EFE0A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CA6295301DEE3BB7002C3060 /* libAirMaps.a */,
+				D038E2471DEE6139008EFE0A /* libAirMaps.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -447,7 +459,7 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = CA6295881DEE4197002C3060 /* Products */;
+					ProductGroup = D038E2351DEE6124008EFE0A /* Products */;
 					ProjectRef = 61A9C0833BCC4625B89A093E /* AirMaps.xcodeproj */;
 				},
 				{
@@ -570,13 +582,6 @@
 			remoteRef = 832341B41AAA6A8300B99B32 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		CA6295301DEE3BB7002C3060 /* libAirMaps.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libAirMaps.a;
-			remoteRef = CA62952F1DEE3BB7002C3060 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		CA6295361DEE3BB7002C3060 /* libRCTImage-tvOS.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -626,6 +631,13 @@
 			remoteRef = CA62954E1DEE3BB7002C3060 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		D038E2471DEE6139008EFE0A /* libAirMaps.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libAirMaps.a;
+			remoteRef = D038E2461DEE6139008EFE0A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -640,7 +652,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D038E2591DEE6143008EFE0A /* Itim-Regular.ttf in Resources */,
+				D038E25A1DEE6146008EFE0A /* Rubik-Light.ttf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				D038E25C1DEE614C008EFE0A /* Rubik-Regular.ttf in Resources */,
+				D038E25B1DEE614A008EFE0A /* Rubik-Medium.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -726,7 +742,6 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ChangedAndFed.app/ChangedAndFed";
 			};
