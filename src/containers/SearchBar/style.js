@@ -1,15 +1,17 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 
 export const styles = StyleSheet.create({
     TextInput: {
-        height: 40,
-        width: 260,
+        height: 52,
+        width: Dimensions.get('window').width / 1.45,
         borderColor: 'lightgray',
         borderWidth: 1,
-        borderRadius: 20,
-        paddingTop: 10, 
-        paddingBottom: 10,
+        borderRadius: 22,
+        paddingTop: 5, 
+        paddingBottom: 5,
         paddingLeft: 20,
         paddingRight: 20,
+        backgroundColor: 'white',
+        fontSize: 18
     }
 })

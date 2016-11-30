@@ -12,7 +12,7 @@ import {
     Text,
 } from 'react-native'
 import { Router } from './routes.js'
-import Octicons from 'react-native-vector-icons/Octicons'
+// import Octicons from 'react-native-vector-icons/Octicons'
 const iconSize = 48
 
 // Treat the DrawerNavigationLayout route like any other route -- you may want to set
@@ -45,6 +45,16 @@ class NavigationLayout extends Component {
                         initialRoute={Router.getRoute('about')}
                         />
                 </DrawerNavigationItem>
+                <DrawerNavigationItem
+                    id='home'
+                    selectedStyle={styles.selectedItemStyle}
+                    renderTitle={isSelected => this._renderTitle('Home', isSelected, "info", iconSize)}
+                    >
+                    <StackNavigation
+                        id='home'
+                        initialRoute={Router.getRoute('home')}
+                        />
+                </DrawerNavigationItem>
             </DrawerNavigation>
         )
     }
@@ -59,7 +69,7 @@ class NavigationLayout extends Component {
     _renderTitle(text, isSelected, iconName, size) {
         return (
             <Text style={[styles.titleText, isSelected ? styles.selectedTitleText : {}]}>
-                <Octicons name={iconName} size={size} color={isSelected ? 'black' : '#999999'} />{text}
+                {text}
             </Text>
         )
     }
