@@ -11,4 +11,11 @@ export const styles = StyleSheet.create({
         height: StyleSheet.hairlineWidth,
         backgroundColor: '#8E8E8E',
     },
+    title: {
+        height: 60,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderBottomWidth: 1,
+        borderBottomColor: 'lightgrey'
+    }
 })

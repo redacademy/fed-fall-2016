@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {
     View,
     ListView,
+    Text,
 } from 'react-native'
 import { styles } from './styles'
 import ListViewItem from '../ListViewItem'
@@ -29,15 +30,22 @@ class LocationListView extends Component {
     render() {
         console.log(this.state.dataSource)
         return (
-            <ListView
-                dataSource={this.state.dataSource}
-                renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
-                renderRow={(data) => {
-                    return (
-                        <ListViewItem locations={data}/>
-                    )
-                } }
-                />
+            <View>
+                <View style={styles.title}>
+                <Text>List View</Text>
+                </View>
+                <ListView
+                    dataSource={this.state.dataSource}
+                    renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
+                    renderRow={(data) => {
+                        return (
+
+                            <ListViewItem locations={data} />
+
+                        )
+                    } }
+                    />
+            </View>
         )
     }
 }
