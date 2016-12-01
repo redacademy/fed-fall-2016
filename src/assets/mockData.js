@@ -1,4 +1,8 @@
-import { LOW, MEDIUM, HIGH } from './constants'
+// import { LOW, MEDIUM, HIGH } from './constants'
+
+const LOW = "LOW"
+const MEDIUM = "MEDIUM"
+const HIGH = "HIGH"
 
 /*The mock data should include:
 locations: [{
