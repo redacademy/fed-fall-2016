@@ -4,7 +4,7 @@ import Icon from '../../components/Icon'
 import { rgbColours } from '../../config/styles'
 import iconTitleMapper from '../../config/icon-title-mapping'
 
-class IconOptionalTitleCircularBorder extends Component {
+class IconOptionalTitleRectangularBorder extends Component {
     render() {
         return (
             <View style={{
@@ -13,28 +13,25 @@ class IconOptionalTitleCircularBorder extends Component {
             }}>
                 <View
                     style={{
-                        backgroundColor: 'transparent',
+                        backgroundColor: this.props.backgroundColor,
                         width: this.props.size,
                         height: this.props.size,
                         alignItems: 'center',
                         justifyContent: 'center',
                         borderRadius: this.props.size * 0.5,
-                        borderColor: this.props.iconColor || 'grey',
-                        borderWidth: this.props.size * 0.03,
                     }}
                     >
                     <Icon
                         name={this.props.iconName}
-                        size={this.props.size * 0.55}
+                        size={this.props.size * 0.5}
                         // If needed, to resize cleanliness and quiet based on design-spec,
                         // then size code could be implemeted this way:
                         // (this.props.iconName === 'cleanliness' || this.props.iconName === 'quiet')
                         // ? this.props.size * 0.5
                         // : this.props.size * 0.7
-                        color={this.props.iconColor || rgbColours.warmGrey}
+                        color={this.props.iconColor || rgbColours.whiteTwo}
                         style={{
                             backgroundColor: 'transparent',
-                            opacity: 0.9,
                         }}
                         />
                 </View>
@@ -43,7 +40,7 @@ class IconOptionalTitleCircularBorder extends Component {
                     : <View style={{
                         alignItems: 'center',
                         justifyContent: 'center',
-                        marginTop: 7.5,
+                        marginTop: 6,
                     }}>
                         <Text style={{
                             textAlign: 'center',
@@ -61,15 +58,16 @@ class IconOptionalTitleCircularBorder extends Component {
     }
 }
 
-IconOptionalTitleCircularBorder.propTypes = {
+IconOptionalTitleRectangularBorder.propTypes = {
     size: PropTypes.number.isRequired,
     iconName: PropTypes.string.isRequired,
+    backgroundColor: PropTypes.string.isRequired,
     iconColor: PropTypes.string,
     title: PropTypes.string,
     noTitle: PropTypes.bool,
 }
 
-export default IconOptionalTitleCircularBorder
+export default IconOptionalTitleRectangularBorder
 
 // USAGE:
-// this is essentially the same as IconOptionalTitle, except that the icon has a circular border
+// this is just like the IconOptionalTitleRectangularBorder with the exception that the fill is circular

@@ -46,8 +46,8 @@ class IconOptionalTitleRectangularBorder extends Component {
                             textAlign: 'center',
                             fontFamily: 'Rubik-Regular',
                             fontSize: iconTitleMapper[this.props.iconName].length > 8
-                                ? this.props.size * 0.22
-                                : this.props.size * 0.25,
+                                ? 13
+                                : 15,
                             color: this.props.iconColor || rgbColours.warmGrey,
                             letterSpacing: 0,
                         }}>{this.props.title || iconTitleMapper[this.props.iconName]}</Text>
