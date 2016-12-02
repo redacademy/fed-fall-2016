@@ -1,6 +1,6 @@
 // import { StyleSheet } from 'react-native'
 
-export const rgbColours = {
+export const rgbColors = {
   white: 'rgb(255, 255, 255)',
   whiteTwo: 'rgb(253, 253, 253)',
   greyish: 'rgb(172, 172, 172)',
@@ -18,7 +18,7 @@ export const rgbColours = {
   darkPeach: 'rgb(231, 116, 116)',
 }
 
-export const hexColours = {
+export const hexColors = {
   white: '#ffffff',
   whiteTwo: '#fdfdfd',
   greyish: '#acacac',

@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { View, Text } from 'react-native'
 import Icon from '../../components/Icon'
-import { rgbColours } from '../../config/styles'
+import { rgbColors } from '../../config/styles'
 import iconTitleMapper from '../../config/icon-title-mapping'
 
 class IconOptionalTitleRectangularBorder extends Component {
@@ -29,7 +29,7 @@ class IconOptionalTitleRectangularBorder extends Component {
                         // (this.props.iconName === 'cleanliness' || this.props.iconName === 'quiet')
                         // ? this.props.size * 0.5
                         // : this.props.size * 0.7
-                        color={this.props.iconColor || rgbColours.whiteTwo}
+                        color={this.props.iconColor || rgbColors.whiteTwo}
                         style={{
                             backgroundColor: 'transparent',
                         }}
@@ -48,7 +48,7 @@ class IconOptionalTitleRectangularBorder extends Component {
                             fontSize: iconTitleMapper[this.props.iconName].length > 8
                                 ? 13
                                 : 15,
-                            color: this.props.iconColor || rgbColours.warmGrey,
+                            color: this.props.iconColor || rgbColors.warmGrey,
                             letterSpacing: 0,
                         }}>{this.props.title || iconTitleMapper[this.props.iconName]}</Text>
                     </View>
