@@ -63,6 +63,7 @@ IconOptionalTitle.propTypes = {
     iconName: PropTypes.string.isRequired,
     iconColor: PropTypes.string,
     title: PropTypes.string,
+    noTitle: PropTypes.bool,
 }
 
 export default IconOptionalTitle

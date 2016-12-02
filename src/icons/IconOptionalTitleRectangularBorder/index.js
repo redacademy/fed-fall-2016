@@ -4,7 +4,7 @@ import Icon from '../../components/Icon'
 import { rgbColours } from '../../config/styles'
 import iconTitleMapper from '../../config/icon-title-mapping'
 
-class IconOptionalTitleCircularBorder extends Component {
+class IconOptionalTitleRectangularBorder extends Component {
     render() {
         return (
             <View style={{
@@ -18,14 +18,14 @@ class IconOptionalTitleCircularBorder extends Component {
                         height: this.props.size,
                         alignItems: 'center',
                         justifyContent: 'center',
-                        borderRadius: this.props.size * 0.5,
+                        borderRadius: this.props.size * 0.1,
                         borderColor: this.props.iconColor || 'grey',
-                        borderWidth: this.props.size * 0.03,
+                        borderWidth: this.props.size * 0.02,
                     }}
                     >
                     <Icon
                         name={this.props.iconName}
-                        size={this.props.size * 0.55}
+                        size={this.props.size * 0.75}
                         // If needed, to resize cleanliness and quiet based on design-spec,
                         // then size code could be implemeted this way:
                         // (this.props.iconName === 'cleanliness' || this.props.iconName === 'quiet')
@@ -61,7 +61,7 @@ class IconOptionalTitleCircularBorder extends Component {
     }
 }
 
-IconOptionalTitleCircularBorder.propTypes = {
+IconOptionalTitleRectangularBorder.propTypes = {
     size: PropTypes.number.isRequired,
     iconName: PropTypes.string.isRequired,
     iconColor: PropTypes.string,
@@ -69,7 +69,8 @@ IconOptionalTitleCircularBorder.propTypes = {
     noTitle: PropTypes.bool,
 }
 
-export default IconOptionalTitleCircularBorder
+export default IconOptionalTitleRectangularBorder
 
 // USAGE:
-// this is essentially the same as IconOptionalTitle, except that the icon has a circular border
+// this is essentially the same as IconOptionalTitleCircularBorder, except the border
+// is rectangular and the icon inside is a little bigger, proportionally
