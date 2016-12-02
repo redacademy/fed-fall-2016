@@ -6,7 +6,7 @@ const iconTitleMapper = {
 'cleanliness': 'CLEAN',
 'diaper': '',
 'exit': '',
-'family': '',
+'family': 'FAMILY',
 'filter-list': '',
 'filter': '',
 'history': '',

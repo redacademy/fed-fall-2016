@@ -9,7 +9,9 @@ class IconOptionalTitleCircularBorder extends Component {
         return (
             <View style={{
                 width: this.props.size * 1.1, // design spec has text wider than the icons, so this allows for that
+                height: (this.props.size * 1.1) + 45,
                 alignItems: 'center',
+                justifyContent: 'flex-start',
             }}>
                 <View
                     style={{
