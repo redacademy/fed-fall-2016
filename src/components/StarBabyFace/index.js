@@ -26,3 +26,7 @@ class StarBabyFace extends Component {
 }
 
 export default StarBabyFace
+
+// USAGE:
+// import StarBabyFace
+// render it with a scale prop: <StarBabyFace scale="1" />

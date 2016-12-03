@@ -33,3 +33,6 @@ class StarBaby extends Component {
 }
 
 export default StarBaby
+// USAGE:
+// import StarBaby
+// render it with a scale prop: <StarBaby scale="1" />
