@@ -28,7 +28,7 @@ class LocationListView extends Component {
 
 
     render() {
-        console.log(this.state.dataSource)
+        // console.log(this.state.dataSource)
         return (
             <View>
                 <View style={styles.title}>
@@ -40,7 +40,7 @@ class LocationListView extends Component {
                     renderRow={(data) => {
                         return (
 
-                            <ListViewItem locations={data} />
+                            <ListViewItem placeId={data} />
 
                         )
                     } }
