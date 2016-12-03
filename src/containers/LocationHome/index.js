@@ -42,12 +42,16 @@ class LocationHome extends Component {
     }
 
     setUserCurrentLocation() {
-        // getCurrentPosition( success, error, options) from user device 
-        //  => requires showsUserLocation, followsUserLocation to be enabled on MapView
+        /* 
+            setUserCurrentLocation
+              => requires showsUserLocation, followsUserLocation to be enabled on MapView
+              - getCurrentPosition( success, error, options) from user device 
+              - 
+         */
         navigator.geolocation.getCurrentPosition(
             //success
             (position) => {
-                //console.log(position)
+                // console.log('geolocation position: ', position)
                 this.setState({
                     region: {
                         latitude: position.coords.latitude,
@@ -56,6 +60,7 @@ class LocationHome extends Component {
                         longitudeDelta: LONGITUDE_DELTA,
                     },
                 })
+                this.map.animateToRegion(this.state.region, 2000)
             },
             //error
             (error) => alert(error.message),
@@ -63,7 +68,7 @@ class LocationHome extends Component {
             { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000, }
         )
         this.watchID = navigator.geolocation.watchPosition((position) => {
-           // console.log(position)
+            // console.log('watchID: ', this.watchID, ' for position: ', position)
             this.setState({
                 region: {
                     latitude: position.coords.latitude,
@@ -74,6 +79,13 @@ class LocationHome extends Component {
             })
 
         })
+        // console.log('setUserCurrentLocation end, region: ', this.state.region)
+    }
+
+    onRegionChangeComplete(region) {
+        /* as user moves around the map, update the current state
+        */
+        this.setState({ region, })
     }
 
     componentDidMount() {
@@ -85,36 +97,80 @@ class LocationHome extends Component {
             bottomButtonStatus = <View><BottomButtonListButton /><BottomButtonFilterButton /></View>
         }
         return (
-            <MapView
-                style={styles.container}
-                initialRegion={this.state.region}
-                showsUserLocation      // enable when not using simulator
-                followsUserLocation    // enable when not using simulator
-                >
+            <View style={styles.container}>
+                <MapView
+                    ref={ref => { this.map = ref } }    //required for animateToRegion
+                    style={styles.container}
+                    initialRegion={this.state.region}   //initial 
+                    showsUserLocation      // enable when not using simulator
+                    followsUserLocation    // enable when not using simulator
+                    onPress={() => console.log('pressed map!')}
+                    onRegionChange={region => this.onRegionChangeComplete(region)}
+                    >
+                    {this.state.addLocation ?
+                        <MapView.Marker
+                            coordinate={{ latitude: this.state.region.latitude, longitude: this.state.region.longitude, }}
+                            flat={true}
+                            pinColor={'#f17979'}
+                            style={styles.locationAddVisible}
+                            />
+                        :
+                        null
+                        }
+                </MapView>
                 <View style={styles.optionsBar}>
                     <LocationHomeOptionsBar>
                         <OptionsBarButton onPress={() => {
-                            //console.log('click reset location')
+                            // console.log('location pressed')
+                            this.setUserCurrentLocation()
                         } } iconName={"location"} />
                         <OptionsBarButton onPress={() => {
-                            //console.log('click new location')
-                        } } iconName={"add"} />
+                            console.log('click new location')
+                            this.setState({ addLocation: !this.state.addLocation, })
+                        } } iconName={"add"}/>
                         <OptionsBarButton onPress={() => {
-                            //console.log('click user info')
+                            console.log('click user info')
                         } } iconName={"user"} />
                     </LocationHomeOptionsBar>
                 </View>
+            </View>
+        )
+    }
+}
+
+/*
+markers: [
+    {
+        coordinate: {latitude: 12, longitude 120},
+        image: require('./assets/diaper.png') //should be 56px/56px apprix
+    }
+]
+
+                <MapView.Circle
+                    center={{latitude: this.state.region.latitude, longitude: this.state.region.longitude,}}
+                    radius={15}
+                    strokeWidth={5}
+                    strokeColor={'#ffffff'}
+                    fillColor={'#f17979'}
+                    />
+
+    {this.state.markers.map((marker, i) => (
+        <MapView.Marker
+            key={i}
+            coordinate={marker.coordinate}
+            title={marker.title}
+            description={marker.description} 
+            image={marker.image}
+            />   
+        ))}
+
+
                 <View style={styles.bottomButtons} >{bottomButtonStatus}</View>
                 <View style={styles.searchContainer}>
                     <SearchBar />
                     <LocationHomeBottomButton onPress={this._toggleOverlay.bind(this)} />
                 </View>
                 {this.state.overlay ? <View style={[styles.overlay]} /> : <View style={styles.searchContainer} />}
-            </MapView>
-        )
-    }
-}
-
-
+*/
 
 export default LocationHome
