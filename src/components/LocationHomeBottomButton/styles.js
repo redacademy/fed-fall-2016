@@ -5,13 +5,14 @@ import {
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
+        flexDirection: 'row',
         maxHeight: 250,
         justifyContent: 'space-between',
     },
     button: {
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: 'rgb(253, 253, 253)',
+        backgroundColor: 'white',
         height: 60,
         width: 60,
         borderRadius: 30,
@@ -19,9 +20,11 @@ export const styles = StyleSheet.create({
         shadowOpacity: 0.6,
         shadowOffset: { width: 1, height: -2, },
         shadowRadius: 3,
+        marginLeft: 10,
     },
     icon: {
         color: 'grey',
         fontSize: 30,
+
     },
 })

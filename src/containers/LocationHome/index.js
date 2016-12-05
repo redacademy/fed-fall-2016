@@ -1,93 +1,164 @@
 import React, { Component } from 'react'
+import { Text, View, Dimensions } from 'react-native'
 import MapView from 'react-native-maps'
 import { styles } from './style'
-import { Text, View, Button, PanResponder, ScrollView, Animated } from 'react-native'
-import SearchBar from '../SearchBar/index'
-import Card from '../../components/Card'
-import { pinPush } from '../../redux/actions'
+
+// Redux 
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { enterPreview } from '../../redux/actions'
+
+// Containers
+import { SearchBar, Preview } from '../index'
+
+// Components
+import { 
+  LocationHomeBottomButton,
+  BottomButtonFilterButton,
+  BottomButtonListButton,
+  LocationHomeOptionsBar,
+  OptionsBarButton
+} from '../../components'
+
+// Initialize Variables
+const { width, height, } = Dimensions.get('window')
+const LATITUDE = 49.263432
+const LONGITUDE = -123.137952
+const ASPECT_RATIO = width / height
+const LATITUDE_DELTA = .01
+const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO
+
+//========================================================================
 
 class LocationHome extends Component {
   constructor(props){
     super(props)
 
     this.state = {
-      scroll: true,
-      pan: new Animated.ValueXY()
+      overlay: false,
+      region: {
+          latitude: LATITUDE,
+          longitude: LONGITUDE,
+          latitudeDelta: LATITUDE_DELTA,
+          longitudeDelta: LONGITUDE_DELTA,
+      },
+      markers: [],
+      addLocation: false,
     }
-
+    
+    this.toggleOverlay = this.toggleOverlay.bind(this)
     this.onPinPush = this.onPinPush.bind(this)
-    this.showCard = this.showCard.bind(this)
+    this.preview = this.preview.bind(this)
   }
 
-  onPinPush(){
-    this.props.pinPush()
+  componentDidMount() {
+      this.setUserCurrentLocation()
+  }
+
+  setUserCurrentLocation() {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                this.setState({
+                    region: {
+                        latitude: position.coords.latitude,
+                        longitude: position.coords.longitude,
+                        latitudeDelta: LATITUDE_DELTA,
+                        longitudeDelta: LONGITUDE_DELTA,
+                    },
+                })
+            },
+            (error) => alert(error.message),
+            { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000, }
+        )
+        this.watchID = navigator.geolocation.watchPosition((position) => {
+            this.setState({
+                region: {
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude,
+                    latitudeDelta: LATITUDE_DELTA,
+                    longitudeDelta: LONGITUDE_DELTA,
+                },
+            })
+       })
   }
   
-  showCard(){
-    if(this.props.button.pushed == true){
-      return (
-        <ScrollView 
-          scrollEnabled={this.state.scroll}                      
-        >
-          <Animated.View 
-            style={{transform: this.state.pan.getTranslateTransform(), position: 'absolute', left: 20, top: 20}}
-            {...this._panResponder.panHandlers}
-          >
-            <Card style={{ flex: 1 }} height={260}>
-                <Text> This will show up on pin push </Text>
-            </Card>
-          </Animated.View>
-        </ScrollView>
-      )
-    }
-  }
-  
-  componentWillMount() {
-    this._panResponder = PanResponder.create({
-      onStartShouldSetPanResponder: (evt, gestureState) => true,
-      onStartShouldSetPanResponderCapture: (evt, gestureState) => true,
-      onMoveShouldSetPanResponder: (evt, gestureState) => true,
-      onMoveShouldSetPanResponderCapture: (evt, gestureState) => true,
-      onPanResponderGrant: () => this.setState({scroll: false}),
-      onPanResponderMove: Animated.event([null, {dx: this.state.pan.x, dy: this.state.pan.y}]),
-        onPanResponderRelease: () => this.setState({scroll: true})
+  toggleOverlay() {
+    this.setState({
+        overlay: !this.state.overlay,
     })
   }
 
+  onPinPush(){
+    this.props.enterPreview()
+  }
+
+  preview(){
+    if (this.props.preview === true){
+      
+      {/* Go to the preview container to add to the card! */}
+      return <Preview />
+    }
+  }
+  
   render() {
+    let bottomButtonStatus = null
+    
+    if (this.state.overlay) {
+        bottomButtonStatus = <View><BottomButtonListButton /><BottomButtonFilterButton /></View>
+    }
+
     return (
-      <MapView
-        style={styles.container}
-        region={{
-          latitude: 49.263432,
-          longitude: -123.137952,
-          latitudeDelta: .01,
-          longitudeDelta: .01,
-        }}
-        // showsUserLocation      // enable when not using simulator
-        // followsUserLocation    // enable when not using simulator
-        > 
-        <Button title="test" onPress={this.onPinPush}>Pin</Button>
-        <View style={styles.searchContainer}>
-          <SearchBar />
-          {this.showCard()}
+      <View style={styles.mainContainer}>
+        <MapView
+          style={styles.mapContainer}
+          initialRegion={this.state.region}
+          showsUserLocation   
+          followsUserLocation
+        />
+                  
+        {this.props.preview ? null : (
+          <View style={styles.optionsContainer}>
+          <View style={styles.optionsBar}>
+            <LocationHomeOptionsBar>
+              <OptionsBarButton onPress={() => {}} iconName={"location"} />
+              <OptionsBarButton onPress={() => {}} iconName={"add"} />
+              <OptionsBarButton onPress={() => this.onPinPush()} iconName={"user"} />
+            </LocationHomeOptionsBar>
+          </View>
+        </View>  
+        )}
+        
+        {/* Apply this overlay when user filters */}
+        {this.state.overlay ? <View style={[styles.overlay]} /> : <View />}
+        
+        {/* Filter options */}
+        <View style={styles.bottomButtons}>{bottomButtonStatus}</View>
+        
+        {this.props.preview ? null: (
+        <View style={{position: 'absolute', bottom: 680}}>
+          <View style={styles.bottomContainer}>
+            <SearchBar />
+            <LocationHomeBottomButton onPress={this.toggleOverlay} />
+          </View>
         </View>
-        </MapView>
+        )}
+
+       {this.preview()}
+        
+      </View>  
     )
   }
 }
 
 function mapStateToProps(state){
   return {
-    button: state.button
+    preview: state.button.preview
   }
 }
 
 function mapDispatchToProps(dispatch){
     return bindActionCreators({
-        pinPush
+        enterPreview,
     }, dispatch)
 }
 

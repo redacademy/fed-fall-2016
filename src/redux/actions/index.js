@@ -1,6 +1,7 @@
 // Action type declarations here
 export const ON_SEARCH_CHANGE = 'ON_SEARCH_CHANGE'
-export const ON_PIN_PUSH = 'ON_PIN_PUSH'
+export const ENTER_PREVIEW = 'PREVIEW'
+export const EXIT_PREVIEW = 'EXIT_PREVIEW'
 
 // Action creators here
 export const searchTextChange = (text) => {
@@ -10,9 +11,15 @@ export const searchTextChange = (text) => {
     }
 }
 
-export const pinPush = () => {
+export const enterPreview = () => {
     return {
-        type: ON_PIN_PUSH
+        type: ENTER_PREVIEW
+    }
+}
+
+export const exitPreview = () => {
+    return {
+        type: EXIT_PREVIEW
     }
 }
 

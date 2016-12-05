@@ -4,8 +4,6 @@ export const styles = StyleSheet.create({
     TextInput: {
         height: 52,
         width: Dimensions.get('window').width / 1.45,
-        borderColor: 'lightgray',
-        borderWidth: 1,
         borderRadius: 22,
         paddingTop: 5, 
         paddingBottom: 5,
@@ -14,6 +12,10 @@ export const styles = StyleSheet.create({
         backgroundColor: 'white',
         fontSize: 18,
         marginLeft: 15,
-        marginRight: 15
+        marginRight: 15,
+        shadowColor: 'lightgrey',
+        shadowOpacity: 0.6,
+        shadowOffset: { width: 1, height: -2, },
+        shadowRadius: 3,
     }
 })
