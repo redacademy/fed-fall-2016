@@ -1,16 +1,14 @@
 import React from 'react'
-import { storiesOf, action, linkTo, addDecorator } from '@kadira/react-native-storybook'
-import { withKnobs, select, } from '@kadira/storybook-addon-knobs'
+import { storiesOf, addDecorator } from '@kadira/react-native-storybook'
+import { withKnobs } from '@kadira/storybook-addon-knobs'
 import LocationHomeOptionsBar from './index'
 import {
     View,
-    Image,
     TouchableHighlight,
-    Text,
+    Text
 } from 'react-native'
 import CenterDecorator from '../../../storybook/decorators/center.js'
 import { styles } from './styles'
-
 
 storiesOf('LocationHomeOptionsBar', module)
     .addDecorator(CenterDecorator)

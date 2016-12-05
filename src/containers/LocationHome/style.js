@@ -1,12 +1,7 @@
 import { StyleSheet, Dimensions } from 'react-native'
+const { width, height, } = Dimensions.get('window')
 
 export const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'flex-end',
-        zIndex: -1,
-    },
     searchContainer: {
         flexDirection: 'row',
         padding: 15,
@@ -25,26 +20,41 @@ export const styles = StyleSheet.create({
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').height,
     },
-    optionsBar: {
-        zIndex: 1,
-        height: 225,
-        width: 80,
-        position: 'absolute',
-        top: 5,
-        right: 0,
-
+    mainContainer: {
+      zIndex: -1,
+      height: Dimensions.get('window').height * 2
     },
-    bottomButtons: {
-        alignItems: 'flex-end',
-        height: 150,
-        zIndex: 1,
-        marginRight: 5,
-        marginBottom: 100,
+    mapContainer: {
+      height: Dimensions.get('window').height,
     },
-    locationAddVisible: {
-        opacity: 1,
-    },
-    locationAddNotVisible: {
-        opacity: 0,
-    },
+    bottomContainer: {
+    flexDirection: 'row',
+    zIndex: 1
+  },
+  optionsContainer: {
+    position: 'absolute',
+    top: 0,
+    right: 0
+  },
+  optionsBar: {
+    height: 225,
+    width: 80,
+    position: 'absolute',
+    top: 5,
+    right: 3
+  },
+  bottomButtons: {
+    alignItems: 'flex-end',
+    height: 100,
+    paddingRight: 21,
+    bottom: 750,
+    right: 0,
+    position: 'absolute'
+  },
+    // locationAddVisible: {
+    //     opacity: 1,
+    // },
+    // locationAddNotVisible: {
+    //     opacity: 0,
+    // },
 })

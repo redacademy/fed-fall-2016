@@ -1,28 +1,39 @@
 import React, { Component } from 'react'
+import { Text, View, Dimensions } from 'react-native'
 import MapView from 'react-native-maps'
 import { styles } from './style'
-import { View } from 'react-native'
-import SearchBar from '../SearchBar/index'
-import LocationHomeBottomButton from '../../components/LocationHomeBottomButton/index'
-import BottomButtonFilterButton from '../../components/BottomButtonFilterButton/index'
-import BottomButtonListButton from '../../components/BottomButtonListButton/index'
-import LocationHomeOptionsBar from '../../components/LocationHomeOptionsBar'
-import OptionsBarButton from '../../components/OptionsBarButton'
 
-const Dimensions = require('Dimensions')
-// We can use this to make the overlay fill the entire width
+// Redux 
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { enterPreview } from '../../redux/actions'
+
+// Containers
+import { SearchBar, Preview } from '../index'
+
+// Components
+import {
+    LocationHomeBottomButton,
+    BottomButtonFilterButton,
+    BottomButtonListButton,
+    LocationHomeOptionsBar,
+    OptionsBarButton
+} from '../../components'
+
+// Initialize Variables
 const { width, height, } = Dimensions.get('window')
-
-// RED Academy
 const LATITUDE = 49.263432
 const LONGITUDE = -123.137952
 const ASPECT_RATIO = width / height
 const LATITUDE_DELTA = .01
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO
 
+//========================================================================
+
 class LocationHome extends Component {
     constructor(props) {
         super(props)
+
         this.state = {
             overlay: false,
             region: {
@@ -34,11 +45,14 @@ class LocationHome extends Component {
             markers: [],
             addLocation: false,
         }
+
+        this.toggleOverlay = this.toggleOverlay.bind(this)
+        this.onPinPush = this.onPinPush.bind(this)
+        this.preview = this.preview.bind(this)
     }
-    _toggleOverlay() {
-        this.setState({
-            overlay: !this.state.overlay,
-        })
+
+    componentDidMount() {
+        this.setUserCurrentLocation()
     }
 
     setUserCurrentLocation() {
@@ -49,9 +63,7 @@ class LocationHome extends Component {
               - 
          */
         navigator.geolocation.getCurrentPosition(
-            //success
             (position) => {
-                // console.log('geolocation position: ', position)
                 this.setState({
                     region: {
                         latitude: position.coords.latitude,
@@ -62,13 +74,10 @@ class LocationHome extends Component {
                 })
                 this.map.animateToRegion(this.state.region, 2000)
             },
-            //error
             (error) => alert(error.message),
-            //options
             { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000, }
         )
         this.watchID = navigator.geolocation.watchPosition((position) => {
-            // console.log('watchID: ', this.watchID, ' for position: ', position)
             this.setState({
                 region: {
                     latitude: position.coords.latitude,
@@ -77,100 +86,94 @@ class LocationHome extends Component {
                     longitudeDelta: LONGITUDE_DELTA,
                 },
             })
-
         })
-        // console.log('setUserCurrentLocation end, region: ', this.state.region)
     }
+
+    toggleOverlay() {
+        this.setState({
+            overlay: !this.state.overlay,
+        })
+    }
+
 
     onRegionChangeComplete(region) {
         /* as user moves around the map, update the current state
         */
         this.setState({ region, })
     }
-
-    componentDidMount() {
-        this.setUserCurrentLocation()
+    onPinPush() {
+        this.props.enterPreview()
     }
+
+    preview() {
+        if (this.props.preview === true) {
+
+            {/* Go to the preview container to add to the card! */ }
+            return <Preview />
+        }
+    }
+
     render() {
         let bottomButtonStatus = null
         if (this.state.overlay) {
             bottomButtonStatus = <View><BottomButtonListButton /><BottomButtonFilterButton /></View>
         }
         return (
-            <View style={styles.container}>
+            <View style={styles.mainContainer}>
                 <MapView
                     ref={ref => { this.map = ref } }    //required for animateToRegion
-                    style={styles.container}
-                    initialRegion={this.state.region}   //initial 
-                    showsUserLocation      // enable when not using simulator
-                    followsUserLocation    // enable when not using simulator
-                    onPress={() => console.log('pressed map!')}
+                    style={styles.mapContainer}
+                    initialRegion={this.state.region}
+                    showsUserLocation
+                    followsUserLocation
                     onRegionChange={region => this.onRegionChangeComplete(region)}
-                    >
-                    {this.state.addLocation ?
-                        <MapView.Marker
-                            coordinate={{ latitude: this.state.region.latitude, longitude: this.state.region.longitude, }}
-                            flat={true}
-                            pinColor={'#f17979'}
-                            style={styles.locationAddVisible}
-                            />
-                        :
-                        null
-                        }
-                </MapView>
-                <View style={styles.optionsBar}>
-                    <LocationHomeOptionsBar>
-                        <OptionsBarButton onPress={() => {
-                            // console.log('location pressed')
-                            this.setUserCurrentLocation()
-                        } } iconName={"location"} />
-                        <OptionsBarButton onPress={() => {
-                            console.log('click new location')
-                            this.setState({ addLocation: !this.state.addLocation, })
-                        } } iconName={"add"}/>
-                        <OptionsBarButton onPress={() => {
-                            console.log('click user info')
-                        } } iconName={"user"} />
-                    </LocationHomeOptionsBar>
-                </View>
+                    />
+
+                {this.props.preview ? null : (
+                    <View style={styles.optionsContainer}>
+                        <View style={styles.optionsBar}>
+                            <LocationHomeOptionsBar>
+                                <OptionsBarButton onPress={() => this.setUserCurrentLocation() } iconName={"location"} />
+                                <OptionsBarButton onPress={() => this.setState({ addLocation: !this.state.addLocation, }) } iconName={"add"} />
+                                <OptionsBarButton onPress={() => this.onPinPush()} iconName={"user"} />
+                            </LocationHomeOptionsBar>
+                        </View>
+                    </View>
+                )}
+
+                {/* Apply this overlay when user filters */}
+                {this.state.overlay ? <View style={[styles.overlay]} /> : <View />}
+
+                {/* Filter options */}
+                <View style={styles.bottomButtons}>{bottomButtonStatus}</View>
+
+                {this.props.preview ? null : (
+                    <View style={{ position: 'absolute', bottom: 680 }}>
+                        <View style={styles.bottomContainer}>
+                            <SearchBar />
+                            <LocationHomeBottomButton onPress={this.toggleOverlay} />
+                        </View>
+                    </View>
+                )}
+
+                {this.preview()}
+
             </View>
         )
     }
 }
 
-/*
-markers: [
-    {
-        coordinate: {latitude: 12, longitude 120},
-        image: require('./assets/diaper.png') //should be 56px/56px apprix
+
+function mapStateToProps(state) {
+    return {
+        preview: state.button.preview
     }
-]
+}
 
-                <MapView.Circle
-                    center={{latitude: this.state.region.latitude, longitude: this.state.region.longitude,}}
-                    radius={15}
-                    strokeWidth={5}
-                    strokeColor={'#ffffff'}
-                    fillColor={'#f17979'}
-                    />
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({
+        enterPreview,
+    }, dispatch)
+}
 
-    {this.state.markers.map((marker, i) => (
-        <MapView.Marker
-            key={i}
-            coordinate={marker.coordinate}
-            title={marker.title}
-            description={marker.description} 
-            image={marker.image}
-            />   
-        ))}
-
-
-                <View style={styles.bottomButtons} >{bottomButtonStatus}</View>
-                <View style={styles.searchContainer}>
-                    <SearchBar />
-                    <LocationHomeBottomButton onPress={this._toggleOverlay.bind(this)} />
-                </View>
-                {this.state.overlay ? <View style={[styles.overlay]} /> : <View style={styles.searchContainer} />}
-*/
-
-export default LocationHome
+export default connect(mapStateToProps, mapDispatchToProps)(LocationHome)

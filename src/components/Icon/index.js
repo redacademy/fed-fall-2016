@@ -18,13 +18,13 @@ export default Icon
 // family
 // filter-list
 // filter
+// heart-off
+// heart-on
 // history
 // key
 // location-add-new
 // location-saved
 // location
-// love-off
-// love-on
 // male-and-female
 // mask
 // microphone
@@ -37,6 +37,7 @@ export default Icon
 // quiet
 // search
 // sort-list
+// starbaby-face
 // stroller-accessible
 // stroller-inaccessible-alternate
 // stroller-inaccessible
