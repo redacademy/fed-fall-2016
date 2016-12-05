@@ -3,6 +3,7 @@ import { View, Text, } from 'react-native';
 import { styles, } from './styles.js'
 import SearchBar from '../../containers/SearchBar';
 import Card from '../Card'
+import LocationListView from '../LocationListView'
 
 class AboutContainer extends React.Component {
 
@@ -22,56 +23,8 @@ class AboutContainer extends React.Component {
 
     render() {
         return (
-            <Card height={500}>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-            </Card>
+            <LocationListView />
+
         );
     }
 }
