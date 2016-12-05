@@ -1,7 +1,7 @@
-import React, { PropTypes } from 'react'
-import { View, Text } from 'react-native'
-import { styles } from './styles.js'
-import SearchBar from '../../containers/SearchBar'
+import React, { PropTypes, } from 'react';
+import { View, Text, } from 'react-native';
+import { styles, } from './styles.js'
+import SearchBar from '../../containers/SearchBar';
 import Card from '../Card'
 
 class AboutContainer extends React.Component {
@@ -14,8 +14,12 @@ class AboutContainer extends React.Component {
     static route = {
         navigationBar: {
             title: 'About',
-        },
+        }
     }
+    constructor(props) {
+        super(props)
+    }
+
     render() {
         return (
             <Card />
