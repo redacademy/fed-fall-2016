@@ -1,15 +1,10 @@
 import React, { Component } from 'react'
 import {
-    View,
-    Image,
-    TouchableHighlight,
-    Text,
+    View
 } from 'react-native'
 import { styles } from './styles'
 
-
 class LocationHomeOptionsBar extends Component {
-
     render() {
         return (
             <View style={styles.container}>

@@ -1,17 +1,14 @@
 import React from 'react'
-import { storiesOf, action, linkTo, addDecorator } from '@kadira/react-native-storybook'
-import { withKnobs, select, } from '@kadira/storybook-addon-knobs'
+import { storiesOf, addDecorator } from '@kadira/react-native-storybook'
+import { withKnobs } from '@kadira/storybook-addon-knobs'
 import OptionsBarButton from './index'
 import {
     View,
-    Image,
-    TouchableHighlight,
-    Text,
+    TouchableHighlight
 } from 'react-native'
 import CenterDecorator from '../../../storybook/decorators/center.js'
 import { styles } from './styles'
 import Icon from '../Icon/index'
-
 
 storiesOf('OptionsBarButton', module)
     .addDecorator(CenterDecorator)
@@ -20,7 +17,7 @@ storiesOf('OptionsBarButton', module)
         return <OptionsBarButton>
             <TouchableHighlight style={styles.box} onPress={() => { } }>
                 <View style={styles.button}>
-                    <Icon style={styles.icon} name="location" size={60} color="lightgrey" />
+                    <Icon style={styles.icon} name='location' size={60} color='lightgrey' />
                 </View>
             </TouchableHighlight>
         </OptionsBarButton>
@@ -29,7 +26,7 @@ storiesOf('OptionsBarButton', module)
         return <OptionsBarButton>
             <TouchableHighlight style={styles.box} onPress={() => { } }>
                 <View style={styles.button}>
-                    <Icon style={styles.icon} name="add" size={60} color="lightgrey" />
+                    <Icon style={styles.icon} name='add' size={60} color='lightgrey' />
                 </View>
             </TouchableHighlight>
         </OptionsBarButton>
@@ -38,7 +35,7 @@ storiesOf('OptionsBarButton', module)
         return <OptionsBarButton>
             <TouchableHighlight style={styles.box} onPress={() => { } }>
                 <View style={styles.button}>
-                    <Icon style={styles.icon} name="history" size={60} color="lightgrey" />
+                    <Icon style={styles.icon} name='history' size={60} color='lightgrey' />
                 </View>
             </TouchableHighlight>
         </OptionsBarButton>

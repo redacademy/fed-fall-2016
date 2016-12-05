@@ -1,6 +1,6 @@
 import {
     StyleSheet,
-} from 'react-native';
+} from 'react-native'
 
 export const styles = StyleSheet.create({
     locationContainer: {
@@ -28,6 +28,5 @@ export const styles = StyleSheet.create({
         paddingTop: 3,
         paddingBottom: 3,
         color: 'rgb(127, 127, 127)',
-        
     }
 })
