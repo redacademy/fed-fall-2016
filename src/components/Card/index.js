@@ -2,9 +2,9 @@ import React from 'react'
 import { View, Text } from 'react-native'
 import { styles } from './style'
 
-const Card = ({ children }) => (
-        <View style={styles.CardContainer}>
-            <View style={styles.CardContent}>
+const Card = ({ children, height}) => (
+        <View style={[styles.CardContainer, {height: height }]}>
+            <View style={{overflow: 'hidden'}} >
                 {children}
             </View>
         </View>
