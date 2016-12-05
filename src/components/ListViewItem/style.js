@@ -6,7 +6,6 @@ export const styles = StyleSheet.create({
     locationContainer: {
         flex: 1,
         flexDirection: 'row',
-        height: 140,
     },
     map:{
         height: 120,
@@ -16,8 +15,18 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    detailsContainer: {
+        flex: 1,
+        paddingRight: 2,
+    },
+    locationTitle: {
+        margin: 10,
+        fontSize: 18,
+        color: 'rgb(45, 76, 96)',
+    },
     locationDetails: {
         paddingRight: 2,
-        margin: 10
+        marginLeft: 10,
+        
     }
 })
