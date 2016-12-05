@@ -68,7 +68,7 @@ class ListViewItem extends Component {
                                 {addressArray[1]}
                             </Text>
                             <RatingBar titleless ratings={{ quality: 'HIGH', clean: 'MEDIUM', nursing: 'LOW', quiet: 'MEDIUM' }} />
-                            <Text>32 Metres</Text>
+                            <Text style={styles.locationDetails}>32 Metres</Text>
                         </View>
 
                     </View>
