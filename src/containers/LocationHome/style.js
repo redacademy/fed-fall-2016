@@ -4,10 +4,10 @@ const { width, height, } = Dimensions.get('window')
 export const styles = StyleSheet.create({
     mainContainer: {
       zIndex: -1,
-      height: Dimensions.get('window').height * 2
+      height: height * 2
     },
     mapContainer: {
-      height: Dimensions.get('window').height,
+      height: height,
     },
     outerContainer: {
       flex: 1, 
@@ -25,8 +25,8 @@ export const styles = StyleSheet.create({
     top: 0,
     opacity: 0.5,
     backgroundColor: 'white',
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height,
+    width: width,
+    height: height,
 
   },
   optionsContainer: {
@@ -50,8 +50,8 @@ export const styles = StyleSheet.create({
     position: 'absolute'
   },
   box: {
-    height: Dimensions.get('window').height * 0.77,
-    width: Dimensions.get('window').width * 0.96,
+    height: height * 0.77,
+    width: width * 0.96,
     borderRadius: 10,
     shadowColor: 'darkgrey',
     shadowOpacity: 1,
@@ -63,7 +63,7 @@ export const styles = StyleSheet.create({
   },
   button: {
     height: 45,
-    width: Dimensions.get('window').width * 0.75,
+    width: width * 0.75,
     borderRadius: 22,
     backgroundColor: 'green',
     justifyContent: 'center',
@@ -77,7 +77,7 @@ export const styles = StyleSheet.create({
     borderWidth: 1, 
     borderColor: 'gray', 
     height: 30, 
-    width: Dimensions.get('window').width * 0.5, 
+    width: width * 0.5, 
     backgroundColor: 'white'
   }
 })

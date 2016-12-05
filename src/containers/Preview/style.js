@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
     },
     button: {
         height: 45,
-        width: Dimensions.get('window').width * 0.75,
+        width: width * 0.75,
         borderRadius: 22,
         backgroundColor: 'green',
         justifyContent: 'center',

@@ -1,5 +1,7 @@
 import { StyleSheet, Dimensions } from 'react-native'
 
+const { width, height, } = Dimensions.get('window')
+
 export const styles = StyleSheet.create({
     CardContainer: {
         backgroundColor: 'white',
@@ -12,7 +14,7 @@ export const styles = StyleSheet.create({
         shadowOffset: { width: 0.2, height: 1, },
         shadowRadius: 2,
         padding: 20,
-        width: Dimensions.get('window').width * 0.945,
+        width: width * 0.945,
         borderRadius: 12
     },
     CardContent: {

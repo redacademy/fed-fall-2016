@@ -150,16 +150,12 @@ class LocationHome extends Component {
   }
 }
 
-function mapStateToProps(state){
-  return {
-    preview: state.button.preview
-  }
-}
+const mapStateToProps = (state) => ({
+  preview: state.button.preview,
+})
 
-function mapDispatchToProps(dispatch){
-    return bindActionCreators({
-        enterPreview,
-    }, dispatch)
+const mapDispatchToProps = {
+  enterPreview,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LocationHome)

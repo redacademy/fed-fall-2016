@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, Animated, Dimensions } from 'react-native'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
 import { exitPreview } from '../../redux/actions'
 import { styles } from './style'
 import { Card } from '../../components'
@@ -73,7 +72,7 @@ class Preview extends Component {
             onMoveShouldSetResponder={(e) => this.detectSwipe(e.nativeEvent.locationY)}
           >
             <Card>
-                {/* YOU CAN START ADDING STUFF TO THE CARD IN HERE! */}
+                {/* YOU CAN START ADDING CONTENT TO THE CARD IN HERE! */}
                   
                   <Text>Test</Text>
                   
@@ -84,10 +83,8 @@ class Preview extends Component {
   }
 }
 
-function mapDispatchToProps(dispatch){
-    return bindActionCreators({
-        exitPreview
-    }, dispatch)
+const mapDispatchToProps = {
+  exitPreview,
 }
 
 export default connect(null, mapDispatchToProps)(Preview)
