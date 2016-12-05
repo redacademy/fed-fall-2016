@@ -1728,7 +1728,7 @@ color-string@^0.3.0:
   dependencies:
     color-name "^1.0.0"
 
-color@^0.11.0:
+color@^0.11.0, color@^0.11.1:
   version "0.11.4"
   resolved "https://registry.yarnpkg.com/color/-/color-0.11.4.tgz#6d7b5c74fb65e841cd48792ad1ed5e07b904d764"
   dependencies:
@@ -5787,6 +5787,13 @@ react-native-drawer-layout@^1.0.0:
 react-native-maps@^0.11.0:
   version "0.11.0"
   resolved "https://registry.yarnpkg.com/react-native-maps/-/react-native-maps-0.11.0.tgz#8baa56eef83e9f2f04a70b192624b7bc9c56289d"
+
+react-native-svg@^4.4.0:
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/react-native-svg/-/react-native-svg-4.4.0.tgz#418f55cab61ec8e18a03745605b317089ceb899a"
+  dependencies:
+    color "^0.11.1"
+    lodash "^4.0.0"
 
 react-native-tab-view@^0.0.38:
   version "0.0.38"

@@ -22,57 +22,8 @@ class AboutContainer extends React.Component {
 
     render() {
         return (
-            <Card height={500}>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-                <Text>Im inside the card</Text>
-            </Card>
-        );
+            <Card />
+        )
     }
 }
 
