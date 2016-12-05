@@ -1,12 +1,11 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 import {
     View,
     TouchableHighlight,
-    Text,
+    Text
 } from 'react-native'
 import { styles } from './styles'
 import Icon from '../Icon/index'
-
 
 class BottomButtonListButton extends Component {
     static propTypes = {
@@ -22,7 +21,7 @@ class BottomButtonListButton extends Component {
             </TouchableHighlight>
             <TouchableHighlight style={styles.box} onPress={this.props.onPress}>
                 <View style={styles.button}>
-                    <Icon style={styles.icon} name="sort-list" color="lightgrey" />
+                    <Icon style={styles.icon} name="sort-list" color='lightgrey' />
                 </View>
             </TouchableHighlight>
             </View>

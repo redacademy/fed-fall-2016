@@ -3,7 +3,6 @@ import { View, Text, } from 'react-native';
 import { styles, } from './styles.js'
 import SearchBar from '../../containers/SearchBar';
 import Card from '../Card'
-import LocationListView from '../LocationListView'
 
 class AboutContainer extends React.Component {
 
@@ -23,9 +22,8 @@ class AboutContainer extends React.Component {
 
     render() {
         return (
-            <LocationListView />
-
-        );
+            <Card />
+        )
     }
 }
 
