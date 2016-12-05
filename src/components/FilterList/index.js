@@ -17,13 +17,13 @@ const endFilterIcons = [
     { iconName: 'key', iconText: 'REQUIRES KEY', },
 ]
 const bathroomButtonOptionsLeft = [
-    { iconName: 'male-and-female', iconText: 'BOTH WC', },
-    { iconName: 'microphone', iconText: 'MENS WC', },       //TODO: sub with "man" icon
-    { iconName: 'cleanliness', iconText: 'WOMENS WC', },    //TODO: sub with "woman icon"
+    { iconName: 'male-and-female', iconText: 'GENDER WC', },  //LHS default to gender
+    { iconName: 'male', iconText: 'MENS WC', }, 
+    { iconName: 'female', iconText: 'WOMENS WC', },
 ]
 const bathroomButtonOptionsRight = [
-    { iconName: 'family', iconText: 'FAMILY WC', },         //RHS default to family
-    { iconName: 'cleanliness', iconText: 'WOMENS WC', },    //TODO: sub with "woman icon"
+    { iconName: 'family', iconText: 'FAMILY WC', },  //RHS default to family
+    { iconName: 'female', iconText: 'WOMENS WC', },
 ]
 
 class FilterList extends Component {
@@ -96,14 +96,12 @@ class FilterList extends Component {
                                             isSelected={false}
                                             iconSize={iconSize} />
                                         :
-
                                         null
                                 }
                                 {
                                     this.state.isSelectingBathroom ?
                                         null
                                         :
-
                                         <FilterButton
                                             onPress={this.handleBathroomButtonOptionsRightPress}
                                             iconName={bathroomButtonOptionsRight[this.state.selectedBathroomIndexRight].iconName}
