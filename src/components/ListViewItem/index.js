@@ -1,10 +1,9 @@
 import React, { Component, PropTypes } from 'react'
 import {
     View,
-    ListView,
     Text,
     Image,
-    TouchableOpacity,
+    TouchableOpacity
 } from 'react-native'
 import { styles } from './style'
 import Loader from '../Loader'
@@ -26,7 +25,7 @@ class ListViewItem extends Component {
             method: 'GET',
         }).then(response => response.json())
             .then((results) => {
-                this.setState({ location: results, isLoading: false }) //&loading false
+                this.setState({ location: results, isLoading: false }) 
             })
     }
     componentWillMount() {
@@ -41,18 +40,10 @@ class ListViewItem extends Component {
                 <Loader />
             )
         } else {
-            console.log('render: placeId', this.props.placeId)
-            console.log("render: results", this.state.location.results[0])
-            // const lat = this.props.placeId.coordinate.latitude;
-            // const long = this.props.placeId.coordinate.longitude;
             const lat = this.state.location.results[0].geometry.location.lat
             const lng = this.state.location.results[0].geometry.location.lng
             const address = this.state.location.results[0].formatted_address
             const addressArray = address.split(',')
-            console.log(addressArray)
-            console.log("format", this.state.location.results[0].formatted_address)
-            // const places = `https://maps.googleapis.com/maps/api/geocode/json?place_id=${place_id}&key=AIzaSyB2WkbsqNDjsiz8i831IVn1piVIq5OeiCI`
-            console.log("address", this.state.location.results[0].formatted_address)
             return (
                 <TouchableOpacity onPress={() => { } } >
                     <View style={styles.locationContainer}>
@@ -83,10 +74,3 @@ ListViewItem.propTypes = {
 }
 
 export default ListViewItem
-
-
-// <View style={styles.locationDetails}>
-//     <Text>{this.props.locations.title}</Text>
-//     <Text></Text>
-//     <Text>100 Meters</Text>
-// </View>
