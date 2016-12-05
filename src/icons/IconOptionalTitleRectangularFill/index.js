@@ -9,7 +9,7 @@ class IconOptionalTitleRectangularBorder extends Component {
         return (
             <View style={{
                 width: this.props.size * 1.1, // design spec has text wider than the icons, so this allows for that
-                height: (this.props.size * 1.1) + 45,
+                height: (this.props.size * 1.1) + (this.props.noTitle ? 0 : 45),
                 alignItems: 'center',
                 justifyContent: 'flex-start',
             }}>
@@ -52,7 +52,8 @@ class IconOptionalTitleRectangularBorder extends Component {
                                 : 15,
                             color: this.props.iconColor || rgbColors.warmGrey,
                             letterSpacing: 0,
-                        }}>{this.props.title || iconTitleMapper[this.props.iconName]}</Text>
+                        }}>{this.props.title || iconTitleMapper[this.props.iconName]}
+                        </Text>
                     </View>
                 }
             </View>
