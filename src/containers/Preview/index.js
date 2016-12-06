@@ -3,7 +3,8 @@ import { View, Text, Animated } from 'react-native'
 import { connect } from 'react-redux'
 import { exitPreview } from '../../redux/actions'
 import styles from './styles'
-import { Button, Card } from '../../components'
+import { Button, Card, MapPin } from '../../components'
+import { rgbColors } from '../../config/styles'
 
 class Preview extends Component {
   componentWillMount() {
