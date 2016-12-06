@@ -160,14 +160,16 @@ class LocationHome extends Component {
             bottomButtonStatus = <View><BottomButtonListButton /><BottomButtonFilterButton /></View>
         }
 
-        const pins = this.props.pins.map((pin, i) => {
-            return <MapView.Marker
-                key={i}
-                coordinate={{
-                    longitude: pin.location.lat,
-                    latitude: pin.location.long,
-                }}
-                />
+    const pins = this.props.pins.map((pin, i) => {
+          console.log('pin', pin)
+          return <MapView.Marker
+            key={i}
+            coordinate={{
+              longitude: pin.location.long,
+              latitude: pin.location.lat,
+            }}
+            onSelect={this._onPinPush}
+          />
         })
 
         return (
