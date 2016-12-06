@@ -4,6 +4,7 @@ export const ENTER_PREVIEW = 'ENTER_PREVIEW'
 export const EXIT_PREVIEW = 'EXIT_PREVIEW'
 export const ENTER_LOCATION_ADD = 'ENTER_LOCATION_ADD'
 export const EXIT_LOCATION_ADD = 'EXIT_LOCATION_ADD'
+export const GOT_ALL_LOCATION_DATA = 'GOT_ALL_LOCATION_DATA'
 
 // Action creators here
 export const searchTextChange = (text) => ({
@@ -27,4 +28,11 @@ export const exitLocationAdd = () => ({
     type: EXIT_LOCATION_ADD,
 })
 
-// Thunks down here
+export const generateMapPins = () => {
+  return function(dispatch){
+    fetch('api/locations')
+    .then((mapData) => {
+      dispatch({ type: 'GOT_ALL_LOCATION_DATA', payload: mapData })
+    })
+  }
+}
