@@ -13,21 +13,19 @@ import styles from './styles'
 storiesOf('FilterButton', module)
     .addDecorator(CenterDecorator)
     .addDecorator(withKnobs)
-    .add('FilterText', () => {
-        return <BottomButtonFilterButton>
-            <TouchableHighlight style={styles.box} onPress={() => { } }>
-                <View style={styles.button}>
-                    <Text style={styles.icon}>List</Text>
-                </View>
-            </TouchableHighlight>
-        </BottomButtonFilterButton>
-    })
-    .add('Filter', () => {
-        return <BottomButtonFilterButton>
-            <TouchableHighlight style={styles.box} onPress={() => { } }>
-                <View style={styles.button}>
-                    <Text style={styles.icon}>L</Text>
-                </View>
-            </TouchableHighlight>
-        </BottomButtonFilterButton>
-    })
+    .add('FilterText', () => (<BottomButtonFilterButton>
+        <TouchableHighlight style={styles.box} onPress={() => { } }>
+            <View style={styles.button}>
+                <Text style={styles.icon}>List</Text>
+            </View>
+        </TouchableHighlight>
+    </BottomButtonFilterButton>
+    ))
+    .add('Filter', () => (<BottomButtonFilterButton>
+        <TouchableHighlight style={styles.box} onPress={() => { } }>
+            <View style={styles.button}>
+                <Text style={styles.icon}>L</Text>
+            </View>
+        </TouchableHighlight>
+    </BottomButtonFilterButton>
+    ))

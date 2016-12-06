@@ -1,14 +1,12 @@
-import {
-    StyleSheet,
-} from 'react-native'
+import { StyleSheet } from 'react-native'
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         width: 160,
-       flexDirection: 'row',
-       alignItems: 'center',
-       justifyContent: 'space-between',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
     },
     bar: {
         alignItems: 'center',
