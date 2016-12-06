@@ -132,6 +132,7 @@ class LocationHome extends Component {
               longitude: pin.location.long,
               latitude: pin.location.lat,
             }}
+            onSelect={this._onPinPush}
           />
         })
     console.log(pins)
@@ -155,7 +156,7 @@ class LocationHome extends Component {
               <LocationHomeOptionsBar>
                 <OptionsBarButton onPress={() => { } } iconName={"location"} />
                 <OptionsBarButton onPress={() => { } } iconName={"add"} />
-                <OptionsBarButton onPress={() => this._onPinPush()} iconName={"user"} />
+                <OptionsBarButton iconName={"user"} />
               </LocationHomeOptionsBar>
             </View>
           </View>
