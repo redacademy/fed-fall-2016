@@ -1,7 +1,6 @@
 import React, { Component, } from 'react'
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
-import reducers from './redux/reducers'
+import store from './redux/store'
 
 import LocationHome from '../src/containers/LocationHome'
 
@@ -9,7 +8,7 @@ import LocationHome from '../src/containers/LocationHome'
 export default class ChangedAndFed extends Component {
   render() {
     return (
-      <Provider store={createStore(reducers)}>
+      <Provider store={store}>
         <LocationHome />
       </Provider>
     )

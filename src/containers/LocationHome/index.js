@@ -5,7 +5,6 @@ import styles from './styles'
 
 // Redux 
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
 import { enterPreview, generateMapPins } from '../../redux/actions'
 
 // Containers
@@ -44,12 +43,13 @@ class LocationHome extends Component {
       addLocation: false,
     }
     
-    this.toggleOverlay = this.toggleOverlay.bind(this)
-    this.onPinPush = this.onPinPush.bind(this)
-    this.preview = this.preview.bind(this)
+    this._toggleOverlay = this._toggleOverlay.bind(this)
+    this._onPinPush = this._onPinPush.bind(this)
+    this._preview = this._preview.bind(this)
   }
   componentWillMount() {
       this.props.generateMapPins()
+
   }
   componentDidMount() {
     this._setUserCurrentLocation()
