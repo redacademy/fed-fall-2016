@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, Animated } from 'react-native'
+import { View, Animated } from 'react-native'
 import { connect } from 'react-redux'
 import {
     exitPreview,

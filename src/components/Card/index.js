@@ -1,18 +1,14 @@
-import React, { Component, PropTypes, } from 'react'
+import React, { Component, } from 'react'
 import {
     View,
 } from 'react-native'
-import { styles } from './style'
-
+import { styles } from './styles'
 
 class Card extends Component {
-    static propTypes = {
-        height: PropTypes.number.isRequired,
-    }
 
     render() {
         return (
-        <View style={[styles.CardContainer, {height: this.props.height, }]}>
+        <View style={styles.cardContainer}>
                 {this.props.children}
         </View>
         )
