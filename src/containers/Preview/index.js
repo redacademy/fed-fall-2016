@@ -3,7 +3,7 @@ import { View, Text, Animated, Dimensions } from 'react-native'
 import { connect } from 'react-redux'
 import { exitPreview } from '../../redux/actions'
 import { styles } from './style'
-import { Card } from '../../components'
+import { Button, Card } from '../../components'
 
 const { width, height, } = Dimensions.get('window')
 
@@ -75,6 +75,10 @@ class Preview extends Component {
                 {/* YOU CAN START ADDING CONTENT TO THE CARD IN HERE! */}
                   
                   <Text>Test</Text>
+
+                  <Button>
+                    <Text style={styles.buttonText}> GO </Text>
+                  </Button>
                   
             </Card>
         </Animated.View>
