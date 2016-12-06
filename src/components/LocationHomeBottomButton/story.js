@@ -1,5 +1,5 @@
 import React from 'react'
-import { storiesOf, addDecorator } from '@kadira/react-native-storybook'
+import { storiesOf } from '@kadira/react-native-storybook'
 import { withKnobs } from '@kadira/storybook-addon-knobs'
 import LocationHomeBottomButton from './index'
 import {
@@ -15,9 +15,9 @@ storiesOf('LocationHomeBottomButton', module)
     .addDecorator(withKnobs)
     .add('FilterSearchButton', () => {
         return <LocationHomeBottomButton>
-            <TouchableHighlight  style={styles.box} onPress={this._onPressButton}>
-                   <BottomButtonListButton />
-                   <BottomButtonFilterButton />
-                </TouchableHighlight>
+            <TouchableHighlight style={styles.box} onPress={this._onPressButton}>
+                <BottomButtonListButton />
+                <BottomButtonFilterButton />
+            </TouchableHighlight>
         </LocationHomeBottomButton>
     })

@@ -2,13 +2,13 @@ import {
     StyleSheet,
 } from 'react-native'
 
-export const styles = StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
         flex: 1,
         width: 160,
        flexDirection: 'row',
        alignItems: 'center',
-       justifyContent: 'space-between'
+       justifyContent: 'space-between',
     },
     bar: {
         alignItems: 'center',
@@ -19,7 +19,7 @@ export const styles = StyleSheet.create({
         borderRadius: 18,
         shadowColor: 'lightgrey',
         shadowOpacity: 0.6,
-        shadowOffset: { width: 1, height: -2, },
+        shadowOffset: { width: 1, height: -2 },
         shadowRadius: 3,
     },
     button: {
@@ -31,7 +31,7 @@ export const styles = StyleSheet.create({
         borderRadius: 30,
         shadowColor: 'lightgrey',
         shadowOpacity: 0.6,
-        shadowOffset: { width: 1, height: -2, },
+        shadowOffset: { width: 1, height: -2 },
         shadowRadius: 3,
     },
     icon: {
@@ -39,3 +39,5 @@ export const styles = StyleSheet.create({
         fontSize: 20,
     },
 })
+
+export default styles

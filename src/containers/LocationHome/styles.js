@@ -1,22 +1,22 @@
-import { StyleSheet, Dimensions } from 'react-native';
-const { width, height, } = Dimensions.get('window')
+import { StyleSheet, Dimensions } from 'react-native'
+const { width, height } = Dimensions.get('window')
 
-export const styles = StyleSheet.create({
-    mainContainer: {
-      zIndex: -1,
-      height: height * 2
-    },
-    mapContainer: {
-      height: height,
-    },
-    outerContainer: {
-      flex: 1, 
-      height: height * 2, 
-      marginTop: -height
-    },
-    bottomContainer: {
+const styles = StyleSheet.create({
+  mainContainer: {
+    zIndex: -1,
+    height: height * 2,
+  },
+  mapContainer: {
+    height: height,
+  },
+  outerContainer: {
+    flex: 1,
+    height: height * 2,
+    marginTop: -height,
+  },
+  bottomContainer: {
     flexDirection: 'row',
-    zIndex: 1
+    zIndex: 1,
   },
   overlay: {
     flex: 1,
@@ -32,14 +32,14 @@ export const styles = StyleSheet.create({
   optionsContainer: {
     position: 'absolute',
     top: 0,
-    right: 0
+    right: 0,
   },
   optionsBar: {
     height: 225,
     width: 80,
     position: 'absolute',
     top: 5,
-    right: 3
+    right: 3,
   },
   bottomButtons: {
     alignItems: 'flex-end',
@@ -47,7 +47,7 @@ export const styles = StyleSheet.create({
     paddingRight: 21,
     bottom: 750,
     right: 0,
-    position: 'absolute'
+    position: 'absolute',
   },
   box: {
     height: height * 0.77,
@@ -55,11 +55,11 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     shadowColor: 'darkgrey',
     shadowOpacity: 1,
-    shadowOffset: { width: 0.2, height: 1, },
+    shadowOffset: { width: 0.2, height: 1 },
     shadowRadius: 2,
   },
   text: {
-    color: 'white'
+    color: 'white',
   },
   button: {
     height: 45,
@@ -74,10 +74,12 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   searchBarInput: {
-    borderWidth: 1, 
-    borderColor: 'gray', 
-    height: 30, 
-    width: width * 0.5, 
-    backgroundColor: 'white'
-  }
+    borderWidth: 1,
+    borderColor: 'gray',
+    height: 30,
+    width: width * 0.5,
+    backgroundColor: 'white',
+  },
 })
+
+export default styles

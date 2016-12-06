@@ -1,6 +1,5 @@
 import React from 'react'
-import { Text, } from 'react-native'
-import { storiesOf, action, linkTo, } from '@kadira/react-native-storybook'
+import { storiesOf } from '@kadira/react-native-storybook'
 import { withKnobs, select, } from '@kadira/storybook-addon-knobs'
 import About from './index'
 

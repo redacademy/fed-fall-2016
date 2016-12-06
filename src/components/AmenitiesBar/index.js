@@ -1,15 +1,17 @@
 import React, { Component, PropTypes } from 'react'
-import { View, Text } from 'react-native'
+import { View } from 'react-native'
 import IconOptionalTitle from '../../icons/IconOptionalTitle'
 
 class AmenitiesBar extends Component {
+    static propTypes = {
+        amenities: PropTypes.object.isRequired,
+    }
     constructor() {
         super()
         this.state = {
             width: 0,
         }
     }
-
     render() {
         const { amenities } = this.props
         return (
@@ -30,7 +32,7 @@ class AmenitiesBar extends Component {
                 {amenities.changeTable ? <IconOptionalTitle size={(this.state.width / 4) * .9} iconName="baby-change-table" /> : null}
                 {amenities.familyWashroom ? <IconOptionalTitle size={(this.state.width / 4) * .9} iconName="family" /> : null}
 
-                {/* // after womens and mens washroom signs are added
+                {/* // after women's and men's washroom signs are added
                     {(amenities.washroomGender.indexOf('women')+1) ? <IconOptionalTitle size={(this.state.width / 4) * .9} iconName="washroom-women" /> : null}
                     {(amenities.washroomGender.indexOf('men')+1) ? <IconOptionalTitle size={(this.state.width / 4) * .9} iconName="washroom-men" /> : null}
                 */}
@@ -41,10 +43,5 @@ class AmenitiesBar extends Component {
         )
     }
 }
-
-AmenitiesBar.propTypes = {
-    amenities: PropTypes.object.isRequired,
-}
-
 
 export default AmenitiesBar

@@ -6,5 +6,5 @@ configure(() => {
   require('../src/components/stories')
 }, module)
 
-const StorybookUI = getStorybookUI({port: 7007, host: 'localhost',})
+const StorybookUI = getStorybookUI({ port: 7007, host: 'localhost' })
 AppRegistry.registerComponent('ChangedAndFed', () => StorybookUI)

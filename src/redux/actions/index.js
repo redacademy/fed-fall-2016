@@ -4,12 +4,10 @@ export const ENTER_PREVIEW = 'ENTER_PREVIEW'
 export const EXIT_PREVIEW = 'EXIT_PREVIEW'
 
 // Action creators here
-export const searchTextChange = (text) => {
-    return {
-        type: ON_SEARCH_CHANGE,
-        payload: text
-    }
-}
+export const searchTextChange = (text) => ({
+  type: ON_SEARCH_CHANGE,
+  payload: text,
+})
 
 export const enterPreview = () => ({
   type: ENTER_PREVIEW,
@@ -18,5 +16,3 @@ export const enterPreview = () => ({
 export const exitPreview = () => ({
   type: EXIT_PREVIEW,
 })
-
-// Thunks down here

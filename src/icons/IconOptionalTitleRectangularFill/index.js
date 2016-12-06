@@ -4,7 +4,40 @@ import Icon from '../../components/Icon'
 import { rgbColors } from '../../config/styles'
 import iconTitleMapper from '../../config/icon-title-mapping'
 
+/**
+ * IconOptionalTitleRectangularBorder
+ * 
+ * there are no default fillColors, so you'll have to pass a color into the "backgroundColor" prop
+ * a normal usage would be like this:
+
+<IconWithTitle
+    backgroundColor={hexColors.apricot}
+    size={60}
+    iconName="cleanliness"
+    />
+
+
+  * you can also override the iconColor and title props
+
+<IconWithTitle
+    backgroundColor={hexColors.apricot}
+    size={60}
+    iconColor="white"
+    iconName="cleanliness"
+    title="CLEAN"
+    />
+
+ * there is a noTitle prop as well that disables the title... this is the style used in the ListView
+ */
 class IconOptionalTitleRectangularBorder extends Component {
+    static propTypes = {
+        size: PropTypes.number.isRequired,
+        iconName: PropTypes.string.isRequired,
+        backgroundColor: PropTypes.string.isRequired,
+        iconColor: PropTypes.string,
+        title: PropTypes.string,
+        noTitle: PropTypes.bool,
+    }
     render() {
         return (
             <View style={{
@@ -61,36 +94,4 @@ class IconOptionalTitleRectangularBorder extends Component {
     }
 }
 
-IconOptionalTitleRectangularBorder.propTypes = {
-    size: PropTypes.number.isRequired,
-    iconName: PropTypes.string.isRequired,
-    backgroundColor: PropTypes.string.isRequired,
-    iconColor: PropTypes.string,
-    title: PropTypes.string,
-    noTitle: PropTypes.bool,
-}
-
 export default IconOptionalTitleRectangularBorder
-
-// USAGE:
-// there are no default fillColors, so you'll have to pass a color into the "backgroundColor" prop
-// 
-// a normal usage would be like this:
-// <IconWithTitle
-//     backgroundColor={hexColors.apricot}
-//     size={60}
-//     iconName="cleanliness"
-//     />
-// 
-// 
-// you can also override the iconColor and title props
-// <IconWithTitle
-//     backgroundColor={hexColors.apricot}
-//     size={60}
-//     iconColor="white"
-//     iconName="cleanliness"
-//     title="CLEAN"
-//     />
-// 
-// 
-// there is a noTitle prop as well that disables the title... this is the style used in the ListView

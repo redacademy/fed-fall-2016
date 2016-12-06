@@ -1,6 +1,6 @@
 import {
   createRouter,
-} from '@exponent/ex-navigation';
+} from '@exponent/ex-navigation'
 
 import NavigationLayout from './NavigationLayout'
 import About from '../components/About'
@@ -15,6 +15,6 @@ export const Router = createRouter(() => ({
   navigationLayout: () => NavigationLayout,
   about: () => About,
   home: () => LocationHome,
-}));
+}))
 
 export default Router

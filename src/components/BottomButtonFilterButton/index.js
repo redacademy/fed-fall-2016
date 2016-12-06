@@ -1,15 +1,15 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import {
     View,
     TouchableHighlight,
     Text
 } from 'react-native'
-import { styles } from './styles'
+import styles from './styles'
 import Icon from '../Icon/index'
 
 class BottomButtonFilerButton extends Component {
     static propTypes = {
-
+        onPress: PropTypes.func,
     }
     render() {
         return (
