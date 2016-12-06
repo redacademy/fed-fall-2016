@@ -2,13 +2,12 @@ import React, { Component, PropTypes } from 'react'
 import {
     View,
     TouchableOpacity,
-    Text,
 } from 'react-native'
-import { styles } from './styles'
+import styles from './styles'
 
 class LocationHomeMapPin extends Component {
     static propTypes = {
-
+        onPress: PropTypes.func.isRequired,
     }
     render() {
         return (

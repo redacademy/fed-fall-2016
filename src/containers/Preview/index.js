@@ -1,17 +1,14 @@
 import React, { Component } from 'react'
-import { View, Animated, Dimensions } from 'react-native'
+import { View, Text, Animated } from 'react-native'
 import { connect } from 'react-redux'
 import {
     exitPreview,
     exitLocationAdd
 } from '../../redux/actions'
-import { styles } from './style'
+import styles from './styles'
 import { Card } from '../../components'
 
-const { width, height, } = Dimensions.get('window')
-
 class Preview extends Component {
-
     componentWillMount() {
         this.currentState = 'card'
         this.avCardY = new Animated.Value(340)
@@ -20,16 +17,14 @@ class Preview extends Component {
         this.avPosition = new Animated.Value(0)
         this.animationDuration = 600
     }
-
-    detectSwipe(y) {
+    _detectSwipe(y) {
         if (this.gesturePosY - y >= this.gestureThreshold) {
-            this.onSwipeUp()
+            this._onSwipeUp()
         } else if (y - this.gesturePosY >= this.gestureThreshold) {
-            this.onSwipeDown()
+            this._onSwipeDown()
         }
     }
-
-    onSwipeUp() {
+    _onSwipeUp() {
         if (this.currentState === 'card') {
             setTimeout(() => this.currentState = 'list', 300)
             Animated.timing(this.avCardY, {
@@ -44,8 +39,7 @@ class Preview extends Component {
             }).start()
         }
     }
-
-    onSwipeDown() {
+    _onSwipeDown() {
         if (this.currentState === 'list') {
             setTimeout(() => this.currentState = 'card', 300)
             Animated.timing(this.avCardY, {
@@ -75,7 +69,7 @@ class Preview extends Component {
                     onStartShouldSetResponder={(e) => {
                         this.gesturePosY = e.nativeEvent.locationY
                     } }
-                    onMoveShouldSetResponder={(e) => this.detectSwipe(e.nativeEvent.locationY)}
+                    onMoveShouldSetResponder={(e) => this._detectSwipe(e.nativeEvent.locationY)}
                     >
                     <Card>
                         {this.props.children}

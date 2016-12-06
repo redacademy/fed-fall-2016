@@ -4,7 +4,19 @@ import Icon from '../../components/Icon'
 import { rgbColors } from '../../config/styles'
 import iconTitleMapper from '../../config/icon-title-mapping'
 
+/** 
+ * IconOptionalTitleCircularBorder
+ * 
+ * this is essentially the same as IconOptionalTitle, except that the icon has a circular border
+ */
 class IconOptionalTitleCircularBorder extends Component {
+    static propTypes = {
+        size: PropTypes.number.isRequired,
+        iconName: PropTypes.string.isRequired,
+        iconColor: PropTypes.string,
+        title: PropTypes.string,
+        noTitle: PropTypes.bool,
+    }
     render() {
         return (
             <View style={{
@@ -63,15 +75,4 @@ class IconOptionalTitleCircularBorder extends Component {
     }
 }
 
-IconOptionalTitleCircularBorder.propTypes = {
-    size: PropTypes.number.isRequired,
-    iconName: PropTypes.string.isRequired,
-    iconColor: PropTypes.string,
-    title: PropTypes.string,
-    noTitle: PropTypes.bool,
-}
-
 export default IconOptionalTitleCircularBorder
-
-// USAGE:
-// this is essentially the same as IconOptionalTitle, except that the icon has a circular border

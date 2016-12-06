@@ -1,8 +1,18 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+import { View } from 'react-native'
 import Svg, { Path } from 'react-native-svg'
 import Icon from '../Icon'
 
+/** 
+ * MapPin
+ * Usage: 
+ * 
+ * <MapPin scale="0.5" pinColor={rgbColors.apricot} iconName="add" />
+ *
+ * to get red icons… or replace with whatever color you want
+ * <MapPin scale="0.5" pinColor={rgbColors.apricot} iconName="add" iconColor="red" /> 
+ * 
+ */
 class MapPin extends Component {
     render() {
         return (
@@ -31,8 +41,3 @@ class MapPin extends Component {
 }
 
 export default MapPin
-
-// USAGE:
-// import MapPin from '../MapPin' (or whatever)
-// <MapPin scale="0.5" pinColor={rgbColors.apricot} iconName="add" />
-// <MapPin scale="0.5" pinColor={rgbColors.apricot} iconName="add" iconColor="red" /> //to get red icons… or replace with whatever color you want

@@ -5,19 +5,10 @@ import {
   TabNavigationItem as TabItem,
 } from '@exponent/ex-navigation'
 import { Router } from './routes.js'
-import { styles } from './styles.js'
-
-// // import Octicons from 'react-native-vector-icons/Octicons'
-// const iconSize = 24
-
-// const renderIcon = (isSelected, iconName, size) => {
-//   return (
-//     <Octicons name={iconName} size={size} color={isSelected ? 'black' : '#999999'} />
-//   )
-// }
+import styles from './styles.js'
 
 // Treat the NavigationLayout route like any other route -- you may want to set
-// it as the intiial route for a top-level StackNavigation
+// it as the initial route for a top-level StackNavigation
 class NavigationLayout extends Component {
 
   static route = {
@@ -25,7 +16,7 @@ class NavigationLayout extends Component {
       visible: false,
       backgroundColor: 'white',
       titleStyle: styles.header,
-    }
+    },
   }
   render() {
     return (
@@ -36,7 +27,6 @@ class NavigationLayout extends Component {
         <TabItem
           id="about"
           title="About"
-          // renderIcon={(isSelected) => renderIcon(isSelected, "info", iconSize)}/
           >
           <StackNavigation
             id="about"
@@ -46,7 +36,6 @@ class NavigationLayout extends Component {
         <TabItem
           id="home"
           title="Home"
-          // renderIcon={(isSelected) => renderIcon(isSelected, "info", iconSize)}/
           >
           <StackNavigation
             id="home"
@@ -54,8 +43,8 @@ class NavigationLayout extends Component {
             />
         </TabItem>
       </TabNavigation>
-    );
+    )
   }
 }
 
-export default NavigationLayout;
+export default NavigationLayout

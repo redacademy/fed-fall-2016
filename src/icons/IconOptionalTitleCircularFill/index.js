@@ -4,7 +4,20 @@ import Icon from '../../components/Icon'
 import { rgbColors } from '../../config/styles'
 import iconTitleMapper from '../../config/icon-title-mapping'
 
+/** 
+ * IconOptionalTitleRectangularBorder
+ * 
+ * this is just like the IconOptionalTitleRectangularBorder with the exception that the fill is circular
+ */
 class IconOptionalTitleRectangularBorder extends Component {
+    static propTypes = {
+        size: PropTypes.number.isRequired,
+        iconName: PropTypes.string.isRequired,
+        backgroundColor: PropTypes.string.isRequired,
+        iconColor: PropTypes.string,
+        title: PropTypes.string,
+        noTitle: PropTypes.bool,
+    }
     render() {
         return (
             <View style={{
@@ -60,16 +73,4 @@ class IconOptionalTitleRectangularBorder extends Component {
     }
 }
 
-IconOptionalTitleRectangularBorder.propTypes = {
-    size: PropTypes.number.isRequired,
-    iconName: PropTypes.string.isRequired,
-    backgroundColor: PropTypes.string.isRequired,
-    iconColor: PropTypes.string,
-    title: PropTypes.string,
-    noTitle: PropTypes.bool,
-}
-
 export default IconOptionalTitleRectangularBorder
-
-// USAGE:
-// this is just like the IconOptionalTitleRectangularBorder with the exception that the fill is circular

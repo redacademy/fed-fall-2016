@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
-import { Text, View, Dimensions } from 'react-native'
+import { View, Dimensions } from 'react-native'
 import MapView from 'react-native-maps'
-import { styles } from './style'
+import styles from './styles'
 
 // Redux 
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
 import { enterPreview } from '../../redux/actions'
 
 // Containers
@@ -21,16 +20,15 @@ import {
 } from '../../components'
 
 // Initialize Variables
-const { width, height, } = Dimensions.get('window')
+const { width, height } = Dimensions.get('window')
 const LATITUDE = 49.263432
 const LONGITUDE = -123.137952
 const ASPECT_RATIO = width / height
 const LATITUDE_DELTA = .01
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO
 
-//========================================================================
-
 class LocationHome extends Component {
+
     constructor(props) {
         super(props)
 
@@ -46,22 +44,22 @@ class LocationHome extends Component {
             addLocation: false,
         }
 
-        this.toggleOverlay = this.toggleOverlay.bind(this)
-        this.onPinPush = this.onPinPush.bind(this)
-        this.preview = this.preview.bind(this)
+        this._toggleOverlay = this._toggleOverlay.bind(this)
+        this._onPinPush = this._onPinPush.bind(this)
+        this._preview = this._preview.bind(this)
+        this._onRegionChangeComplete = this._onRegionChangeComplete.bind(this)
     }
-
     componentDidMount() {
-        this.setUserCurrentLocation()
+        this._setUserCurrentLocation()
     }
 
-    setUserCurrentLocation() {
+    _setUserCurrentLocation() {
         /* 
-            setUserCurrentLocation
+          setUserCurrentLocation
               => requires showsUserLocation, followsUserLocation to be enabled on MapView
               - getCurrentPosition( success, error, options) from user device 
               - 
-         */
+          */
         navigator.geolocation.getCurrentPosition(
             (position) => {
                 this.setState({
@@ -72,10 +70,9 @@ class LocationHome extends Component {
                         longitudeDelta: LONGITUDE_DELTA,
                     },
                 })
-                this.map.animateToRegion(this.state.region, 2000)
             },
             (error) => alert(error.message),
-            { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000, }
+            { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
         )
         this.watchID = navigator.geolocation.watchPosition((position) => {
             this.setState({
@@ -88,29 +85,25 @@ class LocationHome extends Component {
             })
         })
     }
-
-    toggleOverlay() {
+    _toggleOverlay() {
         this.setState({
             overlay: !this.state.overlay,
         })
     }
-
-
-    onRegionChangeComplete(region) {
-        /* as user moves around the map, update the current state
-        */
-        this.setState({ region, })
-    }
-    onPinPush() {
+    _onPinPush() {
         this.props.enterPreview()
     }
-
-    preview() {
+    _preview() {
         if (this.props.preview === true) {
 
             {/* Go to the preview container to add to the card! */ }
             return <Preview />
         }
+    }
+    _onRegionChangeComplete(region) {
+        /* as user moves around the map, update the current state
+        */
+        this.setState({ region, })
     }
 
     render() {
@@ -126,10 +119,9 @@ class LocationHome extends Component {
                     initialRegion={this.state.region}
                     showsUserLocation
                     followsUserLocation
-                    onRegionChange={region => this.onRegionChangeComplete(region)}
+                    onRegionChange={region => this._onRegionChangeComplete(region)}
                     >
                     {this.state.addLocation ?
-
                         <MapView.Circle
                             center={{ latitude: this.state.region.latitude, longitude: this.state.region.longitude, }}
                             radius={15}
@@ -137,7 +129,6 @@ class LocationHome extends Component {
                             strokeColor={'#ffffff'}
                             fillColor={'#f17979'}
                             />
-
                         :
                         null
                     }
@@ -177,11 +168,11 @@ class LocationHome extends Component {
     }
 }
 const mapStateToProps = (state) => ({
-  preview: state.button.preview,
+    preview: state.button.preview,
 })
 
 const mapDispatchToProps = {
-  enterPreview,
+    enterPreview,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LocationHome)
