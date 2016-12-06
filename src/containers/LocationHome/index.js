@@ -127,14 +127,28 @@ class LocationHome extends Component {
                     showsUserLocation
                     followsUserLocation
                     onRegionChange={region => this.onRegionChangeComplete(region)}
-                    />
+                    >
+                    {this.state.addLocation ?
+
+                        <MapView.Circle
+                            center={{ latitude: this.state.region.latitude, longitude: this.state.region.longitude, }}
+                            radius={15}
+                            strokeWidth={5}
+                            strokeColor={'#ffffff'}
+                            fillColor={'#f17979'}
+                            />
+
+                        :
+                        null
+                    }
+                </MapView>
 
                 {this.props.preview ? null : (
                     <View style={styles.optionsContainer}>
                         <View style={styles.optionsBar}>
                             <LocationHomeOptionsBar>
-                                <OptionsBarButton onPress={() => this.setUserCurrentLocation() } iconName={"location"} />
-                                <OptionsBarButton onPress={() => this.setState({ addLocation: !this.state.addLocation, }) } iconName={"add"} />
+                                <OptionsBarButton onPress={() => this.setUserCurrentLocation()} iconName={"location"} />
+                                <OptionsBarButton onPress={() => this.setState({ addLocation: !this.state.addLocation, })} iconName={"add"} />
                                 <OptionsBarButton onPress={() => this.onPinPush()} iconName={"user"} />
                             </LocationHomeOptionsBar>
                         </View>
