@@ -5,7 +5,8 @@ import styles from './styles'
 
 // Redux 
 import { connect } from 'react-redux'
-import { enterPreview } from '../../redux/actions'
+import { bindActionCreators } from 'redux'
+import { enterPreview, generateMapPins } from '../../redux/actions'
 
 // Containers
 import { SearchBar, Preview } from '../index'
@@ -42,10 +43,13 @@ class LocationHome extends Component {
       markers: [],
       addLocation: false,
     }
-
-    this._toggleOverlay = this._toggleOverlay.bind(this)
-    this._onPinPush = this._onPinPush.bind(this)
-    this._preview = this._preview.bind(this)
+    
+    this.toggleOverlay = this.toggleOverlay.bind(this)
+    this.onPinPush = this.onPinPush.bind(this)
+    this.preview = this.preview.bind(this)
+  }
+  componentWillMount() {
+      this.props.generateMapPins()
   }
   componentDidMount() {
     this._setUserCurrentLocation()
@@ -147,6 +151,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   enterPreview,
+  generateMapPins,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LocationHome)
