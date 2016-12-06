@@ -3,7 +3,8 @@ import { View, Text, Animated } from 'react-native'
 import { connect } from 'react-redux'
 import { exitPreview } from '../../redux/actions'
 import styles from './styles'
-import { Card } from '../../components'
+import { Card, MapPin } from '../../components'
+import { rgbColors } from '../../config/styles'
 
 class Preview extends Component {
   componentWillMount() {
@@ -69,7 +70,7 @@ _onSwipeDown() {
             {/* YOU CAN START ADDING CONTENT TO THE CARD IN HERE! */}
 
             <Text>Test</Text>
-
+           <MapPin scale="0.5" pinColor={rgbColors.apricot} iconName="diaper" />
           </Card>
         </Animated.View>
       </View>

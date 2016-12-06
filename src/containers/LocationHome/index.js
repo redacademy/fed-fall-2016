@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View, Dimensions } from 'react-native'
 import MapView from 'react-native-maps'
 import styles from './styles'
+import { rgbColors } from '../../config/styles'
 
 // Redux 
 import { connect } from 'react-redux'
@@ -16,7 +17,8 @@ import {
   BottomButtonFilterButton,
   BottomButtonListButton,
   LocationHomeOptionsBar,
-  OptionsBarButton
+  OptionsBarButton,
+  MapPin
 } from '../../components'
 
 // Initialize Variables
@@ -46,10 +48,10 @@ class LocationHome extends Component {
     this._toggleOverlay = this._toggleOverlay.bind(this)
     this._onPinPush = this._onPinPush.bind(this)
     this._preview = this._preview.bind(this)
+    this._showPins = this._showPins.bind(this)
   }
   componentWillMount() {
       this.props.generateMapPins()
-
   }
   componentDidMount() {
     this._setUserCurrentLocation()
@@ -95,12 +97,44 @@ class LocationHome extends Component {
       return <Preview />
     }
   }
+  _showPins(){
+      console.log('show pins')
+      return <View>
+      {this.props.pins && this.props.pins.generatedLocationData.length
+        ? this.props.pins.generatedLocationData.map((pin, i) => (
+          <MapView.Marker key={i}
+            coordinate={{longitude: pin.location.long, latitude: pin.location.lat}}
+          />
+        ))
+        : null
+      }
+      </View>
+    }
+
+    // <MapView.Marker
+    //         coordinate={{latitude: 49.263432, longitude: -123.137952}}
+    //       />
+    //     ))
+
   render() {
+    console.log('RENDER ', this.props.pins)
     let bottomButtonStatus = null
 
     if (this.state.overlay) {
       bottomButtonStatus = <View><BottomButtonListButton /><BottomButtonFilterButton /></View>
     }
+
+    const pins = this.props.pins.map((pin, i) => {
+          console.log('pin', pin)
+          return <MapView.Marker
+            key={i}
+            coordinate={{
+              longitude: pin.location.lat,
+              latitude: pin.location.long,
+            }}
+          />
+        })
+    console.log(pins)
 
     return (
       <View style={styles.mainContainer}>
@@ -109,8 +143,12 @@ class LocationHome extends Component {
           initialRegion={this.state.region}
           showsUserLocation
           followsUserLocation
-          />
+        >
 
+        {pins}
+        
+        </MapView>
+          
         {this.props.preview ? null : (
           <View style={styles.optionsContainer}>
             <View style={styles.optionsBar}>
@@ -121,6 +159,7 @@ class LocationHome extends Component {
               </LocationHomeOptionsBar>
             </View>
           </View>
+          
         )}
 
         {/* Apply this overlay when user filters */}
@@ -147,6 +186,7 @@ class LocationHome extends Component {
 
 const mapStateToProps = (state) => ({
   preview: state.button.preview,
+  pins: state.map.generatedLocationData,
 })
 
 const mapDispatchToProps = {

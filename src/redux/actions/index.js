@@ -31,7 +31,6 @@ export const generateMapPins = () => {
     .then((mapData) => {
       // console.log('worked')
       mapData.json().then(mapData => {
-        console.log(mapData)
         dispatch({ type: 'GOT_ALL_LOCATION_DATA', payload: mapData })
       })
     })
