@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, Dimensions, TouchableOpacity } from 'react-native'
 import MapView from 'react-native-maps'
 import styles from './styles'
+import { rgbColors } from '../../config/styles'
 
 // Redux 
 import { connect } from 'react-redux'
@@ -21,6 +22,7 @@ import {
     BottomButtonListButton,
     LocationHomeOptionsBar,
     OptionsBarButton,
+    MapPin
 } from '../../components'
 import IconOptionalTitleCircularBorder from '../../icons/IconOptionalTitleCircularBorder'
 
@@ -58,18 +60,16 @@ class LocationHome extends Component {
         this._onLocationAddPress = this._onLocationAddPress.bind(this)
         this._locationPreview = this._locationPreview.bind(this)
     }
+
     componentDidMount() {
         this._setUserCurrentLocation()
     }
 
+    componentWillMount() {
+        this.props.generateMapPins()
+    }
 
     _setUserCurrentLocation() {
-        /* 
-          setUserCurrentLocation
-              => requires showsUserLocation, followsUserLocation to be enabled on MapView
-              - getCurrentPosition( success, error, options) from user device 
-              - 
-          */
         navigator.geolocation.getCurrentPosition(
             (position) => {
                 this.setState({
@@ -102,9 +102,11 @@ class LocationHome extends Component {
             overlay: !this.state.overlay,
         })
     }
+
     _onPinPush() {
         this.props.enterPreview()
     }
+
     _preview() {
         if (this.props.preview === true) {
 
@@ -116,10 +118,12 @@ class LocationHome extends Component {
             )
         }
     }
+
     _onLocationAddPress() {
         this.props.enterLocationAdd()
         this.marker.pinColor = "black"
     }
+
     _locationPreview() {
         if (this.props.locationAdd === true) {
             return (
@@ -129,6 +133,20 @@ class LocationHome extends Component {
             )
         }
     }
+
+    _showPins() {
+        return <View>
+            {this.props.pins && this.props.pins.generatedLocationData.length
+                ? this.props.pins.generatedLocationData.map((pin, i) => (
+                    <MapView.Marker key={i}
+                        coordinate={{ longitude: pin.location.long, latitude: pin.location.lat }}
+                        />
+                ))
+                : null
+            }
+        </View>
+    }
+
     _onRegionChangeComplete(region) {
         /* as user moves around the map, update the current state
         */
@@ -140,16 +158,31 @@ class LocationHome extends Component {
         if (this.state.overlay) {
             bottomButtonStatus = <View><BottomButtonListButton /><BottomButtonFilterButton /></View>
         }
+
+        const pins = this.props.pins.map((pin, i) => {
+            console.log('pin', pin)
+            return <MapView.Marker
+                key={i}
+                coordinate={{
+                    longitude: pin.location.lat,
+                    latitude: pin.location.long,
+                }}
+                />
+        })
+
         return (
             <View style={styles.mainContainer}>
                 <MapView
                     ref={ref => { this.map = ref } }    //required for animateToRegion
+                    onRegionChange={region => this._onRegionChangeComplete(region)}
                     style={styles.mapContainer}
                     initialRegion={this.state.region}
                     showsUserLocation
                     followsUserLocation
-                    onRegionChange={region => this._onRegionChangeComplete(region)}
                     >
+
+                    {pins}
+
                     {this.state.addLocation ?
                         <MapView.Marker
                             ref={ref => { this.marker = ref } }    //required for closing pin when "add clicked"
@@ -158,19 +191,19 @@ class LocationHome extends Component {
                             flat={true}
                             title={'this is a test title'}
                             >
-                            <MapView.Callout tooltip={true} style={{ width: width*0.6, backgroundColor: 'transparent' }} setSelected={true}>
+                            <MapView.Callout tooltip={true} style={{ width: width * 0.6, backgroundColor: 'transparent' }} setSelected={true}>
                                 <LocationAddMarkerCallout>
-                                <View style={{flex:1, backgroundColor: 'transparent'}}>
-                                    <Text>New Location!</Text>
-                                    <Text>Press & Hold to Move</Text>
-                                    <TouchableOpacity onPress={() => this._onLocationAddPress()}>
-                                        <IconOptionalTitleCircularBorder
-                                            iconColor={'#f17979'}
-                                            size={50}
-                                            iconName="add"
-                                            noTitle={true}
-                                            />
-                                    </TouchableOpacity>
+                                    <View style={{ flex: 1, backgroundColor: 'transparent' }}>
+                                        <Text>New Location!</Text>
+                                        <Text>Press & Hold to Move</Text>
+                                        <TouchableOpacity onPress={() => this._onLocationAddPress()}>
+                                            <IconOptionalTitleCircularBorder
+                                                iconColor={'#f17979'}
+                                                size={50}
+                                                iconName="add"
+                                                noTitle={true}
+                                                />
+                                        </TouchableOpacity>
                                     </View>
                                 </LocationAddMarkerCallout>
                             </MapView.Callout>
@@ -190,6 +223,7 @@ class LocationHome extends Component {
                             </LocationHomeOptionsBar>
                         </View>
                     </View>
+
                 )}
 
                 {/* Apply this overlay when user filters */}
@@ -217,6 +251,7 @@ class LocationHome extends Component {
 const mapStateToProps = (state) => ({
     preview: state.button.preview,
     locationAdd: state.button.locationAdd,
+    pins: state.map.generatedLocationData,
 })
 
 const mapDispatchToProps = {
