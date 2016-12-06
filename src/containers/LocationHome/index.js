@@ -103,7 +103,7 @@ class LocationHome extends Component {
       {this.props.pins && this.props.pins.generatedLocationData.length
         ? this.props.pins.generatedLocationData.map((pin, i) => (
           <MapView.Marker key={i}
-            coordinate={{longitude: pin.location.long, latitude: pin.location.lat}}
+            coordinate={{latitude: pin.location.lat, longitude: pin.location.long}}
           />
         ))
         : null
@@ -129,8 +129,8 @@ class LocationHome extends Component {
           return <MapView.Marker
             key={i}
             coordinate={{
-              longitude: pin.location.lat,
-              latitude: pin.location.long,
+              longitude: pin.location.long,
+              latitude: pin.location.lat,
             }}
           />
         })
