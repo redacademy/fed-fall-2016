@@ -3,7 +3,6 @@ import { View, Text, Dimensions, TouchableOpacity } from 'react-native'
 import MapView from 'react-native-maps'
 import styles from './styles'
 import { rgbColors } from '../../config/styles'
-import Icon from '../../components/Icon/index'
 
 // Redux 
 import { connect } from 'react-redux'
@@ -60,6 +59,7 @@ class LocationHome extends Component {
         this._onRegionChangeComplete = this._onRegionChangeComplete.bind(this)
         this._onLocationAddPress = this._onLocationAddPress.bind(this)
         this._locationPreview = this._locationPreview.bind(this)
+        this._showPins = this._showPins.bind(this)
     }
 
     componentDidMount() {
@@ -99,30 +99,16 @@ class LocationHome extends Component {
     }
 
     _toggleOverlay() {
-        this.setState({
-            overlay: !this.state.overlay,
-        })
-    }
+            this.setState({
+                overlay: !this.state.overlay,
+            })
+        }
 
     _onPinPush() {
         this.props.enterPreview()
     }
 
-  _showPins() {
-    console.log('show pins')
-    return <View>
-      {this.props.pins && this.props.pins.generatedLocationData.length
-        ? this.props.pins.generatedLocationData.map((pin, i) => (
-          <MapView.Marker key={i}
-            coordinate={{ latitude: pin.location.lat, longitude: pin.location.long }}
-            />
-        ))
-        : null
-      }
-    </View>
-  }
-
-  _onLocationAddPress() {
+     _onLocationAddPress() {
         this.props.enterLocationAdd()
         this.marker.pinColor = "black"
     }
@@ -135,6 +121,20 @@ class LocationHome extends Component {
                 </Preview>
             )
         }
+    }
+
+  _showPins(){
+      console.log('show pins')
+      return <View>
+      {this.props.pins && this.props.pins.generatedLocationData.length
+        ? this.props.pins.generatedLocationData.map((pin, i) => (
+          <MapView.Marker key={i}
+            coordinate={{longitude: pin.location.long, latitude: pin.location.lat}}
+          />
+        ))
+        : null
+      }
+      </View>
     }
 
     _onRegionChangeComplete(region) {
@@ -154,7 +154,6 @@ class LocationHome extends Component {
             )
         }
     }
-
 
     render() {
         console.log('RENDER ', this.props.pins)

@@ -6,8 +6,7 @@ import {
     exitLocationAdd
 } from '../../redux/actions'
 import styles from './styles'
-import { Card, Button, MapPin } from '../../components'
-import { rgbColors } from '../../config/styles'
+import { Card } from '../../components'
 import { getLocationDetails } from '../../redux/actions'
 
 class Preview extends Component {
