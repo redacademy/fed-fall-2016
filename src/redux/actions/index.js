@@ -2,6 +2,7 @@
 export const ON_SEARCH_CHANGE = 'ON_SEARCH_CHANGE'
 export const ENTER_PREVIEW = 'ENTER_PREVIEW'
 export const EXIT_PREVIEW = 'EXIT_PREVIEW'
+export const GOT_ALL_LOCATION_DATA = 'GOT_ALL_LOCATION_DATA'
 
 // Action creators here
 export const searchTextChange = (text) => ({
@@ -16,3 +17,15 @@ export const enterPreview = () => ({
 export const exitPreview = () => ({
   type: EXIT_PREVIEW,
 })
+
+// Thunks down here
+
+export const generateMapPins = () => {
+  return function(dispatch){
+    fetch('api/locations')
+    .then((mapData) => {
+      dispatch({ type: 'GOT_ALL_LOCATION_DATA', payload: mapData })
+    })
+  }
+}
+
