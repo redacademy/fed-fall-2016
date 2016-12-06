@@ -122,6 +122,20 @@ class LocationHome extends Component {
     _onLocationAddPress() {
         this.props.enterLocationAdd()
         this.marker.pinColor = "black"
+
+  }
+  _showPins(){
+      console.log('show pins')
+      return <View>
+      {this.props.pins && this.props.pins.generatedLocationData.length
+        ? this.props.pins.generatedLocationData.map((pin, i) => (
+          <MapView.Marker key={i}
+            coordinate={{latitude: pin.location.lat, longitude: pin.location.long}}
+          />
+        ))
+        : null
+      }
+      </View>
     }
 
     _locationPreview() {
@@ -132,19 +146,6 @@ class LocationHome extends Component {
                 </Preview>
             )
         }
-    }
-
-    _showPins() {
-        return <View>
-            {this.props.pins && this.props.pins.generatedLocationData.length
-                ? this.props.pins.generatedLocationData.map((pin, i) => (
-                    <MapView.Marker key={i}
-                        coordinate={{ longitude: pin.location.long, latitude: pin.location.lat }}
-                        />
-                ))
-                : null
-            }
-        </View>
     }
 
     _onRegionChangeComplete(region) {
@@ -160,7 +161,6 @@ class LocationHome extends Component {
         }
 
         const pins = this.props.pins.map((pin, i) => {
-            console.log('pin', pin)
             return <MapView.Marker
                 key={i}
                 coordinate={{
