@@ -30,9 +30,19 @@ export const exitLocationAdd = () => ({
 
 export const generateMapPins = () => {
   return function(dispatch){
-    fetch('api/locations')
+    fetch('http://45.55.2.200/api/location', {
+      method: 'GET',
+      headers: new Headers({
+        'Content-Type': 'application/json',
+      })
+    })
     .then((mapData) => {
-      dispatch({ type: 'GOT_ALL_LOCATION_DATA', payload: mapData })
+      // console.log('worked')
+      mapData.json().then(mapData => {
+        console.log(mapData)
+        dispatch({ type: 'GOT_ALL_LOCATION_DATA', payload: mapData })
+      })
     })
   }
+    
 }

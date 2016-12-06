@@ -96,6 +96,7 @@ class LocationHome extends Component {
             })
         })
     }
+
     _toggleOverlay() {
         this.setState({
             overlay: !this.state.overlay,
