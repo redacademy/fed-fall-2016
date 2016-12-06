@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
-import { View, Dimensions } from 'react-native'
+import { View, Text, Dimensions } from 'react-native'
 import MapView from 'react-native-maps'
 import styles from './styles'
 
 // Redux 
 import { connect } from 'react-redux'
-import { enterPreview } from '../../redux/actions'
+import {
+    enterPreview,
+    enterLocationAdd,
+} from '../../redux/actions'
 
 // Containers
 import { SearchBar, Preview } from '../index'
@@ -48,6 +51,7 @@ class LocationHome extends Component {
         this._onPinPush = this._onPinPush.bind(this)
         this._preview = this._preview.bind(this)
         this._onRegionChangeComplete = this._onRegionChangeComplete.bind(this)
+        this._onLocationAddPress = this._onLocationAddPress.bind(this)
     }
     componentDidMount() {
         this._setUserCurrentLocation()
@@ -97,13 +101,31 @@ class LocationHome extends Component {
         if (this.props.preview === true) {
 
             {/* Go to the preview container to add to the card! */ }
-            return <Preview />
+            return (
+                <Preview>
+                    <Text>This is a preview</Text>
+                </Preview>
+            )
+        }
+    }
+    _onLocationAddPress() {
+        this.setState({ addLocation: !this.state.addLocation })
+        this.props.enterLocationAdd()
+    }
+    _locationPreview() {
+        if (this.props.locationAdd === true) {
+
+            return (
+                <Preview>
+                    <Text>This is a _onLocationAddPress() preview</Text>
+                </Preview>
+            )
         }
     }
     _onRegionChangeComplete(region) {
         /* as user moves around the map, update the current state
         */
-        this.setState({ region, })
+        this.setState({ region })
     }
 
     render() {
@@ -123,7 +145,7 @@ class LocationHome extends Component {
                     >
                     {this.state.addLocation ?
                         <MapView.Circle
-                            center={{ latitude: this.state.region.latitude, longitude: this.state.region.longitude, }}
+                            center={{ latitude: this.state.region.latitude, longitude: this.state.region.longitude }}
                             radius={15}
                             strokeWidth={5}
                             strokeColor={'#ffffff'}
@@ -134,13 +156,13 @@ class LocationHome extends Component {
                     }
                 </MapView>
 
-                {this.props.preview ? null : (
+                {(this.props.preview || this.props.locationAdd) ? null : (
                     <View style={styles.optionsContainer}>
                         <View style={styles.optionsBar}>
                             <LocationHomeOptionsBar>
-                                <OptionsBarButton onPress={() => this.setUserCurrentLocation()} iconName={"location"} />
-                                <OptionsBarButton onPress={() => this.setState({ addLocation: !this.state.addLocation, })} iconName={"add"} />
-                                <OptionsBarButton onPress={() => this.onPinPush()} iconName={"user"} />
+                                <OptionsBarButton onPress={() => this._setUserCurrentLocation()} iconName={"location"} />
+                                <OptionsBarButton onPress={() => this._onLocationAddPress()} iconName={"add"} />
+                                <OptionsBarButton onPress={() => this._onPinPush()} iconName={"user"} />
                             </LocationHomeOptionsBar>
                         </View>
                     </View>
@@ -152,7 +174,7 @@ class LocationHome extends Component {
                 {/* Filter options */}
                 <View style={styles.bottomButtons}>{bottomButtonStatus}</View>
 
-                {this.props.preview ? null : (
+                {(this.props.preview || this.props.locationAdd) ? null : (
                     <View style={{ position: 'absolute', bottom: 680 }}>
                         <View style={styles.bottomContainer}>
                             <SearchBar />
@@ -161,7 +183,8 @@ class LocationHome extends Component {
                     </View>
                 )}
 
-                {this.preview()}
+                {this._preview()}
+                {this._locationPreview()}
 
             </View>
         )
@@ -169,10 +192,12 @@ class LocationHome extends Component {
 }
 const mapStateToProps = (state) => ({
     preview: state.button.preview,
+    locationAdd: state.button.locationAdd,
 })
 
 const mapDispatchToProps = {
     enterPreview,
+    enterLocationAdd,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LocationHome)
