@@ -1,13 +1,22 @@
-import React from 'react'
-import { View } from 'react-native'
-import styles from './styles'
+import React, { Component, PropTypes, } from 'react'
+import {
+    View,
+} from 'react-native'
+import { styles } from './style'
 
-const Card = ({ children }) => (
-    <View style={styles.CardContainer}>
-        <View style={styles.CardContent}>
-            {children}
+
+class Card extends Component {
+    static propTypes = {
+        height: PropTypes.number.isRequired,
+    }
+
+    render() {
+        return (
+        <View style={[styles.CardContainer, {height: this.props.height, }]}>
+                {this.props.children}
         </View>
-    </View>
-)
+        )
+    }
+}
 
 export default Card
