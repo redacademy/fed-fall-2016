@@ -10,6 +10,7 @@ import { Button, Card, MapPin } from '../../components'
 import { rgbColors } from '../../config/styles'
 import { getLocationDetails } from '../../redux/actions'
 
+
 class Preview extends Component {
   componentWillMount() {
     this.currentState = 'card'
