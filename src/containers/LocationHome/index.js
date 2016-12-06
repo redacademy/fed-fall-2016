@@ -8,6 +8,7 @@ import { connect } from 'react-redux'
 import {
     enterPreview,
     enterLocationAdd,
+    generateMapPins
 } from '../../redux/actions'
 
 // Containers
@@ -20,9 +21,6 @@ import {
     BottomButtonListButton,
     LocationHomeOptionsBar,
     OptionsBarButton,
-    // AddressBlock,
-    // FilterList,
-    // RatingBlock,
 } from '../../components'
 import IconOptionalTitleCircularBorder from '../../icons/IconOptionalTitleCircularBorder'
 
@@ -63,6 +61,7 @@ class LocationHome extends Component {
     componentDidMount() {
         this._setUserCurrentLocation()
     }
+
 
     _setUserCurrentLocation() {
         /* 
@@ -222,6 +221,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     enterPreview,
     enterLocationAdd,
+    generateMapPins,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LocationHome)
