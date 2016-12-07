@@ -3,8 +3,7 @@ import { View, Text, Animated } from 'react-native'
 import { connect } from 'react-redux'
 import { exitPreview } from '../../redux/actions'
 import styles from './styles'
-import { Card, MapPin } from '../../components'
-import { rgbColors } from '../../config/styles'
+import { Card } from '../../components'
 import { getLocationDetails } from '../../redux/actions'
 
 class Preview extends Component {
@@ -16,7 +15,6 @@ class Preview extends Component {
     this.avPosition = new Animated.Value(0)
     this.animationDuration = 600
     this.renderText = this.renderText.bind(this)
-    console.log("mount", this.props.placeid)
     this.props.getLocationDetails(this.props.placeid)
   }
 
@@ -59,15 +57,8 @@ class Preview extends Component {
     }
   }
 
-  renderText(){
-       
-    
-  }
-  
-
   render() {
     const cardAnimation = { transform: [{ translateY: this.avCardY }] }
-
     return (
       <View style={styles.Container}>
         <Animated.View
@@ -88,7 +79,7 @@ class Preview extends Component {
 }
 const mapStateToProps = (state) => ({
   locationDetails: state.map.locationDetails,
-  placeid: state.button.placeid
+  placeid: state.button.placeid,
 })
 const mapDispatchToProps = {
   exitPreview,
