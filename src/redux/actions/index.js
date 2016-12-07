@@ -53,5 +53,6 @@ export const getLocationDetails = (placeId) => {
       .then(response => response.json())
       .then(locationDetails => dispatch({ type: 'GOT_LOCATION_DETAILS', payload: locationDetails }))
   }
+
 }
 

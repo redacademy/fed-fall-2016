@@ -162,7 +162,6 @@ class LocationHome extends Component {
       bottomButtonStatus = <View><BottomButtonListButton /><BottomButtonFilterButton /></View>
 
     }
-    const icon = this.props.pins.mapPin
     const pins = this.props.pins.map((pin, i) => {
       return <MapView.Marker
         key={i}
