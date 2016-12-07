@@ -27,6 +27,9 @@ const bathroomButtonOptionsRight = [
 ]
 
 class FilterList extends Component {
+    static proptTypes = {
+        showHeader: PropTypes.bool,
+    }
     constructor(props) {
         super(props)
         this.state = {
@@ -71,7 +74,7 @@ class FilterList extends Component {
     render() {
         return (
             <View style={styles.outerContainer}>
-                <Text style={styles.instructions}>tap to select filter</Text>
+                {this.props.showHeader? <Text style={styles.instructions}>tap to select filter</Text> : null}
                 <View style={styles.container}>
                     <View style={styles.iconContainer}>
                         {
@@ -126,19 +129,10 @@ class FilterList extends Component {
 export default FilterList
 
 /*
-
-
 TODO: 
     DONE ---1) Add a border around when selecting between male/female options
     2) inital state when selecting should be unselected
-    3) need male/female icons
+    DONE ---3) need male/female icons
     4) need to add Submit button 
 ------------------------------
-
-                            <View style={{flexDirection: 'row',}}>
-                                <FilterButton 
-                                    onPress={()=> { alert('pass in onPress!')}}
-                                    iconName={bathroomButtonOptionsRight[0].iconName} iconText={bathroomButtonOptionsRight[0].iconText} iconSize={iconSize} />
-                                <FilterButton iconName={bathroomButtonOptionsRight[1].iconName} iconText={bathroomButtonOptionsRight[1].iconText} iconSize={iconSize} />
-                            </View>
 */
