@@ -156,7 +156,6 @@ class LocationHome extends Component {
     }
 
     render() {
-        console.log('RENDER ', this.props.pins)
         let bottomButtonStatus = null
 
         if (this.state.overlay) {
