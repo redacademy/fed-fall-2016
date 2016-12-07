@@ -15,9 +15,12 @@ export const styles = StyleSheet.create({
         shadowRadius: 2,
         padding: 20,
         width: width * 0.945,
-        borderRadius: 12
+        borderRadius: 12,
+        flexDirection: 'column'
     },
     CardContent: {
+        flexDirection: 'column',
         flex: 1,
+        justifyContent: 'flex-end',
     }
 })

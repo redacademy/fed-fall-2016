@@ -71,14 +71,14 @@ class Preview extends Component {
             }}
             onMoveShouldSetResponder={(e) => this.detectSwipe(e.nativeEvent.locationY)}
           >
-            <Card>
-                {/* YOU CAN START ADDING CONTENT TO THE CARD IN HERE! */}
-                  
+            <Card>                  
+              <View style={{flex: 1, marginBottom: 10}}>
                   <Text>Test</Text>
-
-                  <Button>
-                    <Text style={styles.buttonText}> GO </Text>
-                  </Button>
+              </View>
+              
+              <Button style={{alignSelf: 'flex-end'}}>
+                <Text style={styles.buttonText}> GO </Text>
+              </Button>
                   
             </Card>
         </Animated.View>
