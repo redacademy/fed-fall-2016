@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import {
     View, Text
 } from 'react-native'
-import { styles } from './style'
+import { styles } from './styles'
 import FilterButton from '../FilterButton'
 
 const iconSize = 170

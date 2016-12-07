@@ -4,7 +4,7 @@ import {
     Text,
     TouchableOpacity
 } from 'react-native'
-import { styles } from './style'
+import { styles } from './styles'
 import Icon from '../Icon/index'
 
 class FilterButton extends Component {
