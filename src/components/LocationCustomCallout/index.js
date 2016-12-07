@@ -4,14 +4,13 @@ import {
 } from 'react-native'
 import { styles } from './styles'
 
-const propTypes = {
-  children: PropTypes.node.isRequired,
-  style: PropTypes.object,
-}
+class LocationCustomCallout extends React.Component {
+  static propTypes = {
+    children: PropTypes.node.isRequired,
+    style: PropTypes.object,
+  }
 
-class CustomCallout extends React.Component {
   render() {
-            console.log('render CustomCallout', this.props)
     return (
       <View style={[styles.container, this.props.style]}>
         <View style={styles.bubble}>
@@ -22,11 +21,8 @@ class CustomCallout extends React.Component {
         <View style={styles.arrowBorder} />
         <View style={styles.arrow} />
       </View>
-    );
+    )
   }
 }
 
-CustomCallout.propTypes = propTypes
-
-
-export default CustomCallout
+export default LocationCustomCallout
