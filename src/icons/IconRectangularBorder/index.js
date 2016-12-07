@@ -3,7 +3,7 @@ import { View } from 'react-native'
 import Icon from '../../components/Icon'
 import { rgbColors } from '../../config/styles'
 
-class IconCircularBorder extends Component {
+class IconRectangularBorder extends Component {
     static propTypes = {
         size: PropTypes.number.isRequired,
         name: PropTypes.string.isRequired,
@@ -24,15 +24,15 @@ class IconCircularBorder extends Component {
                         height: this.props.size,
                         alignItems: 'center',
                         justifyContent: 'center',
-                        borderRadius: this.props.size * 0.6,
-                        borderColor: this.props.color || rgbColors.warmGrey,
-                        borderWidth: this.props.size * 0.03,
+                        borderRadius: this.props.size * 0.1,
+                        borderColor: this.props.color || rgbColors.blush,
+                        borderWidth: this.props.size * 0.02,
                     }}
                     >
                     <Icon
                         name={this.props.name}
-                        size={this.props.size * 0.55}
-                        color={this.props.color || rgbColors.warmGrey}
+                        size={this.props.size * 0.7}
+                        color={this.props.color || rgbColors.blush}
                         style={{
                             backgroundColor: 'transparent',
                         }}
@@ -43,4 +43,4 @@ class IconCircularBorder extends Component {
     }
 }
 
-export default IconCircularBorder
+export default IconRectangularBorder
