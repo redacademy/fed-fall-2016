@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, Dimensions } from 'react-native'
+import { View, Text, Dimensions, TouchableOpacity } from 'react-native'
 import MapView from 'react-native-maps'
 import styles from './styles'
 
@@ -19,8 +19,14 @@ import {
     BottomButtonFilterButton,
     BottomButtonListButton,
     LocationHomeOptionsBar,
-    OptionsBarButton
+    OptionsBarButton,
+    // AddressBlock,
+    // FilterList,
+    // RatingBlock,
 } from '../../components'
+import IconOptionalTitleCircularBorder from '../../icons/IconOptionalTitleCircularBorder'
+
+import LocationAddMarkerCallout from '../../components/LocationAddMarkerCallout'
 
 // Initialize Variables
 const { width, height } = Dimensions.get('window')
@@ -52,6 +58,7 @@ class LocationHome extends Component {
         this._preview = this._preview.bind(this)
         this._onRegionChangeComplete = this._onRegionChangeComplete.bind(this)
         this._onLocationAddPress = this._onLocationAddPress.bind(this)
+        this._locationPreview = this._locationPreview.bind(this)
     }
     componentDidMount() {
         this._setUserCurrentLocation()
@@ -74,6 +81,7 @@ class LocationHome extends Component {
                         longitudeDelta: LONGITUDE_DELTA,
                     },
                 })
+                this.map.animateToRegion(this.state.region, 1000)
             },
             (error) => alert(error.message),
             { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
@@ -109,12 +117,11 @@ class LocationHome extends Component {
         }
     }
     _onLocationAddPress() {
-        this.setState({ addLocation: !this.state.addLocation })
         this.props.enterLocationAdd()
+        this.marker.pinColor = "black"
     }
     _locationPreview() {
         if (this.props.locationAdd === true) {
-
             return (
                 <Preview>
                     <Text>This is a _onLocationAddPress() preview</Text>
@@ -144,13 +151,30 @@ class LocationHome extends Component {
                     onRegionChange={region => this._onRegionChangeComplete(region)}
                     >
                     {this.state.addLocation ?
-                        <MapView.Circle
-                            center={{ latitude: this.state.region.latitude, longitude: this.state.region.longitude }}
-                            radius={15}
-                            strokeWidth={5}
-                            strokeColor={'#ffffff'}
-                            fillColor={'#f17979'}
-                            />
+                        <MapView.Marker
+                            ref={ref => { this.marker = ref } }    //required for closing pin when "add clicked"
+                            coordinate={{ latitude: this.state.region.latitude, longitude: this.state.region.longitude }}
+                            pinColor={'#f17979'}
+                            flat={true}
+                            title={'this is a test title'}
+                            >
+                            <MapView.Callout tooltip={true} style={{ width: width*0.6, backgroundColor: 'transparent' }} setSelected={true}>
+                                <LocationAddMarkerCallout>
+                                <View style={{flex:1, backgroundColor: 'transparent'}}>
+                                    <Text>New Location!</Text>
+                                    <Text>Press & Hold to Move</Text>
+                                    <TouchableOpacity onPress={() => this._onLocationAddPress()}>
+                                        <IconOptionalTitleCircularBorder
+                                            iconColor={'#f17979'}
+                                            size={50}
+                                            iconName="add"
+                                            noTitle={true}
+                                            />
+                                    </TouchableOpacity>
+                                    </View>
+                                </LocationAddMarkerCallout>
+                            </MapView.Callout>
+                        </MapView.Marker>
                         :
                         null
                     }
@@ -161,7 +185,7 @@ class LocationHome extends Component {
                         <View style={styles.optionsBar}>
                             <LocationHomeOptionsBar>
                                 <OptionsBarButton onPress={() => this._setUserCurrentLocation()} iconName={"location"} />
-                                <OptionsBarButton onPress={() => this._onLocationAddPress()} iconName={"add"} />
+                                <OptionsBarButton onPress={() => this.setState({ addLocation: !this.state.addLocation })} iconName={"add"} />
                                 <OptionsBarButton onPress={() => this._onPinPush()} iconName={"user"} />
                             </LocationHomeOptionsBar>
                         </View>
