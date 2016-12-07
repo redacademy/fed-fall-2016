@@ -71,7 +71,7 @@ class Preview extends Component {
           >
           <Card>
               <View style={{flex: 1, marginBottom: 10}}>
-                  <Text>Test</Text>
+                  <Text>{this.props.locationDetails.formatted_address}</Text>
               </View>
 
               <Button style={{alignSelf: 'flex-end'}}>
