@@ -1,43 +1,8 @@
-const iconNames = [
-    'add',
-    'baby-change-table',
-    'bottle',
-    'breast-feeding',
-    'cleanliness',
-    'diaper',
-    'exit',
-    'family',
-    'female',
-    'filter-list',
-    'filter',
-    'heart-off',
-    'heart-on',
-    'history',
-    'key',
-    'location-add-new',
-    'location-saved',
-    'location',
-    'male-and-female',
-    'male',
-    'marker',
-    'mask',
-    'microphone',
-    'new-entry',
-    'photo-library',
-    'photo',
-    'private',
-    'quality-ribbon',
-    'quality-shield',
-    'quiet',
-    'search',
-    'sort-list',
-    'starbaby-face',
-    'stroller-accessible',
-    'stroller-inaccessible-alternate',
-    'stroller-inaccessible',
-    'thumbs-down',
-    'thumbs-up',
-    'user',
-]
+import iconTitleMapper from '../../src/config/icon-title-mapping'
+
+// convert the icon title mapping object into an array of its keys,
+// that way we have the name of icons
+const iconNames = Object.keys(iconTitleMapper)
+
 
 export default iconNames

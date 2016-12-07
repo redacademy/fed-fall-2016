@@ -7,6 +7,7 @@ const iconTitleMapper = {
   'diaper': '',
   'exit': '',
   'family': 'FAMILY',
+  'female': 'WOMEN\'S WC',
   'filter-list': '',
   'filter': '',
   'history': '',
@@ -17,7 +18,7 @@ const iconTitleMapper = {
   'love-off': '',
   'love-on': '',
   'male-and-female': '',
-  // there will probably have to be a male and a female bathroom icon
+  'male': 'MEN\'S WC',
   'mask': 'PRIVATE',
   'microphone': '',
   'new-entry': '',
@@ -27,8 +28,8 @@ const iconTitleMapper = {
   'quality-ribbon': 'QUALITY',
   'quality-shield': 'QUALITY',
   'quiet': 'QUIET',
-  // there may also be a loud icon
   'search': '',
+  'starbaby-face': '',
   'sort-list': '',
   'stroller-accessible': 'STROLLER ACCESSIBLE',
   'stroller-inaccessible-alternate': 'STROLLER INACCESSIBLE',
