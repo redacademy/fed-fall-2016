@@ -17,10 +17,5 @@ export const styles = StyleSheet.create({
         width: width * 0.945,
         borderRadius: 12,
         flexDirection: 'column'
-    },
-    CardContent: {
-        flexDirection: 'column',
-        flex: 1,
-        justifyContent: 'flex-end',
     }
 })

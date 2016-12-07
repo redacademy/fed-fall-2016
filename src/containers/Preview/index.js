@@ -67,7 +67,6 @@ class Preview extends Component {
 
   render() {
     const cardAnimation = { transform: [{ translateY: this.avCardY }] }
-
         return (
             <View style={styles.Container}>
                 <Animated.View
