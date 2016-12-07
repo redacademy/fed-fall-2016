@@ -2,7 +2,7 @@ import { GOT_ALL_LOCATION_DATA, GOT_LOCATION_DETAILS } from '../actions'
 
 const initialState = {
     generatedLocationData: [],
-    locationDetails: {}
+    locationDetails: {},
 }
 
 export default (state = initialState, action) => {

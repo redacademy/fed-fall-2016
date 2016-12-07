@@ -3,7 +3,6 @@ import { View, Dimensions } from 'react-native'
 import MapView from 'react-native-maps'
 import styles from './styles'
 import { rgbColors } from '../../config/styles'
-import Icon from '../../components/Icon/index'
 
 // Redux 
 import { connect } from 'react-redux'
@@ -126,7 +125,7 @@ class LocationHome extends Component {
           longitude: pin.location.long,
           latitude: pin.location.lat,
         }}
-        onSelect={() => this._onPinPush(pin.placeid)}
+        onPress={() => this._onPinPush(pin.placeid)}
         >
         <MapPin scale="0.5" pinColor={rgbColors.apricot} iconName={pin.mapPin} />
       </MapView.Marker>

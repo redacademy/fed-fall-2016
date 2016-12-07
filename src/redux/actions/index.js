@@ -27,7 +27,7 @@ export const generateMapPins = () => {
       method: 'GET',
       headers: new Headers({
         'Content-Type': 'application/json',
-      })
+      }),
     })
       .then(response => response.json())
       .then(mapData => dispatch({ type: 'GOT_ALL_LOCATION_DATA', payload: mapData }))
@@ -40,7 +40,7 @@ export const getLocationDetails = (placeId) => {
       method: 'GET',
       headers: new Headers({
         'Content-Type': 'application/json',
-      })
+      }),
     })
       .then(response => response.json())
       .then(locationDetails => dispatch({ type: 'GOT_LOCATION_DETAILS', payload: locationDetails }))

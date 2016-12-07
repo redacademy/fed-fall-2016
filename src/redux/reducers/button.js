@@ -2,7 +2,7 @@ import { ENTER_PREVIEW, EXIT_PREVIEW } from '../actions'
 
 const initialState = {
     preview: false,
-    placeid: ''
+    placeid: '',
 }
 
 export default (state = initialState, action) => {
