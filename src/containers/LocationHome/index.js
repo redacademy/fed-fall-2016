@@ -161,14 +161,13 @@ class LocationHome extends Component {
         }
 
     const pins = this.props.pins.map((pin, i) => {
-          console.log('pin', pin)
           return <MapView.Marker
             key={i}
             coordinate={{
               longitude: pin.location.long,
               latitude: pin.location.lat,
             }}
-            onSelect={this._onPinPush}
+            onSelect={() => this._onPinPush(pin.placeid)}
           />
         })
 

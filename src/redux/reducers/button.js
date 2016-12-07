@@ -8,14 +8,15 @@ import {
 const initialState = {
     preview: false,
     locationAdd: false,
+    placeid: ''
 }
 
 export default (state = initialState, action) => {
     switch (action.type) {
         case ENTER_PREVIEW:
-            return {...state, preview: true, }
+            return { preview: true, placeid: action.payload }
         case EXIT_PREVIEW:
-            return {...state, preview: false, }
+            return { preview: false, placeid: '' }
         case ENTER_LOCATION_ADD:
             return {...state, locationAdd: true, }
         case EXIT_LOCATION_ADD:
