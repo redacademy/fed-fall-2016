@@ -87,8 +87,8 @@ class LocationHome extends Component {
       overlay: !this.state.overlay,
     })
   }
-  _onPinPush() {
-    this.props.enterPreview()
+  _onPinPush(placeid) {
+    this.props.enterPreview(placeid)
   }
   _preview() {
     if (this.props.preview === true) {
@@ -125,17 +125,15 @@ class LocationHome extends Component {
     }
 
     const pins = this.props.pins.map((pin, i) => {
-          console.log('pin', pin)
           return <MapView.Marker
             key={i}
             coordinate={{
               longitude: pin.location.long,
               latitude: pin.location.lat,
             }}
-            onSelect={this._onPinPush}
+            onSelect={() => this._onPinPush(pin.placeid)}
           />
         })
-    console.log(pins)
 
     return (
       <View style={styles.mainContainer}>
