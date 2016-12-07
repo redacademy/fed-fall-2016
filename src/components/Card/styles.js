@@ -16,10 +16,13 @@ const styles = StyleSheet.create({
         padding: 20,
         width: width * 0.945,
         borderRadius: 12,
+        flexDirection: 'column'
     },
     CardContent: {
-        flex: 1,
-    },
+         flexDirection: 'column',
+         flex: 1,
+         justifyContent: 'flex-end',
+      }
 })
 
 export default styles

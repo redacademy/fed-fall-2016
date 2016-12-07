@@ -9,17 +9,10 @@ const styles = StyleSheet.create({
         top: 0,
         position: 'absolute',
     },
-    button: {
-        height: 45,
-        width: width * 0.75,
-        borderRadius: 22,
-        backgroundColor: 'green',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
     buttonText: {
         color: 'white',
         fontWeight: 'bold',
+        fontSize: 20
     },
     cardText: {
         flex: 1,    

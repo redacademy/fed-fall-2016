@@ -3,8 +3,10 @@ import { View, Text, Animated } from 'react-native'
 import { connect } from 'react-redux'
 import { exitPreview } from '../../redux/actions'
 import styles from './styles'
-import { Card } from '../../components'
+import { Button, Card, MapPin } from '../../components'
+import { rgbColors } from '../../config/styles'
 import { getLocationDetails } from '../../redux/actions'
+
 
 class Preview extends Component {
   componentWillMount() {
@@ -68,9 +70,15 @@ class Preview extends Component {
           onMoveShouldSetResponder={(e) => this._detectSwipe(e.nativeEvent.locationY)}
           >
           <Card>
-            {/* YOU CAN START ADDING CONTENT TO THE CARD IN HERE! */}
-           <Text>{this.props.locationDetails.formatted_address}</Text>
-          </Card>
+              <View style={{flex: 1, marginBottom: 10}}>
+                  <Text>Test</Text>
+              </View>
+
+              <Button style={{alignSelf: 'flex-end'}}>
+                <Text style={styles.buttonText}> GO </Text>
+              </Button>
+
+            </Card>
         </Animated.View>
       </View>
     )
