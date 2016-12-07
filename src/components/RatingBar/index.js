@@ -3,14 +3,23 @@ import { View } from 'react-native'
 import IconOptionalTitleRectangularFill from '../../icons/IconOptionalTitleRectangularFill'
 import { ratingColorGenerator } from '../../config/functions'
 
+/**
+ * Rating Bar
+ * 
+ * example: 
+ * <RatingBar titleless ratings={{quality: 'HIGH', clean: 'MEDIUM', nursing: 'LOW', quiet: 'MEDIUM'}} />
+ */
 class RatingBar extends Component {
+    static propTypes = {
+        titleless: PropTypes.boolean, // omit rendering of titles under icons
+        ratings: PropTypes.object.isRequired, // ratings object fetched from db
+    }
     constructor() {
         super()
         this.state = {
             width: 0,
         }
     }
-
     render() {
         console.log(this)
         return (
@@ -58,15 +67,4 @@ class RatingBar extends Component {
     }
 }
 
-RatingBar.propTypes = {
-    ratings: PropTypes.object.isRequired,
-}
-
 export default RatingBar
-
-// Usage:
-// requires a ratings object passed in… this will be fetched from the database,
-// but a hardcoded example is below:
-// <RatingBar titleless ratings={{quality: 'HIGH', clean: 'MEDIUM', nursing: 'LOW', quiet: 'MEDIUM'}} />
-
-// The optional prop "titleless" will omit the rendering of titles under the icons

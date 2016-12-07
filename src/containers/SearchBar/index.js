@@ -1,26 +1,26 @@
-import React, { Component, } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { TextInput } from 'react-native'
-import { styles } from './style'
+import styles from './styles'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
 import { searchTextChange } from '../../redux/actions'
 
-class SearchBar extends Component {    
-    constructor(props){
+class SearchBar extends Component {
+    static propTypes = {
+        searchTextChange: PropTypes.func.isRequired,
+    }
+    constructor(props) {
         super(props)
 
-        this.onTextChange = this.onTextChange.bind(this)
+        this._onTextChange = this._onTextChange.bind(this)
     }
-
-    onTextChange(text){
+    _onTextChange(text) {
         this.props.searchTextChange(text)
-        console.log(this.props.searchText)
+        // TODO: complete SearchBar
     }
-
-    render(){
+    render() {
         return (
-            <TextInput 
-                onChangeText={this.onTextChange}
+            <TextInput
+                onChangeText={this._onTextChange}
                 placeholder="Search"
                 autoCorrect={false}
                 style={styles.TextInput} />
@@ -28,16 +28,12 @@ class SearchBar extends Component {
     }
 }
 
-function mapDispatchToProps(dispatch){
-    return bindActionCreators({
-        searchTextChange
-    }, dispatch)
-}
+const mapStateToProps = (state) => ({
+    searchText: state.input,
+})
 
-function mapStateToProps(state){
-    return {
-        searchText: state.input
-    }
+const mapDispatchToProps = {
+    searchTextChange,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBar)

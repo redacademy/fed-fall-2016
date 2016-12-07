@@ -1,8 +1,6 @@
-import {
-    StyleSheet,
-} from 'react-native'
+import { StyleSheet } from 'react-native'
 
-export const styles = StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'row',
@@ -18,7 +16,7 @@ export const styles = StyleSheet.create({
         borderRadius: 30,
         shadowColor: 'lightgrey',
         shadowOpacity: 0.6,
-        shadowOffset: { width: 1, height: -2, },
+        shadowOffset: { width: 1, height: -2 },
         shadowRadius: 3,
         marginLeft: 10,
     },
@@ -28,3 +26,5 @@ export const styles = StyleSheet.create({
 
     },
 })
+
+export default styles

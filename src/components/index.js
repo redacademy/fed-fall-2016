@@ -1,5 +1,5 @@
 export { default as About } from './About'
-export { default as BottomButtonFilterButton} from './BottomButtonFilterButton'
+export { default as BottomButtonFilterButton } from './BottomButtonFilterButton'
 export { default as BottomButtonListButton } from './BottomButtonListButton'
 export { default as Card } from './Card'
 export { default as Icon } from './Icon'

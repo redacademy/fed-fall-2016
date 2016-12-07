@@ -4,7 +4,7 @@ import ButtonReducer from './button'
 
 const rootReducer = combineReducers({
     input: InputReducer,
-    button: ButtonReducer
+    button: ButtonReducer,
 })
 
 export default rootReducer

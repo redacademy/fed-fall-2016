@@ -3,7 +3,7 @@ import {
     View,
     TouchableOpacity
 } from 'react-native'
-import { styles } from './styles'
+import styles from './styles'
 import Icon from '../Icon/index'
 
 class LocationHomeBottomButton extends Component {

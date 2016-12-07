@@ -1,13 +1,13 @@
 import { StyleSheet, Dimensions } from 'react-native'
 
-const { width, height, } = Dimensions.get('window')
+const { width, height } = Dimensions.get('window')
 
-export const styles = StyleSheet.create({
+const styles = StyleSheet.create({
     Container: {
         height: height,
         flexGrow: 1,
         top: 0,
-        position: 'absolute'
+        position: 'absolute',
     },
     buttonText: {
         color: 'white',
@@ -15,3 +15,5 @@ export const styles = StyleSheet.create({
         fontSize: 20
     },
 })
+
+export default styles

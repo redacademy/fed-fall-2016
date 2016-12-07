@@ -1,14 +1,14 @@
 import { ON_SEARCH_CHANGE } from '../actions'
 
 const initialState = {
-    searchText: ''
+    searchText: '',
 }
 
 export default (state = initialState, action) => {
-    switch(action.type){
+    switch (action.type) {
         case ON_SEARCH_CHANGE:
-            return {...state, searchText: action.payload}        
-        default: 
+            return { searchText: action.payload }
+        default:
             return state
     }
 }

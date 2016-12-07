@@ -4,7 +4,45 @@ import Icon from '../../components/Icon'
 import { rgbColors } from '../../config/styles'
 import iconTitleMapper from '../../config/icon-title-mapping'
 
+/**
+ * IconOptionalTitle
+ * 
+ * this produces an icon in grey with a title below it that is cross-referenced
+ * with the icon-title-mapping object to fill in the title below it
+
+<IconOptionalTitle
+    size={60}
+    iconName="quality-ribbon"
+    />
+
+    
+ * optionally there are props of iconColor and title, if you want to override the defaults:
+
+<IconOptionalTitle
+    size={60}
+    iconColor="green"
+    iconName="quality-ribbon"
+    title="BABIES!!!"
+    />
+
+  * there is also a prop "noTitle", which omits the title from below the icon… would produce
+  * something similar to the <Icon /> component, but with a padding box
+
+<IconOptionalTitle
+    size={60}
+    iconColor="green"
+    iconName="quality-ribbon"
+    noTitle
+    />
+ */
 class IconOptionalTitle extends Component {
+    static propTypes = {
+        size: PropTypes.number.isRequired,
+        iconName: PropTypes.string.isRequired,
+        iconColor: PropTypes.string,
+        title: PropTypes.string,
+        noTitle: PropTypes.bool,
+    }
     render() {
         return (
             <View style={{
@@ -26,7 +64,7 @@ class IconOptionalTitle extends Component {
                         name={this.props.iconName}
                         size={this.props.size * 0.7}
                         // If needed, to resize cleanliness and quiet based on design-spec,
-                        // then size code could be implemeted this way:
+                        // then size code could be implemented this way:
                         // (this.props.iconName === 'cleanliness' || this.props.iconName === 'quiet')
                         // ? this.props.size * 0.5
                         // : this.props.size * 0.7
@@ -60,40 +98,4 @@ class IconOptionalTitle extends Component {
     }
 }
 
-IconOptionalTitle.propTypes = {
-    size: PropTypes.number.isRequired,
-    iconName: PropTypes.string.isRequired,
-    iconColor: PropTypes.string,
-    title: PropTypes.string,
-    noTitle: PropTypes.bool,
-}
-
 export default IconOptionalTitle
-
-// USAGE:
-// 
-// this produces an icon in grey with a title below it that is cross-referenced
-// with the icon-title-mapping object to fill in the title below it
-// <IconOptionalTitle
-//     size={60}
-//     iconName="quality-ribbon"
-//     />
-// 
-// 
-// optionally there are props of iconColor and title, if you want to override the defaults:
-// <IconOptionalTitle
-//     size={60}
-//     iconColor="green"
-//     iconName="quality-ribbon"
-//     title="BABIES!!!"
-//     />
-// 
-// 
-// there is also a prop "noTitle", which omits the title from below the icon… would produce
-// something similar to the <Icon /> component, but with a padding box
-// <IconOptionalTitle
-//     size={60}
-//     iconColor="green"
-//     iconName="quality-ribbon"
-//     noTitle
-//     />

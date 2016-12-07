@@ -1,32 +1,22 @@
-import {
-    StyleSheet,
-} from 'react-native';
+import { StyleSheet } from 'react-native'
 
-export const navigationStyles = StyleSheet.create({
-  selectedTab: {
-    backgroundColor: '#0084FF',
-  },
-});
- 
-export const styles = StyleSheet.create({
+const styles = StyleSheet.create({
     header: {
         height: 24,
         fontSize: 24,
     },
-
     selectedItemStyle: {
-        backgroundColor: '#999999'
+        backgroundColor: '#999999',
     },
-
     titleText: {
-        fontWeight: 'bold'
+        fontWeight: 'bold',
     },
-
     selectedTitleText: {
-        color: 'black'
+        color: 'black',
     },
-
     notSelectedTitleText: {
-        color: '#999999'
-    }
-});
+        color: '#999999',
+    },
+})
+
+export default styles
