@@ -5,12 +5,15 @@ import {
     Image,
     TouchableOpacity
 } from 'react-native'
-import { styles } from './style'
+import styles from './styles'
 import Loader from '../Loader'
 import RatingBar from '../RatingBar'
 import MapPin from '../MapPin'
 
 class ListViewItem extends Component {
+    static propTypes = {
+        placeId: PropTypes.string.isRequired,
+    }
     constructor() {
         super()
         this.state = {
@@ -18,23 +21,19 @@ class ListViewItem extends Component {
             isLoading: true,
         }
     }
-
-    getLocationDetails() {
+    componentWillMount() {
+        this._getLocationDetails()
+    }
+    _getLocationDetails() {
         const placeId = this.props.placeId;
         return fetch(`https://maps.googleapis.com/maps/api/geocode/json?place_id=${placeId}&key=AIzaSyB2WkbsqNDjsiz8i831IVn1piVIq5OeiCI`, {
             method: 'GET',
         }).then(response => response.json())
             .then((results) => {
-                this.setState({ location: results, isLoading: false }) 
+                this.setState({ location: results, isLoading: false })
             })
     }
-    componentWillMount() {
-        this.getLocationDetails()
-    }
-
-
     render() {
-        console.log(this.state.dataSource)
         if (this.state.isLoading) {
             return (
                 <Loader />
@@ -51,8 +50,8 @@ class ListViewItem extends Component {
                             style={styles.map}
                             source={{ url: `https://maps.googleapis.com/maps/api/staticmap?center=${lat},${lng}&zoom=18&size=120x120&maptype=roadmap&label:%20&key=AIzaSyB2WkbsqNDjsiz8i831IVn1piVIq5OeiCI` }}
                             >
-                            <MapPin scale="0.4"  pinColor={'salmon'} iconName="diaper" />
-                            </Image>
+                            <MapPin scale="0.4" pinColor={'salmon'} iconName="diaper" />
+                        </Image>
                         <View style={styles.detailsContainer}>
                             <Text style={styles.locationTitle}>{addressArray[0]}</Text>
                             <Text style={styles.locationDetails}>
@@ -67,10 +66,6 @@ class ListViewItem extends Component {
             )
         }
     }
-}
-
-ListViewItem.propTypes = {
-    placeId: PropTypes.string.isRequired,
 }
 
 export default ListViewItem

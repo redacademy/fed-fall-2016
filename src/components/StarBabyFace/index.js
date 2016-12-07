@@ -2,6 +2,11 @@ import React, { Component } from 'react'
 import { View } from 'react-native'
 import Svg, { Path, Circle } from 'react-native-svg'
 
+/** 
+ * Example: 
+ * 
+ * <StarBabyFace scale="1" />
+ */
 class StarBabyFace extends Component {
     render() {
         return (
@@ -26,7 +31,3 @@ class StarBabyFace extends Component {
 }
 
 export default StarBabyFace
-
-// USAGE:
-// import StarBabyFace
-// render it with a scale prop: <StarBabyFace scale="1" />

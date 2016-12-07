@@ -1,5 +1,5 @@
-import React, { Component, } from 'react'
-import { styles } from './styles.js'
+import React, { Component } from 'react'
+import styles from './styles.js'
 
 import {
     StackNavigation,
@@ -12,21 +12,36 @@ import {
     Text,
 } from 'react-native'
 import { Router } from './routes.js'
-// import Octicons from 'react-native-vector-icons/Octicons'
 const iconSize = 48
 
-// Treat the DrawerNavigationLayout route like any other route -- you may want to set
-// it as the intiial route for a top-level StackNavigation
-//Drawer
+/**
+ * NavigationLayout
+ * 
+ * Treat the DrawerNavigationLayout route like any other route -- you may want to set
+ * it as the initial route for a top-level StackNavigation
+ */
 class NavigationLayout extends Component {
     static route = {
         navigationBar: {
             visible: false,
             backgroundColor: 'white',
             fontSize: 24,
-        }
+        },
+    }
+    _renderHeader = () => {
+        return (
+            <View style={styles.header}>
+            </View>
+        )
     }
 
+    _renderTitle(text, isSelected, iconName, size) {
+        return (
+            <Text style={[styles.titleText, isSelected ? styles.selectedTitleText : {}]}>
+                {text}
+            </Text>
+        )
+    }
     render() {
         return (
             <DrawerNavigation
@@ -58,21 +73,6 @@ class NavigationLayout extends Component {
             </DrawerNavigation>
         )
     }
-
-    _renderHeader = () => {
-        return (
-            <View style={styles.header}>
-            </View>
-        )
-    }
-
-    _renderTitle(text, isSelected, iconName, size) {
-        return (
-            <Text style={[styles.titleText, isSelected ? styles.selectedTitleText : {}]}>
-                {text}
-            </Text>
-        )
-    }
 }
 
-export default NavigationLayout;
+export default NavigationLayout
