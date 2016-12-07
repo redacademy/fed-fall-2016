@@ -2,7 +2,7 @@ import { GOT_ALL_LOCATION_DATA, GOT_LOCATION_DETAILS } from '../actions'
 
 const initialState = {
     generatedLocationData: [],
-    locationDetails: []
+    locationDetails: {}
 }
 
 export default (state = initialState, action) => {
@@ -10,7 +10,7 @@ export default (state = initialState, action) => {
         case GOT_ALL_LOCATION_DATA:
             return {...state, generatedLocationData: action.payload }
         case GOT_LOCATION_DETAILS:
-            return {...state, locationDetails: action.payload } 
+            return {...state, locationDetails: action.payload.results[0] } 
         default:
             return state
     }

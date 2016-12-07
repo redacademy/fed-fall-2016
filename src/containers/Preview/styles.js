@@ -21,6 +21,9 @@ const styles = StyleSheet.create({
         color: 'white',
         fontWeight: 'bold',
     },
+    cardText: {
+        flex: 1,    
+    }
 })
 
 export default styles
