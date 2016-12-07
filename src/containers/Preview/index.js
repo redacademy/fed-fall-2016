@@ -16,7 +16,6 @@ class Preview extends Component {
     this.avPosition = new Animated.Value(0)
     this.animationDuration = 600
     this.renderText = this.renderText.bind(this)
-    console.log("mount", this.props.placeid)
     this.props.getLocationDetails(this.props.placeid)
   }
 
@@ -59,15 +58,8 @@ class Preview extends Component {
     }
   }
 
-  renderText(){
-       
-    
-  }
-  
-
   render() {
     const cardAnimation = { transform: [{ translateY: this.avCardY }] }
-
     return (
       <View style={styles.Container}>
         <Animated.View
@@ -94,7 +86,7 @@ class Preview extends Component {
 }
 const mapStateToProps = (state) => ({
   locationDetails: state.map.locationDetails,
-  placeid: state.button.placeid
+  placeid: state.button.placeid,
 })
 const mapDispatchToProps = {
   exitPreview,

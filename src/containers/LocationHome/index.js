@@ -112,20 +112,13 @@ class LocationHome extends Component {
     </View>
   }
 
-  // <MapView.Marker
-  //         coordinate={{latitude: 49.263432, longitude: -123.137952}}
-  //       />
-  //     ))
-
   render() {
-    console.log('RENDER ', this.props.pins)
     let bottomButtonStatus = null
 
     if (this.state.overlay) {
       bottomButtonStatus = <View><BottomButtonListButton /><BottomButtonFilterButton /></View>
 
     }
-    const icon = this.props.pins.mapPin
     const pins = this.props.pins.map((pin, i) => {
       return <MapView.Marker
         key={i}
