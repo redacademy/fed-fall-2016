@@ -41,6 +41,7 @@
   "devDependencies": {
     "@kadira/react-native-storybook": "^2.0.0",
     "@kadira/storybook-addon-knobs": "^1.7.0",
+    "@kadira/storybook-addon-notes": "^1.0.1",
     "@kadira/storybook-addons": "^1.6.1",
     "babel-eslint": "7.0.0",
     "babel-jest": "17.0.2",
