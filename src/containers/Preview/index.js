@@ -17,6 +17,7 @@ class Preview extends Component {
     this.gesturePosY = null
     this.gestureThreshold = 75
     this.avPosition = new Animated.Value(0)
+    this.animationDuration = 600
     this.props.getLocationDetails(this.props.placeid)
   }
 
@@ -62,10 +63,9 @@ class Preview extends Component {
             }, 400)
         }
     }
-  
+
   render() {
     const cardAnimation = { transform: [{ translateY: this.avCardY }] }
-    console.log(this.props.placeid)
 
         return (
             <View style={styles.Container}>
