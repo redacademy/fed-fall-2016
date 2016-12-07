@@ -49,7 +49,6 @@ class IconOptionalTitleRectangularBorder extends Component {
                         color={this.props.iconColor || rgbColors.warmGrey}
                         style={{
                             backgroundColor: 'transparent',
-                            opacity: 0.9,
                         }}
                         />
                 </View>
