@@ -69,7 +69,7 @@ class Preview extends Component {
           } }
           onMoveShouldSetResponder={(e) => this._detectSwipe(e.nativeEvent.locationY)}
           >
-            <Card>                  
+          <Card>
               <View style={{flex: 1, marginBottom: 10}}>
                   <Text>Test</Text>
               </View>
