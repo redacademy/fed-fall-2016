@@ -14,6 +14,9 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 20
     },
+    cardText: {
+        flex: 1,    
+    }
 })
 
 export default styles

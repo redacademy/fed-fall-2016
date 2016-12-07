@@ -3,6 +3,7 @@ import { View, Dimensions } from 'react-native'
 import MapView from 'react-native-maps'
 import styles from './styles'
 import { rgbColors } from '../../config/styles'
+import Icon from '../../components/Icon/index'
 
 // Redux 
 import { connect } from 'react-redux'
@@ -44,14 +45,14 @@ class LocationHome extends Component {
       markers: [],
       addLocation: false,
     }
-    
+
     this._toggleOverlay = this._toggleOverlay.bind(this)
     this._onPinPush = this._onPinPush.bind(this)
     this._preview = this._preview.bind(this)
     this._showPins = this._showPins.bind(this)
   }
   componentWillMount() {
-      this.props.generateMapPins()
+    this.props.generateMapPins()
   }
   componentDidMount() {
     this._setUserCurrentLocation()
@@ -97,24 +98,24 @@ class LocationHome extends Component {
       return <Preview />
     }
   }
-  _showPins(){
-      console.log('show pins')
-      return <View>
+  _showPins() {
+    console.log('show pins')
+    return <View>
       {this.props.pins && this.props.pins.generatedLocationData.length
         ? this.props.pins.generatedLocationData.map((pin, i) => (
           <MapView.Marker key={i}
-            coordinate={{latitude: pin.location.lat, longitude: pin.location.long}}
-          />
+            coordinate={{ latitude: pin.location.lat, longitude: pin.location.long }}
+            />
         ))
         : null
       }
-      </View>
-    }
+    </View>
+  }
 
-    // <MapView.Marker
-    //         coordinate={{latitude: 49.263432, longitude: -123.137952}}
-    //       />
-    //     ))
+  // <MapView.Marker
+  //         coordinate={{latitude: 49.263432, longitude: -123.137952}}
+  //       />
+  //     ))
 
   render() {
     console.log('RENDER ', this.props.pins)
@@ -122,18 +123,21 @@ class LocationHome extends Component {
 
     if (this.state.overlay) {
       bottomButtonStatus = <View><BottomButtonListButton /><BottomButtonFilterButton /></View>
-    }
 
+    }
+    const icon = this.props.pins.mapPin
     const pins = this.props.pins.map((pin, i) => {
-          return <MapView.Marker
-            key={i}
-            coordinate={{
-              longitude: pin.location.long,
-              latitude: pin.location.lat,
-            }}
-            onSelect={() => this._onPinPush(pin.placeid)}
-          />
-        })
+      return <MapView.Marker
+        key={i}
+        coordinate={{
+          longitude: pin.location.long,
+          latitude: pin.location.lat,
+        }}
+        onSelect={() => this._onPinPush(pin.placeid)}
+        >
+        <MapPin scale="0.5" pinColor={rgbColors.apricot} iconName={pin.mapPin} />
+      </MapView.Marker>
+    })
 
     return (
       <View style={styles.mainContainer}>
@@ -142,12 +146,12 @@ class LocationHome extends Component {
           initialRegion={this.state.region}
           showsUserLocation
           followsUserLocation
-        >
+          >
 
-        {pins}
-        
+          {pins}
+
         </MapView>
-          
+
         {this.props.preview ? null : (
           <View style={styles.optionsContainer}>
             <View style={styles.optionsBar}>
@@ -158,7 +162,7 @@ class LocationHome extends Component {
               </LocationHomeOptionsBar>
             </View>
           </View>
-          
+
         )}
 
         {/* Apply this overlay when user filters */}
