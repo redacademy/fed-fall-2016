@@ -24,15 +24,15 @@ class IconCircularBorder extends Component {
                         height: this.props.size,
                         alignItems: 'center',
                         justifyContent: 'center',
-                        borderRadius: this.props.size * 0.6,
-                        borderColor: this.props.color || rgbColors.warmGrey,
+                        borderRadius: this.props.size * 0.5,
+                        borderColor: this.props.color || rgbColors.darkPeach,
                         borderWidth: this.props.size * 0.03,
                     }}
                     >
                     <Icon
                         name={this.props.name}
-                        size={this.props.size * 0.55}
-                        color={this.props.color || rgbColors.warmGrey}
+                        size={this.props.size * 0.7}
+                        color={this.props.color || rgbColors.darkPeach}
                         style={{
                             backgroundColor: 'transparent',
                         }}
