@@ -20,7 +20,7 @@ class IconRectangularFill extends Component {
             }}>
                 <View
                     style={{
-                        backgroundColor: this.props.fillColor || rgbColors.darkPeach,
+                        backgroundColor: this.props.fillColor || rgbColors.blush,
                         width: this.props.size,
                         height: this.props.size,
                         alignItems: 'center',
@@ -31,7 +31,7 @@ class IconRectangularFill extends Component {
 
                     <Icon
                         name={this.props.name}
-                        size={this.props.size * 0.6}
+                        size={this.props.size * 0.7}
                         color={this.props.color || rgbColors.whiteTwo}
                         style={{ backgroundColor: 'transparent' }}
                         />
