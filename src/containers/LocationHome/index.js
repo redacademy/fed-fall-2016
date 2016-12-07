@@ -108,19 +108,21 @@ class LocationHome extends Component {
         this.props.enterPreview()
     }
 
-    _preview() {
-        if (this.props.preview === true) {
+  _showPins() {
+    console.log('show pins')
+    return <View>
+      {this.props.pins && this.props.pins.generatedLocationData.length
+        ? this.props.pins.generatedLocationData.map((pin, i) => (
+          <MapView.Marker key={i}
+            coordinate={{ latitude: pin.location.lat, longitude: pin.location.long }}
+            />
+        ))
+        : null
+      }
+    </View>
+  }
 
-            {/* Go to the preview container to add to the card! */ }
-            return (
-                <Preview>
-                    <Text>This is a preview</Text>
-                </Preview>
-            )
-        }
-    }
-
-    _onLocationAddPress() {
+  _onLocationAddPress() {
         this.props.enterLocationAdd()
         this.marker.pinColor = "black"
     }
@@ -140,20 +142,19 @@ class LocationHome extends Component {
         */
         this.setState({ region })
     }
+    
+    _preview() {
+        if (this.props.preview === true) {
 
-    _showPins() {
-        console.log('show pins')
-        return <View>
-            {this.props.pins && this.props.pins.generatedLocationData.length
-                ? this.props.pins.generatedLocationData.map((pin, i) => (
-                    <MapView.Marker key={i}
-                        coordinate={{ latitude: pin.location.lat, longitude: pin.location.long }}
-                        />
-                ))
-                : null
-            }
-        </View>
+            {/* Go to the preview container to add to the card! */ }
+            return (
+                <Preview>
+                    <Text>This is a preview</Text>
+                </Preview>
+            )
+        }
     }
+
 
     render() {
         console.log('RENDER ', this.props.pins)

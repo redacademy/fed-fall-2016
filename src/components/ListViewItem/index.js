@@ -34,7 +34,6 @@ class ListViewItem extends Component {
             })
     }
     render() {
-        console.log(this.state.dataSource)
         if (this.state.isLoading) {
             return (
                 <Loader />

@@ -37,14 +37,9 @@ export const generateMapPins = () => {
         'Content-Type': 'application/json',
       })
     })
-      .then((mapData) => {
-        // console.log('worked')
-        mapData.json().then(mapData => {
-          dispatch({ type: GOT_ALL_LOCATION_DATA, payload: mapData })
-        })
-      })
+      .then(response => response.json())
+      .then(mapData => dispatch({ type: 'GOT_ALL_LOCATION_DATA', payload: mapData }))
   }
-
 }
 
 export const getLocationDetails = (placeId) => {
@@ -55,12 +50,7 @@ export const getLocationDetails = (placeId) => {
         'Content-Type': 'application/json',
       })
     })
-    .then((locationDetails) => {
-      locationDetails.json().then(locationDetails => {
-        console.log("details", locationDetails)
-        dispatch({ type: GOT_LOCATION_DETAILS, payload: locationDetails })
-      })
-    })
-
+      .then(response => response.json())
+      .then(locationDetails => dispatch({ type: 'GOT_LOCATION_DETAILS', payload: locationDetails }))
   }
 }
