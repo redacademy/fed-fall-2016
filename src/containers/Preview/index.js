@@ -11,14 +11,16 @@ import { rgbColors } from '../../config/styles'
 import { getLocationDetails } from '../../redux/actions'
 
 class Preview extends Component {
-    componentWillMount() {
-        this.currentState = 'card'
-        this.avCardY = new Animated.Value(340)
-        this.gesturePosY = null
-        this.gestureThreshold = 75
-        this.avPosition = new Animated.Value(0)
-        this.animationDuration = 600
-        this.props.getLocationDetails(this.props.placeid)
+  componentWillMount() {
+    this.currentState = 'card'
+    this.avCardY = new Animated.Value(340)
+    this.gesturePosY = null
+    this.gestureThreshold = 75
+    this.avPosition = new Animated.Value(0)
+    this.animationDuration = 600
+    this.renderText = this.renderText.bind(this)
+    console.log("mount", this.props.placeid)
+    this.props.getLocationDetails(this.props.placeid)
   }
 
   _detectSwipe(y) {
@@ -63,7 +65,7 @@ class Preview extends Component {
             }, 400)
         }
     }
-
+  
   render() {
     const cardAnimation = { transform: [{ translateY: this.avCardY }] }
 
