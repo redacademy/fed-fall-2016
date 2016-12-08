@@ -9,6 +9,9 @@ import styles from './styles'
 import Loader from '../Loader'
 import RatingBar from '../RatingBar'
 import MapPin from '../MapPin'
+import { connect } from 'react-redux'
+import { getLocationDetails } from '../../redux/actions'
+import { getStaticMap } from './getStaticMap'
 
 class ListViewItem extends Component {
     static propTypes = {
@@ -22,16 +25,7 @@ class ListViewItem extends Component {
         }
     }
     componentWillMount() {
-        this._getLocationDetails()
-    }
-    _getLocationDetails() {
-        const placeId = this.props.placeId;
-        return fetch(`https://maps.googleapis.com/maps/api/geocode/json?place_id=${placeId}&key=AIzaSyB2WkbsqNDjsiz8i831IVn1piVIq5OeiCI`, {
-            method: 'GET',
-        }).then(response => response.json())
-            .then((results) => {
-                this.setState({ location: results, isLoading: false })
-            })
+        this.props.getLocationDetails(this.props.placeId)
     }
     render() {
         if (this.state.isLoading) {
@@ -48,7 +42,7 @@ class ListViewItem extends Component {
                     <View style={styles.locationContainer}>
                         <Image
                             style={styles.map}
-                            source={{ url: `https://maps.googleapis.com/maps/api/staticmap?center=${lat},${lng}&zoom=18&size=120x120&maptype=roadmap&label:%20&key=AIzaSyB2WkbsqNDjsiz8i831IVn1piVIq5OeiCI` }}
+                            source={{ url: getStaticMap() }}
                             >
                             <MapPin scale="0.4" pinColor={'salmon'} iconName="diaper" />
                         </Image>
@@ -67,5 +61,12 @@ class ListViewItem extends Component {
         }
     }
 }
+const mapStateToProps = (state) => ({
+    locationDetails: state.map.locationDetails,
+    placeId: state.button.placeId,
+})
+const mapDispatchToProps = {
+    getLocationDetails,
+}
 
-export default ListViewItem
+export default connect(mapStateToProps, mapDispatchToProps)(ListViewItem)
