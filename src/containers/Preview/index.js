@@ -20,6 +20,7 @@ class Preview extends Component {
         this.gestureThreshold = 75
         this.avPosition = new Animated.Value(0)
         this.animationDuration = 600
+        this.renderText = this.renderText.bind(this)
         this.props.getLocationDetails(this.props.placeid)
     }
 
@@ -31,22 +32,22 @@ class Preview extends Component {
         }
     }
 
-  _onSwipeUp() {
-    if (this.currentState === 'card') {
-      setTimeout(() => this.currentState = 'list', 300)
-      Animated.timing(this.avCardY, {
-        toValue: 0,
-        duration: this.animationDuration,
-      }).start()
-    } else if (this.currentState === 'search') {
-      setTimeout(() => this.currentState = 'card', 300)
-      Animated.timing(this.avCardY, {
-        toValue: 300,
-        duration: this.animationDuration,
-      }).start()
+    _onSwipeUp() {
+        if (this.currentState === 'card') {
+            setTimeout(() => this.currentState = 'list', 300)
+            Animated.timing(this.avCardY, {
+                toValue: 0,
+                duration: this.animationDuration,
+            }).start()
+        } else if (this.currentState === 'search') {
+            setTimeout(() => this.currentState = 'card', 300)
+            Animated.timing(this.avCardY, {
+                toValue: 300,
+                duration: this.animationDuration,
+            }).start()
+        }
     }
-  }
-    
+
     _onSwipeDown() {
         if (this.currentState === 'list') {
             setTimeout(() => this.currentState = 'card', 300)
@@ -66,7 +67,7 @@ class Preview extends Component {
             }, 400)
         }
     }
-  render() {
+    render() {
         const cardAnimation = { transform: [{ translateY: this.avCardY }] }
         return (
             <View style={styles.Container}>
@@ -84,14 +85,18 @@ class Preview extends Component {
             </View>
         )
     }
+
+    renderText() {
+
+    }
 }
 const mapStateToProps = (state) => ({
-  locationDetails: state.map.locationDetails,
-  placeid: state.button.placeid
+    locationDetails: state.map.locationDetails,
+    placeid: state.button.placeid
 })
 const mapDispatchToProps = {
-  exitPreview,
-  getLocationDetails,
+    exitPreview,
+    getLocationDetails,
     exitLocationAdd,
 }
 

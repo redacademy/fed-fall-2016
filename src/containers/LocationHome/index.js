@@ -107,19 +107,6 @@ class LocationHome extends Component {
         this._setUserCurrentLocation()
 
     }
-    _showPins() {
-        console.log('show pins')
-        return <View>
-            {this.props.pins && this.props.pins.generatedLocationData.length
-                ? this.props.pins.generatedLocationData.map((pin, i) => (
-                    <MapView.Marker key={i}
-                        coordinate={{ latitude: pin.location.lat, longitude: pin.location.long }}
-                        />
-                ))
-                : null
-            }
-        </View>
-    }
 
     _onPinPush(placeid) {
         this.props.enterPreview(placeid)
@@ -138,13 +125,27 @@ class LocationHome extends Component {
             )
         }
     }
+  
+  _showPins() {
+    console.log('show pins')
+    return <View>
+      {this.props.pins && this.props.pins.generatedLocationData.length
+        ? this.props.pins.generatedLocationData.map((pin, i) => (
+          <MapView.Marker key={i}
+            coordinate={{ latitude: pin.location.lat, longitude: pin.location.long }}
+            />
+        ))
+        : null
+      }
+    </View>
+  }
+
 
     _onRegionChangeComplete(region) {
         /* as user moves around the map, update the current state
         */
         this.setState({ region })
     }
-
     _preview() {
         if (this.props.preview === true) {
 
@@ -164,6 +165,7 @@ class LocationHome extends Component {
             bottomButtonStatus = <View><BottomButtonListButton /><BottomButtonFilterButton /></View>
 
         }
+    const icon = this.props.pins.mapPin
         const pins = this.props.pins.map((pin, i) => {
             return <MapView.Marker
                 key={i}
@@ -187,6 +189,7 @@ class LocationHome extends Component {
                     followsUserLocation
                     onRegionChange={region => this._onRegionChangeComplete(region)}
                     >
+                    
                     {pins}
 
                     {this.state.addLocation ?
