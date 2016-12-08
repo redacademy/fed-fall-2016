@@ -100,8 +100,9 @@ class LocationHome extends Component {
                     longitudeDelta: LONGITUDE_DELTA,
                 },
             })
-        }}
-    
+        })
+    }
+
     _toggleOverlay() {
         this.setState({
             overlay: !this.state.overlay,
@@ -269,7 +270,7 @@ const mapDispatchToProps = {
     enterPreview,
     enterLocationAdd,
     generateMapPins,
-    getLocationDetails
+    getLocationDetails,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LocationHome)
