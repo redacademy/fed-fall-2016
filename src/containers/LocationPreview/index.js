@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { Text } from 'react-native'
+import { View, Text } from 'react-native'
 import { connect } from 'react-redux'
 import { getLocationDetails } from '../../redux/actions'
-
+import { Button } from '../../components'
+import styles from './style'
 
 class LocationPreview extends Component {
     componentWillMount(){
@@ -11,7 +12,14 @@ class LocationPreview extends Component {
 
     render(){
         return (
-            <Text>{this.props.locationDetails.formatted_address}</Text>
+            <View style={{flex: 1, justifyContent: 'flex-end'}}>
+                <View style={{flex: 1, marginBottom: 10}}> 
+                    <Text>{this.props.locationDetails.formatted_address}</Text>
+                </View>
+                <Button style={{ justifyContent: 'flex-end' }}>
+                    <Text style={styles.buttonText}> GO </Text>
+                </Button>
+            </View>
         )
     }
 }

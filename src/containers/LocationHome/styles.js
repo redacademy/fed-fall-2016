@@ -43,13 +43,7 @@ const styles = StyleSheet.create({
     bottom: 750,
     right: 0,
     position: 'absolute',
-  },
-    // locationAddVisible: {
-    //     opacity: 1,
-    // },
-    // locationAddNotVisible: {
-    //     opacity: 0,
-    // },
+  }
 })
 
 export default styles
