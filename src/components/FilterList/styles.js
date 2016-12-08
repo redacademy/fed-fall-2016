@@ -5,8 +5,9 @@ export const styles = StyleSheet.create({
     outerContainer: {
         flex: 1,
         alignItems: 'center',
-        width: width-20,
         flexWrap: 'wrap',
+        // borderColor: 'black',
+        // borderWidth: 1,
     },
     container: {
         flex: 1,

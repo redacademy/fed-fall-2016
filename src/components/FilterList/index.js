@@ -51,7 +51,7 @@ class FilterList extends Component {
         //   we want to select male/female
         //   set isSelectingBathroom to true
 
-        console.log(this.state)
+        // console.log(this.state)
         if (this.state.isSelectingBathroom) {
             this.setState({ selectedBathroomIndexLeft: 1, selectedBathroomIndexRight: 0, isSelectingBathroom: false, })
         } else {
@@ -66,7 +66,7 @@ class FilterList extends Component {
         //    => isSelectingBathroom = false
         // else 
         // we are just doing the regular action for the family washroom.
-        console.log(this.state)
+        // console.log(this.state)
         if (this.state.isSelectingBathroom) {
             this.setState({ selectedBathroomIndexLeft: 2, selectedBathroomIndexRight: 0, isSelectingBathroom: false, })
         }
@@ -88,7 +88,7 @@ class FilterList extends Component {
                                     onPress={this.handleBathroomButtonOptionsLeftPress}
                                     iconName={bathroomButtonOptionsLeft[this.state.selectedBathroomIndexLeft].iconName}
                                     iconText={bathroomButtonOptionsLeft[this.state.selectedBathroomIndexLeft].iconText}
-                                    isSelected={false}
+                                    isSelected={true}
                                     iconSize={iconSize} />
                                 {
                                     this.state.isSelectingBathroom ?
@@ -96,7 +96,6 @@ class FilterList extends Component {
                                             onPress={this.handleBathroomButtonOptionsRightPress}
                                             iconName={bathroomButtonOptionsRight[this.state.selectedBathroomIndexRight].iconName}
                                             iconText={bathroomButtonOptionsRight[this.state.selectedBathroomIndexRight].iconText}
-                                            isSelected={false}
                                             iconSize={iconSize} />
                                         :
                                         null
@@ -109,7 +108,6 @@ class FilterList extends Component {
                                             onPress={this.handleBathroomButtonOptionsRightPress}
                                             iconName={bathroomButtonOptionsRight[this.state.selectedBathroomIndexRight].iconName}
                                             iconText={bathroomButtonOptionsRight[this.state.selectedBathroomIndexRight].iconText}
-                                            isSelected={false}
                                             iconSize={iconSize} />
                                 }
                             </View>

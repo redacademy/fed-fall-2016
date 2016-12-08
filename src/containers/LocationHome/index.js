@@ -109,8 +109,16 @@ class LocationHome extends Component {
     }
     componentDidMount() {
         this._setUserCurrentLocation()
-
     }
+    // shouldComponentUpdate(nextProps, nextState) {
+    //     console.log('shouldComponentUpdate?')
+    //     if (this.state.pins !== nextState.pins) {
+    //     console.log('true')
+    //         return true
+    //     }
+    //     console.log('true')
+    //     return false
+    // }
 
     _onPinPush(placeid) {
         this.props.enterPreview(placeid)
@@ -126,7 +134,7 @@ class LocationHome extends Component {
                     <ScrollView>
                         <AddressBlock title={"RED Academy"} addressLine1={"1490 W Broadway #200"} addressLine2={"Vancouver, BC V6H 4E8"} />
                         <FilterList showHeader={false} />
-                        <MapBlock lat={49.2634046} lng={-123.1404133} zoom={17} width={250} height={120} pinScale={0.4} pinColor={'red'} iconName={'starbaby-face'} />
+                        <MapBlock lat={49.2634046} lng={-123.1404133} zoom={17} width={width-80} height={120} pinScale={0.4} pinColor={'red'} iconName={'starbaby-face'} />
                         <Button style={{ alignSelf: 'flex-end' }}>
                             <Text style={textStyles.textStyle4}>SUBMIT</Text>
                         </Button>
@@ -152,7 +160,6 @@ class LocationHome extends Component {
     */
 
     _showPins() {
-        console.log('show pins')
         return <View>
             {this.props.pins && this.props.pins.generatedLocationData.length
                 ? this.props.pins.generatedLocationData.map((pin, i) => (
@@ -221,7 +228,7 @@ class LocationHome extends Component {
                             pinColor={'#f17979'}
                             flat={true}
                             >
-                            <MapView.Callout tooltip={true} style={{ width: width * 0.5, height: height*0.25, backgroundColor: 'transparent' }} setSelected={true}>
+                            <MapView.Callout tooltip={true} style={{ width: width * 0.5, height: height * 0.25, backgroundColor: 'transparent' }} setSelected={true}>
                                 <LocationCustomCallout>
                                     <View style={styles.locationAddContainer}>
                                         <Text style={textStyles.textStyle6}>New Location</Text>
@@ -266,7 +273,7 @@ class LocationHome extends Component {
                     <View style={{ position: 'absolute', bottom: 680 }}>
                         <View style={styles.bottomContainer}>
                             <SearchBar />
-                            <LocationHomeBottomButton onPress={this.toggleOverlay} />
+                            <LocationHomeBottomButton onPress={this._toggleOverlay} />
                         </View>
                     </View>
                 )}
