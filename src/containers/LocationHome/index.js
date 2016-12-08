@@ -6,7 +6,6 @@ import { colors, textStyles, buttonSize } from '../../config/styles'
 import Icon from '../../components/Icon/index'
 import autoBind from 'react-autobind'
 
-
 // Redux 
 import { connect } from 'react-redux'
 import {
