@@ -99,26 +99,26 @@ class LocationHome extends Component {
             overlay: !this.state.overlay,
         })
     }
-    
+
     componentWillMount() {
         this.props.generateMapPins()
     }
     componentDidMount() {
         this._setUserCurrentLocation()
-        
-  }
-  _showPins(){
-      console.log('show pins')
-      return <View>
-      {this.props.pins && this.props.pins.generatedLocationData.length
-        ? this.props.pins.generatedLocationData.map((pin, i) => (
-          <MapView.Marker key={i}
-            coordinate={{latitude: pin.location.lat, longitude: pin.location.long}}
-          />
-        ))
-        : null
-      }
-      </View>
+
+    }
+    _showPins() {
+        console.log('show pins')
+        return <View>
+            {this.props.pins && this.props.pins.generatedLocationData.length
+                ? this.props.pins.generatedLocationData.map((pin, i) => (
+                    <MapView.Marker key={i}
+                        coordinate={{ latitude: pin.location.lat, longitude: pin.location.long }}
+                        />
+                ))
+                : null
+            }
+        </View>
     }
 
     _onPinPush(placeid) {
