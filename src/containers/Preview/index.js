@@ -3,12 +3,12 @@ import { View, Animated } from 'react-native'
 import { connect } from 'react-redux'
 import {
     exitPreview,
-    exitLocationAdd
+    exitLocationAdd,
+    getLocationDetails
 } from '../../redux/actions'
 import styles from './styles'
 import { Button, Card, MapPin } from '../../components'
 import { rgbColors } from '../../config/styles'
-import { getLocationDetails } from '../../redux/actions'
 
 const { width, height, } = Dimensions.get('window')
 

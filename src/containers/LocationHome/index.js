@@ -99,7 +99,6 @@ class LocationHome extends Component {
             overlay: !this.state.overlay,
         })
     }
-    
     componentWillMount() {
         this.props.generateMapPins()
     }
@@ -110,7 +109,6 @@ class LocationHome extends Component {
     _onPinPush(placeid) {
         this.props.enterPreview(placeid)
     }
-
     _onLocationAddPress() {
         this.props.enterLocationAdd()
         this.marker.pinColor = "black"
