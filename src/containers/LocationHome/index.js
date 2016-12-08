@@ -237,7 +237,6 @@ class LocationHome extends Component {
                                     </View>
                                 </LocationCustomCallout>
                             </MapView.Callout>
-                            <MapPin scale="0.5" pinColor={rgbColors.apricot} iconName={pin.mapPin} />
                         </MapView.Marker>
                         :
                         null

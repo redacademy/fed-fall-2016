@@ -1,4 +1,4 @@
-import React, { Component, Dimensions } from 'react'
+import React, { Component } from 'react'
 import { View, Animated } from 'react-native'
 import { connect } from 'react-redux'
 import {
@@ -7,11 +7,7 @@ import {
     getLocationDetails
 } from '../../redux/actions'
 import styles from './styles'
-import { Button, Card, MapPin } from '../../components'
-import { rgbColors } from '../../config/styles'
-
-const { width, height, } = Dimensions.get('window')
-
+import { Card } from '../../components'
 
 class Preview extends Component {
     componentWillMount() {
