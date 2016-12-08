@@ -32,14 +32,9 @@ import {
     OptionsBarButton,
 } from '../../components'
 
+import region from './region'
 
-// Initialize Variables
 const { width, height } = Dimensions.get('window')
-const LATITUDE = 49.263432
-const LONGITUDE = -123.137952
-const ASPECT_RATIO = width / height
-const LATITUDE_DELTA = .01
-const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO
 
 class LocationHome extends Component {
 
@@ -48,12 +43,7 @@ class LocationHome extends Component {
 
         this.state = {
             overlay: false,
-            region: {
-                latitude: LATITUDE,
-                longitude: LONGITUDE,
-                latitudeDelta: LATITUDE_DELTA,
-                longitudeDelta: LONGITUDE_DELTA,
-            },
+            region,
             markers: [],
             _locationAdd: false, /*required for location add modal*/
         }
@@ -78,28 +68,25 @@ class LocationHome extends Component {
     }
     _setUserCurrentLocation() {
         navigator.geolocation.getCurrentPosition(
-            (position) => {
+            ({ coords }) => {
                 this.setState({
-                    region: {
-                        latitude: position.coords.latitude,
-                        longitude: position.coords.longitude,
-                        latitudeDelta: LATITUDE_DELTA,
-                        longitudeDelta: LONGITUDE_DELTA,
-                    },
+                    region:Object.assign({}, region,  {
+                        latitude: coords.latitude,
+                        longitude: coords.longitude,
+                    }),
                 })
                 this.map.animateToRegion(this.state.region, 1000)
             },
             (error) => alert(error.message),
             { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
         )
-        this.watchID = navigator.geolocation.watchPosition((position) => {
-            this.setState({
-                region: {
-                    latitude: position.coords.latitude,
-                    longitude: position.coords.longitude,
-                    latitudeDelta: LATITUDE_DELTA,
-                    longitudeDelta: LONGITUDE_DELTA,
-                },
+        this.watchID = navigator.geolocation.watchPosition(
+            ({ coords }) => {
+                this.setState({
+                   region:Object.assign({}, region,  {
+                        latitude: coords.latitude,
+                        longitude: coords.longitude,
+                    }),
             })
         })
     }
