@@ -70,8 +70,7 @@ class LocationHome extends Component {
         navigator.geolocation.getCurrentPosition(
             ({ coords }) => {
                 this.setState({
-                    region: Object.assign({}, region, {
-
+                    region:Object.assign({}, region,  {
                         latitude: coords.latitude,
                         longitude: coords.longitude,
                     }),
