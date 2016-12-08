@@ -3,6 +3,9 @@ import { View, Text, Dimensions, TouchableOpacity } from 'react-native'
 import MapView from 'react-native-maps'
 import styles from './styles'
 import { colors, textStyles, buttonSize } from '../../config/styles'
+import Icon from '../../components/Icon/index'
+import autoBind from 'react-autobind'
+
 
 // Redux 
 import { connect } from 'react-redux'
@@ -39,6 +42,7 @@ class LocationHome extends Component {
 
     constructor(props) {
         super(props)
+        autoBind(this)
 
         this.state = {
             overlay: false,
@@ -47,11 +51,6 @@ class LocationHome extends Component {
             _locationAdd: false, /*required for location add modal*/
         }
 
-        this._toggleOverlay = this._toggleOverlay.bind(this)
-        this._preview = this._preview.bind(this)
-        this._setUserCurrentLocation = this._setUserCurrentLocation.bind(this)
-        this._onRegionChangeComplete = this._onRegionChangeComplete.bind(this)
-        this._onFilterButtonPress = this._onFilterButtonPress.bind(this)
     }
     componentWillMount() {
         this.props.generateMapPins()
