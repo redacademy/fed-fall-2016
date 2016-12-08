@@ -90,9 +90,10 @@ class Preview extends Component {
 
     }
 }
+
 const mapStateToProps = (state) => ({
     locationDetails: state.map.locationDetails,
-    placeid: state.button.placeid
+    placeid: state.button.placeid,
 })
 const mapDispatchToProps = {
     exitPreview,

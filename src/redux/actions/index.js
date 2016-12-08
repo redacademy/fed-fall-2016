@@ -51,13 +51,7 @@ export const getLocationDetails = (placeId) => {
         'Content-Type': 'application/json',
       })
     })
-      // .then(response => response.json())
-      // .then(locationDetails => dispatch({ type: 'GOT_LOCATION_DETAILS', payload: locationDetails }))
-    .then((locationDetails) => {
-      locationDetails.json().then(locationDetails => {
-        console.log("details", locationDetails)
-        dispatch({ type: GOT_LOCATION_DETAILS, payload: locationDetails })
-      })
-    })
+      .then(response => response.json())
+      .then(locationDetails => dispatch({ type: 'GOT_LOCATION_DETAILS', payload: locationDetails }))
   }
 }
