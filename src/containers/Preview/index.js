@@ -8,8 +8,6 @@ import {
 import styles from './styles'
 import { Button, Card, MapPin } from '../../components'
 import { rgbColors } from '../../config/styles'
-import { getLocationDetails } from '../../redux/actions'
-
 
 class Preview extends Component {
   componentWillMount() {
@@ -19,7 +17,6 @@ class Preview extends Component {
     this.gestureThreshold = 75
     this.avPosition = new Animated.Value(0)
     this.animationDuration = 600
-    this.props.getLocationDetails(this.props.placeid)
   }
 
   _detectSwipe(y) {
@@ -92,8 +89,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     exitPreview,
-    exitLocationAdd,
-    getLocationDetails,
+    exitLocationAdd
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Preview)

@@ -10,11 +10,12 @@ import { connect } from 'react-redux'
 import {
     enterPreview,
     enterLocationAdd,
-    generateMapPins
+    generateMapPins,
+    getLocationDetails
 } from '../../redux/actions'
 
 // Containers
-import { SearchBar, Preview } from '../index'
+import { SearchBar, Preview, LocationPreview } from '../index'
 
 // Components
 import {
@@ -23,7 +24,8 @@ import {
     BottomButtonListButton,
     LocationHomeOptionsBar,
     OptionsBarButton,
-    MapPin
+    MapPin,
+    Button
 } from '../../components'
 import IconOptionalTitleCircularBorder from '../../icons/IconOptionalTitleCircularBorder'
 
@@ -69,7 +71,8 @@ class LocationHome extends Component {
 
     componentWillMount() {
         this.props.generateMapPins()
-    }
+        // this.props.getLocationDetails(this.props.placeid)
+    }    
 
     _setUserCurrentLocation() {
         navigator.geolocation.getCurrentPosition(
@@ -105,8 +108,8 @@ class LocationHome extends Component {
             })
         }
 
-    _onPinPush() {
-        this.props.enterPreview()
+    _onPinPush(placeid) {
+        this.props.enterPreview(placeid)
     }
 
      _onLocationAddPress() {
@@ -149,7 +152,7 @@ class LocationHome extends Component {
             {/* Go to the preview container to add to the card! */ }
             return (
                 <Preview>
-                    <Text>This is a preview</Text>
+                    <LocationPreview placeId={this.props.placeid}/>
                 </Preview>
             )
         }
@@ -169,7 +172,7 @@ class LocationHome extends Component {
           longitude: pin.location.long,
           latitude: pin.location.lat,
         }}
-        onSelect={() => this._onPinPush(pin.placeid)}
+        onPress={() => this._onPinPush(pin.placeid)}
         >
         <MapPin scale="0.5" pinColor={rgbColors.apricot} iconName={pin.mapPin} />
       </MapView.Marker>
@@ -253,16 +256,20 @@ class LocationHome extends Component {
         )
     }
 }
+
 const mapStateToProps = (state) => ({
     preview: state.button.preview,
     locationAdd: state.button.locationAdd,
     pins: state.map.generatedLocationData,
+    locationDetails: state.map.locationDetails,
+    placeid: state.button.placeid,
 })
 
 const mapDispatchToProps = {
     enterPreview,
     enterLocationAdd,
     generateMapPins,
+    getLocationDetails
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LocationHome)

@@ -14,6 +14,7 @@ const initialState = {
 export default (state = initialState, action) => {
     switch (action.type) {
         case ENTER_PREVIEW:
+            console.log('ENTER PREVIEW ', action.payload)
             return { preview: true, placeid: action.payload }
         case EXIT_PREVIEW:
             return { preview: false, placeid: '' }
