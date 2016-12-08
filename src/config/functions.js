@@ -13,3 +13,13 @@ export const ratingColorGenerator = (rating) => {
             break
     }
 }
+
+export const babyFocusIconChooser = (changing, feeding) => {
+    if (changing && feeding) {
+        return 'starbaby-face'
+    }
+    if (changing) {
+        return 'diaper'
+    }
+    return 'bottle'
+}
