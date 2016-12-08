@@ -10,6 +10,7 @@ const styles = StyleSheet.create({
         width: width * 0.80,
         borderRadius: 30,
         backgroundColor: '#a3c56d',
+        flexDirection: 'row',
         shadowColor: 'darkgrey',
         shadowOpacity: 0.5,
         shadowOffset: { width: 0.2, height: 1, },
@@ -19,3 +20,4 @@ const styles = StyleSheet.create({
 })
 
 export default styles
+
