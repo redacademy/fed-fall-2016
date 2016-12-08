@@ -138,18 +138,6 @@ class LocationHome extends Component {
             )
         }
     }
-    _showPins() {
-        return <View>
-            {this.props.pins && this.props.pins.generatedLocationData.length
-                ? this.props.pins.generatedLocationData.map((pin, i) => (
-                    <MapView.Marker key={i}
-                        coordinate={{ latitude: pin.location.lat, longitude: pin.location.long }}
-                        />
-                ))
-                : null
-            }
-        </View>
-    }
 
     _onRegionChangeComplete(region) {
         /* as user moves around the map, update the current state

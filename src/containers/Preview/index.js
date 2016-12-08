@@ -31,21 +31,22 @@ class Preview extends Component {
         }
     }
 
-    _onSwipeUp() {
-        if (this.currentState === 'card') {
-            setTimeout(() => this.currentState = 'list', 300)
-            Animated.timing(this.avCardY, {
-                toValue: 0,
-                duration: this.animationDuration,
-            }).start()
-        } else if (this.currentState === 'search') {
-            setTimeout(() => this.currentState = 'card', 300)
-            Animated.timing(this.avCardY, {
-                toValue: 300,
-                duration: this.animationDuration,
-            }).start()
-        }
+  _onSwipeUp() {
+    if (this.currentState === 'card') {
+      setTimeout(() => this.currentState = 'list', 300)
+      Animated.timing(this.avCardY, {
+        toValue: 0,
+        duration: this.animationDuration,
+      }).start()
+    } else if (this.currentState === 'search') {
+      setTimeout(() => this.currentState = 'card', 300)
+      Animated.timing(this.avCardY, {
+        toValue: 300,
+        duration: this.animationDuration,
+      }).start()
     }
+  }
+    
     _onSwipeDown() {
         if (this.currentState === 'list') {
             setTimeout(() => this.currentState = 'card', 300)
@@ -65,8 +66,7 @@ class Preview extends Component {
             }, 400)
         }
     }
-
-    render() {
+  render() {
         const cardAnimation = { transform: [{ translateY: this.avCardY }] }
         return (
             <View style={styles.Container}>
@@ -85,14 +85,13 @@ class Preview extends Component {
         )
     }
 }
-
 const mapStateToProps = (state) => ({
-    locationDetails: state.map.locationDetails,
-    placeid: state.button.placeid,
+  locationDetails: state.map.locationDetails,
+  placeid: state.button.placeid
 })
-
 const mapDispatchToProps = {
-    exitPreview,
+  exitPreview,
+  getLocationDetails,
     exitLocationAdd,
 }
 
