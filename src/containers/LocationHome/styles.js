@@ -1,5 +1,6 @@
 import { StyleSheet, Dimensions } from 'react-native'
 const { width, height } = Dimensions.get('window')
+import { colorPalette } from '../../config/styles'
 
 const styles = StyleSheet.create({
     mainContainer: {
@@ -45,20 +46,24 @@ const styles = StyleSheet.create({
         position: 'absolute',
     },
     locationAddContainer: {
-        flex: 1,
-        // backgroundColor: 'transparent',
+        flex: 1, 
+        backgroundColor: 'transparent',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: 'red',
     },
-    separator: {
-        // flex: 1,
-        marginRight: 1,
-        marginLeft: 1,
+    button: {                       // new location button on custom callout
+        alignItems: 'center',
         justifyContent: 'center',
-        height: 1,
-        // height: StyleSheet.hairlineWidth,
-        backgroundColor: '#999999',
+        backgroundColor: 'white',
+        height: 48,
+        width: 48,
+        borderRadius: 24,
+        borderColor: colorPalette.blush.hex,
+        borderWidth: 2,
+    },
+    icon: {                       // icon for new location button on custom callout
+        color: colorPalette.blush.hex,
+        fontSize: 20,
     },
 })
 

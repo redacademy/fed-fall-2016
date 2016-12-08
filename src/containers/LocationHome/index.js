@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 import { View, Text, Dimensions, TouchableOpacity, ScrollView } from 'react-native'
 import MapView from 'react-native-maps'
 import styles from './styles'
+import { rgbColors, colorPalette, textStyles } from '../../config/styles'
 import Icon from '../../components/Icon/index'
-import { rgbColors, colorPalete, textStyles } from '../../config/styles'
+import IconCircularBorder from '../../icons/IconCircularBorder'
 
 // Redux 
 import { connect } from 'react-redux'
@@ -20,17 +21,17 @@ import { SearchBar, Preview, LocationPreview } from '../index'
 
 // Components
 import {
-    LocationHomeBottomButton,
+    AddressBlock,
     BottomButtonFilterButton,
     BottomButtonListButton,
-    LocationHomeOptionsBar,
-    OptionsBarButton,
-    MapPin,
     Button,
-    AddressBlock,
     FilterList,
-    MapBlock,
     LocationCustomCallout,
+    LocationHomeBottomButton,
+    LocationHomeOptionsBar,
+    MapBlock,
+    MapPin,
+    OptionsBarButton,
     // RatingBlock,
 } from '../../components'
 import IconOptionalTitleCircularBorder from '../../icons/IconOptionalTitleCircularBorder'
@@ -126,7 +127,22 @@ class LocationHome extends Component {
                         <AddressBlock title={"RED Academy"} addressLine1={"1490 W Broadway #200"} addressLine2={"Vancouver, BC V6H 4E8"} />
                         <FilterList showHeader={false} />
                         <MapBlock lat={49.2634046} lng={-123.1404133} zoom={17} width={250} height={120} pinScale={0.4} pinColor={'red'} iconName={'starbaby-face'} />
+                        <Button style={{ alignSelf: 'flex-end' }}>
+                            <Text style={textStyles.textStyle4}>SUBMIT</Text>
+                        </Button>
                     </ScrollView>
+                </Preview>
+            )
+        }
+    }
+    _filterPreview() {
+        if (this.props.filter === true) {
+            return (
+                <Preview>
+                    <FilterList showHeader={true} />
+                    <Button style={{ alignSelf: 'flex-end' }}>
+                        <Text style={textStyles.textStyle4}>SUBMIT</Text>
+                    </Button>
                 </Preview>
             )
         }
@@ -170,7 +186,6 @@ class LocationHome extends Component {
 
         if (this.state.overlay) {
             bottomButtonStatus = <View><BottomButtonListButton /><BottomButtonFilterButton /></View>
-
         }
         const icon = this.props.pins.mapPin
         const pins = this.props.pins.map((pin, i) => {
@@ -211,15 +226,14 @@ class LocationHome extends Component {
                                     <View style={styles.locationAddContainer}>
                                         <Text style={textStyles.textStyle6}>New Location</Text>
                                         <Text style={styles.separator}></Text>
-                                        <Text style={[{padding: 5}, textStyles.textStyle7]}>Press & Hold to Move</Text>
-                                        <TouchableOpacity onPress={() => this._onLocationAddPress()}>
-                                            <IconOptionalTitleCircularBorder
-                                                iconColor={'#f17979'}
-                                                size={50}
-                                                iconName="add"
-                                                noTitle={true}
-                                                />
-                                        </TouchableOpacity>
+                                        <Text style={[{ padding: 5 }, textStyles.textStyle7]}>Press & Hold to Move</Text>
+                                        <View>
+                                            <TouchableOpacity onPress={() => this._onLocationAddPress()}>
+                                                <View style={styles.button}>
+                                                    <Icon style={styles.icon} name={"add"} size={60} />
+                                                </View>
+                                            </TouchableOpacity>
+                                        </View>
                                     </View>
                                 </LocationCustomCallout>
                             </MapView.Callout>
