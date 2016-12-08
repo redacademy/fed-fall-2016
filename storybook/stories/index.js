@@ -1,3 +1,4 @@
+import './AmenitiesBarNoTitle'
 import './IconCircularBorder'
 import './IconCircularFill'
 import './IconRectangularBorder'
