@@ -13,6 +13,7 @@ import {
     generateMapPins,
     getLocationDetails
 } from '../../redux/actions'
+import { bindActionCreators } from 'redux'
 
 // Containers
 import { SearchBar, Preview, LocationPreview } from '../index'
@@ -72,7 +73,7 @@ class LocationHome extends Component {
     componentWillMount() {
         this.props.generateMapPins()
         // this.props.getLocationDetails(this.props.placeid)
-    }    
+    }
 
     _setUserCurrentLocation() {
         navigator.geolocation.getCurrentPosition(
@@ -99,20 +100,19 @@ class LocationHome extends Component {
                     longitudeDelta: LONGITUDE_DELTA,
                 },
             })
-        })
-    }
+        }}
     
     _toggleOverlay() {
-            this.setState({
-                overlay: !this.state.overlay,
-            })
-        }
+        this.setState({
+            overlay: !this.state.overlay,
+        })
+    }
 
     _onPinPush(placeid) {
         this.props.enterPreview(placeid)
     }
 
-     _onLocationAddPress() {
+    _onLocationAddPress() {
         this.props.enterLocationAdd()
         this.marker.pinColor = "black"
     }
@@ -127,67 +127,67 @@ class LocationHome extends Component {
         }
     }
 
-  _showPins() {
-    return <View>
-      {this.props.pins && this.props.pins.generatedLocationData.length
-        ? this.props.pins.generatedLocationData.map((pin, i) => (
-          <MapView.Marker key={i}
-            coordinate={{ latitude: pin.location.lat, longitude: pin.location.long }}
-            />
-        ))
-        : null
-      }
-    </View>
-  }
+    _showPins() {
+        return <View>
+            {this.props.pins && this.props.pins.generatedLocationData.length
+                ? this.props.pins.generatedLocationData.map((pin, i) => (
+                    <MapView.Marker key={i}
+                        coordinate={{ latitude: pin.location.lat, longitude: pin.location.long }}
+                        />
+                ))
+                : null
+            }
+        </View>
+    }
 
     _onRegionChangeComplete(region) {
         /* as user moves around the map, update the current state
         */
         this.setState({ region })
     }
-    
+
     _preview() {
         if (this.props.preview === true) {
 
             {/* Go to the preview container to add to the card! */ }
             return (
                 <Preview>
-                    <LocationPreview placeId={this.props.placeid}/>
+                    <LocationPreview placeId={this.props.placeid} />
                 </Preview>
             )
         }
     }
 
-  render() {
-    let bottomButtonStatus = null
+    render() {
+        let bottomButtonStatus = null
 
-    if (this.state.overlay) {
-      bottomButtonStatus = <View><BottomButtonListButton /><BottomButtonFilterButton /></View>
+        if (this.state.overlay) {
+            bottomButtonStatus = <View><BottomButtonListButton /><BottomButtonFilterButton /></View>
 
-    }
-    const pins = this.props.pins.map((pin, i) => {
-      return <MapView.Marker
-        key={i}
-        coordinate={{
-          longitude: pin.location.long,
-          latitude: pin.location.lat,
-        }}
-        onPress={() => this._onPinPush(pin.placeid)}
-        >
-        <MapPin scale="0.5" pinColor={rgbColors.apricot} iconName={pin.mapPin} />
-      </MapView.Marker>
-    })
+        }
+        const pins = this.props.pins.map((pin, i) => {
+            return <MapView.Marker
+                key={i}
+                coordinate={{
+                    longitude: pin.location.long,
+                    latitude: pin.location.lat,
+                }}
+                onPress={() => this._onPinPush(pin.placeid)}
+                >
+                <MapPin scale="0.5" pinColor={rgbColors.apricot} iconName={pin.mapPin} />
+            </MapView.Marker>
+        })
 
-    return (
-      <View style={styles.mainContainer}>
-        <MapView
-          ref={ref => {this.map = ref } } // require for animateToRegion
-          style={styles.mapContainer}
-          initialRegion={this.state.region}
-          showsUserLocation
-          followsUserLocation
-          onRegionChange={region => this._onRegionChangeComplete(region)}
-          >
+        return (
+            <View style={styles.mainContainer}>
+                <MapView
+                    ref={ref => { this.map = ref } } // require for animateToRegion
+                    style={styles.mapContainer}
+                    initialRegion={this.state.region}
+                    showsUserLocation
+                    followsUserLocation
+                    onRegionChange={region => this._onRegionChangeComplete(region)}
+                    >
                     {pins}
 
                     {this.state.addLocation ?
