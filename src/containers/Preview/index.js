@@ -9,6 +9,8 @@ import styles from './styles'
 import { Button, Card, MapPin } from '../../components'
 import { rgbColors } from '../../config/styles'
 
+const { width, height, } = Dimensions.get('window')
+
 class Preview extends Component {
   componentWillMount() {
     this.currentState = 'card'
