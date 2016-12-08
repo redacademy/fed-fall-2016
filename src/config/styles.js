@@ -110,9 +110,9 @@ const fontSize = {
         em: 1.875,
     },
     twentyPoint: {
-        pt: 20,
-        pixel: 26,
-        em: 1.6,
+        pt: 9,                 //20 pt
+        pixel: 9,               //26,
+        // em: 1.6,
     },
     eighteenPoint: {
         pt: 18,
