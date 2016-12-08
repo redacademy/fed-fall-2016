@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { View, Text, Dimensions, TouchableOpacity } from 'react-native'
+import { View, Text, Dimensions, TouchableOpacity, ScrollView } from 'react-native'
 import MapView from 'react-native-maps'
 import styles from './styles'
-import { rgbColors } from '../../config/styles'
 import Icon from '../../components/Icon/index'
+import { rgbColors, colorPalete, textStyles } from '../../config/styles'
 
 // Redux 
 import { connect } from 'react-redux'
@@ -26,11 +26,14 @@ import {
     LocationHomeOptionsBar,
     OptionsBarButton,
     MapPin,
-    Button
+    Button,
+    AddressBlock,
+    FilterList,
+    MapBlock,
+    LocationCustomCallout,
+    // RatingBlock,
 } from '../../components'
 import IconOptionalTitleCircularBorder from '../../icons/IconOptionalTitleCircularBorder'
-
-import LocationAddMarkerCallout from '../../components/LocationAddMarkerCallout'
 
 // Initialize Variables
 const { width, height } = Dimensions.get('window')
@@ -113,18 +116,24 @@ class LocationHome extends Component {
     }
     _onLocationAddPress() {
         this.props.enterLocationAdd()
-        this.marker.pinColor = "black"
     }
 
     _locationPreview() {
         if (this.props.locationAdd === true) {
             return (
                 <Preview>
-                    <Text>This is a _onLocationAddPress() preview</Text>
+                    <ScrollView>
+                        <AddressBlock title={"RED Academy"} addressLine1={"1490 W Broadway #200"} addressLine2={"Vancouver, BC V6H 4E8"} />
+                        <FilterList showHeader={false} />
+                        <MapBlock lat={49.2634046} lng={-123.1404133} zoom={17} width={250} height={120} pinScale={0.4} pinColor={'red'} iconName={'starbaby-face'} />
+                    </ScrollView>
                 </Preview>
             )
         }
     }
+    /*
+                        <AddressBlock title={"RED Academy"} addressLine1={"1490 W Broadway #200"} addressLine2={"Vancouver, BC V6H 4E8"} />
+    */
 
     _showPins() {
         console.log('show pins')
@@ -139,7 +148,6 @@ class LocationHome extends Component {
             }
         </View>
     }
-
     _onRegionChangeComplete(region) {
         /* as user moves around the map, update the current state
         */
@@ -193,17 +201,17 @@ class LocationHome extends Component {
 
                     {this.state.addLocation ?
                         <MapView.Marker
-                            ref={ref => { this.marker = ref } }    //required for closing pin when "add clicked"
+                            // ref={ref => { this.marker = ref } }    //required for closing pin when "add clicked"
                             coordinate={{ latitude: this.state.region.latitude, longitude: this.state.region.longitude }}
                             pinColor={'#f17979'}
                             flat={true}
-                            title={'this is a test title'}
                             >
-                            <MapView.Callout tooltip={true} style={{ width: width * 0.6, backgroundColor: 'transparent' }} setSelected={true}>
-                                <LocationAddMarkerCallout>
-                                    <View style={{ flex: 1, backgroundColor: 'transparent' }}>
-                                        <Text>New Location!</Text>
-                                        <Text>Press & Hold to Move</Text>
+                            <MapView.Callout tooltip={true} style={{ width: width * 0.5, height: height*0.25, backgroundColor: 'transparent' }} setSelected={true}>
+                                <LocationCustomCallout>
+                                    <View style={styles.locationAddContainer}>
+                                        <Text style={textStyles.textStyle6}>New Location</Text>
+                                        <Text style={styles.separator}></Text>
+                                        <Text style={[{padding: 5}, textStyles.textStyle7]}>Press & Hold to Move</Text>
                                         <TouchableOpacity onPress={() => this._onLocationAddPress()}>
                                             <IconOptionalTitleCircularBorder
                                                 iconColor={'#f17979'}
@@ -213,7 +221,7 @@ class LocationHome extends Component {
                                                 />
                                         </TouchableOpacity>
                                     </View>
-                                </LocationAddMarkerCallout>
+                                </LocationCustomCallout>
                             </MapView.Callout>
                             <MapPin scale="0.5" pinColor={rgbColors.apricot} iconName={pin.mapPin} />
                         </MapView.Marker>
