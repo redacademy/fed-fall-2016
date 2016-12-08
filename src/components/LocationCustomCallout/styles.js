@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         alignSelf: 'flex-start',
         backgroundColor: '#ffffff',
-        paddingHorizontal: 20,
+        // paddingHorizontal: 10,
         paddingVertical: 12,
         borderRadius: 12,
         borderColor: '#ffffff',
