@@ -66,15 +66,6 @@ class LocationHome extends Component {
         this._showPins = this._showPins.bind(this)
     }
 
-    componentDidMount() {
-        this._setUserCurrentLocation()
-    }
-
-    componentWillMount() {
-        this.props.generateMapPins()
-        // this.props.getLocationDetails(this.props.placeid)
-    }
-
     _setUserCurrentLocation() {
         navigator.geolocation.getCurrentPosition(
             (position) => {
@@ -107,6 +98,12 @@ class LocationHome extends Component {
         this.setState({
             overlay: !this.state.overlay,
         })
+    }
+    componentWillMount() {
+        this.props.generateMapPins()
+    }
+    componentDidMount() {
+        this._setUserCurrentLocation()
     }
 
     _onPinPush(placeid) {

@@ -91,7 +91,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     exitPreview,
-    exitLocationAdd
+    exitLocationAdd,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Preview)
