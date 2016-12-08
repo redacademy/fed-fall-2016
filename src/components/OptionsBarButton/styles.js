@@ -5,12 +5,12 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     button: {
-        alignItems: 'center',
+        alignItems: 'center', //icon
         justifyContent: 'center',
         backgroundColor: 'white',
-        height: 60,
-        width: 60,
-        borderRadius: 30,
+        height: 50,
+        width: 50,
+        borderRadius: 25,
         shadowColor: 'lightgrey',
         shadowOpacity: 0.6,
         shadowOffset: { width: 1, height: -2 },
