@@ -4,6 +4,7 @@ import MapView from 'react-native-maps'
 import styles from './styles'
 import { colors, textStyles } from '../../config/styles'
 import Icon from '../../components/Icon/index'
+import autoBind from 'react-autobind'
 
 // Redux 
 import { connect } from 'react-redux'
@@ -39,6 +40,7 @@ class LocationHome extends Component {
 
     constructor(props) {
         super(props)
+        autoBind(this)
 
         this.state = {
             overlay: false,
@@ -46,13 +48,6 @@ class LocationHome extends Component {
             markers: [],
             addLocation: false,
         }
-
-        this._toggleOverlay = this._toggleOverlay.bind(this)
-        this._onPinPush = this._onPinPush.bind(this)
-        this._preview = this._preview.bind(this)
-        this._onRegionChangeComplete = this._onRegionChangeComplete.bind(this)
-        this._onLocationAddPress = this._onLocationAddPress.bind(this)
-        this._locationPreview = this._locationPreview.bind(this)
     }
     componentWillMount() {
         this.props.generateMapPins()
