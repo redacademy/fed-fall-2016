@@ -36,7 +36,6 @@ import {
     // RatingBlock,
 } from '../../components'
 
-
 import region from './region'
 
 const { width, height } = Dimensions.get('window')
@@ -70,6 +69,7 @@ class LocationHome extends Component {
             ({ coords }) => {
                 this.setState({
                     region: Object.assign({}, region, {
+
                         latitude: coords.latitude,
                         longitude: coords.longitude,
                     }),
@@ -82,13 +82,13 @@ class LocationHome extends Component {
         this.watchID = navigator.geolocation.watchPosition(
             ({ coords }) => {
                 this.setState({
-                    region: Object.assign({}, region, {
+                   region:Object.assign({}, region,  {
                         latitude: coords.latitude,
                         longitude: coords.longitude,
                     }),
-                })
             })
-        }
+        })
+    }
     
 
     _onRegionChangeComplete(region) {
