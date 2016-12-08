@@ -4,22 +4,32 @@ export const ENTER_PREVIEW = 'ENTER_PREVIEW'
 export const EXIT_PREVIEW = 'EXIT_PREVIEW'
 export const GOT_ALL_LOCATION_DATA = 'GOT_ALL_LOCATION_DATA'
 export const GOT_LOCATION_DETAILS = 'GOT_LOCATION_DETAILS'
+export const ENTER_LOCATION_ADD = 'ENTER_LOCATION_ADD'
+export const EXIT_LOCATION_ADD = 'EXIT_LOCATION_ADD'
+
 // Action creators here
 export const searchTextChange = (text) => ({
-  type: ON_SEARCH_CHANGE,
-  payload: text,
+    type: ON_SEARCH_CHANGE,
+    payload: text,
 })
 
-export const enterPreview = (placeid) => ({
+export const enterPreview = (placeId) => ({
   type: ENTER_PREVIEW,
-  payload: placeid
+  payload: placeId
 })
 
 export const exitPreview = () => ({
-  type: EXIT_PREVIEW,
+    type: EXIT_PREVIEW,
 })
 
 // Thunks down here
+export const enterLocationAdd = () => ({
+    type: ENTER_LOCATION_ADD,
+})
+
+export const exitLocationAdd = () => ({
+    type: EXIT_LOCATION_ADD,
+})
 
 export const generateMapPins = () => {
   return function (dispatch) {

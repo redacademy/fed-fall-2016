@@ -1,11 +1,11 @@
 import { StyleSheet, Dimensions } from 'react-native'
 
-const { width } = Dimensions.get('window')
+const { height, width } = Dimensions.get('window')
 
-const styles = StyleSheet.create({
-    CardContainer: {
+export const styles = StyleSheet.create({
+    cardContainer: {
         backgroundColor: 'white',
-        height: 600,
+        height: height * 0.945,
         marginRight: 10,
         marginLeft: 10,
         marginTop: 30,

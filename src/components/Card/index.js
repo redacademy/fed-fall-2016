@@ -1,13 +1,18 @@
-import React from 'react'
-import { View } from 'react-native'
-import styles from './styles'
+import React, { Component, } from 'react'
+import {
+    View,
+} from 'react-native'
+import { styles } from './styles'
 
-const Card = ({ children }) => (
-    <View style={styles.CardContainer}>
-        <View style={styles.CardContent}>
-            {children}
+class Card extends Component {
+
+    render() {
+        return (
+        <View style={styles.cardContainer}>
+                {this.props.children}
         </View>
-    </View>
-)
+        )
+    }
+}
 
 export default Card
