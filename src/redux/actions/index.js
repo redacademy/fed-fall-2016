@@ -21,7 +21,7 @@ export const enterPreview = (placeid) => ({
 export const exitPreview = () => ({
     type: EXIT_PREVIEW,
 })
- 
+
 export const enterLocationAdd = () => ({
     type: ENTER_LOCATION_ADD,
 })

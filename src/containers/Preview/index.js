@@ -8,26 +8,29 @@ import {
 import styles from './styles'
 import { Button, Card, MapPin } from '../../components'
 import { rgbColors } from '../../config/styles'
+import { getLocationDetails } from '../../redux/actions'
 
 const { width, height, } = Dimensions.get('window')
 
 class Preview extends Component {
-  componentWillMount() {
-    this.currentState = 'card'
-    this.avCardY = new Animated.Value(340)
-    this.gesturePosY = null
-    this.gestureThreshold = 75
-    this.avPosition = new Animated.Value(0)
-    this.animationDuration = 600
-  }
+    componentWillMount() {
+        this.currentState = 'card'
+        this.avCardY = new Animated.Value(340)
+        this.gesturePosY = null
+        this.gestureThreshold = 75
+        this.avPosition = new Animated.Value(0)
+        this.animationDuration = 600
 
-  _detectSwipe(y) {
-    if (this.gesturePosY - y >= this.gestureThreshold) {
-      this._onSwipeUp()
-    } else if (y - this.gesturePosY >= this.gestureThreshold) {
-      this._onSwipeDown()
+        this.props.getLocationDetails(this.props.placeid)
     }
-  }
+
+    _detectSwipe(y) {
+        if (this.gesturePosY - y >= this.gestureThreshold) {
+            this._onSwipeUp()
+        } else if (y - this.gesturePosY >= this.gestureThreshold) {
+            this._onSwipeDown()
+        }
+    }
 
     _onSwipeUp() {
         if (this.currentState === 'card') {
@@ -64,8 +67,8 @@ class Preview extends Component {
         }
     }
 
-  render() {
-    const cardAnimation = { transform: [{ translateY: this.avCardY }] }
+    render() {
+        const cardAnimation = { transform: [{ translateY: this.avCardY }] }
         return (
             <View style={styles.Container}>
                 <Animated.View
@@ -85,8 +88,8 @@ class Preview extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  locationDetails: state.map.locationDetails,
-  placeid: state.button.placeid,
+    locationDetails: state.map.locationDetails,
+    placeid: state.button.placeid,
 })
 
 const mapDispatchToProps = {

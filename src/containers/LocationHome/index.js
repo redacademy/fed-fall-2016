@@ -99,6 +99,9 @@ class LocationHome extends Component {
             overlay: !this.state.overlay,
         })
     }
+    _onPinPush(placeid) {
+        this.props.enterPreview(placeid)
+    }
     componentWillMount() {
         this.props.generateMapPins()
     }
@@ -124,7 +127,6 @@ class LocationHome extends Component {
             )
         }
     }
-
     _showPins() {
         return <View>
             {this.props.pins && this.props.pins.generatedLocationData.length
