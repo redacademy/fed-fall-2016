@@ -99,6 +99,7 @@ class LocationHome extends Component {
             overlay: !this.state.overlay,
         })
     }
+    
     componentWillMount() {
         this.props.generateMapPins()
     }

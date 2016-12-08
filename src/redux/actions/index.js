@@ -31,27 +31,27 @@ export const exitLocationAdd = () => ({
 })
 
 export const generateMapPins = () => {
-    return function (dispatch) {
-        fetch('http://45.55.2.200/api/location', {
-            method: 'GET',
-            headers: new Headers({
-                'Content-Type': 'application/json',
-            }),
-        })
-            .then(response => response.json())
-            .then(mapData => dispatch({ type: 'GOT_ALL_LOCATION_DATA', payload: mapData }))
-    }
+  return function (dispatch) {
+    fetch('http://45.55.2.200/api/location', {
+      method: 'GET',
+      headers: new Headers({
+        'Content-Type': 'application/json',
+      })
+    })
+      .then(response => response.json())
+      .then(mapData => dispatch({ type: 'GOT_ALL_LOCATION_DATA', payload: mapData }))
+  }
 }
 
 export const getLocationDetails = (placeId) => {
-    return function (dispatch) {
-        fetch(`https://maps.googleapis.com/maps/api/geocode/json?place_id=${placeId}&key=AIzaSyB2WkbsqNDjsiz8i831IVn1piVIq5OeiCI`, {
-            method: 'GET',
-            headers: new Headers({
-                'Content-Type': 'application/json',
-            }),
-        })
-            .then(response => response.json())
-            .then(locationDetails => dispatch({ type: 'GOT_LOCATION_DETAILS', payload: locationDetails }))
-    }
+  return function (dispatch) {
+    fetch(`https://maps.googleapis.com/maps/api/geocode/json?place_id=${placeId}&key=AIzaSyB2WkbsqNDjsiz8i831IVn1piVIq5OeiCI`, {
+      method: 'GET',
+      headers: new Headers({
+        'Content-Type': 'application/json',
+      })
+    })
+      .then(response => response.json())
+      .then(locationDetails => dispatch({ type: 'GOT_LOCATION_DETAILS', payload: locationDetails }))
+  }
 }
