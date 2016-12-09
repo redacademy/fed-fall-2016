@@ -56,8 +56,10 @@ class Preview extends Component {
                 toValue: 600,
                 duration: this.animationDuration,
             }).start()
+            setTimeout(()=> {
             this.props.exitPreview()
             this.props.exitLocationAdd()
+            }, 450)
         }
     }
     render() {
