@@ -14,7 +14,7 @@ const initialState = {
 export default (state = initialState, action) => {
     switch (action.type) {
         case ENTER_PREVIEW:
-            return { preview: true, placeid: action.payload }
+            return {...state, preview: true, placeid: action.payload  }
         case EXIT_PREVIEW:
             return { preview: false, placeid: '' }
         case ENTER_LOCATION_ADD:

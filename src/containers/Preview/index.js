@@ -26,6 +26,8 @@ class Preview extends Component {
         this.avPosition = new Animated.Value(0)
         this.animationDuration = 600
         this.props.getLocationDetails(this.props.placeid)
+        
+        this.props.setCardPosition('half')
     }
 
     componentWillUpdate(nextProps, nextState){
