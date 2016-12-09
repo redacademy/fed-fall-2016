@@ -8,6 +8,12 @@ import styles from './style'
 class LocationPreview extends Component {
     componentWillMount(){
         this.props.getLocationDetails(this.props.placeId)
+
+        this.getDirections = this.getDirections.bind(this)
+    }
+
+    getDirections(){
+        alert('test')
     }
 
     render(){
@@ -16,7 +22,7 @@ class LocationPreview extends Component {
                 <View style={{flex: 1, marginBottom: 10}}> 
                     <Text>{this.props.locationDetails.formatted_address}</Text>
                 </View>
-                <Button style={{ justifyContent: 'flex-end' }}>
+                <Button onPressFn={this.getDirections} style={{ justifyContent: 'flex-end' }}>
                     <Text style={styles.buttonText}> GO </Text>
                 </Button>
             </View>
