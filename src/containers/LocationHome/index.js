@@ -32,7 +32,7 @@ import {
     MapPin,
     OptionsBarButton,
 } from '../../components'
-
+import LocationAddPreview from './LocationAddPreview'
 import region from './region'
 
 const { width, height } = Dimensions.get('window')
@@ -109,6 +109,7 @@ class LocationHome extends Component {
     _onFilterButtonPress() {
         this.props.setSelectedCard('LocationFilter')
         this.props.setCardPosition('full')
+
     }
     _preview() {
         if ((this.props.preview === true) || (this.props.cardVisible === true)) {
@@ -222,6 +223,8 @@ class LocationHome extends Component {
                 )}
 
                 {this._preview()}
+                <LocationAddPreview locationAdd={this.props.locationAdd}/>
+
             </View>
         )
     }
