@@ -8,6 +8,7 @@ import {
 } from 'react-native'
 import CenterDecorator from '../../../storybook/decorators/center.js'
 import styles from './styles'
+import { colors } from '../../config/styles'
 import Icon from '../Icon/index'
 
 storiesOf('OptionsBarButton', module)
@@ -17,7 +18,7 @@ storiesOf('OptionsBarButton', module)
         <OptionsBarButton>
             <TouchableHighlight style={styles.box} onPress={() => { } }>
                 <View style={styles.button}>
-                    <Icon style={styles.icon} name='location' size={60} color='lightgrey' />
+                    <Icon style={styles.icon} name='location' size={60} color={colors.warmGrey} />
                 </View>
             </TouchableHighlight>
         </OptionsBarButton>
@@ -26,7 +27,7 @@ storiesOf('OptionsBarButton', module)
         <OptionsBarButton>
             <TouchableHighlight style={styles.box} onPress={() => { } }>
                 <View style={styles.button}>
-                    <Icon style={styles.icon} name='add' size={60} color='lightgrey' />
+                    <Icon style={styles.icon} name='add' size={60} color={colors.warmGrey} />
                 </View>
             </TouchableHighlight>
         </OptionsBarButton>
@@ -34,7 +35,7 @@ storiesOf('OptionsBarButton', module)
     .add('Profile', () => (<OptionsBarButton>
         <TouchableHighlight style={styles.box} onPress={() => { } }>
             <View style={styles.button}>
-                <Icon style={styles.icon} name='history' size={60} color='lightgrey' />
+                <Icon style={styles.icon} name='history' size={60} color={colors.warmGrey} />
             </View>
         </TouchableHighlight>
     </OptionsBarButton>

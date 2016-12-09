@@ -1,4 +1,5 @@
 import { StyleSheet, Dimensions } from 'react-native'
+import { colors } from '../../config/styles'
 
 const styles = StyleSheet.create({
     TextInput: {
@@ -9,11 +10,11 @@ const styles = StyleSheet.create({
         paddingBottom: 5,
         paddingLeft: 20,
         paddingRight: 20,
-        backgroundColor: 'white',
+        backgroundColor: colors.white,
         fontSize: 18,
         marginLeft: 15,
         marginRight: 15,
-        shadowColor: 'lightgrey',
+        shadowColor: colors.warmGrey,
         shadowOpacity: 0.6,
         shadowOffset: { width: 1, height: -2 },
         shadowRadius: 3,

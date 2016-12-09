@@ -2,15 +2,16 @@ import React, { Component } from 'react'
 import { View } from 'react-native'
 import Svg, { Path } from 'react-native-svg'
 import Icon from '../Icon'
+import { colors } from '../../config/styles'
 
 /** 
  * MapPin
  * Usage: 
  * 
- * <MapPin scale="0.5" pinColor={rgbColors.apricot} iconName="add" />
+ * <MapPin scale="0.5" pinColor={colors.apricot} iconName="add" />
  *
  * to get red icons… or replace with whatever color you want
- * <MapPin scale="0.5" pinColor={rgbColors.apricot} iconName="add" iconColor="red" /> 
+ * <MapPin scale="0.5" pinColor={colors.apricot} iconName="add" iconColor="red" /> 
  * 
  */
 class MapPin extends Component {
@@ -31,7 +32,7 @@ class MapPin extends Component {
                         <Icon
                             name={this.props.iconName}
                             size={90 * this.props.scale}
-                            color={this.props.iconColor ? this.props.iconColor : 'white'}
+                            color={this.props.iconColor ? this.props.iconColor : colors.white}
                             />
                     </View>
                 </Svg>

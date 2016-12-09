@@ -1,6 +1,7 @@
 import {
     StyleSheet,
 } from 'react-native'
+import { colors } from '../../config/styles'
 
 export const styles = StyleSheet.create({
     container: {
@@ -12,13 +13,13 @@ export const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         alignSelf: 'flex-start',
-        backgroundColor: '#ffffff',
+        backgroundColor: colors.white,
         // paddingHorizontal: 10,
         paddingVertical: 12,
         borderRadius: 12,
-        borderColor: '#ffffff',
+        borderColor: colors.white,
         borderWidth: 0.5,
-        shadowColor: 'darkgrey',
+        shadowColor: colors.warmGrey,
         shadowOpacity: 1,
         shadowOffset: { width: 0.2, height: 1 },
         shadowRadius: 1,
@@ -30,7 +31,7 @@ export const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         borderWidth: 16,
         borderColor: 'transparent',
-        borderTopColor: '#ffffff',
+        borderTopColor: colors.white,
         alignSelf: 'center',
         marginTop: -32,
     },
@@ -38,10 +39,10 @@ export const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         borderWidth: 16,
         borderColor: 'transparent',
-        borderTopColor: '#ffffff',
+        borderTopColor: colors.white,
         alignSelf: 'center',
         marginTop: -0.5,
-        shadowColor: 'darkgrey',
+        shadowColor: colors.warmGrey,
         shadowOpacity: 1,
         shadowOffset: { width: 0.2, height: 1 },
         shadowRadius: 1,

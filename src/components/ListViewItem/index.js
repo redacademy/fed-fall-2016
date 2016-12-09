@@ -12,6 +12,7 @@ import MapPin from '../MapPin'
 import { connect } from 'react-redux'
 import { getLocationDetails } from '../../redux/actions'
 import { getStaticMap } from './getStaticMap'
+import { colors } from '../../config/styles'
 
 class ListViewItem extends Component {
     static propTypes = {
@@ -44,7 +45,7 @@ class ListViewItem extends Component {
                             style={styles.map}
                             source={{ url: getStaticMap() }}
                             >
-                            <MapPin scale="0.4" pinColor={'salmon'} iconName="diaper" />
+                            <MapPin scale="0.4" pinColor={colors.salmon} iconName="diaper" />
                         </Image>
                         <View style={styles.detailsContainer}>
                             <Text style={styles.locationTitle}>{addressArray[0]}</Text>

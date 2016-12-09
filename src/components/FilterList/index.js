@@ -3,6 +3,7 @@ import {
     View, Text
 } from 'react-native'
 import { styles } from './styles'
+import { colors } from '../../config/styles'
 import FilterButton from '../FilterButton'
 
 const iconSize = 170
@@ -83,7 +84,7 @@ class FilterList extends Component {
                             ))
                         }
                         {
-                            <View style={(this.state.isSelectingBathroom ? { flexDirection: 'row', borderRadius: 12, borderColor: '#969696', borderWidth: 1 } : { flexDirection: 'row', })}>
+                            <View style={(this.state.isSelectingBathroom ? { flexDirection: 'row', borderRadius: 12, borderColor: colors.warmGreyTwo, borderWidth: 1 } : { flexDirection: 'row', })}>
                                 <FilterButton
                                     onPress={this.handleBathroomButtonOptionsLeftPress}
                                     iconName={bathroomButtonOptionsLeft[this.state.selectedBathroomIndexLeft].iconName}

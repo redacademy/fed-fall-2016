@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { View, Text } from 'react-native'
 import Icon from '../../components/Icon'
-import { rgbColors } from '../../config/styles'
+import { colors } from '../../config/styles'
 import iconTitleMapper from '../../config/icon-title-mapping'
 
 /**
@@ -11,7 +11,7 @@ import iconTitleMapper from '../../config/icon-title-mapping'
  * a normal usage would be like this:
 
 <IconWithTitle
-    backgroundColor={hexColors.apricot}
+    backgroundColor={colors.apricot}
     size={60}
     iconName="cleanliness"
     />
@@ -20,7 +20,7 @@ import iconTitleMapper from '../../config/icon-title-mapping'
   * you can also override the iconColor and title props
 
 <IconWithTitle
-    backgroundColor={hexColors.apricot}
+    backgroundColor={colors.apricot}
     size={60}
     iconColor="white"
     iconName="cleanliness"
@@ -64,7 +64,7 @@ class IconOptionalTitleRectangularBorder extends Component {
                         // (this.props.iconName === 'cleanliness' || this.props.iconName === 'quiet')
                         // ? this.props.size * 0.5
                         // : this.props.size * 0.7
-                        color={this.props.iconColor || rgbColors.whiteTwo}
+                        color={this.props.iconColor || colors.whiteTwo}
                         style={{
                             backgroundColor: 'transparent',
                         }}
@@ -83,7 +83,7 @@ class IconOptionalTitleRectangularBorder extends Component {
                             fontSize: iconTitleMapper[this.props.iconName].length > 8
                                 ? 13
                                 : 15,
-                            color: this.props.iconColor || rgbColors.warmGrey,
+                            color: this.props.iconColor || colors.warmGrey,
                             letterSpacing: 0,
                         }}>{this.props.title || iconTitleMapper[this.props.iconName]}
                         </Text>

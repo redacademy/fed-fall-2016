@@ -1,6 +1,7 @@
 import { StyleSheet, Dimensions } from 'react-native'
+import { colors } from '../../config/styles'
 
-const { width, height, } = Dimensions.get('window')
+const { height } = Dimensions.get('window')
 
 export const styles = StyleSheet.create({
     Container: {
@@ -10,8 +11,8 @@ export const styles = StyleSheet.create({
         position: 'absolute'
     },
     buttonText: {
-        color: 'white',
+        color: colors.white,
         fontWeight: 'bold',
-        fontSize: 20
+        fontSize: 20,
     },
 })

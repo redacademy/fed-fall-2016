@@ -1,4 +1,5 @@
 import { StyleSheet, Dimensions } from 'react-native';
+import { colors } from '../../config/styles'
 const { width, height, } = Dimensions.get('window')
 
 export const styles = StyleSheet.create({
@@ -23,7 +24,7 @@ export const styles = StyleSheet.create({
     },
     //for the tap to select filter text at the top of the screen
     instructions: {
-        color: '#969696',
+        color: colors.warmGreyTwo,
         padding: 12,
     },
     bathroomDefaultContainer: {
@@ -38,6 +39,6 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         flexWrap: 'wrap',
         borderWidth: 1,
-        borderColor: '#969696',
+        borderColor: colors.warmGreyTwo,
     },
 })

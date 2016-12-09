@@ -6,8 +6,9 @@ import {
 } from 'react-native'
 import { styles } from './styles'
 import Icon from '../Icon/index'
+import { colors } from '../../config/styles'
 
-// positive={{iconName: 'thumbs-up', color: hexColors.lightGreyGreen}} negative={{iconName: 'thumbs-down', color: hexColors.salmon}
+// positive={{iconName: 'thumbs-up', color: colors.lightGreyGreen}} negative={{iconName: 'thumbs-down', color: colors.salmon}
 
 class RatingButton extends Component {
     static propTypes = {
@@ -28,7 +29,7 @@ class RatingButton extends Component {
             this.setState({ 
                 iconStateIndex: this.props.defaultStateIndex, 
                 defaultStateIndex: this.props.defaultStateIndex, 
-                numberOfStates: this.props.iconStates.length, })
+                numberOfStates: this.props.iconStates.length })
     }
     handlePress() {
         const index = this.state.iconStateIndex,
@@ -56,7 +57,7 @@ class RatingButton extends Component {
                                 style={styles.iconDefault}
                                 name={this.props.iconStates[this.state.defaultStateIndex].iconName}
                                 size={this.props.iconStates[this.state.defaultStateIndex].iconSize}
-                                color={'#ffffff'} />
+                                color={colors.white} />
                         </View>
                         <Text style={styles.textDefault} >{this.props.iconStates[this.state.defaultStateIndex].iconText}</Text>
                     </View>
@@ -67,7 +68,7 @@ class RatingButton extends Component {
                                 style={styles.iconSelected}
                                 name={this.props.iconStates[this.state.iconStateIndex].iconName}
                                 size={this.props.iconStates[this.state.iconStateIndex].iconSize}
-                                color={'#e77474'} />
+                                color={colors.darkPeach} />
                         </View>
                         <Text style={styles.textSelected} >{this.props.iconStates[this.state.iconStateIndex].iconText}</Text>
                     </View>

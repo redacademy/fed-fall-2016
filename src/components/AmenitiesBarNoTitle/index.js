@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { View } from 'react-native'
 import Icon from '../../components/Icon'
-import { rgbColors } from '../../config/styles'
+import { colors } from '../../config/styles'
 
 class AmenitiesBarNoTitle extends Component {
     static propTypes = {
@@ -31,32 +31,32 @@ class AmenitiesBarNoTitle extends Component {
                 }
                 >
                 {amenities.privacy
-                    ? <View style={{height: this.props.width / 4, width: this.props.width / 4}}><Icon size={(this.state.width / 4) * .7} color={rgbColors.warmGrey} name="mask" /></View>
+                    ? <View style={{height: this.props.width / 4, width: this.props.width / 4}}><Icon size={(this.state.width / 4) * .7} color={colors.warmGrey} name="mask" /></View>
                     : null
                 }
                 {amenities.changeTable
-                    ? <View style={{height: this.props.width / 4, width: this.props.width / 4}}><Icon size={(this.state.width / 4) * .7} color={rgbColors.warmGrey} name="baby-change-table" /></View>
+                    ? <View style={{height: this.props.width / 4, width: this.props.width / 4}}><Icon size={(this.state.width / 4) * .7} color={colors.warmGrey} name="baby-change-table" /></View>
                     : null
                 }
                 {amenities.familyWashroom
-                    ? <View style={{height: this.props.width / 4, width: this.props.width / 4}}><Icon size={(this.state.width / 4) * .7} color={rgbColors.warmGrey} name="family" /></View>
+                    ? <View style={{height: this.props.width / 4, width: this.props.width / 4}}><Icon size={(this.state.width / 4) * .7} color={colors.warmGrey} name="family" /></View>
                     : null
                 }
                 {(amenities.washroomGender.indexOf('women') + 1) 
-                    ? <View style={{height: this.props.width / 4, width: this.props.width / 4}}><Icon size={(this.state.width / 4) * .7} color={rgbColors.warmGrey} name="female" /></View>
+                    ? <View style={{height: this.props.width / 4, width: this.props.width / 4}}><Icon size={(this.state.width / 4) * .7} color={colors.warmGrey} name="female" /></View>
                     : null
                 }
                 {(amenities.washroomGender.indexOf('men') + 1) 
-                    ? <View style={{height: this.props.width / 4, width: this.props.width / 4}}><Icon size={(this.state.width / 4) * .7} color={rgbColors.warmGrey} name="male" /></View>
+                    ? <View style={{height: this.props.width / 4, width: this.props.width / 4}}><Icon size={(this.state.width / 4) * .7} color={colors.warmGrey} name="male" /></View>
                     : null
                 }
                 {amenities.requiresKey
-                    ? <View style={{height: this.props.width / 4, width: this.props.width / 4}}><Icon size={(this.state.width / 4) * .7} color={rgbColors.warmGrey} name="key" /></View>
+                    ? <View style={{height: this.props.width / 4, width: this.props.width / 4}}><Icon size={(this.state.width / 4) * .7} color={colors.warmGrey} name="key" /></View>
                     : null
                 }
                 {amenities.strollerAccessible
-                    ? <View style={{height: this.props.width / 4, width: this.props.width / 4}}><Icon size={(this.state.width / 4) * .7} color={rgbColors.warmGrey} name="stroller-accessible" /></View>
-                    : <View style={{height: this.props.width / 4, width: this.props.width / 4}}><Icon size={(this.state.width / 4) * .7} color={rgbColors.warmGrey} name="stroller-inaccessible" /></View>
+                    ? <View style={{height: this.props.width / 4, width: this.props.width / 4}}><Icon size={(this.state.width / 4) * .7} color={colors.warmGrey} name="stroller-accessible" /></View>
+                    : <View style={{height: this.props.width / 4, width: this.props.width / 4}}><Icon size={(this.state.width / 4) * .7} color={colors.warmGrey} name="stroller-inaccessible" /></View>
                 }
             </View>
         )

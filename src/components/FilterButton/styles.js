@@ -1,6 +1,5 @@
-import { StyleSheet, Dimensions } from 'react-native';
-import { colorPalette } from '../../config/styles'
-// const { width, height, } = Dimensions.get('window')
+import { StyleSheet } from 'react-native'
+import { colors } from '../../config/styles'
 
 export const styles = StyleSheet.create({
     button: {
@@ -11,18 +10,18 @@ export const styles = StyleSheet.create({
         borderRadius: 42.5,
     },
     buttonDefault: {
-        backgroundColor: colorPalette.white.hex,
+        backgroundColor: colors.white,
     },
     buttonSelected: {
-        backgroundColor: colorPalette.darkPeach.hex,
+        backgroundColor: colors.darkPeach,
     },
     icon: {
         fontSize: 60,
     },
     iconDefault: {
-        color: colorPalette.warmGrey.hex,
+        color: colors.warmGrey,
     },
     iconSelected: {
-        color: colorPalette.white.hex,
+        color: colors.white,
     },
 })

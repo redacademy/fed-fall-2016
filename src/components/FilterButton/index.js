@@ -7,7 +7,7 @@ import {
 } from 'react-native'
 import { styles } from './styles'
 import Icon from '../Icon/index'
-import { colorPalette, textStyles } from '../../config/styles'
+import { colors, textStyles } from '../../config/styles'
 const { width, height } = Dimensions.get('window')
 
 class FilterButton extends Component {
@@ -41,22 +41,20 @@ class FilterButton extends Component {
             height: (height - 20) / 5.5, //122?
             width: (width - 20) / 2, //113?
             justifyContent: 'space-around',
-            // backgroundColor: 'yellow'
         }
-        console.log('FilterButton props: ', this.props)
         return (
             <TouchableOpacity onPress={this.handlePress}>
                 {this.state.isSelected ?
                     <View style={containerStyle}>
                         <View style={[styles.button, styles.buttonSelected]}>
-                            <Icon style={[styles.icon, styles.iconSelected]} name={this.props.iconName} size={this.props.iconSize} color={colorPalette.white.hex} />
+                            <Icon style={[styles.icon, styles.iconSelected]} name={this.props.iconName} size={this.props.iconSize} color={colors.white} />
                         </View>
                         <Text style={textStyles.textStyle12} >{this.props.iconText}</Text>
                     </View>
                     :
                     <View style={containerStyle}>
                         <View style={[styles.button, styles.buttonDefault]}>
-                            <Icon style={[styles.icon, styles.iconDefault]} name={this.props.iconName} size={this.props.iconSize} color={colorPalette.white.hex} />
+                            <Icon style={[styles.icon, styles.iconDefault]} name={this.props.iconName} size={this.props.iconSize} color={colors.white} />
                         </View>
                         <Text style={textStyles.textStyle11} >{this.props.iconText}</Text>
                     </View>

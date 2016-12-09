@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { View, Text } from 'react-native'
 import Icon from '../../components/Icon'
-import { rgbColors } from '../../config/styles'
+import { colors } from '../../config/styles'
 import iconTitleMapper from '../../config/icon-title-mapping'
 
 /** 
@@ -33,7 +33,7 @@ class IconOptionalTitleCircularBorder extends Component {
                         alignItems: 'center',
                         justifyContent: 'center',
                         borderRadius: this.props.size * 0.5,
-                        borderColor: this.props.iconColor || 'grey',
+                        borderColor: this.props.iconColor || colors.warmGrey,
                         borderWidth: this.props.size * 0.03,
                     }}
                     >
@@ -45,7 +45,7 @@ class IconOptionalTitleCircularBorder extends Component {
                         // (this.props.iconName === 'cleanliness' || this.props.iconName === 'quiet')
                         // ? this.props.size * 0.5
                         // : this.props.size * 0.7
-                        color={this.props.iconColor || rgbColors.warmGrey}
+                        color={this.props.iconColor || colors.warmGrey}
                         style={{
                             backgroundColor: 'transparent',
                             opacity: 0.9,
@@ -65,7 +65,7 @@ class IconOptionalTitleCircularBorder extends Component {
                             fontSize: iconTitleMapper[this.props.iconName].length > 8
                                 ? 13
                                 : 15,
-                            color: this.props.iconColor || rgbColors.warmGrey,
+                            color: this.props.iconColor || colors.warmGrey,
                             letterSpacing: 0,
                         }}>{this.props.title || iconTitleMapper[this.props.iconName]}</Text>
                     </View>

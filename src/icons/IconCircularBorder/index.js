@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { View } from 'react-native'
 import Icon from '../../components/Icon'
-import { rgbColors } from '../../config/styles'
+import { colors } from '../../config/styles'
 
 class IconCircularBorder extends Component {
     static propTypes = {
@@ -25,14 +25,14 @@ class IconCircularBorder extends Component {
                         alignItems: 'center',
                         justifyContent: 'center',
                         borderRadius: this.props.size * 0.5,
-                        borderColor: this.props.color || rgbColors.darkPeach,
+                        borderColor: this.props.color || colors.darkPeach,
                         borderWidth: this.props.size * 0.03,
                     }}
                     >
                     <Icon
                         name={this.props.name}
                         size={this.props.size * 0.7}
-                        color={this.props.color || rgbColors.darkPeach}
+                        color={this.props.color || colors.darkPeach}
                         style={{
                             backgroundColor: 'transparent',
                         }}
