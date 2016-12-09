@@ -1,15 +1,15 @@
-import { GOT_ALL_LOCATION_DATA, GOT_LOCATION_DETAILS } from '../actions'
+import { LOCATION_DATA_DETAILS, LOCATION_DATA_ALL } from '../actions'
 
 const initialState = {
     generatedLocationData: [],
-    locationDetails: {}
+    locationDetails: {},
 }
 
 export default (state = initialState, action) => {
     switch (action.type) {
-        case GOT_ALL_LOCATION_DATA:
+        case LOCATION_DATA_ALL:
             return {...state, generatedLocationData: action.payload }
-        case GOT_LOCATION_DETAILS:
+        case LOCATION_DATA_DETAILS:
             return {...state, locationDetails: action.payload.results[0] } 
         default:
             return state

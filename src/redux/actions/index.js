@@ -2,8 +2,8 @@
 export const ON_SEARCH_CHANGE = 'ON_SEARCH_CHANGE'
 export const ENTER_PREVIEW = 'ENTER_PREVIEW'
 export const EXIT_PREVIEW = 'EXIT_PREVIEW'
-export const GOT_ALL_LOCATION_DATA = 'GOT_ALL_LOCATION_DATA'
-export const GOT_LOCATION_DETAILS = 'GOT_LOCATION_DETAILS'
+export const LOCATION_DATA_ALL = 'LOCATION_DATA_ALL'
+export const LOCATION_DATA_DETAILS = 'LOCATION_DATA_DETAILS'
 export const ENTER_LOCATION_ADD = 'ENTER_LOCATION_ADD'
 export const EXIT_LOCATION_ADD = 'EXIT_LOCATION_ADD'
 
@@ -40,7 +40,7 @@ export const generateMapPins = () => {
       })
     })
       .then(response => response.json())
-      .then(mapData => dispatch({ type: 'GOT_ALL_LOCATION_DATA', payload: mapData }))
+      .then(mapData => dispatch({ type: 'LOCATION_DATA_ALL', payload: mapData }))
   }
 }
 
@@ -53,6 +53,6 @@ export const getLocationDetails = (placeId) => {
       })
     })
       .then(response => response.json())
-      .then(locationDetails => dispatch({ type: 'GOT_LOCATION_DETAILS', payload: locationDetails }))
+      .then(locationDetails => dispatch({ type: 'LOCATION_DATA_DETAILS', payload: locationDetails }))
   }
 }
