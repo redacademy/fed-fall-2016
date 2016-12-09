@@ -6,6 +6,10 @@ export const LOCATION_DATA_ALL = 'LOCATION_DATA_ALL'
 export const LOCATION_DATA_DETAILS = 'LOCATION_DATA_DETAILS'
 export const ENTER_LOCATION_ADD = 'ENTER_LOCATION_ADD'
 export const EXIT_LOCATION_ADD = 'EXIT_LOCATION_ADD'
+export const CARD_TO_POSITION_FULL = 'CARD_TO_POSITION_FULL'
+export const CARD_TO_POSITION_HALF = 'CARD_TO_POSITION_HALF'
+export const CARD_TO_POSITION_DIRECTIONS = 'CARD_TO_POSITION_DIRECTIONS'
+export const CARD_TO_POSITION_HIDDEN = 'CARD_TO_POSITION_HIDDEN'
 
 // Action creators here
 export const searchTextChange = (text) => ({
@@ -22,15 +26,32 @@ export const exitPreview = () => ({
     type: EXIT_PREVIEW,
 })
 
-// Thunks down here
-export const enterLocationAdd = () => ({
-    type: ENTER_LOCATION_ADD,
-})
-
 export const exitLocationAdd = () => ({
     type: EXIT_LOCATION_ADD,
 })
 
+export const enterLocationAdd = () => ({
+    type: ENTER_LOCATION_ADD,
+})
+
+export const cardPositionFull = () => ({
+    type: CARD_TO_POSITION_FULL,
+})
+
+export const cardPositionHalf = () => ({
+    type: CARD_TO_POSITION_HALF,
+})
+
+export const cardPositionDirections = () => ({
+    type: CARD_TO_POSITION_DIRECTIONS,
+})
+
+export const cardPositionHidden = () => ({
+    type: CARD_TO_POSITION_HIDDEN,
+})
+
+
+// Thunks down here
 export const generateMapPins = () => {
   return function (dispatch) {
     fetch('http://45.55.2.200/api/location', {

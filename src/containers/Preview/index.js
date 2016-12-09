@@ -28,6 +28,7 @@ class Preview extends Component {
             this._onSwipeDown()
         }
     }
+    
     _onSwipeUp() {
         if (this.currentState === 'card') {
             setTimeout(() => this.currentState = 'list', 300)
