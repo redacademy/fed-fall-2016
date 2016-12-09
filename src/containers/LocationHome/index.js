@@ -108,13 +108,6 @@ class LocationHome extends Component {
     _onPinPush(placeid) {
         this.props.enterPreview(placeid)
     }
-    _preview() {
-        if (this.props.preview === true) {
-
-            {/* Go to the preview container to add to the card! */ }
-            return <Preview />
-        }
-    }
 
     _onLocationAddPress() {
         this.props.enterLocationAdd()
@@ -156,6 +149,7 @@ class LocationHome extends Component {
         */
         this.setState({ region })
     }
+
     _preview() {
         if (this.props.preview === true) {
 
@@ -167,7 +161,6 @@ class LocationHome extends Component {
             )
         }
     }
-
 
     // shouldComponentUpdate(nextProps, nextState) {
     //     console.log('shouldComponentUpdate?')
