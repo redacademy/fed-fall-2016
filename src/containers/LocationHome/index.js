@@ -185,8 +185,6 @@ class LocationHome extends Component {
                 )}
 
                 {this._preview()}
-                <LocationAdd title={'Red Academy'} lat={49.2634046} lng={-123.1404133}/>
-
             </View>
         )
     }
