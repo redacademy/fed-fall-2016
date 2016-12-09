@@ -9,6 +9,7 @@ import {
 import styles from './styles'
 import { Card } from '../../components'
 
+
 class Preview extends Component {
     componentWillMount() {
         this.currentState = 'card'
@@ -27,7 +28,6 @@ class Preview extends Component {
             this._onSwipeDown()
         }
     }
-
     _onSwipeUp() {
         if (this.currentState === 'card') {
             setTimeout(() => this.currentState = 'list', 300)
@@ -43,7 +43,6 @@ class Preview extends Component {
             }).start()
         }
     }
-
     _onSwipeDown() {
         if (this.currentState === 'list') {
             setTimeout(() => this.currentState = 'card', 300)
@@ -57,10 +56,10 @@ class Preview extends Component {
                 toValue: 600,
                 duration: this.animationDuration,
             }).start()
-            setTimeout(() => {
-                this.props.exitPreview()
-                this.props.exitLocationAdd()
-            }, 400)
+            setTimeout(()=> {
+            this.props.exitPreview()
+            this.props.exitLocationAdd()
+            }, 450)
         }
     }
     render() {
@@ -82,7 +81,6 @@ class Preview extends Component {
         )
     }
 }
-
 const mapStateToProps = (state) => ({
     locationDetails: state.map.locationDetails,
     placeid: state.button.placeid,

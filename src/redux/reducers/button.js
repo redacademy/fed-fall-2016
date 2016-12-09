@@ -8,7 +8,7 @@ import {
 const initialState = {
     preview: false,
     locationAdd: false,
-    placeid: ''
+    placeid: '',
 }
 
 export default (state = initialState, action) => {
@@ -18,9 +18,9 @@ export default (state = initialState, action) => {
         case EXIT_PREVIEW:
             return { preview: false, placeid: '' }
         case ENTER_LOCATION_ADD:
-            return {...state, locationAdd: true, }
+            return {...state, locationAdd: true }
         case EXIT_LOCATION_ADD:
-            return {...state, locationAdd: false, }
+            return {...state, locationAdd: false }
         default:
             return state
     }

@@ -1,15 +1,16 @@
 import { StyleSheet, Dimensions } from 'react-native'
 import { colorPalette } from '../../config/styles'
-
-const { width } = Dimensions.get('window')
+const { width, height } = Dimensions.get('window')
+const   h=height*0.078,
+        w = width*0.77
 
 const styles = StyleSheet.create({
     button: {
         justifyContent: 'center',
         alignItems: 'center',
-        height: 45,
-        width: width * 0.80,
-        borderRadius: 30,
+        height: h,
+        width: w,
+        borderRadius: h/2,
         backgroundColor: colorPalette.lightGreyGreen.hex,
         shadowColor: 'darkgrey',
         shadowOpacity: 0.5,
@@ -18,4 +19,5 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
     }
 })
+
 export default styles

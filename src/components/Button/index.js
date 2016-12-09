@@ -1,6 +1,7 @@
 import React from 'react'
 import { TouchableHighlight } from 'react-native'
 import styles from './style'
+
 import { colorPalette } from '../../config/styles'
 
 const Button = ({ children }) => {

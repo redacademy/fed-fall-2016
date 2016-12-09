@@ -2,9 +2,8 @@ import React, { Component } from 'react'
 import { View, Text, Dimensions, TouchableOpacity, ScrollView } from 'react-native'
 import MapView from 'react-native-maps'
 import styles from './styles'
-import { rgbColors, colorPalette, textStyles } from '../../config/styles'
+import { rgbColors, textStyles } from '../../config/styles'
 import Icon from '../../components/Icon/index'
-import IconCircularBorder from '../../icons/IconCircularBorder'
 
 // Redux 
 import { connect } from 'react-redux'
@@ -14,7 +13,6 @@ import {
     generateMapPins,
     getLocationDetails
 } from '../../redux/actions'
-import { bindActionCreators } from 'redux'
 
 // Containers
 import { SearchBar, Preview, LocationPreview } from '../index'
@@ -34,7 +32,6 @@ import {
     OptionsBarButton,
     // RatingBlock,
 } from '../../components'
-import IconOptionalTitleCircularBorder from '../../icons/IconOptionalTitleCircularBorder'
 
 // Initialize Variables
 const { width, height } = Dimensions.get('window')
@@ -67,9 +64,13 @@ class LocationHome extends Component {
         this._onRegionChangeComplete = this._onRegionChangeComplete.bind(this)
         this._onLocationAddPress = this._onLocationAddPress.bind(this)
         this._locationPreview = this._locationPreview.bind(this)
-        this._showPins = this._showPins.bind(this)
     }
-
+    componentWillMount() {
+        this.props.generateMapPins()
+    }
+    componentDidMount() {
+        this._setUserCurrentLocation()
+    }
     _setUserCurrentLocation() {
         navigator.geolocation.getCurrentPosition(
             (position) => {
@@ -104,25 +105,10 @@ class LocationHome extends Component {
         })
     }
 
-    componentWillMount() {
-        this.props.generateMapPins()
-    }
-    componentDidMount() {
-        this._setUserCurrentLocation()
-    }
-    // shouldComponentUpdate(nextProps, nextState) {
-    //     console.log('shouldComponentUpdate?')
-    //     if (this.state.pins !== nextState.pins) {
-    //     console.log('true')
-    //         return true
-    //     }
-    //     console.log('true')
-    //     return false
-    // }
-
     _onPinPush(placeid) {
         this.props.enterPreview(placeid)
     }
+
     _onLocationAddPress() {
         this.props.enterLocationAdd()
     }
@@ -134,7 +120,7 @@ class LocationHome extends Component {
                     <ScrollView>
                         <AddressBlock title={"RED Academy"} addressLine1={"1490 W Broadway #200"} addressLine2={"Vancouver, BC V6H 4E8"} />
                         <FilterList showHeader={false} />
-                        <MapBlock lat={49.2634046} lng={-123.1404133} zoom={17} width={width-80} height={120} pinScale={0.4} pinColor={'red'} iconName={'starbaby-face'} />
+                        <MapBlock lat={49.2634046} lng={-123.1404133} zoom={17} width={width - 80} height={120} pinScale={0.4} pinColor={'red'} iconName={'starbaby-face'} />
                         <Button style={{ alignSelf: 'flex-end' }}>
                             <Text style={textStyles.textStyle4}>SUBMIT</Text>
                         </Button>
@@ -158,24 +144,12 @@ class LocationHome extends Component {
     /*
                         <AddressBlock title={"RED Academy"} addressLine1={"1490 W Broadway #200"} addressLine2={"Vancouver, BC V6H 4E8"} />
     */
-
-    _showPins() {
-        return <View>
-            {this.props.pins && this.props.pins.generatedLocationData.length
-                ? this.props.pins.generatedLocationData.map((pin, i) => (
-                    <MapView.Marker key={i}
-                        coordinate={{ latitude: pin.location.lat, longitude: pin.location.long }}
-                        />
-                ))
-                : null
-            }
-        </View>
-    }
     _onRegionChangeComplete(region) {
         /* as user moves around the map, update the current state
         */
         this.setState({ region })
     }
+
     _preview() {
         if (this.props.preview === true) {
 
@@ -187,6 +161,16 @@ class LocationHome extends Component {
             )
         }
     }
+
+    // shouldComponentUpdate(nextProps, nextState) {
+    //     console.log('shouldComponentUpdate?')
+    //     if (this.state.pins !== nextState.pins) {
+    //     console.log('true')
+    //         return true
+    //     }
+    //     console.log('true')
+    //     return false
+    // }
 
     render() {
         let bottomButtonStatus = null

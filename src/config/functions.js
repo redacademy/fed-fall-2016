@@ -1,15 +1,25 @@
 // A file of reusable functions for the project
-import { hexColors } from '../config/styles'
+import { rgbColors } from '../config/styles'
 
 export const ratingColorGenerator = (rating) => {
     switch (rating.toUpperCase()) {
         case 'LOW':
-            return hexColors.salmon
+            return rgbColors.salmon
         case 'MEDIUM':
-            return hexColors.apricot
+            return rgbColors.apricot
         case 'HIGH':
-            return hexColors.lightGreyGreenTwo
+            return rgbColors.lightGreyGreenTwo
         default:
             break
     }
+}
+
+export const babyFocusIconChooser = (changing, feeding) => {
+    if (changing && feeding) {
+        return 'starbaby-face'
+    }
+    if (changing) {
+        return 'diaper'
+    }
+    return 'bottle'
 }

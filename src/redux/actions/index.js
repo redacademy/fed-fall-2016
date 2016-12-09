@@ -2,10 +2,10 @@
 export const ON_SEARCH_CHANGE = 'ON_SEARCH_CHANGE'
 export const ENTER_PREVIEW = 'ENTER_PREVIEW'
 export const EXIT_PREVIEW = 'EXIT_PREVIEW'
-export const ENTER_LOCATION_ADD = 'ENTER_LOCATION_ADD'
-export const EXIT_LOCATION_ADD = 'EXIT_LOCATION_ADD'
 export const GOT_ALL_LOCATION_DATA = 'GOT_ALL_LOCATION_DATA'
 export const GOT_LOCATION_DETAILS = 'GOT_LOCATION_DETAILS'
+export const ENTER_LOCATION_ADD = 'ENTER_LOCATION_ADD'
+export const EXIT_LOCATION_ADD = 'EXIT_LOCATION_ADD'
 
 // Action creators here
 export const searchTextChange = (text) => ({
@@ -13,15 +13,16 @@ export const searchTextChange = (text) => ({
     payload: text,
 })
 
-export const enterPreview = (placeid) => ({
-    type: ENTER_PREVIEW,
-    payload: placeid,
+export const enterPreview = (placeId) => ({
+  type: ENTER_PREVIEW,
+  payload: placeId
 })
 
 export const exitPreview = () => ({
     type: EXIT_PREVIEW,
 })
 
+// Thunks down here
 export const enterLocationAdd = () => ({
     type: ENTER_LOCATION_ADD,
 })

@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import {
     View, Text
 } from 'react-native'
-import { styles } from './style'
+import styles from './style'
 import { textStyles } from '../../config/styles'
 
 class AddressBlock extends Component {
