@@ -33,7 +33,6 @@ import {
     MapPin,
     OptionsBarButton,
 } from '../../components'
-
 import region from './region'
 
 const { width, height } = Dimensions.get('window')
@@ -87,6 +86,9 @@ class LocationHome extends Component {
             })
         })
     }
+    /*
+                        <AddressBlock title={"RED Academy"} addressLine1={"1490 W Broadway #200"} addressLine2={"Vancouver, BC V6H 4E8"} />
+    */
     _onRegionChangeComplete(region) {
         /* as user moves around the map, update the current state
         */
