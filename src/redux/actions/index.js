@@ -34,22 +34,20 @@ export const enterLocationAdd = () => ({
     type: ENTER_LOCATION_ADD,
 })
 
-export const cardPositionFull = () => ({
-    type: CARD_TO_POSITION_FULL,
-})
-
-export const cardPositionHalf = () => ({
-    type: CARD_TO_POSITION_HALF,
-})
-
-export const cardPositionDirections = () => ({
-    type: CARD_TO_POSITION_DIRECTIONS,
-})
-
-export const cardPositionHidden = () => ({
-    type: CARD_TO_POSITION_HIDDEN,
-})
-
+export const setCardPosition = (position) => {
+  switch(position){
+    case 'full': 
+      return { type: CARD_TO_POSITION_FULL }
+    case 'half':
+      return { type: CARD_TO_POSITION_HALF }
+    case 'directions':
+      return { type: CARD_TO_POSITION_DIRECTIONS }
+    case 'hidden': 
+      return { type: CARD_TO_POSITION_HIDDEN }
+    default: 
+      return null
+  }
+}
 
 // Thunks down here
 export const generateMapPins = () => {

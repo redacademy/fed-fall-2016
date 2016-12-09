@@ -11,7 +11,7 @@ import {
     enterPreview,
     enterLocationAdd,
     generateMapPins,
-    getLocationDetails
+    getLocationDetails,
 } from '../../redux/actions'
 
 // Containers
@@ -67,6 +67,7 @@ class LocationHome extends Component {
     }
     componentWillMount() {
         this.props.generateMapPins()
+        
     }
     componentDidMount() {
         this._setUserCurrentLocation()
@@ -276,6 +277,7 @@ const mapStateToProps = (state) => ({
     pins: state.map.generatedLocationData,
     locationDetails: state.map.locationDetails,
     placeid: state.button.placeid,
+    yVal: state.card.yVal,
 })
 
 const mapDispatchToProps = {
