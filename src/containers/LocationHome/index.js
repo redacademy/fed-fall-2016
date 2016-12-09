@@ -35,7 +35,7 @@ import {
     BottomButton
     // RatingBlock,
 } from '../../components'
-
+import LocationAddPreview from './LocationAddPreview'
 import region from './region'
 
 const { width, height } = Dimensions.get('window')
@@ -204,6 +204,8 @@ class LocationHome extends Component {
                 )}
 
                 {this._preview()}
+                <LocationAddPreview locationAdd={this.props.locationAdd}/>
+
             </View>
         )
     }
