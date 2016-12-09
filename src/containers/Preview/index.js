@@ -39,15 +39,6 @@ class Preview extends Component {
         }
     }
 
-    componentWillUpdate(nextProps, nextState){
-        if (nextProps.cardPosition !== this.props.cardPosition){
-            Animated.timing(this.position, {
-            toValue: nextProps.cardPosition,
-            duration: this.animationDuration,
-        }).start()
-        }
-    }
-
     _detectSwipe(y) {
         if (this.gesturePosY - y >= this.gestureThreshold) {
             this._onSwipeUp()

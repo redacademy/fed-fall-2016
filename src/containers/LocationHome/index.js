@@ -68,7 +68,6 @@ class LocationHome extends Component {
     }
     componentWillMount() {
         this.props.generateMapPins()
-        
     }
     componentDidMount() {
         this._setUserCurrentLocation()
