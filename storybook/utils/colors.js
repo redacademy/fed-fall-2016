@@ -1,8 +1,8 @@
-import { rgbColors } from '../../src/config/styles'
+import { colors } from '../../src/config/styles'
 
-const colors = Object.keys(rgbColors).reduce((output, name) => {
-    output[rgbColors[name]] = name
+const colorsArray = Object.keys(colors).reduce((output, name) => {
+    output[colors[name]] = name
     return output
 }, {})
 
-export default colors
+export default colorsArray

@@ -1,4 +1,5 @@
 import { StyleSheet, Dimensions } from 'react-native'
+import { colors } from '../../config/styles'
 
 const { width, height } = Dimensions.get('window')
 
@@ -10,9 +11,9 @@ const styles = StyleSheet.create({
         position: 'absolute',
     },
     buttonText: {
-        color: 'white',
+        color: colors.white,
         fontWeight: 'bold',
-        fontSize: 20
+        fontSize: 20,
     },
     cardText: {
         flex: 1,    

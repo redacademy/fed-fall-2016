@@ -1,73 +1,25 @@
-export const colorPalette = {
+export const colors = {
     //--------------------------------------"pink"-ish
-    beige: {
-        rgb: 'rgb(248, 251, 244)',
-        hex: '#f8fbf4',
-    },
-    blush: {
-        rgb: 'rgb(241, 121, 121)',
-        hex: '#f17979',
-    },
-    lightMauve: {
-        rgb: 'rgb(197, 151, 189)',
-        hex: '#c597bd',
-    },
-    apricot: {
-        rgb: 'rgb(255, 198, 116)',
-        hex: '#ffc674',
-    },
-    salmon: {
-        rgb: 'rgb(255, 139, 108)',
-        hex: '#ff8b6c',
-    },
-    darkPeach: {
-        rgb: 'rgb(231, 116, 116)',
-        hex: '#e77474',
-    },
+    beige: '#f8fbf4',
+    blush: '#f17979',
+    lightMauve: '#c597bd',
+    apricot: '#ffc674',
+    salmon: '#ff8b6c',
+    darkPeach: '#e77474',
     //--------------------------------------"grey"-ish
-    greyish: {
-        rgb: 'rgb(172, 172, 172)',
-        hex: '#acacac',
-    },
-    warmGrey: {
-        rgb: 'rgb(127, 127, 127)',
-        hex: '#7f7f7f',
-    },
-    warmGreyTwo: {
-        rgb: 'rgb(150, 150, 150)',
-        hex: '#969696',
-    },
-    warmGreyThree: {
-        rgb: 'rgb(127, 126, 126)',
-        hex: '#7f7e7e',
-    },
+    greyish: '#acacac',
+    warmGrey: '#7f7f7f',
+    warmGreyTwo: '#969696',
+    warmGreyThree: '#7f7e7e',
     //--------------------------------------"blue"-ish
-    darkGreyBlue: {
-        rgb: 'rgb(45, 76, 96)',
-        hex: '#2d4c60',
-    },
-    metallicBlue: {
-        rgb: 'rgb(63,99,118)',
-        hex: '#3f6376',
-    },
+    darkGreyBlue: '#2d4c60',
+    metallicBlue: '#3f6376',
     //--------------------------------------"green"-ish
-    lightGreyGreen: {
-        rgb: 'rgb(191, 216, 153)',
-        hex: '#bfd899',
-    },
-    lightGreyGreenTwo: {
-        rgb: 'rgb(203, 230, 162)',
-        hex: '#cbe6a2',
-    },
+    lightGreyGreen: '#bfd899',
+    lightGreyGreenTwo: '#cbe6a2',
     //--------------------------------------"white"-ish
-    white: {
-        rgb: 'rgb(255, 255, 255)',
-        hex: '#ffffff',
-    },
-    whiteTwo: {
-        rgb: 'rgb(253, 253, 253)',
-        hex: '#fdfdfd',
-    },
+    white: '#ffffff',
+    whiteTwo: '#fdfdfd',
 }
 
 //internal, for use 
@@ -89,16 +41,6 @@ const fontSize = {
         pixel: 133,
         em: 8.313,
     },
-    fortyPoint: {               // maybe should be 17
-        pt: 17,                 //40
-        pixel: 23,              //53
-        // em: 3.313,
-    },
-    twentyFivePoint: {          // maybe should be 15
-        pt: 15,                 // 25
-        pixel: 14,              // 33
-        // em: 2.063,
-    },
     twentyFourPoint: {
         pt: 24,
         pixel: 32,
@@ -108,11 +50,6 @@ const fontSize = {
         pt: 22.5,
         pixel: 30,
         em: 1.875,
-    },
-    twentyPoint: {
-        pt: 9,                 //20 pt
-        pixel: 9,               //26,
-        // em: 1.6,
     },
     eighteenPoint: {
         pt: 18,
@@ -138,201 +75,158 @@ const fontSize = {
 
 export const textStyles = {
     textStyle: {
-        // pixel: {
         fontFamily: fonts.itimRegular,
         fontSize: fontSize.oneHundredPoint.pixel,
-        color: colorPalette.white.hex,
-        // },
-        // em: {
-        //     fontFamily: fonts.itimRegular,
-        //     fontSize: fontSize.oneHundredPoint.em,
-        //     color: colorPalette.white.hex,
-        // },
+        color: colors.white,
     },
     textStyle2: {
         fontFamily: fonts.itimRegular,
         fontSize: fontSize.oneHundredTwentyFivePoint.pixel,
-        color: colorPalette.darkPeach.hex,
+        color: colors.darkPeach,
     },
     textStyle3: {
         fontFamily: fonts.rubikLight,
-        fontSize: fontSize.fortyPoint.pixel,
-        color: colorPalette.warmGrey.hex,
+        fontSize: 23,
+        color: colors.warmGrey,
     },
     textStyle4: {
         fontFamily: fonts.rubikRegular,
-        fontSize: fontSize.fortyPoint.pixel,
-        color: colorPalette.white.hex,
+        fontSize: 23,
+        color: colors.white,
     },
     textStyle5: {
         fontFamily: fonts.rubikRegular,
-        fontSize: fontSize.twentyFivePoint.pixel,
-        color: colorPalette.darkPeach.hex,
+        fontSize: 14,
+        color: colors.darkPeach,
     },
     textStyle6: {
         fontFamily: fonts.rubikLight,
-        fontSize: fontSize.fortyPoint.pixel,
-        color: colorPalette.metallicBlue.hex,
+        fontSize: 23,
+        color: colors.metallicBlue,
     },
     textStyle7: {
         fontFamily: fonts.rubikRegular,
-        fontSize: fontSize.twentyFivePoint.pixel,
-        color: colorPalette.warmGrey.hex,
+        fontSize: 14,
+        color: colors.warmGrey,
     },
     textStyle8: {   // same as textStyle7
-      fontFamily: 'Rubik-Regular',
-    fontSize: fontSize.twentyFivePoint.pixel,
-      color: colorPalette.warmGrey.hex,
+        fontFamily: 'Rubik-Regular',
+        fontSize: 14,
+        color: colors.warmGrey,
     },
     textStyle9: {
         fontFamily: fonts.rubikRegular,
         fontSize: fontSize.twentyFourPoint.pixel,
-        color: colorPalette.warmGreyTwo.hex,
+        color: colors.warmGreyTwo,
     },
     textStyle10: {
         fontFamily: fonts.rubikRegular,
-        fontSize: fontSize.twentyPoint.pixel,
-        color: colorPalette.warmGreyThree.hex,
+        fontSize: 9,
+        color: colors.warmGreyThree,
     },
     textStyle11: {
         fontFamily: fonts.rubikRegular,
-        fontSize: fontSize.twentyPoint.pixel,
-        color: colorPalette.warmGrey.hex,
+        fontSize: 9,
+        color: colors.warmGrey,
     },
     textStyle12: {
         fontFamily: fonts.rubikRegular,
-        fontSize: fontSize.twentyPoint.pixel,
-        color: colorPalette.darkPeach.hex,
+        fontSize: 9,
+        color: colors.darkPeach,
     },
     textStyle13: {
         fontFamily: fonts.rubikLight,
-        fontSize: fontSize.fortyPoint.pixel,
-        color: colorPalette.warmGreyTwo.hex,
+        fontSize: 23,
+        color: colors.warmGreyTwo,
     },
     textStyle14: {  //same as textStyle6
         fontFamily: fonts.rubikLight,
-        fontSize: fontSize.fortyPoint.pixel,
-        color: colorPalette.metallicBlue.hex,
+        fontSize: 23,
+        color: colors.metallicBlue,
     },
     textStyle15: {
         fontFamily: fonts.rubikRegular,
-        fontSize: fontSize.twentyPoint.pixel,
-        color: colorPalette.greyish.hex,
+        fontSize: 9,
+        color: colors.greyish,
     },
     textStyle16: {
         fontFamily: fonts.rubikLight,
         fontSize: fontSize.eighteenPoint.pixel,
-        color: colorPalette.darkGreyBlue.hex,
+        color: colors.darkGreyBlue,
     },
     textStyle17: {
         fontFamily: fonts.rubikRegular,
         fontSize: fontSize.twelvePoint.pixel,
-        color: colorPalette.warmGrey,
+        color: colors.warmGrey,
     },
     textStyle18: {  //same as textStyle17
         fontFamily: fonts.rubikRegular,
         fontSize: fontSize.twelvePoint.pixel,
-        color: colorPalette.warmGrey,
+        color: colors.warmGrey,
     },
     textStyle19: {
         fontFamily: fonts.rubikRegular,
         fontSize: fontSize.fourteenPoint.pixel,
-        color: colorPalette.warmGrey.hex,
+        color: colors.warmGrey,
     },
     textStyle20: {
         fontFamily: fonts.rubikLight,
-        fontSize: fontSize.twentyPoint.pixel,
-        color: colorPalette.warmGrey.hex,
+        fontSize: 9,
+        color: colors.warmGrey,
     },
     textStyle21: {  //same as textStyle19
         fontFamily: fonts.rubikRegular,
         fontSize: fontSize.fourteenPoint.pixel,
-        color: colorPalette.warmGrey.hex,
+        color: colors.warmGrey,
     },
     textStyle22: {
         fontFamily: fonts.rubikRegular,
         fontSize: fontSize.twentyTwoPointFivePoint.pixel,
-        color: colorPalette.beige.hex,
+        color: colors.beige,
     },
     textStyle23: {
         fontFamily: fonts.rubikRegular,
         fontSize: fontSize.twentyTwoPointFivePoint.pixel,
-        color: colorPalette.lightGreyGreen.hex,
+        color: colors.lightGreyGreen,
     },
     textStyle24: {
         fontFamily: fonts.rubikMedium,
-        fontSize: fontSize.twentyPoint.pixel,
-        color: colorPalette.darkGreyBlue.hex,
+        fontSize: 9,
+        color: colors.darkGreyBlue,
     },
     textStyle25: {
         fontFamily: fonts.rubikRegular,
         fontSize: fontSize.fourteenPoint.pixel,
-        color: colorPalette.white.hex,
+        color: colors.white,
     },
     textStyle26: {
         fontFamily: fonts.rubikRegular,
         fontSize: fontSize.fourteenPoint.pixel,
-        color: colorPalette.warmGreyTwo.hex,
+        color: colors.warmGreyTwo,
     },
     textStyle27: {
         fontFamily: fonts.rubikMedium,
         fontSize: fontSize.fifteenPoint.pixel,
-        color: colorPalette.darkGreyBlue.hex,
+        color: colors.darkGreyBlue,
     },
     textStyle28: {
         fontFamily: fonts.rubikLight,
         fontSize: fontSize.twelvePoint.pixel,
-        color: colorPalette.warmGrey.hex,
+        color: colors.warmGrey,
     },
     textStyle29: {
         fontFamily: fonts.rubikRegular,
         fontSize: fontSize.twentyFourPoint.pixel,
-        color: colorPalette.warmGrey.hex,
+        color: colors.warmGrey,
     },
     textStyle30: {
         fontFamily: fonts.rubikLight,
-        fontSize: fontSize.twentyFivePoint.pixel,
-        color: colorPalette.warmGreyTwo.hex,
+        fontSize: 14,
+        color: colors.warmGreyTwo,
     },
     textStyle31: {
         fontFamily: fonts.rubikLight,
-        fontSize: fontSize.fortyPoint.pixel,
-        color: colorPalette.warmGrey.hex,
+        fontSize: 23,
+        color: colors.warmGrey,
     },
-}
-
-export const rgbColors = {
-  white: 'rgb(255, 255, 255)',
-  whiteTwo: 'rgb(253, 253, 253)',
-  greyish: 'rgb(172, 172, 172)',
-  warmGrey: 'rgb(127, 127, 127)',
-  warmGreyTwo: 'rgb(150, 150, 150)',
-  darkGreyBlue: 'rgb(45, 76, 96)',
-  warmGreyThree: 'rgb(127, 126, 126)',
-  beige: 'rgb(248, 251, 244)',
-  lightMauve: 'rgb(197, 151, 189)',
-  lightGreyGreen: 'rgb(191, 216, 153)',
-  lightGreyGreenTwo: 'rgb(203, 230, 162)',
-  apricot: 'rgb(255, 198, 116)',
-  blush: 'rgb(241, 121, 121)',
-  salmon: 'rgb(255, 139, 108)',
-  darkPeach: 'rgb(231, 116, 116)',
-}
-
-export const hexColors = {
-  white: '#ffffff',
-  whiteTwo: '#fdfdfd',
-  greyish: '#acacac',
-  warmGrey: '#7f7f7f',
-  warmGreyTwo: '#969696',
-  darkGreyBlue: '#2d4c60',
-  warmGreyThree: '#7f7e7e',
-  beige: '#f8fbf4',
-  lightMauve: '#c597bd',
-  lightGreyGreen: '#bfd899',
-  lightGreyGreenTwo: '#cbe6a2',
-  apricot: '#ffc674',
-  blush: '#f17979',
-  salmon: '#ff8b6c',
-  darkPeach: '#e77474',
 }

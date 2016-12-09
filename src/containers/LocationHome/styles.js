@@ -1,6 +1,6 @@
 import { StyleSheet, Dimensions } from 'react-native'
 const { width, height } = Dimensions.get('window')
-import { colorPalette } from '../../config/styles'
+import { colors } from '../../config/styles'
 
 const styles = StyleSheet.create({
     mainContainer: {
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
         left: 0,
         top: 0,
         opacity: 0.5,
-        backgroundColor: 'white',
+        backgroundColor: colors.white,
         width: width,
         height: height,
 
@@ -54,15 +54,15 @@ const styles = StyleSheet.create({
     button: {                       // new location button on custom callout
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: 'white',
+        backgroundColor: colors.white,
         height: 48,
         width: 48,
         borderRadius: 24,
-        borderColor: colorPalette.blush.hex,
+        borderColor: colors.blush,
         borderWidth: 2,
     },
     icon: {                       // icon for new location button on custom callout
-        color: colorPalette.blush.hex,
+        color: colors.blush,
         fontSize: 20,
     },
 })

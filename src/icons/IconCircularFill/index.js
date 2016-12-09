@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { View } from 'react-native'
 import Icon from '../../components/Icon'
-import { rgbColors } from '../../config/styles'
+import { colors } from '../../config/styles'
 
 class IconCircularFill extends Component {
     static propTypes = {
@@ -20,7 +20,7 @@ class IconCircularFill extends Component {
             }}>
                 <View
                     style={{
-                        backgroundColor: this.props.fillColor || rgbColors.darkPeach,
+                        backgroundColor: this.props.fillColor || colors.darkPeach,
                         width: this.props.size,
                         height: this.props.size,
                         alignItems: 'center',
@@ -32,7 +32,7 @@ class IconCircularFill extends Component {
                     <Icon
                         name={this.props.name}
                         size={this.props.size * 0.7}
-                        color={this.props.color || rgbColors.whiteTwo}
+                        color={this.props.color || colors.whiteTwo}
                         style={{ backgroundColor: 'transparent' }}
                         />
                 </View>

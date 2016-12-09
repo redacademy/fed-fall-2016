@@ -3,11 +3,11 @@ import { View } from 'react-native'
 import { storiesOf } from '@kadira/react-native-storybook'
 import { withKnobs, select, number } from '@kadira/storybook-addon-knobs'
 import RatingBarNoTitle from '../../../src/components/RatingBarNoTitle'
-import colors from '../../utils/colors'
-import iconNames from '../../utils/icons'
+// import colorsArray from '../../utils/colors'
+// import iconNames from '../../utils/icons'
 import CenterContainer from '../../decorators/center'
 import { WithNotes } from '@kadira/storybook-addon-notes'
-import { rgbColors } from '../../../src/config/styles'
+// import { colors } from '../../../src/config/styles'
 
 storiesOf('RatingBarNoTitle', module)
     .addDecorator(withKnobs)

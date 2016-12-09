@@ -2,18 +2,18 @@ import React from 'react'
 import { storiesOf } from '@kadira/react-native-storybook'
 import { withKnobs, select, number } from '@kadira/storybook-addon-knobs'
 import IconCircularFill from '../../../src/icons/IconCircularFill'
-import colors from '../../utils/colors'
+import colorsArray from '../../utils/colors'
 import iconNames from '../../utils/icons'
 import CenterContainer from '../../decorators/center'
 import { WithNotes } from '@kadira/storybook-addon-notes'
-import { rgbColors } from '../../../src/config/styles'
+import { colors } from '../../../src/config/styles'
 
 storiesOf('IconCircularFill', module)
     .addDecorator(withKnobs)
     .addDecorator(CenterContainer)
     .add('IconCircularFill', () => {
-        const fillColorVal = select('Fill Color', colors, rgbColors.darkPeach)
-        const colorVal = select('Colors', colors, rgbColors.whiteTwo)
+        const fillColorVal = select('Fill Color', colorsArray, colors.darkPeach)
+        const colorVal = select('Colors', colorsArray, colors.whiteTwo)
         const iconNameVal = select('Icons', iconNames, 'add')
         const sizeVal = number('Size', 60, {
             range: true,
@@ -36,8 +36,8 @@ storiesOf('IconCircularFill', module)
 
                     <b>&lt;IconCircularFill
                 &nbsp;&nbsp;&nbsp; size={60}
-                &nbsp;&nbsp;&nbsp; color={rgbColors.whiteTwo}
-                &nbsp;&nbsp;&nbsp; fillColor={rgbColors.darkPeach}
+                &nbsp;&nbsp;&nbsp; color={colors.whiteTwo}
+                &nbsp;&nbsp;&nbsp; fillColor={colors.darkPeach}
                 &nbsp;&nbsp;&nbsp; name='breast-feeding'
                 /></b>
                 <h2>PropTypes (scroll down, sorry)</h2>
@@ -64,13 +64,13 @@ storiesOf('IconCircularFill', module)
                         <td style="border: 1px solid black; border-collapse: collapse;text-align: center">     color</td>
                         <td style="border: 1px solid black; border-collapse: collapse;text-align: center">     string\n (rgb, hex, or name)</td>
                         <td style="border: 1px solid black; border-collapse: collapse;text-align: center">     no</td>
-                        <td style="border: 1px solid black; border-collapse: collapse;text-align: center">     rgbColors.whiteTwo</td>
+                        <td style="border: 1px solid black; border-collapse: collapse;text-align: center">     colors.whiteTwo</td>
                     </tr>
                     <tr>
                         <td style="border: 1px solid black; border-collapse: collapse;text-align: center">     fillColor</td>
                         <td style="border: 1px solid black; border-collapse: collapse;text-align: center">     string\n (rgb, hex, or name)</td>
                         <td style="border: 1px solid black; border-collapse: collapse;text-align: center">     no</td>
-                        <td style="border: 1px solid black; border-collapse: collapse;text-align: center">     rgbColors.darkPeach</td>
+                        <td style="border: 1px solid black; border-collapse: collapse;text-align: center">     colors.darkPeach</td>
                     </tr>
                     </table>    
                     <h2>END</h2>            

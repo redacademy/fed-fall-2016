@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { View } from 'react-native'
 import IconCircularBorder from '../../icons/IconCircularBorder'
 import IconCircularFill from '../../icons/IconCircularFill'
-import { rgbColors } from '../../config/styles'
+import { colors } from '../../config/styles'
 import Icon from '../Icon'
 import { babyFocusIconChooser } from '../../config/functions'
 
@@ -38,7 +38,7 @@ class LocationDetailsCardHeader extends Component {
                     <Icon
                         size={this.state.width / 6}
                         name={babyFocusIconChooser(this.props.changing, this.props.feeding)}
-                        color={rgbColors.salmon}
+                        color={colors.salmon}
                         />
                 </View>
                 <View style={{ flexDirection: 'row' }}>
@@ -46,26 +46,26 @@ class LocationDetailsCardHeader extends Component {
                         <IconCircularFill
                             size={this.state.width / 6}
                             name='new-entry'
-                            fillColor={rgbColors.salmon}
+                            fillColor={colors.salmon}
                             />
                         :
                         <IconCircularBorder
                             size={this.state.width / 6}
                             name='new-entry'
-                            color={rgbColors.salmon}
+                            color={colors.salmon}
                             />
                     }
                     {this.props.alreadyFaved ?
                         <IconCircularFill
                             size={this.state.width / 6}
                             name='heart-off'
-                            fillColor={rgbColors.salmon}
+                            fillColor={colors.salmon}
                             />
                         :
                         <IconCircularBorder
                             size={this.state.width / 6}
                             name='heart-off'
-                            color={rgbColors.salmon}
+                            color={colors.salmon}
                             />
                     }
                 </View>

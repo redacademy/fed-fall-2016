@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, Dimensions, TouchableOpacity, ScrollView } from 'react-native'
 import MapView from 'react-native-maps'
 import styles from './styles'
-import { rgbColors, textStyles } from '../../config/styles'
+import { colors, textStyles } from '../../config/styles'
 import Icon from '../../components/Icon/index'
 
 // Redux 
@@ -188,7 +188,7 @@ class LocationHome extends Component {
                 }}
                 onPress={() => this._onPinPush(pin.placeid)}
                 >
-                <MapPin scale="0.5" pinColor={rgbColors.apricot} iconName={pin.mapPin} />
+                <MapPin scale="0.5" pinColor={colors.apricot} iconName={pin.mapPin} />
             </MapView.Marker>
         })
 
@@ -209,7 +209,7 @@ class LocationHome extends Component {
                         <MapView.Marker
                             // ref={ref => { this.marker = ref } }    //required for closing pin when "add clicked"
                             coordinate={{ latitude: this.state.region.latitude, longitude: this.state.region.longitude }}
-                            pinColor={'#f17979'}
+                            pinColor={colors.blush}
                             flat={true}
                             >
                             <MapView.Callout tooltip={true} style={{ width: width * 0.5, height: height * 0.25, backgroundColor: 'transparent' }} setSelected={true}>

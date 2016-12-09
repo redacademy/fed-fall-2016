@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native'
+import { colors } from '../../config/styles'
 
 const styles = StyleSheet.create({
     container: {
@@ -7,14 +8,14 @@ const styles = StyleSheet.create({
     separator: {
         flex: 1,
         height: StyleSheet.hairlineWidth,
-        backgroundColor: 'lightgrey',
+        backgroundColor: colors.warmGrey,
     },
     title: {
         height: 60,
         justifyContent: 'center',
         alignItems: 'center',
         borderBottomWidth: 1,
-        borderBottomColor: 'lightgrey',
+        borderBottomColor: colors.warmGrey,
     },
 })
 

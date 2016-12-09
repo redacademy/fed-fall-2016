@@ -4,6 +4,7 @@ import {
     TouchableOpacity,
 } from 'react-native'
 import styles from './styles'
+import { colors } from '../../config/styles'
 
 class LocationHomeMapPin extends Component {
     static propTypes = {
@@ -14,7 +15,7 @@ class LocationHomeMapPin extends Component {
             <View style={styles.container}>
                 <TouchableOpacity style={styles.box} onPress={this.props.onPress}>
                     <View style={styles.button}>
-                        {/* <Icon style={styles.icon} name="filter-list" size={60} color="lightgrey" /> */}
+                        {/* <Icon style={styles.icon} name="filter-list" size={60} color={colors.warmGrey} /> */}
                     </View>
                 </TouchableOpacity>
             </View>

@@ -1,14 +1,14 @@
 // A file of reusable functions for the project
-import { rgbColors } from '../config/styles'
+import { colors } from '../config/styles'
 
 export const ratingColorGenerator = (rating) => {
     switch (rating.toUpperCase()) {
         case 'LOW':
-            return rgbColors.salmon
+            return colors.salmon
         case 'MEDIUM':
-            return rgbColors.apricot
+            return colors.apricot
         case 'HIGH':
-            return rgbColors.lightGreyGreenTwo
+            return colors.lightGreyGreenTwo
         default:
             break
     }

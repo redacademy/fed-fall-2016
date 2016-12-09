@@ -6,6 +6,7 @@ import {
 } from 'react-native'
 import styles from './styles'
 import Icon from '../Icon/index'
+import { colors } from '../../config/styles'
 
 class BottomButtonFilerButton extends Component {
     static propTypes = {
@@ -22,7 +23,7 @@ class BottomButtonFilerButton extends Component {
                 </TouchableHighlight>
                 <TouchableHighlight onPress={this.props.onPress}>
                     <View style={styles.button}>
-                        <Icon style={styles.icon} name='filter' size={60} color='lightgrey' />
+                        <Icon style={styles.icon} name='filter' size={60} color={colors.warmGrey} />
                     </View>
                 </TouchableHighlight>
             </View>
