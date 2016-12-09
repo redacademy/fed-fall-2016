@@ -16,7 +16,7 @@ export default (state = initialState, action) => {
         case CARD_TO_POSITION_HALF:
             return { cardPosition: 340 }
         case CARD_TO_POSITION_DIRECTIONS:
-            return { cardPosition: 500 }
+            return { cardPosition: 420 }
         case CARD_TO_POSITION_HIDDEN:    
             return { cardPosition: 700 }      
         default:

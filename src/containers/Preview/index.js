@@ -26,7 +26,6 @@ class Preview extends Component {
         this.avPosition = new Animated.Value(0)
         this.animationDuration = 600
         this.props.getLocationDetails(this.props.placeid)
-        
         this.props.setCardPosition('half')
     }
 
@@ -48,6 +47,10 @@ class Preview extends Component {
     }
 
     _onSwipeUp() {
+        if (this.props.cardPosition === 420){
+          return null
+        }
+
         this.props.setCardPosition('full')
     }
 
@@ -55,6 +58,12 @@ class Preview extends Component {
         if (this.props.cardPosition === 0){
             this.props.setCardPosition('half')
         } else if (this.props.cardPosition === 340){
+            this.props.setCardPosition('hidden')
+            setTimeout(() => {
+                this.props.exitPreview()
+                this.props.exitLocationAdd()
+            }, 375)
+        } else if (this.props.cardPosition === 420){
             this.props.setCardPosition('hidden')
             setTimeout(() => {
                 this.props.exitPreview()

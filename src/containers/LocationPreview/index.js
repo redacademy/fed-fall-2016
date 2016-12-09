@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 import { View, Text } from 'react-native'
 import { connect } from 'react-redux'
-import { getLocationDetails } from '../../redux/actions'
+import { 
+    getLocationDetails,
+    setCardPosition,
+ } from '../../redux/actions'
 import { Button } from '../../components'
 import styles from './style'
 
@@ -13,7 +16,7 @@ class LocationPreview extends Component {
     }
 
     getDirections(){
-        alert('test')
+        this.props.setCardPosition('directions')
     }
 
     render(){
@@ -36,7 +39,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-    getLocationDetails
+    getLocationDetails,
+    setCardPosition,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LocationPreview)
