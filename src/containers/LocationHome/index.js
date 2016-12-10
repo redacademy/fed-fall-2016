@@ -26,13 +26,13 @@ import {
     Button,
     FilterList,
     LocationCustomCallout,
-    LocationHomeOptionsBar,
     MapBlock,
     MapPin,
     OptionsBarButton,
+    OptionsBar,
+    BottomButton
     // RatingBlock,
-} from '../../components'
-import BottomButton from './BottomButton'
+} from '../../components' 
 import LocationAddPreview from './LocationAddPreview'
 import region from './region'
 const { width, height } = Dimensions.get('window')
@@ -203,11 +203,11 @@ class LocationHome extends Component {
                 {(this.props.preview || this.props.locationAdd) ? null : (
                     <View style={styles.optionsContainer}>
                         <View style={styles.optionsBar}>
-                            <LocationHomeOptionsBar>
+                            <OptionsBar>
                                 <OptionsBarButton onPress={() => this._setUserCurrentLocation()} iconName={"location"} />
                                 <OptionsBarButton onPress={() => this.setState({ addLocation: !this.state.addLocation })} iconName={"add"} />
                                 <OptionsBarButton onPress={() => this._onPinPush()} iconName={"user"} />
-                            </LocationHomeOptionsBar>
+                            </OptionsBar>
                         </View>
                     </View>
 

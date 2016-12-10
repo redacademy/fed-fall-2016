@@ -4,7 +4,7 @@ import {
 } from 'react-native'
 import styles from './styles'
 
-class LocationHomeOptionsBar extends Component {
+class OptionsBar extends Component {
     render() {
         return (
             <View style={styles.container}>
@@ -14,4 +14,4 @@ class LocationHomeOptionsBar extends Component {
     }
 }
 
-export default LocationHomeOptionsBar
+export default OptionsBar
