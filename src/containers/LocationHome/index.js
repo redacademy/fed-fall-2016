@@ -28,11 +28,13 @@ import {
     ButtonClickableTitle,
     IconMulti,
     LocationCustomCallout,
-    LocationHomeBottomButton,
     LocationHomeOptionsBar,
     MapPin,
     OptionsBarButton,
 } from '../../components'
+
+import BottomButton from './BottomButton'
+
 import region from './region'
 
 const { width, height } = Dimensions.get('window')
@@ -184,6 +186,7 @@ class LocationHome extends Component {
                 {this.state.overlay ? <View style={[styles.overlay]} /> : <View />}
 
                 {/* Filter options */}
+
                 {(this.state.overlay)
                     ? (
                         <View style={styles.bottomButtons}>
