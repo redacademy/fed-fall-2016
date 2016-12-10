@@ -9,7 +9,7 @@ import Icon from '../../components/Icon/index'
 import { connect } from 'react-redux'
 import {
     enterPreview,
-    enterLocationAdd,
+    locationAddLoad,
     generateMapPins,
     getLocationDetails,
     setCardPosition,
@@ -112,7 +112,7 @@ class LocationHome extends Component {
     }
 
     _onLocationAddPress() {
-        this.props.enterLocationAdd()
+        this.props.locationAddLoad()
     }
 
     _locationPreview() {
@@ -287,7 +287,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     enterPreview,
-    enterLocationAdd,
+    locationAddLoad,
     generateMapPins,
     getLocationDetails,
     setCardPosition,
