@@ -7,7 +7,7 @@ import styles from './styles'
 import Icon from '../Icon/index'
 import { colors } from '../../config/styles'
 
-class LocationHomeBottomButton extends Component {
+class BottomButton extends Component {
     render() {
         return (
             <View style={styles.container}>
@@ -21,4 +21,4 @@ class LocationHomeBottomButton extends Component {
     }
 }
 
-export default LocationHomeBottomButton
+export default BottomButton
