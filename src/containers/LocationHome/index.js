@@ -27,11 +27,11 @@ import {
     BottomButtonFilterButton,
     BottomButtonListButton,
     LocationCustomCallout,
-    LocationHomeBottomButton,
     LocationHomeOptionsBar,
     MapPin,
     OptionsBarButton,
 } from '../../components'
+import BottomButton from './BottomButton'
 import LocationAddPreview from './LocationAddPreview'
 import region from './region'
 
@@ -217,7 +217,7 @@ class LocationHome extends Component {
                     <View style={{ position: 'absolute', bottom: 680 }}>
                         <View style={styles.bottomContainer}>
                             <SearchBar />
-                            <LocationHomeBottomButton onPress={this._toggleOverlay} />
+                            <BottomButton onPress={this._toggleOverlay} />
                         </View>
                     </View>
                 )}
