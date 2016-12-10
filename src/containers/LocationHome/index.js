@@ -34,7 +34,7 @@ import {
     OptionsBar,
     BottomButton
     // RatingBlock,
-} from '../../components'
+} from '../../components' 
 import LocationAddPreview from './LocationAddPreview'
 import region from './region'
 
