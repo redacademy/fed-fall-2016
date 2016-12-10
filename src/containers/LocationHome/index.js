@@ -180,7 +180,7 @@ class LocationHome extends Component {
                 {(this.props.cardVisible) ? null : (
                     <View style={styles.searchContainer}>
                         <SearchBar />
-                        <LocationHomeBottomButton onPress={this._toggleOverlay} />
+                        <BottomButton onPress={this._toggleOverlay} />
                     </View>
                 )}
 
