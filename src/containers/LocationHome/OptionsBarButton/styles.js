@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native'
 import { colors, buttonSize, shadows } from '../../config/styles'
 
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
