@@ -27,11 +27,14 @@ import {
     BottomButtonFilterButton,
     BottomButtonListButton,
     LocationCustomCallout,
-    LocationHomeOptionsBar,
+    MapBlock,
     MapPin,
     OptionsBarButton,
-} from '../../components'
-import BottomButton from './BottomButton'
+    OptionsBar,
+    BottomButton
+    // RatingBlock,
+} from '../../components' 
+
 import LocationAddPreview from './LocationAddPreview'
 import region from './region'
 
@@ -197,11 +200,11 @@ class LocationHome extends Component {
                 {(this.props.cardVisible) ? null : (
                     <View style={styles.optionsContainer}>
                         <View style={styles.optionsBar}>
-                            <LocationHomeOptionsBar>
+                            <OptionsBar>
                                 <OptionsBarButton onPress={() => this._setUserCurrentLocation()} iconName={"location"} />
-                                <OptionsBarButton onPress={() => this.setState({ locationAdd: !this.state.locationAdd })} iconName={"add"} />
-                                <OptionsBarButton onPress={() => alert('pressed user!')} iconName={"user"} />
-                            </LocationHomeOptionsBar>
+                                <OptionsBarButton onPress={() => this.setState({ addLocation: !this.state.addLocation })} iconName={"add"} />
+                                <OptionsBarButton onPress={() => this._onPinPush()} iconName={"user"} />
+                            </OptionsBar>
                         </View>
                     </View>
 
