@@ -56,7 +56,7 @@ class LocationHome extends Component {
                 longitudeDelta: LONGITUDE_DELTA,
             },
             markers: [],
-            addLocation: false,
+            locationAdd: false,
         }
 
         this._toggleOverlay = this._toggleOverlay.bind(this)
@@ -164,16 +164,6 @@ class LocationHome extends Component {
         }
     }
 
-    // shouldComponentUpdate(nextProps, nextState) {
-    //     console.log('shouldComponentUpdate?')
-    //     if (this.state.pins !== nextState.pins) {
-    //     console.log('true')
-    //         return true
-    //     }
-    //     console.log('true')
-    //     return false
-    // }
-
     render() {
         let bottomButtonStatus = null
 
@@ -207,9 +197,8 @@ class LocationHome extends Component {
 
                     {pins}
 
-                    {this.state.addLocation ?
+                    {this.state.locationAdd ?
                         <MapView.Marker
-                            // ref={ref => { this.marker = ref } }    //required for closing pin when "add clicked"
                             coordinate={{ latitude: this.state.region.latitude, longitude: this.state.region.longitude }}
                             pinColor={colors.blush}
                             flat={true}
@@ -241,7 +230,8 @@ class LocationHome extends Component {
                         <View style={styles.optionsBar}>
                             <LocationHomeOptionsBar>
                                 <OptionsBarButton onPress={() => this._setUserCurrentLocation()} iconName={"location"} />
-                                <OptionsBarButton onPress={() => this.setState({ addLocation: !this.state.addLocation })} iconName={"add"} />
+                                <OptionsBarButton onPress={() => this._onLocationAddPress()} iconName={"starbaby-face"} />
+                                <OptionsBarButton onPress={() => this.setState({ locationAdd: !this.state.locationAdd })} iconName={"add"} />
                                 <OptionsBarButton onPress={() => this._onPinPush()} iconName={"user"} />
                             </LocationHomeOptionsBar>
                         </View>
@@ -274,7 +264,7 @@ class LocationHome extends Component {
 
 const mapStateToProps = (state) => ({
     preview: state.button.preview,
-    locationAdd: state.button.locationAdd,
+    locationAdd: state.card.locationAdd,
     pins: state.map.generatedLocationData,
     locationDetails: state.map.locationDetails,
     placeid: state.button.placeid,
