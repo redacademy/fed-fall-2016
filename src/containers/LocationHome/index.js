@@ -28,12 +28,14 @@ import {
     ButtonClickableTitle,
     IconMulti,
     LocationCustomCallout,
-    LocationHomeOptionsBar,
+    MapBlock,
     MapPin,
     OptionsBarButton,
+    OptionsBar,
+    BottomButton
+    // RatingBlock,
 } from '../../components'
 
-import BottomButton from './BottomButton'
 
 import region from './region'
 
@@ -68,7 +70,7 @@ class LocationHome extends Component {
         navigator.geolocation.getCurrentPosition(
             ({ coords }) => {
                 this.setState({
-                    region:Object.assign({}, region,  {
+                    region: Object.assign({}, region, {
                         latitude: coords.latitude,
                         longitude: coords.longitude,
                     }),
@@ -81,12 +83,12 @@ class LocationHome extends Component {
         this.watchID = navigator.geolocation.watchPosition(
             ({ coords }) => {
                 this.setState({
-                   region:Object.assign({}, region,  {
+                    region: Object.assign({}, region, {
                         latitude: coords.latitude,
                         longitude: coords.longitude,
                     }),
+                })
             })
-        })
     }
     /*
                         <AddressBlock title={"RED Academy"} addressLine1={"1490 W Broadway #200"} addressLine2={"Vancouver, BC V6H 4E8"} />
@@ -141,7 +143,7 @@ class LocationHome extends Component {
                     followsUserLocation
                     onRegionChange={region => this._onRegionChangeComplete(region)}
                     >
-                   
+
 
                     {pins}
 
@@ -173,11 +175,11 @@ class LocationHome extends Component {
 
                 {(this.props.cardVisible) ? null : (
                     <View style={styles.optionsBarContainer}>
-                        <LocationHomeOptionsBar>
+                        <OptionsBar>
                             <OptionsBarButton onPress={() => this._setUserCurrentLocation()} iconName={"location"} />
-                            <OptionsBarButton onPress={() => this.setState({ locationAdd: !this.state.locationAdd })} iconName={"add"} />
-                            <OptionsBarButton onPress={() => alert('pressed user!')} iconName={"user"} />
-                        </LocationHomeOptionsBar>
+                            <OptionsBarButton onPress={() => this.setState({ addLocation: !this.state.addLocation })} iconName={"add"} />
+                            <OptionsBarButton onPress={() => this._onPinPush()} iconName={"user"} />
+                        </OptionsBar>
                     </View>
 
                 )}

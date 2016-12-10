@@ -1,7 +1,7 @@
 import React from 'react'
 import { storiesOf } from '@kadira/react-native-storybook'
 import { withKnobs } from '@kadira/storybook-addon-knobs'
-import LocationHomeOptionsBar from './index'
+import OptionsBar from './index'
 import {
     View,
     TouchableHighlight,
@@ -10,11 +10,11 @@ import {
 import CenterDecorator from '../../../storybook/decorators/center.js'
 import styles from './styles'
 
-storiesOf('LocationHomeOptionsBar', module)
+storiesOf('OptionsBar', module)
     .addDecorator(CenterDecorator)
     .addDecorator(withKnobs)
     .add('Default', () => {
-        return <LocationHomeOptionsBar>
+        return <OptionsBar>
             <TouchableHighlight style={styles.box} onPress={this._onPressButton}>
                 <View style={styles.button}>
                     <Text style={styles.icon}>R
@@ -33,5 +33,5 @@ storiesOf('LocationHomeOptionsBar', module)
                         </Text>
                 </View>
             </TouchableHighlight>
-        </LocationHomeOptionsBar>
+        </OptionsBar>
     })
