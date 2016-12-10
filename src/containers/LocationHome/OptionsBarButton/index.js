@@ -4,8 +4,8 @@ import {
     TouchableOpacity
 } from 'react-native'
 import styles from './styles'
-import { colors } from '../../config/styles'
-import Icon from '../Icon/index'
+import { colors } from '../../../config/styles'
+import Icon from '../../../components/Icon/index'
 
 class OptionsBarButton extends Component {
     render() {
