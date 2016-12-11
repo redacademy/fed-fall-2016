@@ -39,6 +39,7 @@ export const RATING_QUALITY = 'RATING_QUALITY'
 export const RATING_CLEAN = 'RATING_CLEAN'
 export const RATING_NURSING = 'RATING_NURSING'
 export const RATING_QUIET = 'RATING_QUIET'
+export const ENTER_RATE_LOCATION = 'ENTER_RATE_LOCATION'
 
 export const ROUTE_SET = 'ROUTE_SET'
 
@@ -151,6 +152,11 @@ export const updateRatingValue = (rating, isSelected) => dispatch => {
     }
 }
 
+export const enterRateLocation = () => ({
+    type: ENTER_RATE_LOCATION,
+})
+
+// Thunks down here
 // OUR SERVER....
 export const generateMapPins = (longitude, latitude) => {
     const fetchURL = `http://45.55.2.200/api/location/near/${longitude}/${latitude}`

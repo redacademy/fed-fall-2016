@@ -11,6 +11,10 @@ const initialState = {
     locationList: [],
     isLoading: true,
     isLoadingList: true,
+    locationDetails: {},
+    place: null,
+    line1: null,
+    line2: null,
 }
 
 export default (state = initialState, action) => {

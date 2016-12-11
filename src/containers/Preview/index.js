@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
-import { View, Animated } from 'react-native'
+import { View, Animated, Text } from 'react-native'
 import { connect } from 'react-redux'
 import {
     exitPreview,
     getLocationDetails,
-    setCardPosition
+    setCardPosition,
+    enterRateLocation
 } from '../../redux/actions'
 import styles from './styles'
-import { Card } from '../../components'
-
+import { Card, AddressBlock } from '../../components'
 
 class Preview extends Component {
     constructor(props){
@@ -64,6 +64,7 @@ class Preview extends Component {
     }
     
     render() {
+        console.log(this.props.locationDetails)
         const cardAnimation = { transform: [{ translateY: this.position }] }
         return (
             <View style={styles.Container}>
@@ -79,7 +80,13 @@ class Preview extends Component {
                     }}
                  >
                     <Card>
-                        {this.props.children}
+                        <Text onPress={this.props.enterRateLocation}>Rate Location</Text>
+                        {this.props.rateLocation ? 
+                            <View style={{flex: 1}} >
+                            <Text>something here</Text>
+                                <AddressBlock title={this.props.place.place} addressLine1={this.props.place.line1} addressLine2={this.props.place.line2} />
+                            </View>
+                        : this.props.children}
                     </Card>
                  </Animated.View>
             </View>
@@ -88,14 +95,17 @@ class Preview extends Component {
 }
 const mapStateToProps = (state) => ({
     locationDetails: state.map.locationDetails,
+    place: state.map,
     placeid: state.button.placeid,
     cardPosition: state.card.cardPosition,
+    rateLocation: state.button.rateLocation
 })
 
 const mapDispatchToProps = {
     exitPreview,
     getLocationDetails,
     setCardPosition,
+    enterRateLocation,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Preview)
