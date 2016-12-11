@@ -1,34 +1,34 @@
 import React, { Component, PropTypes } from 'react'
 import {
     View,
-    TouchableHighlight,
+    TouchableOpacity,
     Text
 } from 'react-native'
 import styles from './styles'
 import Icon from '../Icon/index'
 import { colors } from '../../config/styles'
 
-class BottomButtonFilerButton extends Component {
+class BottomButtonFilterButton extends Component {
     static propTypes = {
-        onPress: PropTypes.func,
+        onPress: PropTypes.func.isRequired,
     }
     render() {
         return (
             <View style={styles.container}>
-                <TouchableHighlight onPress={this.props.onPress}>
+                <TouchableOpacity onPress={() => this.props.onPress()}>
                     <View style={styles.bar}>
                         <Text style={styles.icon}>Filter
                         </Text>
                     </View>
-                </TouchableHighlight>
-                <TouchableHighlight onPress={this.props.onPress}>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => this.props.onPress()}>
                     <View style={styles.button}>
                         <Icon style={styles.icon} name='filter' size={60} color={colors.warmGrey} />
                     </View>
-                </TouchableHighlight>
+                </TouchableOpacity>
             </View>
         )
     }
 }
 
-export default BottomButtonFilerButton
+export default BottomButtonFilterButton
