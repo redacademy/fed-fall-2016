@@ -63,13 +63,7 @@ class Preview extends Component {
                 this.props.exitPreview()
                 this.props.exitLocationAdd()
             }, 375)
-        } else if (this.props.cardPosition === 420){
-            this.props.setCardPosition('hidden')
-            setTimeout(() => {
-                this.props.exitPreview()
-                this.props.exitLocationAdd()
-            }, 375)
-        }   
+        }  
     }
     
     render() {
