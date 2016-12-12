@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { View, Text } from 'react-native'
 import Icon from '../Icon'
-import { rgbColors } from '../../config/styles'
+import { colors } from '../../config/styles'
 import iconTitleMapper from '../../config/icon-title-mapping'
 
 /**
@@ -17,7 +17,7 @@ example usage:
 (on state)
 <IconMulti
   name="baby-change-table"
-  fillColor={rgbColors.blush}
+  fillColor={colors.blush}
   circular
   title
   />
@@ -58,7 +58,7 @@ class IconMulti extends Component {
                         height: size,
                         backgroundColor: fillColor || 'transparent',
                         borderRadius: size * (circular ? 0.5 : 0.1),
-                        borderColor: iconColor || rgbColors.warmGrey,
+                        borderColor: iconColor || colors.warmGrey,
                         borderWidth: (fillColor || !border) ? null : size * 0.02,
                     }}
                     >
@@ -66,7 +66,7 @@ class IconMulti extends Component {
                         <Icon
                             name={name}
                             size={size * (circular ? 0.5 : 0.75)}
-                            color={iconColor || (fillColor ? rgbColors.whiteTwo : rgbColors.warmGrey)}
+                            color={iconColor || (fillColor ? colors.whiteTwo : colors.warmGrey)}
                             style={{ backgroundColor: 'transparent' }}
                             />
                     </View>
@@ -81,7 +81,7 @@ class IconMulti extends Component {
                             textAlign: 'center',
                             fontFamily: 'Rubik-Regular',
                             fontSize: 15,
-                            color: rgbColors.warmGrey,
+                            color: colors.warmGrey,
                         }}>
                             {iconTitleMapper[name]}
                         </Text>

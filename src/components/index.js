@@ -1,7 +1,5 @@
-export { default as About } from './About'
 export { default as AddressBlock } from './AddressBlock'
 export { default as AmenitiesBar } from './AmenitiesBar'
-export { default as AmenitiesBarNoTitle } from './AmenitiesBarNoTitle'
 export { default as BottomButtonFilterButton } from './BottomButtonFilterButton'
 export { default as BottomButtonListButton } from './BottomButtonListButton'
 export { default as Button } from './Button'
