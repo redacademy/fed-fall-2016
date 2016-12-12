@@ -1,9 +1,15 @@
 import React, { Component, PropTypes } from 'react'
 import { View } from 'react-native'
-import IconMulti from '../../icons/IconMulti'
+import IconMulti from '../IconMulti'
 
 const iconRenderer = (name, size) => (
-    <View style={{ width: size+18, borderWidth: 6, borderColor: 'transparent' }}>
+    <View
+        style={{
+            width: size + 18,
+            borderWidth: 6,
+            borderColor: 'transparent',
+        }}
+        >
         <IconMulti
             size={size}
             name={name}
@@ -33,8 +39,7 @@ class AmenitiesBar extends Component {
                     flexDirection: 'row',
                     flexWrap: 'wrap',
                     alignItems: 'flex-start',
-                    justifyContent: 'space-between'
-
+                    justifyContent: 'space-between',
                 }}
                 >
                 {amenities.privacy ? iconRenderer('mask', size) : null}
