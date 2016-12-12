@@ -4,6 +4,26 @@ import Icon from '../../components/Icon'
 import { rgbColors } from '../../config/styles'
 import iconTitleMapper from '../../config/icon-title-mapping'
 
+/**
+example usage:
+*************** to make the buttons for the filter list ***************
+(off state)
+<IconMulti
+  name="baby-change-table"
+  title
+  noBorder
+  />
+
+(on state)
+<IconMulti
+  name="baby-change-table"
+  fillColor={rgbColors.blush}
+  circular
+  title
+  />
+***********************************************************************
+**/
+
 class IconMulti extends Component {
     static propTypes = {
         name: PropTypes.string.isRequired,  // the name of the icon
