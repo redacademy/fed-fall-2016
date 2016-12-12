@@ -13,12 +13,24 @@ export const ratingColorGenerator = (rating) => {
     }
 }
 
-export const babyFocusIconChooser = (changing, feeding) => {
-    if (changing && feeding) {
+
+// babyFocusIconChooser will return the icon type to use based on 
+export const babyFocusIconChooser = (amenities) => {
+    if (amenities.changeTable && amenities.nursingRoom) {
         return 'starbaby-face'
     }
-    if (changing) {
+    if (amenities.changeTable) {
         return 'diaper'
     }
     return 'bottle'
+}
+
+export const mapPinColorChooser = (amenities) => {
+    if (amenities.changeTable && amenities.nursingRoom) {
+        return colors.lightMauve
+    }
+    if (amenities.changeTable) {
+        return colors.darkPeach
+    }
+    return colors.darkGreyBlue
 }

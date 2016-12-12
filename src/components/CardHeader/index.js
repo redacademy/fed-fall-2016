@@ -5,6 +5,17 @@ import Icon from '../Icon'
 import IconMulti from '../IconMulti'
 import { babyFocusIconChooser } from '../../config/functions'
 
+/**
+example usage:
+*************** to use the card header on location details ***************
+<CardHeader
+  alreadyRated={{code to look it up in realm database… it's a boolean, so it should just be true or false}}
+  alreadyFaved={{code to look it up in realm database… it's a boolean, so it should just be true or false}}
+  amenities={{amenities object from mongo database passed into here}}
+  />
+  
+ */
+
 class LocationDetailsCardHeader extends Component {
     static propTypes = {
         changing: PropTypes.bool,
@@ -37,7 +48,7 @@ class LocationDetailsCardHeader extends Component {
                 <View>
                     <Icon
                         size={size}
-                        name={babyFocusIconChooser(this.props.changing, this.props.feeding)}
+                        name={babyFocusIconChooser(this.props.amenities)}
                         color={colors.salmon}
                         />
                 </View>

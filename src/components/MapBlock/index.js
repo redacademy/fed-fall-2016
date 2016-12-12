@@ -31,7 +31,10 @@ class MapBlock extends Component {
                 }}
                 source={{ url: url }}
                 >
-                <MapPin scale={this.props.pinScale} pinColor={this.props.pinColor} iconName={this.props.iconName} />
+                <MapPin
+                    scale={this.props.pinScale}
+                    amenities={{ nursingRoom: true, changeTable: true }}
+                    />
             </Image>
         )
     }

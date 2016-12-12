@@ -190,7 +190,10 @@ class LocationHome extends Component {
                 }}
                 onPress={() => this._onPinPush(pin.placeid)}
                 >
-                <MapPin scale="0.5" pinColor={colors.apricot} iconName={pin.mapPin} />
+                <MapPin
+                    scale="0.5"
+                    amenities={{changeTable: false, nursingRoom: true}}
+                    />
             </MapView.Marker>
         })
 
