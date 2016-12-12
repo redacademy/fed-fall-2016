@@ -53,7 +53,6 @@ class LocationHome extends Component {
             markers: [],
             _locationAdd: false, /*required for location add modal*/
         }
-
     }
     componentWillMount() {
         this.props.generateMapPins()
@@ -89,10 +88,9 @@ class LocationHome extends Component {
                     }),
                 })
             })
-    }
-    /*
-                        <AddressBlock title={"RED Academy"} addressLine1={"1490 W Broadway #200"} addressLine2={"Vancouver, BC V6H 4E8"} />
-    */
+        }
+    
+
     _onRegionChangeComplete(region) {
         /* as user moves around the map, update the current state
         */
@@ -108,7 +106,6 @@ class LocationHome extends Component {
     _onFilterButtonPress() {
         this.props.setSelectedCard('LocationFilter')
     }
-
     _preview() {
         if ((this.props.preview === true) || (this.props.cardVisible === true)) {
             return (
@@ -116,8 +113,8 @@ class LocationHome extends Component {
             )
         }
     }
+    
     render() {
-        // const icon = this.props.pins.mapPin
         const pins = this.props.pins.map((pin, i) => {
             return <MapView.Marker
                 key={i}

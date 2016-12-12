@@ -19,8 +19,8 @@ export const ON_SEARCH_CHANGE = 'ON_SEARCH_CHANGE'
 
 // Action creators here
 export const searchTextChange = (text) => ({
-    type: ON_SEARCH_CHANGE,
-    payload: text,
+  type: ON_SEARCH_CHANGE,
+  payload: text,
 })
 
 export const enterPreview = (placeId) => ({
@@ -29,7 +29,7 @@ export const enterPreview = (placeId) => ({
 })
 
 export const exitPreview = () => ({
-    type: EXIT_PREVIEW,
+  type: EXIT_PREVIEW,
 })
 
 export const setCardPosition = (position) => {

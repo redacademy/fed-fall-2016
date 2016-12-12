@@ -7,6 +7,8 @@ import {
     LOCATION_FILTER_LOAD,
     LOCATION_LIST_LOAD,
     LOCATION_RATE_LOAD,
+    //TODO: Add following to ../actions
+    // LOCATION_RATE_LOAD,
     LOCATION_VIEW_LOAD,
     // USER_LOCATION_LIST_LOAD,
 } from '../actions'
