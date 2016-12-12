@@ -45,7 +45,7 @@ class ListViewItem extends Component {
                             style={styles.map}
                             source={{ url: getStaticMap() }}
                             >
-                            <MapPin scale="0.4" pinColor={colors.salmon} iconName="diaper" />
+                            <MapPin scale="0.4" amenities={{ nursingRoom: true, changeTable: true }} />
                         </Image>
                         <View style={styles.detailsContainer}>
                             <Text style={styles.locationTitle}>{addressArray[0]}</Text>
