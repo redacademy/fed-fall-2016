@@ -42,7 +42,6 @@ export default (state = initialState, action) => {
             return {...state, selectedCard: 'LocationPreview', placeId: action.payload } //, history: history.concat('LocationPreview') }
         // case USER_LOCATION_LIST_LOAD:
         //     return {...state, selectedCard: 'UserLocationList', locationList: action.payload}
-
         default:
             return state
     }
