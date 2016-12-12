@@ -4,13 +4,19 @@ import {
     ENTER_LOCATION_ADD,
     EXIT_LOCATION_ADD,
     ENTER_RATE_LOCATION,
+    RATE,
+    UNRATE
 } from '../actions'
 
 const initialState = {
     preview: false,
     placeid: '',
     scalePin: 0.5,
-    rateLocation: false
+    rateLocation: false,
+    quality: false,
+    cleanliness: false,
+    nursingFriendly: false,
+    quiet: false,
 }
 
 export default (state = initialState, action) => {
@@ -25,6 +31,12 @@ export default (state = initialState, action) => {
             return {...state, locationAdd: false }
         case ENTER_RATE_LOCATION: 
             return {...state, rateLocation: true}
+        case RATE:
+            console.log('RATE')
+            return {...state, [action.payload.prop]: true}
+        case UNRATE: 
+            console.log('UNRATE')
+            return {...state, [action.payload.prop]: false}
         default:
             return state
     }

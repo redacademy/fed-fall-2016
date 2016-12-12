@@ -40,6 +40,8 @@ export const RATING_CLEAN = 'RATING_CLEAN'
 export const RATING_NURSING = 'RATING_NURSING'
 export const RATING_QUIET = 'RATING_QUIET'
 export const ENTER_RATE_LOCATION = 'ENTER_RATE_LOCATION'
+export const RATE = 'RATE'
+export const UNRATE = 'UNRATE'
 
 export const ROUTE_SET = 'ROUTE_SET'
 
@@ -137,24 +139,39 @@ export const applyFilterToPins = (filters) => dispatch => {
     return true
 }
 
-export const updateRatingValue = (rating, isSelected) => dispatch => {
-    switch (rating) {
-        case 'quality':
-            return dispatch({ type: RATING_QUALITY, payload: isSelected })
-        case 'clean':
-            return dispatch({ type: RATING_CLEAN, payload: isSelected })
-        case 'nursing':
-            return dispatch({ type: RATING_NURSING, payload: isSelected })
-        case 'quiet':
-            return dispatch({ type: RATING_QUIET, payload: isSelected })
-        default:
-            return null
-    }
-}
-
 export const enterRateLocation = () => ({
     type: ENTER_RATE_LOCATION,
 })
+
+export const rate = ({prop, value}) => {
+    switch(prop){
+      case 'quality':
+      case 'cleanliness':
+      case 'nursingFriendly':
+      case 'quiet':
+        return {
+          type: RATE,
+          payload: {prop, value},
+        }
+      default: 
+        return null
+    }
+}
+
+export const unrate = ({prop, value}) => {
+    switch(prop){
+      case 'quality':
+      case 'cleanliness':
+      case 'nursingFriendly':
+      case 'quiet':
+        return {
+          type: UNRATE,
+          payload: {prop, value},
+        }
+      default: 
+        return null
+    }
+}
 
 // Thunks down here
 // OUR SERVER....
