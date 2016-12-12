@@ -3,7 +3,6 @@ import { View, Animated } from 'react-native'
 import { connect } from 'react-redux'
 import {
     exitPreview,
-    exitLocationAdd,
     getLocationDetails,
     setCardPosition
 } from '../../redux/actions'
@@ -58,7 +57,6 @@ class Preview extends Component {
             this.props.setCardPosition('hidden')
             setTimeout(() => {
                 this.props.exitPreview()
-                this.props.exitLocationAdd()
             }, 375)
         }   
     }
@@ -95,7 +93,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     exitPreview,
     getLocationDetails,
-    exitLocationAdd,
     setCardPosition,
 }
 
