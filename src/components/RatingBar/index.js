@@ -1,33 +1,65 @@
 import React, { Component, PropTypes } from 'react'
 import { View } from 'react-native'
-import IconOptionalTitleRectangularFill from '../../icons/IconOptionalTitleRectangularFill'
 import { ratingColorGenerator } from '../../config/functions'
+import IconMulti from '../IconMulti'
 
 /**
- * Rating Bar
- * 
- * example: 
- * <RatingBar titleless ratings={{quality: 'HIGH', clean: 'MEDIUM', nursing: 'LOW', quiet: 'MEDIUM'}} />
+example usage:
+*************** to make the listView rating bars ***************
+<RatingBar
+    ratings={{ quality: 'HIGH',
+        clean: 'MEDIUM',
+        nursing: 'LOW',
+        quiet: 'MEDIUM',
+    }}
+    /> 
+***********************************************************************
+
+*************** to make the LocationDetails rating bar ***************
+<RatingBar
+    title
+    ratings={{ quality: 'HIGH',
+        clean: 'MEDIUM',
+        nursing: 'LOW',
+        quiet: 'MEDIUM',
+    }}
+    /> 
+***********************************************************************
+**/
+
+/**
+Rating Bar
+
+<RatingBar
+    title
+    ratings={{ quality: 'HIGH',
+        clean: 'MEDIUM',
+        nursing: 'LOW',
+        quiet: 'MEDIUM',
+    }}
+    /> 
  */
 class RatingBar extends Component {
     static propTypes = {
-        titleless: PropTypes.boolean, // omit rendering of titles under icons
         ratings: PropTypes.object.isRequired, // ratings object fetched from db
+        title: PropTypes.bool, // omit rendering of titles under icons
     }
     constructor() {
         super()
         this.state = {
-            width: 0,
+            size: 0,
         }
     }
     render() {
-        console.log(this)
+        console.log(this.props.ratings)
+        const { title, ratings } = this.props
+        const { size } = this.state
         return (
             <View
                 onLayout={
                     (event) => {
                         this.setState({
-                            width: event.nativeEvent.layout.width,
+                            size: event.nativeEvent.layout.width / 4 * .9,
                         })
                     }
                 }
@@ -38,9 +70,33 @@ class RatingBar extends Component {
                     alignItems: 'center',
                 }}
                 >
+                <IconMulti
+                    name="quality-ribbon"
+                    fillColor={ratingColorGenerator(ratings.quality)}
+                    size={size}
+                    title={title}
+                    />
+                <IconMulti
+                    name="cleanliness"
+                    fillColor={ratingColorGenerator(ratings.clean)}
+                    size={size}
+                    title={title}
+                    />
+                <IconMulti
+                    name="breast-feeding"
+                    fillColor={ratingColorGenerator(ratings.nursing)}
+                    size={size}
+                    title={title}
+                    />
+                <IconMulti
+                    name="quiet"
+                    fillColor={ratingColorGenerator(ratings.quiet)}
+                    size={size}
+                    title={title}
+                    />
+
+                {/*
                 <IconOptionalTitleRectangularFill
-                    backgroundColor={ratingColorGenerator(this.props.ratings.quality)}
-                    size={(this.state.width / 4) * .9}
                     iconName="quality-ribbon"
                     noTitle={this.props.titleless}
                     />
@@ -62,6 +118,7 @@ class RatingBar extends Component {
                     iconName="quiet"
                     noTitle={this.props.titleless}
                     />
+                    */}
             </View>
         )
     }

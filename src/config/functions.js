@@ -2,15 +2,14 @@
 import { colors } from '../config/styles'
 
 export const ratingColorGenerator = (rating) => {
-    switch (rating.toUpperCase()) {
-        case 'LOW':
+    const parsedRating = parseFloat(rating)
+    switch (true) {
+        case (parsedRating < 1.666):
             return colors.salmon
-        case 'MEDIUM':
+        case (parsedRating < 2.333):
             return colors.apricot
-        case 'HIGH':
-            return colors.lightGreyGreenTwo
         default:
-            break
+            return colors.lightGreyGreenTwo
     }
 }
 

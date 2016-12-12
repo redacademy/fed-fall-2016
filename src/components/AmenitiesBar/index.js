@@ -1,6 +1,23 @@
 import React, { Component, PropTypes } from 'react'
 import { View } from 'react-native'
-import IconOptionalTitle from '../../icons/IconOptionalTitle'
+import IconMulti from '../IconMulti'
+
+const iconRenderer = (name, size) => (
+    <View
+        style={{
+            width: size + 18,
+            borderWidth: 6,
+            borderColor: 'transparent',
+        }}
+        >
+        <IconMulti
+            size={size}
+            name={name}
+            title
+            noBorder
+            />
+    </View>
+)
 
 class AmenitiesBar extends Component {
     static propTypes = {
@@ -9,36 +26,29 @@ class AmenitiesBar extends Component {
     constructor() {
         super()
         this.state = {
-            width: 0,
+            size: 0,
         }
     }
     render() {
         const { amenities } = this.props
+        const { size } = this.state
         return (
-            <View style={{
-                flexDirection: 'row',
-                flexWrap: 'wrap',
-                alignItems: 'center',
-            }}
-                onLayout={
-                    (event) => {
-                        this.setState({
-                            width: event.nativeEvent.layout.width,
-                        })
-                    }
-                }
+            <View
+                onLayout={(event) => this.setState({ size: event.nativeEvent.layout.width / 4 })}
+                style={{
+                    flexDirection: 'row',
+                    flexWrap: 'wrap',
+                    alignItems: 'flex-start',
+                    justifyContent: 'space-between',
+                }}
                 >
-                {amenities.privacy ? <IconOptionalTitle size={(this.state.width / 4) * .9} iconName="mask" /> : null}
-                {amenities.changeTable ? <IconOptionalTitle size={(this.state.width / 4) * .9} iconName="baby-change-table" /> : null}
-                {amenities.familyWashroom ? <IconOptionalTitle size={(this.state.width / 4) * .9} iconName="family" /> : null}
-
-                {/* // after women's and men's washroom signs are added
-                    {(amenities.washroomGender.indexOf('women')+1) ? <IconOptionalTitle size={(this.state.width / 4) * .9} iconName="washroom-women" /> : null}
-                    {(amenities.washroomGender.indexOf('men')+1) ? <IconOptionalTitle size={(this.state.width / 4) * .9} iconName="washroom-men" /> : null}
-                */}
-
-                {amenities.requiresKey ? <IconOptionalTitle size={(this.state.width / 4) * .9} iconName="key" /> : null}
-                {amenities.strollerAccessible ? <IconOptionalTitle size={(this.state.width / 4) * .9} iconName="stroller-accessible" /> : <IconOptionalTitle size={60} iconName="stroller-inaccessible" />}
+                {amenities.privacy ? iconRenderer('mask', size) : null}
+                {amenities.changeTable ? iconRenderer('baby-change-table', size) : null}
+                {amenities.washroomFemale ? iconRenderer('female', size) : null}
+                {amenities.washroomMale ? iconRenderer('male', size) : null}
+                {amenities.washroomFamily ? iconRenderer('family', size) : null}
+                {amenities.requiresKey ? iconRenderer('key', size) : null}
+                {amenities.strollerAccessible ? iconRenderer('stroller-accessible', size) : iconRenderer('stroller-inaccessible', size)}
             </View>
         )
     }
