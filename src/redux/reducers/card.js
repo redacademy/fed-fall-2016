@@ -3,7 +3,21 @@ import {
     CARD_TO_POSITION_FULL,
     CARD_TO_POSITION_HIDDEN,
     CARD_TO_POSITION_HALF,
- } from '../actions'
+    LOCATION_ADD_LOAD,
+    LOCATION_ADD_EXIT,
+
+    //TODO: Add following to ../actions
+    // LOCATION_LIST_LOAD,
+    // LOCATION_LIST_EXIT,
+    LOCATION_FILTER_LOAD,
+    LOCATION_FILTER_EXIT,
+    // LOCATION_RATE_LOAD,
+    // LOCATION_RATE_EXIT,
+    // LOCATION_VIEW_LOAD,
+    // LOCATION_VIEW_EXIT,
+    // USER_LOCATION_LIST_LOAD,
+    // USER_LOCATION_LIST_EXIT,
+} from '../actions'
 
 const initialState = {
     cardPosition: 340,
