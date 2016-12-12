@@ -32,7 +32,8 @@ import {
     MapPin,
     OptionsBarButton,
     OptionsBar,
-    BottomButton
+    BottomButton,
+    MapMarker
     // RatingBlock,
 } from '../../components' 
 import LocationAddPreview from './LocationAddPreview'
@@ -146,26 +147,7 @@ class LocationHome extends Component {
                     {pins}
 
                     {this.state.locationAdd ?
-                        <MapView.Marker
-                            coordinate={{ latitude: this.state.region.latitude, longitude: this.state.region.longitude }}
-                            pinColor={colors.blush}
-                            flat={true}
-                            >
-                            <MapView.Callout tooltip={true} style={{ width: width * 0.5, height: height * 0.25, backgroundColor: 'transparent' }} setSelected={true}>
-                                <LocationCustomCallout>
-                                    <View style={styles.locationAddContainer}>
-                                        <Text style={textStyles.textStyle6}>New Location</Text>
-                                        <Text style={styles.separator}></Text>
-                                        <Text style={[{ padding: 5 }, textStyles.textStyle7]}>Press & Hold to Move</Text>
-                                        <View>
-                                            <TouchableOpacity onPress={() => this._onLocationAddPress()}>
-                                                <IconMulti name={"add"} size={buttonSize.optionBar} circular border iconColor={colors.blush} />
-                                            </TouchableOpacity>
-                                        </View>
-                                    </View>
-                                </LocationCustomCallout>
-                            </MapView.Callout>
-                        </MapView.Marker>
+                        <MapMarker />
                         :
                         null
                     }
