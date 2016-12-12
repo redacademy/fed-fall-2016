@@ -34,16 +34,17 @@ class ListViewItem extends Component {
                 <Loader />
             )
         } else {
-            const lat = this.state.location.results[0].geometry.location.lat
-            const lng = this.state.location.results[0].geometry.location.lng
-            const address = this.state.location.results[0].formatted_address
+            const loc = this.state.location.results[0]
+            const lat = loc.geometry.location.lat
+            const lng = loc.geometry.location.lng
+            const address = loc.formatted_address
             const addressArray = address.split(',')
             return (
                 <TouchableOpacity onPress={() => { } } >
                     <View style={styles.locationContainer}>
                         <Image
                             style={styles.map}
-                            source={{ url: getStaticMap() }}
+                            source={{ url: getStaticMap(lat, lng) }}
                             >
                             <MapPin scale="0.4" amenities={{ nursingRoom: true, changeTable: true }} />
                         </Image>
