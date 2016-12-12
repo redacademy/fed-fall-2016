@@ -13,13 +13,8 @@ class LocationListView extends Component {
         super(props)
         this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 })
         this.state = {
-            dataSource: this.ds,
-        }
-    }
-    componentWillMount() {
-        this.setState({
             dataSource: this.ds.cloneWithRows(mockLocations),
-        })
+        }
     }
     render() {
         return (
