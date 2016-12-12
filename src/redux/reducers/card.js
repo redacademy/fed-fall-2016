@@ -7,6 +7,13 @@ import {
 
 const initialState = {
     cardPosition: 340,
+    locationAdd: false,
+    // locationList: false,
+    // locationFilter: false,
+    // locationRate: false,
+    // locationView: false,
+    // userLocationList: false,
+    // placeid: '',
 }
 
 export default (state = initialState, action) => {
@@ -19,6 +26,27 @@ export default (state = initialState, action) => {
             return { cardPosition: 420 }
         case CARD_TO_POSITION_HIDDEN:    
             return { cardPosition: 700 }      
+
+        // case LOCATION_LIST_LOAD:
+        //     return {...state, locationList: true }
+        // case LOCATION_LIST_EXIT:
+        //     return {...state, locationList: false }
+        // case LOCATION_FILTER_LOAD:
+        //     return {...state, locationFilter: true }
+        // case LOCATION_FILTER_EXIT:
+        //     return {...state, locationFilter: false }
+        // case LOCATION_RATE_LOAD:
+        //     return {...state, locationRate: true }
+        // case LOCATION_RATE_EXIT:
+        //     return {...state, locationRate: false }
+        // case LOCATION_VIEW_LOAD:
+        //     return {...state, locationView: true }
+        // case LOCATION_VIEW_EXIT:
+        //     return {...state, locationView: false }
+        // case USER_LOCATION_LIST_LOAD:
+        //     return {...state, userLocationList: true }
+        // case USER_LOCATION_LIST_EXIT:
+        //     return {...state, userLocationList: false }
         default:
             return state
     }

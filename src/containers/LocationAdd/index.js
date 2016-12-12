@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { Text, ScrollView, Dimensions } from 'react-native'
 import { colors, textStyles } from '../../config/styles'
 const { width, height } = Dimensions.get('window')
@@ -9,8 +9,8 @@ import {
     enterLocationAdd,
 } from '../../redux/actions'
 
-// Containers
-import { Preview } from '../index'
+// // Containers
+// import { Preview } from '../index'
 
 // Components
 import {
@@ -22,24 +22,29 @@ import {
 } from '../../components'
 
 class LocationAdd extends Component {
-    componentWillMount() {
+    static propTypes = {
+        title: PropTypes.string.isRequired,
+        addressLine1: PropTypes.string,
+        addressLine2: PropTypes.string,
+        lat: PropTypes.number.isRequired,
+        lng: PropTypes.number.isRequired,
+        width: PropTypes.number.isRequired,
+        height: PropTypes.number.isRequired,
     }
 
     render() {
         if (this.props.locationAdd === true) {
-        return (
-            <Preview>
+            return (
                 <ScrollView>
-                    <AddressBlock title={"RED Academy"} addressLine1={"1490 W Broadway #200"} addressLine2={"Vancouver, BC V6H 4E8"} />
+                    <AddressBlock title={this.props.title} addressLine1={this.props.addressLine1} addressLine2={this.props.addressLine2} />
                     <FilterList showHeader={false} />
-                    <MapBlock lat={49.2634046} lng={-123.1404133} zoom={17} width={width - 80} height={120} pinScale={0.4} pinColor={colors.salmon} iconName={'starbaby-face'} />
+                    <MapBlock lat={this.props.lat} lng={this.props.lng} zoom={17} width={this.props.width - 80} height={this.props.height} pinScale={0.4} pinColor={colors.salmon} iconName={'starbaby-face'} />
                     <Button style={{ alignSelf: 'flex-end' }}>
                         <Text style={textStyles.textStyle4}>SUBMIT</Text>
                     </Button>
                 </ScrollView>
-            </Preview>
-        )
-    }
+            )
+        }
     }
 }
 
