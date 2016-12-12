@@ -3,14 +3,20 @@ import { View, Animated } from 'react-native'
 import { connect } from 'react-redux'
 import {
     exitPreview,
-    exitLocationAdd,
-    getLocationDetails
+    getLocationDetails,
+    setCardPosition
 } from '../../redux/actions'
 import styles from './styles'
 import { Card } from '../../components'
 
 
 class Preview extends Component {
+    constructor(props){
+        super(props)
+
+        this.position = new Animated.Value(this.props.cardPosition)
+    }
+
     componentWillMount() {
         this.currentState = 'card'
         this.avCardY = new Animated.Value(340)
@@ -21,6 +27,15 @@ class Preview extends Component {
         this.props.getLocationDetails(this.props.placeid)
     }
 
+    componentWillUpdate(nextProps, nextState){
+        if (nextProps.cardPosition !== this.props.cardPosition){
+            Animated.timing(this.position, {
+            toValue: nextProps.cardPosition,
+            duration: this.animationDuration,
+        }).start()
+        }
+    }
+
     _detectSwipe(y) {
         if (this.gesturePosY - y >= this.gestureThreshold) {
             this._onSwipeUp()
@@ -28,55 +43,41 @@ class Preview extends Component {
             this._onSwipeDown()
         }
     }
+
     _onSwipeUp() {
-        if (this.currentState === 'card') {
-            setTimeout(() => this.currentState = 'list', 300)
-            Animated.timing(this.avCardY, {
-                toValue: 0,
-                duration: this.animationDuration,
-            }).start()
-        } else if (this.currentState === 'search') {
-            setTimeout(() => this.currentState = 'card', 300)
-            Animated.timing(this.avCardY, {
-                toValue: 300,
-                duration: this.animationDuration,
-            }).start()
-        }
+        this.props.setCardPosition('full')
     }
-    _onSwipeDown() {
-        if (this.currentState === 'list') {
-            setTimeout(() => this.currentState = 'card', 300)
-            Animated.timing(this.avCardY, {
-                toValue: 340,
-                duration: this.animationDuration + 200,
-            }).start()
-        } else if (this.currentState === 'card') {
-            setTimeout(() => this.currentState = 'search', 300)
-            Animated.timing(this.avCardY, {
-                toValue: 600,
-                duration: this.animationDuration,
-            }).start()
-            setTimeout(()=> {
-            this.props.exitPreview()
-            this.props.exitLocationAdd()
-            }, 450)
-        }
+
+    _onSwipeDown(){
+        if (this.props.cardPosition === 0){
+            this.props.setCardPosition('half')
+        } else if (this.props.cardPosition === 340){
+            this.props.setCardPosition('hidden')
+            setTimeout(() => {
+                this.props.exitPreview()
+            }, 375)
+        }   
     }
+    
     render() {
-        const cardAnimation = { transform: [{ translateY: this.avCardY }] }
+        const cardAnimation = { transform: [{ translateY: this.position }] }
         return (
             <View style={styles.Container}>
                 <Animated.View
                     style={cardAnimation}
+                    onResponderRelease={(e) => {
+                        this._detectSwipe(e.nativeEvent.locationY)
+                        return true
+                    }}
                     onStartShouldSetResponder={(e) => {
                         this.gesturePosY = e.nativeEvent.locationY
-                    } }
-                    onMoveShouldSetResponder={(e) => this._detectSwipe(e.nativeEvent.locationY)}
-                    >
+                        return true
+                    }}
+                 >
                     <Card>
                         {this.props.children}
                     </Card>
-                </Animated.View>
+                 </Animated.View>
             </View>
         )
     }
@@ -84,11 +85,13 @@ class Preview extends Component {
 const mapStateToProps = (state) => ({
     locationDetails: state.map.locationDetails,
     placeid: state.button.placeid,
+    cardPosition: state.card.cardPosition,
 })
+
 const mapDispatchToProps = {
     exitPreview,
     getLocationDetails,
-    exitLocationAdd,
+    setCardPosition,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Preview)

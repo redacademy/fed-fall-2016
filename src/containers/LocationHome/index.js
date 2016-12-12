@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, Dimensions, TouchableOpacity, ScrollView } from 'react-native'
+import { View, Text, Dimensions, TouchableOpacity } from 'react-native'
 import MapView from 'react-native-maps'
 import styles from './styles'
 import { colors, textStyles } from '../../config/styles'
@@ -10,21 +10,22 @@ import autoBind from 'react-autobind'
 import { connect } from 'react-redux'
 import {
     enterPreview,
-    enterLocationAdd,
     generateMapPins,
-    getLocationDetails
+    getLocationDetails,
+    setCardPosition,
+    setSelectedCard,
 } from '../../redux/actions'
 
 // Containers
-import { SearchBar, Preview, LocationPreview } from '../index'
+import {
+    Preview,
+    SearchBar,
+} from '../index'
 
 // Components
 import {
-    AddressBlock,
     BottomButtonFilterButton,
     BottomButtonListButton,
-    Button,
-    FilterList,
     LocationCustomCallout,
     MapBlock,
     MapPin,
@@ -35,6 +36,7 @@ import {
 } from '../../components' 
 import LocationAddPreview from './LocationAddPreview'
 import region from './region'
+
 const { width, height } = Dimensions.get('window')
 
 class LocationHome extends Component {
@@ -47,14 +49,26 @@ class LocationHome extends Component {
             overlay: false,
             region,
             markers: [],
-            addLocation: false,
+            _locationAdd: false, /*required for location add modal*/
         }
+
+        this._toggleOverlay = this._toggleOverlay.bind(this)
+        // this._onPinPush = this._onPinPush.bind(this)
+        this._preview = this._preview.bind(this)
+        this._setUserCurrentLocation = this._setUserCurrentLocation.bind(this)
+        this._onRegionChangeComplete = this._onRegionChangeComplete.bind(this)
+        this._onFilterButtonPress = this._onFilterButtonPress.bind(this)
     }
     componentWillMount() {
         this.props.generateMapPins()
     }
     componentDidMount() {
         this._setUserCurrentLocation()
+    }
+    _toggleOverlay() {
+        this.setState({
+            overlay: !this.state.overlay,
+        })
     }
     _setUserCurrentLocation() {
         navigator.geolocation.getCurrentPosition(
@@ -80,69 +94,51 @@ class LocationHome extends Component {
             })
         })
     }
-
-    _toggleOverlay() {
-        this.setState({
-            overlay: !this.state.overlay,
-        })
-    }
-
-    _onPinPush(placeid) {
-        this.props.enterPreview(placeid)
-    }
-
-    _onLocationAddPress() {
-        this.props.enterLocationAdd()
-    }
-
-    _filterPreview() {
-        if (this.props.filter === true) {
-            return (
-                <Preview>
-                    <FilterList showHeader={true} />
-                    <Button style={{ alignSelf: 'flex-end' }}>
-                        <Text style={textStyles.textStyle4}>SUBMIT</Text>
-                    </Button>
-                </Preview>
-            )
-        }
-    }
-    /*
-                        <AddressBlock title={"RED Academy"} addressLine1={"1490 W Broadway #200"} addressLine2={"Vancouver, BC V6H 4E8"} />
-    */
     _onRegionChangeComplete(region) {
         /* as user moves around the map, update the current state
         */
         this.setState({ region })
     }
+    _onPinPush(placeid) {
+        this.props.setSelectedCard('LocationPreview', placeid)
+        this.props.setCardPosition('half')
+    }
+    _onLocationAddPress() {
+        this.props.setSelectedCard('LocationAdd')
+        this.props.setCardPosition('full')
+    }
+    _onFilterButtonPress() {
+        this.props.setSelectedCard('LocationFilter')
+        this.props.setCardPosition('full')
+    }
 
     _preview() {
-        if (this.props.preview === true) {
-
-            {/* Go to the preview container to add to the card! */ }
+        if ((this.props.preview === true) || (this.props.cardVisible === true)) {
             return (
-                <Preview>
-                    <LocationPreview placeId={this.props.placeid} />
-                </Preview>
+                <Preview />
             )
         }
     }
-
-    // shouldComponentUpdate(nextProps, nextState) {
-    //     console.log('shouldComponentUpdate?')
-    //     if (this.state.pins !== nextState.pins) {
-    //     console.log('true')
-    //         return true
+    // _preview() {
+    //     if (this.props.preview === true) {
+    //         return (
+    //             <Preview>
+    //                 <LocationPreview placeId={this.props.placeid} />
+    //             </Preview>
+    //         )
     //     }
-    //     console.log('true')
-    //     return false
     // }
-
+    
     render() {
         let bottomButtonStatus = null
 
         if (this.state.overlay) {
-            bottomButtonStatus = <View><BottomButtonListButton /><BottomButtonFilterButton /></View>
+            bottomButtonStatus = (
+                <View>
+                    <BottomButtonListButton />
+                    <BottomButtonFilterButton onPress={this._onFilterButtonPress} />
+                </View>
+            )
         }
         const icon = this.props.pins.mapPin
         const pins = this.props.pins.map((pin, i) => {
@@ -171,9 +167,8 @@ class LocationHome extends Component {
 
                     {pins}
 
-                    {this.state.addLocation ?
+                    {this.state.locationAdd ?
                         <MapView.Marker
-                            // ref={ref => { this.marker = ref } }    //required for closing pin when "add clicked"
                             coordinate={{ latitude: this.state.region.latitude, longitude: this.state.region.longitude }}
                             pinColor={colors.blush}
                             flat={true}
@@ -200,7 +195,7 @@ class LocationHome extends Component {
                     }
                 </MapView>
 
-                {(this.props.preview || this.props.locationAdd) ? null : (
+                {(this.props.cardVisible) ? null : (
                     <View style={styles.optionsContainer}>
                         <View style={styles.optionsBar}>
                             <OptionsBar>
@@ -219,7 +214,7 @@ class LocationHome extends Component {
                 {/* Filter options */}
                 <View style={styles.bottomButtons}>{bottomButtonStatus}</View>
 
-                {(this.props.preview || this.props.locationAdd) ? null : (
+                {(this.props.cardVisible) ? null : (
                     <View style={{ position: 'absolute', bottom: 680 }}>
                         <View style={styles.bottomContainer}>
                             <SearchBar />
@@ -237,18 +232,21 @@ class LocationHome extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    preview: state.button.preview,
-    locationAdd: state.button.locationAdd,
-    pins: state.map.generatedLocationData,
+    selectedCard: state.card.selectedCard,
+    cardVisible: state.card.cardVisible,
     locationDetails: state.map.locationDetails,
+    pins: state.map.generatedLocationData,
     placeid: state.button.placeid,
+    yVal: state.card.yVal,
+    preview: state.button.preview,
 })
 
 const mapDispatchToProps = {
     enterPreview,
-    enterLocationAdd,
     generateMapPins,
     getLocationDetails,
+    setCardPosition,
+    setSelectedCard,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LocationHome)
