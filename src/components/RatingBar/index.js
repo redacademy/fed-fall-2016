@@ -94,31 +94,6 @@ class RatingBar extends Component {
                     size={size}
                     title={title}
                     />
-
-                {/*
-                <IconOptionalTitleRectangularFill
-                    iconName="quality-ribbon"
-                    noTitle={this.props.titleless}
-                    />
-                <IconOptionalTitleRectangularFill
-                    backgroundColor={ratingColorGenerator(this.props.ratings.clean)}
-                    size={(this.state.width / 4) * .9}
-                    iconName="cleanliness"
-                    noTitle={this.props.titleless}
-                    />
-                <IconOptionalTitleRectangularFill
-                    backgroundColor={ratingColorGenerator(this.props.ratings.nursing)}
-                    size={(this.state.width / 4) * .9}
-                    iconName="breast-feeding"
-                    noTitle={this.props.titleless}
-                    />
-                <IconOptionalTitleRectangularFill
-                    backgroundColor={ratingColorGenerator(this.props.ratings.quiet)}
-                    size={(this.state.width / 4) * .9}
-                    iconName="quiet"
-                    noTitle={this.props.titleless}
-                    />
-                    */}
             </View>
         )
     }
