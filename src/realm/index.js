@@ -1,11 +1,6 @@
 import Realm from 'realm'
-import realm from './index'
+import Location from './location/schema'
 
-export const saveLocations = (locations) => {
-    realm.write(() => {
-        locations.forEach((location) => {
-            realm.create('Location', location, true)
-        })  
-    })
-}
+// Initialize a Realm with Location models
+let realm = new Realm({ schema: [Location] })
 
