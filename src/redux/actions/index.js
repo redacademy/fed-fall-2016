@@ -6,10 +6,13 @@ export const CARD_TO_POSITION_HIDDEN = 'CARD_TO_POSITION_HIDDEN'
 export const ENTER_PREVIEW = 'ENTER_PREVIEW'
 export const EXIT_PREVIEW = 'EXIT_PREVIEW'
 export const LOCATION_ADD_LOAD = 'LOCATION_ADD_LOAD'
-export const LOCATION_ADD_EXIT = 'LOCATION_ADD_EXIT'
-export const LOCATION_FILTER_LOAD = 'LOCATION_FILTER_LOAD'
+// export const LOCATION_ADD_SUBMIT = 'LOCATION_ADD_SUBMIT'
 export const LOCATION_DATA_ALL = 'LOCATION_DATA_ALL'
 export const LOCATION_DATA_DETAILS = 'LOCATION_DATA_DETAILS'
+export const LOCATION_FILTER_LOAD = 'LOCATION_FILTER_LOAD'
+// export const LOCATION_FILTER_SUBMIT = 'LOCATION_FILTER_SUBMIT'
+export const LOCATION_LIST_LOAD = 'LOCATION_LIST_LOAD'
+export const LOCATION_RATE_LOAD = 'LOCATION_RATE_LOAD'
 export const LOCATION_VIEW_LOAD = 'LOCATION_VIEW_LOAD'
 export const ON_SEARCH_CHANGE = 'ON_SEARCH_CHANGE'
 
@@ -43,14 +46,20 @@ export const setCardPosition = (position) => {
   }
 }
 
-export const setSelectedCard = (card, placeId = -1) => {
+export const setSelectedCard = (card, placeId, locationList) => {
   switch (card) {
     case 'LocationAdd':
       return { type: LOCATION_ADD_LOAD, payload: placeId }
-    case 'LocationPreview':
-      return { type: LOCATION_VIEW_LOAD, payload: placeId }
     case 'LocationFilter':
       return { type: LOCATION_FILTER_LOAD }
+    case 'LocationList':
+      return { type: LOCATION_LIST_LOAD, payload: locationList }
+    case 'LocationPreview':
+      return { type: LOCATION_VIEW_LOAD, payload: placeId }
+    case 'LocationRate':
+      return { type: LOCATION_RATE_LOAD, payload: placeId }
+    // case 'UserLocationList':
+    //   return { type: USER_LOCATION_LIST_LOAD, payload: locationList }
     default:
       return null
   }
