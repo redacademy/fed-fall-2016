@@ -11,7 +11,8 @@ import {
     enterPreview,
     enterLocationAdd,
     generateMapPins,
-    getLocationDetails
+    getLocationDetails,
+    setCardPosition,
 } from '../../redux/actions'
 
 // Containers
@@ -107,6 +108,7 @@ class LocationHome extends Component {
 
     _onPinPush(placeid) {
         this.props.enterPreview(placeid)
+        this.props.setCardPosition('half')
     }
 
     _onLocationAddPress() {
@@ -276,6 +278,7 @@ const mapStateToProps = (state) => ({
     pins: state.map.generatedLocationData,
     locationDetails: state.map.locationDetails,
     placeid: state.button.placeid,
+    yVal: state.card.yVal,
 })
 
 const mapDispatchToProps = {
@@ -283,6 +286,7 @@ const mapDispatchToProps = {
     enterLocationAdd,
     generateMapPins,
     getLocationDetails,
+    setCardPosition,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LocationHome)
