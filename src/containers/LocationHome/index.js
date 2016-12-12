@@ -111,13 +111,6 @@ class LocationHome extends Component {
             })
         })
     }
-
-    _toggleOverlay() {
-        this.setState({
-            overlay: !this.state.overlay,
-        })
-    }
-
     _onPinPush(placeid) {
         this.props.enterPreview(placeid)
         this.props.setCardPosition('half')
@@ -135,15 +128,14 @@ class LocationHome extends Component {
             return (
                 <Preview>
                     <LocationAdd
-                        title={"RED Academy"} addressLine1={"1490 W Broadway #200"} addressLine2={"Vancouver, BC V6H 4E8"} 
+                        title={"RED Academy"} addressLine1={"1490 W Broadway #200"} addressLine2={"Vancouver, BC V6H 4E8"}
                         lat={49.2634046} lng={-123.1404133} width={width - 80} height={120}
-                    />
+                        />
                 </Preview>
             )
         }
     }
     _onFilterButtonPress() {
-        // console.log('_onFilterButtonPress')
         this.props.locationFilterLoad()
     }
     _filterPreview() {
@@ -156,9 +148,6 @@ class LocationHome extends Component {
                 </Preview>
             )
         }
-    }
-    _onPinPush(placeid) {
-        this.props.enterPreview(placeid)
     }
     _preview() {
         if (this.props.preview === true) {
