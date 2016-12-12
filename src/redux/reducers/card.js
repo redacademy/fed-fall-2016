@@ -4,63 +4,46 @@ import {
     CARD_TO_POSITION_HIDDEN,
     CARD_TO_POSITION_HALF,
     LOCATION_ADD_LOAD,
-    LOCATION_ADD_EXIT,
-
     //TODO: Add following to ../actions
     // LOCATION_LIST_LOAD,
-    // LOCATION_LIST_EXIT,
     LOCATION_FILTER_LOAD,
-    LOCATION_FILTER_EXIT,
     // LOCATION_RATE_LOAD,
-    // LOCATION_RATE_EXIT,
-    // LOCATION_VIEW_LOAD,
-    // LOCATION_VIEW_EXIT,
+    LOCATION_VIEW_LOAD,
     // USER_LOCATION_LIST_LOAD,
-    // USER_LOCATION_LIST_EXIT,
 } from '../actions'
 
 const initialState = {
     cardPosition: 340,
-    locationAdd: false,
-    // locationList: false,
-    // locationFilter: false,
-    // locationRate: false,
-    // locationView: false,
-    // userLocationList: false,
-    // placeid: '',
+    selectedCard: '',
+    history: [],
+    cardVisible: false,
+    placeId: '',
 }
 
 export default (state = initialState, action) => {
     switch (action.type) {
         case CARD_TO_POSITION_FULL:
-            return { cardPosition: 0 }
+            return { ...state, cardPosition: 0, cardVisible: true }
         case CARD_TO_POSITION_HALF:
-            return { cardPosition: 340 }
+            return { ...state, cardPosition: 340, cardVisible: true }
         case CARD_TO_POSITION_DIRECTIONS:
-            return { cardPosition: 500 }
+            return { ...state, cardPosition: 500, cardVisible: true }
         case CARD_TO_POSITION_HIDDEN:    
-            return { cardPosition: 700 }      
+            return { ...state, cardPosition: 700, cardVisible: false, placeId: '' } //, history: history.pop() }   
+        case LOCATION_ADD_LOAD:
+            return {...state, selectedCard: 'LocationAdd' } //, placeId: action.payload, history: history.concat('LocationAdd') }
+        case LOCATION_FILTER_LOAD:
+            return {...state, selectedCard: 'LocationFilter' } //, history: history.concat('LocationFilter') }
+        case LOCATION_VIEW_LOAD:
+            return {...state, selectedCard: 'LocationPreview', placeId: action.payload } //, history: history.concat('LocationPreview') }
 
         // case LOCATION_LIST_LOAD:
         //     return {...state, locationList: true }
-        // case LOCATION_LIST_EXIT:
-        //     return {...state, locationList: false }
-        // case LOCATION_FILTER_LOAD:
-        //     return {...state, locationFilter: true }
-        // case LOCATION_FILTER_EXIT:
-        //     return {...state, locationFilter: false }
         // case LOCATION_RATE_LOAD:
         //     return {...state, locationRate: true }
-        // case LOCATION_RATE_EXIT:
-        //     return {...state, locationRate: false }
-        // case LOCATION_VIEW_LOAD:
-        //     return {...state, locationView: true }
-        // case LOCATION_VIEW_EXIT:
-        //     return {...state, locationView: false }
         // case USER_LOCATION_LIST_LOAD:
         //     return {...state, userLocationList: true }
-        // case USER_LOCATION_LIST_EXIT:
-        //     return {...state, userLocationList: false }
+
         default:
             return state
     }

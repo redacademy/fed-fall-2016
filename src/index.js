@@ -6,11 +6,11 @@ import LocationHome from '../src/containers/LocationHome'
 
 // default navigation: vertical
 export default class ChangedAndFed extends Component {
-  render() {
-    return (
-      <Provider store={store}>
-        <LocationHome />
-      </Provider>
-    )
-  }
+    render() {
+        return (
+            <Provider store={store}>
+                <LocationHome />
+            </Provider>
+        )
+    }
 }

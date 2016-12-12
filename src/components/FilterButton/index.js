@@ -10,16 +10,23 @@ import Icon from '../Icon/index'
 import { colors, textStyles } from '../../config/styles'
 const { width, height } = Dimensions.get('window')
 
+const containerStyle = {
+    alignItems: 'center',
+    height: (height - 20) / 5.5, //122?
+    width: (width - 20) / 2, //113?
+    justifyContent: 'space-around',
+}
 class FilterButton extends Component {
     static propTypes = {
         iconName: PropTypes.string.isRequired,
         iconText: PropTypes.string.isRequired,
         iconSize: PropTypes.number.isRequired,
+        isSelected: PropTypes.bool,
     }
     constructor(props) {
         super(props)
         this.state = {
-            isSelected: false,
+            isSelected: props.isSelected || false,
             width: 0,
         }
         this.handlePress = this.handlePress.bind(this)
@@ -30,18 +37,7 @@ class FilterButton extends Component {
         if (this.props.onPress)
             this.props.onPress()
     }
-    componentWillMount() {
-        this.setState({
-            isSelected: this.props.isSelected,
-        })
-    }
     render() {
-        const containerStyle = {
-            alignItems: 'center',
-            height: (height - 20) / 5.5, //122?
-            width: (width - 20) / 2, //113?
-            justifyContent: 'space-around',
-        }
         return (
             <TouchableOpacity onPress={this.handlePress}>
                 {this.state.isSelected ?

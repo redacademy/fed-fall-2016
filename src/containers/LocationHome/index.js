@@ -12,17 +12,13 @@ import {
     generateMapPins,
     getLocationDetails,
     setCardPosition,
-    locationAddLoad,
-    locationFilterLoad
+    setSelectedCard,
 } from '../../redux/actions'
 
 // Containers
-import { 
-    LocationAdd,
-    LocationFilter,
-    LocationPreview, 
-    Preview, 
-    SearchBar, 
+import {
+    Preview,
+    SearchBar,
 } from '../index'
 
 // Components
@@ -59,19 +55,15 @@ class LocationHome extends Component {
                 longitudeDelta: LONGITUDE_DELTA,
             },
             markers: [],
-            locationAdd: false,
-            locationFilter: false,
+            _locationAdd: false, /*required for location add modal*/
         }
 
         this._toggleOverlay = this._toggleOverlay.bind(this)
-        this._onPinPush = this._onPinPush.bind(this)
+        // this._onPinPush = this._onPinPush.bind(this)
         this._preview = this._preview.bind(this)
         this._setUserCurrentLocation = this._setUserCurrentLocation.bind(this)
         this._onRegionChangeComplete = this._onRegionChangeComplete.bind(this)
-        this._onLocationAddPress = this._onLocationAddPress.bind(this)
-        this._locationPreview = this._locationPreview.bind(this)
         this._onFilterButtonPress = this._onFilterButtonPress.bind(this)
-        this._filterPreview = this._filterPreview.bind(this)
     }
     componentWillMount() {
         this.props.generateMapPins()
@@ -111,56 +103,40 @@ class LocationHome extends Component {
             })
         })
     }
-    _onPinPush(placeid) {
-        this.props.enterPreview(placeid)
-        this.props.setCardPosition('half')
-    }
     _onRegionChangeComplete(region) {
         /* as user moves around the map, update the current state
         */
         this.setState({ region })
     }
-    _onLocationAddPress() {
-        this.props.locationAddLoad()
+    _onPinPush(placeid) {
+        this.props.setSelectedCard('LocationPreview', placeid)
+        this.props.setCardPosition('half')
     }
-    _locationPreview() {
-        if (this.props.locationAdd === true) {
-            return (
-                <Preview>
-                    <LocationAdd
-                        title={"RED Academy"} addressLine1={"1490 W Broadway #200"} addressLine2={"Vancouver, BC V6H 4E8"}
-                        lat={49.2634046} lng={-123.1404133} width={width - 80} height={120}
-                        />
-                </Preview>
-            )
-        }
+    _onLocationAddPress() {
+        this.props.setSelectedCard('LocationAdd')
+        this.props.setCardPosition('full')
     }
     _onFilterButtonPress() {
-        this.props.locationFilterLoad()
-    }
-    _filterPreview() {
-        // console.log('_filterPreview', this.props)
-        if (this.props.locationFilter === true) {
-        // console.log('this.props.locationFilter === true')
-            return (
-                <Preview>
-                    <LocationFilter />
-                </Preview>
-            )
-        }
+        this.props.setSelectedCard('LocationFilter')
+        this.props.setCardPosition('full')
     }
     _preview() {
-        if (this.props.preview === true) {
-
-            {/* Go to the preview container to add to the card! */ }
+        if ((this.props.preview === true) || (this.props.cardVisible === true)) {
             return (
-                <Preview>
-                    <LocationPreview placeId={this.props.placeid} />
-                </Preview>
+                <Preview />
             )
         }
     }
-
+    // _preview() {
+    //     if (this.props.preview === true) {
+    //         return (
+    //             <Preview>
+    //                 <LocationPreview placeId={this.props.placeid} />
+    //             </Preview>
+    //         )
+    //     }
+    // }
+    
     render() {
         let bottomButtonStatus = null
 
@@ -168,7 +144,7 @@ class LocationHome extends Component {
             bottomButtonStatus = (
                 <View>
                     <BottomButtonListButton />
-                    <BottomButtonFilterButton onPress={() => this._onFilterButtonPress.bind((this))} />
+                    <BottomButtonFilterButton onPress={this._onFilterButtonPress} />
                 </View>
             )
         }
@@ -227,14 +203,13 @@ class LocationHome extends Component {
                     }
                 </MapView>
 
-                {(this.props.preview || this.props.locationAdd) ? null : (
+                {(this.props.cardVisible) ? null : (
                     <View style={styles.optionsContainer}>
                         <View style={styles.optionsBar}>
                             <LocationHomeOptionsBar>
                                 <OptionsBarButton onPress={() => this._setUserCurrentLocation()} iconName={"location"} />
-                                <OptionsBarButton onPress={() => this._onLocationAddPress()} iconName={"starbaby-face"} />
                                 <OptionsBarButton onPress={() => this.setState({ locationAdd: !this.state.locationAdd })} iconName={"add"} />
-                                <OptionsBarButton onPress={() => this._onPinPush()} iconName={"user"} />
+                                <OptionsBarButton onPress={() => alert('pressed user!')} iconName={"user"} />
                             </LocationHomeOptionsBar>
                         </View>
                     </View>
@@ -247,7 +222,7 @@ class LocationHome extends Component {
                 {/* Filter options */}
                 <View style={styles.bottomButtons}>{bottomButtonStatus}</View>
 
-                {(this.props.preview || this.props.locationAdd) ? null : (
+                {(this.props.cardVisible) ? null : (
                     <View style={{ position: 'absolute', bottom: 680 }}>
                         <View style={styles.bottomContainer}>
                             <SearchBar />
@@ -257,18 +232,15 @@ class LocationHome extends Component {
                 )}
 
                 {this._preview()}
-                {this._locationPreview()}
-                {this._filterPreview()}
-
             </View>
         )
     }
 }
 
 const mapStateToProps = (state) => ({
-    locationAdd: state.card.locationAdd,
+    selectedCard: state.card.selectedCard,
+    cardVisible: state.card.cardVisible,
     locationDetails: state.map.locationDetails,
-    locationFilter: state.card.locationFilter,
     pins: state.map.generatedLocationData,
     placeid: state.button.placeid,
     yVal: state.card.yVal,
@@ -280,8 +252,7 @@ const mapDispatchToProps = {
     generateMapPins,
     getLocationDetails,
     setCardPosition,
-    locationAddLoad,
-    locationFilterLoad,
+    setSelectedCard,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LocationHome)

@@ -3,75 +3,16 @@ import {
     View, Text
 } from 'react-native'
 import { styles } from './styles'
-import { colors } from '../../config/styles'
 import FilterButton from '../FilterButton'
+import  {filterList} from '../../assets/constants'
 
 const iconSize = 170
-const begFilterIcons = [
-    { iconName: 'baby-change-table', iconText: 'CHANGE TABLE', isSelected: true, },
-    { iconName: 'bottle', iconText: 'NURSING ROOM', },
-]
-const endFilterIcons = [
-    { iconName: 'mask', iconText: 'PRIVATE', },
-    { iconName: 'stroller-accessible', iconText: 'STROLLER ACCESSABLE', isSelected: true, },
-    { iconName: 'quiet', iconText: 'QUIET', },
-    { iconName: 'key', iconText: 'REQUIRES KEY', },
-]
-const bathroomButtonOptionsLeft = [
-    { iconName: 'male-and-female', iconText: 'GENDER WC', },  //LHS default to gender
-    { iconName: 'male', iconText: 'MENS WC', }, 
-    { iconName: 'female', iconText: 'WOMENS WC', },
-]
-const bathroomButtonOptionsRight = [
-    { iconName: 'family', iconText: 'FAMILY WC', },  //RHS default to family
-    { iconName: 'female', iconText: 'WOMENS WC', },
-]
 
 class FilterList extends Component {
     static proptTypes = {
         showHeader: PropTypes.bool,
     }
-    constructor(props) {
-        super(props)
-        this.state = {
-            selectedBathroomIndexLeft: 0,
-            selectedBathroomIndexRight: 0,
-            isSelectingBathroom: false,
-        }
-        this.handleBathroomButtonOptionsLeftPress = this.handleBathroomButtonOptionsLeftPress.bind(this)
-        this.handleBathroomButtonOptionsRightPress = this.handleBathroomButtonOptionsRightPress.bind(this)
-    }
 
-    handleBathroomButtonOptionsLeftPress() {
-        // if current state isSelectingBathroom, 
-        //   then we already have the male/female select options open... 
-        //   so now we are selecting male (left button option). set selectedBathroomIndex to male (1)
-        //    => selectedBathroomIndex = 1
-        //    => isSelectingBathroom = false
-        // else 
-        //   we want to select male/female
-        //   set isSelectingBathroom to true
-
-        // console.log(this.state)
-        if (this.state.isSelectingBathroom) {
-            this.setState({ selectedBathroomIndexLeft: 1, selectedBathroomIndexRight: 0, isSelectingBathroom: false, })
-        } else {
-            this.setState({ selectedBathroomIndexLeft: 1, selectedBathroomIndexRight: 1, isSelectingBathroom: true, })
-        }
-    }
-    handleBathroomButtonOptionsRightPress() {
-        // if current state isSelectingBathroom, 
-        //   then we already have the male/female select options open... 
-        //   so now we are selecting female (right button option). set selectedBathroomIndex to female (2)
-        //    => selectedBathroomIndex = 1
-        //    => isSelectingBathroom = false
-        // else 
-        // we are just doing the regular action for the family washroom.
-        // console.log(this.state)
-        if (this.state.isSelectingBathroom) {
-            this.setState({ selectedBathroomIndexLeft: 2, selectedBathroomIndexRight: 0, isSelectingBathroom: false, })
-        }
-    }
     render() {
         return (
             <View style={styles.outerContainer}>
@@ -79,43 +20,8 @@ class FilterList extends Component {
                 <View style={styles.container}>
                     <View style={styles.iconContainer}>
                         {
-                            begFilterIcons.map((filterIcon, i) => (
-                                <FilterButton key={`beg${i}`} iconName={filterIcon.iconName} iconText={filterIcon.iconText} iconSize={iconSize} />
-                            ))
-                        }
-                        {
-                            <View style={(this.state.isSelectingBathroom ? { flexDirection: 'row', borderRadius: 12, borderColor: colors.warmGreyTwo, borderWidth: 1 } : { flexDirection: 'row', })}>
-                                <FilterButton
-                                    onPress={this.handleBathroomButtonOptionsLeftPress}
-                                    iconName={bathroomButtonOptionsLeft[this.state.selectedBathroomIndexLeft].iconName}
-                                    iconText={bathroomButtonOptionsLeft[this.state.selectedBathroomIndexLeft].iconText}
-                                    isSelected={true}
-                                    iconSize={iconSize} />
-                                {
-                                    this.state.isSelectingBathroom ?
-                                        <FilterButton
-                                            onPress={this.handleBathroomButtonOptionsRightPress}
-                                            iconName={bathroomButtonOptionsRight[this.state.selectedBathroomIndexRight].iconName}
-                                            iconText={bathroomButtonOptionsRight[this.state.selectedBathroomIndexRight].iconText}
-                                            iconSize={iconSize} />
-                                        :
-                                        null
-                                }
-                                {
-                                    this.state.isSelectingBathroom ?
-                                        null
-                                        :
-                                        <FilterButton
-                                            onPress={this.handleBathroomButtonOptionsRightPress}
-                                            iconName={bathroomButtonOptionsRight[this.state.selectedBathroomIndexRight].iconName}
-                                            iconText={bathroomButtonOptionsRight[this.state.selectedBathroomIndexRight].iconText}
-                                            iconSize={iconSize} />
-                                }
-                            </View>
-                        }
-                        {
-                            endFilterIcons.map((filterIcon, i) => (
-                                <FilterButton key={`end${i}`} iconName={filterIcon.iconName} iconText={filterIcon.iconText} iconSize={iconSize} />
+                            filterList.map((filterIcon, i) => (
+                            <FilterButton key={`filter${i}`} iconName={filterIcon.iconName} iconText={filterIcon.iconText} iconSize={iconSize} isSelected={filterIcon.isSelected}/>
                             ))
                         }
                     </View>
