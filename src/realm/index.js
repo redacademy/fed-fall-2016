@@ -1,11 +1,11 @@
-const Realm = require('realm');
+import Realm from 'realm'
+import realm from './index'
 
-let realm = new Realm({
-    schema: [{ name: '', properties: { name: 'string' } }]
-});
-
-realm.write(() => {
-    realm.create('', { name: '' });
-});
-
+export const saveLocations = (locations) => {
+    realm.write(() => {
+        locations.forEach((location) => {
+            realm.create('Location', location, true)
+        })  
+    })
+}
 
