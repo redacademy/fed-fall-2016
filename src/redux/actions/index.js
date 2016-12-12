@@ -10,6 +10,12 @@ export const CARD_TO_POSITION_FULL = 'CARD_TO_POSITION_FULL'
 export const CARD_TO_POSITION_HALF = 'CARD_TO_POSITION_HALF'
 export const CARD_TO_POSITION_DIRECTIONS = 'CARD_TO_POSITION_DIRECTIONS'
 export const CARD_TO_POSITION_HIDDEN = 'CARD_TO_POSITION_HIDDEN'
+export const GOT_ALL_LOCATION_DATA = 'GOT_ALL_LOCATION_DATA'
+export const GOT_LOCATION_DETAILS = 'GOT_LOCATION_DETAILS'
+export const LOCATION_ADD_LOAD = 'LOCATION_ADD_LOAD'
+export const LOCATION_ADD_EXIT = 'LOCATION_ADD_EXIT'
+export const LOCATION_FILTER_LOAD = 'LOCATION_FILTER_LOAD'
+export const LOCATION_FILTER_EXIT = 'LOCATION_FILTER_EXIT'
 
 // Action creators here
 export const searchTextChange = (text) => ({
@@ -41,6 +47,14 @@ export const setCardPosition = (position) => {
       return null
   }
 }
+
+//******************************************* locationFilter
+export const locationFilterLoad = () => ({
+    type: LOCATION_FILTER_LOAD,
+})
+export const locationFilterExit = () => ({
+    type: LOCATION_FILTER_EXIT,
+})
 
 // Thunks down here
 export const generateMapPins = () => {
