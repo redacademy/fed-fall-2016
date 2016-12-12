@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { View, Text } from 'react-native'
-import Icon from '../../components/Icon'
+import Icon from '../Icon'
 import { rgbColors } from '../../config/styles'
 import iconTitleMapper from '../../config/icon-title-mapping'
 
@@ -11,7 +11,7 @@ example usage:
 <IconMulti
   name="baby-change-table"
   title
-  noBorder
+  border
   />
 
 (on state)
@@ -32,7 +32,7 @@ class IconMulti extends Component {
         title: PropTypes.bool,              // figures out the title from the src/config/icon-title-mapping
         size: PropTypes.number,             // expands to fill the bounds of the View (or whatever) it's contained within
         circular: PropTypes.bool,           // defaults to square if nothing
-        noBorder: PropTypes.bool,           // omits the border
+        border: PropTypes.bool,           // omits the border
     }
 
     constructor() {
@@ -44,7 +44,7 @@ class IconMulti extends Component {
 
     render() {
         const size = this.props.size ? this.props.size : this.state.size
-        const { circular, iconColor, fillColor, name, title, noBorder } = this.props
+        const { circular, iconColor, fillColor, name, title, border } = this.props
         return (
             <View
                 onLayout={(event) => this.setState({ size: event.nativeEvent.layout.width })}
@@ -59,7 +59,7 @@ class IconMulti extends Component {
                         backgroundColor: fillColor || 'transparent',
                         borderRadius: size * (circular ? 0.5 : 0.1),
                         borderColor: iconColor || rgbColors.warmGrey,
-                        borderWidth: (fillColor || noBorder) ? null : size * 0.02,
+                        borderWidth: (fillColor || !border) ? null : size * 0.02,
                     }}
                     >
                     <View>
