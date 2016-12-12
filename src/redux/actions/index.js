@@ -19,20 +19,13 @@ export const searchTextChange = (text) => ({
 
 export const enterPreview = (placeId) => ({
   type: ENTER_PREVIEW,
-  payload: placeId
+  payload: placeId,
 })
 
 export const exitPreview = () => ({
     type: EXIT_PREVIEW,
 })
 
-export const exitLocationAdd = () => ({
-    type: EXIT_LOCATION_ADD,
-})
-
-export const enterLocationAdd = () => ({
-    type: ENTER_LOCATION_ADD,
-})
 
 export const setCardPosition = (position) => {
   switch(position){
@@ -56,7 +49,7 @@ export const generateMapPins = () => {
       method: 'GET',
       headers: new Headers({
         'Content-Type': 'application/json',
-      })
+      }),
     })
       .then(response => response.json())
       .then(mapData => dispatch({ type: 'LOCATION_DATA_ALL', payload: mapData }))
@@ -69,7 +62,7 @@ export const getLocationDetails = (placeId) => {
       method: 'GET',
       headers: new Headers({
         'Content-Type': 'application/json',
-      })
+      }),
     })
       .then(response => response.json())
       .then(locationDetails => dispatch({ type: 'LOCATION_DATA_DETAILS', payload: locationDetails }))
