@@ -22,3 +22,13 @@ export const babyFocusIconChooser = (changing, feeding) => {
     }
     return 'bottle'
 }
+
+export const mapPinColorChooser = (changing, feeding) => {
+    if (changing && feeding) {
+        return colors.lightMauve
+    }
+    if (changing) {
+        return colors.darkPeach
+    }
+    return colors.darkGreyBlue
+}
