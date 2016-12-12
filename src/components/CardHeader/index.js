@@ -1,9 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import { View } from 'react-native'
-import IconCircularBorder from '../../icons/IconCircularBorder'
-import IconCircularFill from '../../icons/IconCircularFill'
 import { colors } from '../../config/styles'
 import Icon from '../Icon'
+import IconMulti from '../IconMulti'
 import { babyFocusIconChooser } from '../../config/functions'
 
 class LocationDetailsCardHeader extends Component {
@@ -17,18 +16,19 @@ class LocationDetailsCardHeader extends Component {
     constructor() {
         super()
         this.state = {
-            width: 0,
+            size: 0,
         }
     }
 
     render() {
+        const { size } = this.state
         return (
             <View
                 onLayout={this.props.width
-                    ? () => this.setState({ width: this.props.width })
+                    ? () => this.setState({ size: this.props.width / 6 })
                     : (event) => {
                         this.setState({
-                            width: event.nativeEvent.layout.width,
+                            size: event.nativeEvent.layout.width / 6,
                         })
                     }
                 }
@@ -36,36 +36,40 @@ class LocationDetailsCardHeader extends Component {
                 >
                 <View>
                     <Icon
-                        size={this.state.width / 6}
+                        size={size}
                         name={babyFocusIconChooser(this.props.changing, this.props.feeding)}
                         color={colors.salmon}
                         />
                 </View>
-                <View style={{ flexDirection: 'row' }}>
-                    {this.props.alreadyRated ?
-                        <IconCircularFill
-                            size={this.state.width / 6}
-                            name='new-entry'
+                <View style={{ flexDirection: 'row', width: size*2.25, justifyContent: 'space-between' }}>
+                    {this.props.alreadyRated
+                        ? <IconMulti
+                            size={size}
+                            name="new-entry"
                             fillColor={colors.salmon}
+                            circular
                             />
-                        :
-                        <IconCircularBorder
-                            size={this.state.width / 6}
-                            name='new-entry'
-                            color={colors.salmon}
+                        : <IconMulti
+                            size={size}
+                            name="new-entry"
+                            iconColor={colors.salmon}
+                            border
+                            circular
                             />
                     }
-                    {this.props.alreadyFaved ?
-                        <IconCircularFill
-                            size={this.state.width / 6}
-                            name='heart-off'
+                    {this.props.alreadyFaved
+                        ? <IconMulti
+                            size={size}
+                            name="heart-off"
                             fillColor={colors.salmon}
+                            circular
                             />
-                        :
-                        <IconCircularBorder
-                            size={this.state.width / 6}
-                            name='heart-off'
-                            color={colors.salmon}
+                        : <IconMulti
+                            size={size}
+                            name="heart-off"
+                            iconColor={colors.salmon}
+                            border
+                            circular
                             />
                     }
                 </View>
