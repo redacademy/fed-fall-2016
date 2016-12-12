@@ -22,3 +22,4 @@ export { default as OptionsBarButton } from '../containers/LocationHome/OptionsB
 export { default as RatingBar } from './RatingBar'
 export { default as RatingBlock } from './RatingBlock'
 export { default as RatingButton } from './RatingButton'
+export { default as MapMarker } from '../containers/LocationHome/MapMarker'
