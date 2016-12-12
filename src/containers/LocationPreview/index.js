@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { getLocationDetails } from '../../redux/actions'
 import { Button } from '../../components'
 import styles from './style'
+import LocationListView from '../../components/LocationListView'
 
 class LocationPreview extends Component {
     componentWillMount(){
@@ -16,6 +17,7 @@ class LocationPreview extends Component {
                 <View style={{flex: 1, marginBottom: 10}}> 
                     <Text>{this.props.locationDetails.formatted_address}</Text>
                 </View>
+                <LocationListView />
                 <Button style={{ justifyContent: 'flex-end' }}>
                     <Text style={styles.buttonText}> GO </Text>
                 </Button>
