@@ -46,7 +46,6 @@ class LocationPreview extends Component {
             (error) => console.log(error),
             { enableHighAccuracy: true })
     }
-
     showDirections() {
         const userLatitude = this.state.latitude
         const userLongitude = this.state.longitude
