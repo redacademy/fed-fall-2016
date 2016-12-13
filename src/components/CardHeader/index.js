@@ -52,22 +52,7 @@ class LocationDetailsCardHeader extends Component {
                         color={colors.salmon}
                         />
                 </View>
-                <View style={{ flexDirection: 'row', width: size*2.25, justifyContent: 'space-between' }}>
-                    {this.props.alreadyRated
-                        ? <IconMulti
-                            size={size}
-                            name="new-entry"
-                            fillColor={colors.salmon}
-                            circular
-                            />
-                        : <IconMulti
-                            size={size}
-                            name="new-entry"
-                            iconColor={colors.salmon}
-                            border
-                            circular
-                            />
-                    }
+                <View style={{ flexDirection: 'row-reverse', width: size * 2.25, justifyContent: 'space-between' }}>
                     {this.props.alreadyFaved
                         ? <IconMulti
                             size={size}
@@ -78,6 +63,17 @@ class LocationDetailsCardHeader extends Component {
                         : <IconMulti
                             size={size}
                             name="heart-off"
+                            iconColor={colors.salmon}
+                            border
+                            circular
+                            />
+                    }
+                    {this.props.alreadyRated
+                        ?
+                        null
+                        : <IconMulti
+                            size={size}
+                            name="new-entry"
                             iconColor={colors.salmon}
                             border
                             circular
