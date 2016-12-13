@@ -207,6 +207,7 @@ class LocationHome extends Component {
                     followsUserLocation
                     onRegionChange={region => this._onRegionChangeComplete(region)}
                     >
+                   
 
                     {pins}
 

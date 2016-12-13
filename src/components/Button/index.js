@@ -4,9 +4,9 @@ import styles from './style'
 
 import { colors } from '../../config/styles'
 
-const Button = ({ children }) => {
+const Button = ({ children, onPressFn }) => {
     return (
-        <TouchableHighlight underlayColor={colors.lightGreyGreenTwo} style={[styles.button]} onPress={() => {}}>
+        <TouchableHighlight onPress={onPressFn} underlayColor={colors.lightGreyGreenTwo} style={[styles.button]}>
             {children}
         </TouchableHighlight>
     )
