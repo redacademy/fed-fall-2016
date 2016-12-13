@@ -21,6 +21,7 @@ import {
 import {
     Preview,
     SearchBar,
+    LocationAdd
 } from '../index'
 
 // Components
@@ -36,7 +37,7 @@ import {
     MapMarker
     // RatingBlock,
 } from '../../components' 
-import LocationAddPreview from './LocationAddPreview'
+
 import region from './region'
 
 const { width, height } = Dimensions.get('window')
@@ -186,7 +187,7 @@ class LocationHome extends Component {
                 )}
 
                 {this._preview()}
-                <LocationAddPreview locationAdd={this.props.locationAdd}/>
+                <LocationAdd title={'Red Academy'} lat={49.2634046} lng={-123.1404133}/>
 
             </View>
         )

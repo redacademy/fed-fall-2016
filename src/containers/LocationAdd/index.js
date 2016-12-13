@@ -10,7 +10,6 @@ import { connect } from 'react-redux'
 // import {
 // } from '../../redux/actions'
 
-
 // Components
 import {
     AddressBlock,
@@ -21,6 +20,7 @@ import {
 } from '../../components'
 let h = height * 0.16,
     w = width * 0.82
+
 class LocationAdd extends Component {
 
 

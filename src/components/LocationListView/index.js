@@ -17,6 +17,7 @@ class LocationListView extends Component {
         }
     }
     render() {
+        console.log(this.state.dataSource)
         return (
             <View>
                 <View style={styles.title}>
@@ -33,3 +34,11 @@ class LocationListView extends Component {
 }
 
 export default LocationListView
+
+
+function renderSeparator(sectionId, rowId) {
+ return (<View />)
+}
+
+
+
