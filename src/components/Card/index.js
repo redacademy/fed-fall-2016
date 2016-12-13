@@ -8,9 +8,10 @@ class Card extends Component {
 
     render() {
         return (
-        <View style={styles.cardContainer}>
+            <View style={styles.cardContainer}>
+                <View style={styles.cardPuller} />
                 {this.props.children}
-        </View>
+            </View>
         )
     }
 }
