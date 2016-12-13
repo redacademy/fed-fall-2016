@@ -5,10 +5,15 @@ import Icon from '../Icon'
 import IconMulti from '../IconMulti'
 import { babyFocusIconChooser } from '../../config/functions'
 
-/**
+/*
+ * this component has a couple variations:
+ *      - it can have an icon for the location at the side, or not—determined by amenities being passed in
+ *      - it can change its icons for the add-rating and add-fave button,
+ *        determined by "alreadyRated" and "alreadyFaved" props being passed in
+
 example usage:
 *************** to use the card header on location details ***************
-<CardHeader
+<CardHeaderLocation
   alreadyRated={{code to look it up in realm database… it's a boolean, so it should just be true or false}}
   alreadyFaved={{code to look it up in realm database… it's a boolean, so it should just be true or false}}
   amenities={{amenities object from mongo database passed into here}}
@@ -16,10 +21,11 @@ example usage:
   
  */
 
-class LocationDetailsCardHeader extends Component {
+
+
+class CardHeaderLocation extends Component {
     static propTypes = {
-        changing: PropTypes.bool,
-        feeding: PropTypes.bool,
+        amenities: PropTypes.object.isRequired,
         alreadyRated: PropTypes.bool,
         alreadyFaved: PropTypes.bool,
     }
@@ -36,10 +42,10 @@ class LocationDetailsCardHeader extends Component {
         return (
             <View
                 onLayout={this.props.width
-                    ? () => this.setState({ size: this.props.width / 6 })
+                    ? () => this.setState({ size: this.props.width / 7.25 })
                     : (event) => {
                         this.setState({
-                            size: event.nativeEvent.layout.width / 6,
+                            size: event.nativeEvent.layout.width / 7.25,
                         })
                     }
                 }
@@ -52,22 +58,7 @@ class LocationDetailsCardHeader extends Component {
                         color={colors.salmon}
                         />
                 </View>
-                <View style={{ flexDirection: 'row', width: size*2.25, justifyContent: 'space-between' }}>
-                    {this.props.alreadyRated
-                        ? <IconMulti
-                            size={size}
-                            name="new-entry"
-                            fillColor={colors.salmon}
-                            circular
-                            />
-                        : <IconMulti
-                            size={size}
-                            name="new-entry"
-                            iconColor={colors.salmon}
-                            border
-                            circular
-                            />
-                    }
+                <View style={{ flexDirection: 'row-reverse', width: size * 2.25, justifyContent: 'space-between' }}>
                     {this.props.alreadyFaved
                         ? <IconMulti
                             size={size}
@@ -83,6 +74,17 @@ class LocationDetailsCardHeader extends Component {
                             circular
                             />
                     }
+                    {this.props.alreadyRated
+                        ?
+                        null
+                        : <IconMulti
+                            size={size}
+                            name="new-entry"
+                            iconColor={colors.salmon}
+                            border
+                            circular
+                            />
+                    }
                 </View>
 
             </View>
@@ -90,4 +92,4 @@ class LocationDetailsCardHeader extends Component {
     }
 }
 
-export default LocationDetailsCardHeader
+export default CardHeaderLocation
