@@ -27,6 +27,7 @@ import {
 import {
     BottomButtonFilterButton,
     BottomButtonListButton,
+    LocationCustomCallout,
     MapBlock,
     MapPin,
     OptionsBarButton,
@@ -35,6 +36,8 @@ import {
     MapMarker
     // RatingBlock,
 } from '../../components' 
+
+import LocationAddPreview from './LocationAddPreview'
 
 import region from './region'
 
@@ -58,6 +61,7 @@ class LocationHome extends Component {
         this._setUserCurrentLocation = this._setUserCurrentLocation.bind(this)
         this._onRegionChangeComplete = this._onRegionChangeComplete.bind(this)
         this._onFilterButtonPress = this._onFilterButtonPress.bind(this)
+
     }
     componentWillMount() {
         this.props.generateMapPins()
@@ -110,6 +114,7 @@ class LocationHome extends Component {
     _onFilterButtonPress() {
         this.props.setSelectedCard('LocationFilter')
         this.props.setCardPosition('full')
+
     }
 
     _preview() {
@@ -204,7 +209,6 @@ class LocationHome extends Component {
 
                 {this._preview()}
                 <LocationAdd title={'Red Academy'} lat={49.2634046} lng={-123.1404133}/>
-
             </View>
         )
     }
