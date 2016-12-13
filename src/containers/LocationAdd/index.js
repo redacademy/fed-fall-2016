@@ -27,9 +27,10 @@ class LocationAdd extends Component {
     //      location:
     //          {
     //              title: req, addressLine1: opt, addressLine2 opt,
-    //              position: { lat: req, lng: req },
-    //              width: req, height: req
-    //          }
+    //              position: { lat: req, lng: req }
+    //          },
+    //          width: req,
+    //          height: req,
     // />
     static propTypes = {
         title: PropTypes.string.isRequired,

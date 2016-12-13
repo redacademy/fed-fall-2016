@@ -58,7 +58,6 @@ class LocationHome extends Component {
         }
 
         this._toggleOverlay = this._toggleOverlay.bind(this)
-        this._onPinPush = this._onPinPush.bind(this)
         this._preview = this._preview.bind(this)
         this._setUserCurrentLocation = this._setUserCurrentLocation.bind(this)
         this._onRegionChangeComplete = this._onRegionChangeComplete.bind(this)
@@ -107,12 +106,8 @@ class LocationHome extends Component {
         */
         this.setState({ region })
     }
-    // _onPinPush() {
-    //     console.log('_onPinPush, this: ', this)
-    //     // this.props.setSelectedCard('LocationPreview', placeId)
-    // }
     _onPinPush(placeId) {
-        console.log('_onPinPush, placeId: ', placeId)
+        // console.log('_onPinPush(placeId) ', placeId)
         this.props.setSelectedCard('LocationPreview', placeId)
     }
     _onLocationAddPress() {
@@ -128,22 +123,20 @@ class LocationHome extends Component {
             )
         }
     }
-
     render() {
-        const icon = this.props.pins.mapPin
+        // const icon = this.props.pins.mapPin
         const pins = this.props.pins.map((pin, i) => {
             return <MapView.Marker
                 key={i}
                 coordinate={{
-                    longitude: pin.location.long,
+                    longitude: pin.location.long, // not lng
                     latitude: pin.location.lat,
                 }}
-                // onPress={() => this._onPinPush()} //this placeid must maintain casing as it is result from query
-                onPress={() => this._onPinPush(pin.placeid)} //this placeid must maintain casing as it is result from query
+                onPress={this._onPinPush.bind(this, pin.placeid)} // not placeId
                 >
                 <MapPin
                     scale="0.5"
-                    amenities={{changeTable: false, nursingRoom: true}}
+                    amenities={{ changeTable: false, nursingRoom: true }}
                     />
             </MapView.Marker>
         })
