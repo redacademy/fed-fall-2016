@@ -58,7 +58,7 @@ class LocationHome extends Component {
         }
 
         this._toggleOverlay = this._toggleOverlay.bind(this)
-        // this._onPinPush = this._onPinPush.bind(this)
+        this._onPinPush = this._onPinPush.bind(this)
         this._preview = this._preview.bind(this)
         this._setUserCurrentLocation = this._setUserCurrentLocation.bind(this)
         this._onRegionChangeComplete = this._onRegionChangeComplete.bind(this)
@@ -107,8 +107,13 @@ class LocationHome extends Component {
         */
         this.setState({ region })
     }
-    _onPinPush(placeid) {
-        this.props.setSelectedCard('LocationPreview', placeid)
+    // _onPinPush() {
+    //     console.log('_onPinPush, this: ', this)
+    //     // this.props.setSelectedCard('LocationPreview', placeId)
+    // }
+    _onPinPush(placeId) {
+        console.log('_onPinPush, placeId: ', placeId)
+        this.props.setSelectedCard('LocationPreview', placeId)
     }
     _onLocationAddPress() {
         this.props.setSelectedCard('LocationAdd')
@@ -133,7 +138,8 @@ class LocationHome extends Component {
                     longitude: pin.location.long,
                     latitude: pin.location.lat,
                 }}
-                onPress={() => this._onPinPush(pin.placeid)}
+                // onPress={() => this._onPinPush()} //this placeid must maintain casing as it is result from query
+                onPress={() => this._onPinPush(pin.placeid)} //this placeid must maintain casing as it is result from query
                 >
                 <MapPin
                     scale="0.5"
