@@ -1,12 +1,12 @@
 import React, { Component, PropTypes } from 'react'
-import { Text, ScrollView } from 'react-native'
+import { Text, ScrollView, Dimensions } from 'react-native'
 import { colors, textStyles } from '../../config/styles'
 
 // Redux 
 import { connect } from 'react-redux'
 // import {
 // } from '../../redux/actions'
-
+const { width, height } = Dimensions.get('window')
 // Components
 import {
     AddressBlock,
@@ -15,6 +15,8 @@ import {
     MapBlock,
     // RatingBlock,
 } from '../../components'
+let h = height * 0.16,
+    w = width * 0.82
 
 class LocationAdd extends Component {
 
@@ -34,8 +36,6 @@ class LocationAdd extends Component {
         addressLine2: PropTypes.string,
         lat: PropTypes.number.isRequired,
         lng: PropTypes.number.isRequired,
-        width: PropTypes.number.isRequired,
-        height: PropTypes.number.isRequired,
     }
 
     render() {
@@ -43,7 +43,7 @@ class LocationAdd extends Component {
                 <ScrollView>
                     <AddressBlock title={this.props.title} addressLine1={this.props.addressLine1} addressLine2={this.props.addressLine2} />
                     <FilterList showHeader={false} />
-                    <MapBlock lat={this.props.lat} lng={this.props.lng} zoom={17} width={this.props.width - 80} height={this.props.height} pinScale={0.4} pinColor={colors.salmon} iconName={'starbaby-face'} />
+                    <MapBlock lat={this.props.lat} lng={this.props.lng} zoom={17} width={w} height={h} pinScale={0.4} pinColor={colors.salmon} iconName={'starbaby-face'} />
                     <Button>
                         <Text style={textStyles.textStyle4}>SUBMIT</Text>
                     </Button>

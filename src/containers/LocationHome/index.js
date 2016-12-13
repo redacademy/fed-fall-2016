@@ -20,6 +20,7 @@ import {
 import {
     Preview,
     SearchBar,
+    LocationAdd
 } from '../index'
 
 // Components
@@ -34,7 +35,7 @@ import {
     MapMarker
     // RatingBlock,
 } from '../../components' 
-import LocationAddPreview from './LocationAddPreview'
+
 import region from './region'
 
 const { width, height } = Dimensions.get('window')
@@ -53,7 +54,6 @@ class LocationHome extends Component {
         }
 
         this._toggleOverlay = this._toggleOverlay.bind(this)
-        // this._onPinPush = this._onPinPush.bind(this)
         this._preview = this._preview.bind(this)
         this._setUserCurrentLocation = this._setUserCurrentLocation.bind(this)
         this._onRegionChangeComplete = this._onRegionChangeComplete.bind(this)
@@ -148,7 +148,7 @@ class LocationHome extends Component {
                     longitude: pin.location.long,
                     latitude: pin.location.lat,
                 }}
-                onPress={() => this._onPinPush(pin.placeid)}
+                onPress={this._onPinPush.bind(this, pin.placeId)}
                 >
                 <MapPin scale="0.5" pinColor={colors.apricot} iconName={pin.mapPin} />
             </MapView.Marker>
@@ -203,7 +203,7 @@ class LocationHome extends Component {
                 )}
 
                 {this._preview()}
-                <LocationAddPreview locationAdd={this.props.locationAdd}/>
+                <LocationAdd title={'Red Academy'} lat={49.2634046} lng={-123.1404133}/>
 
             </View>
         )

@@ -5,7 +5,7 @@ import {
 
 const initialState = {
     preview: false,
-    placeid: '',
+    placeId: '',
 }
 
 export default (state = initialState, action) => {
@@ -13,7 +13,7 @@ export default (state = initialState, action) => {
         case ENTER_PREVIEW:
             return {...state, preview: true, placeid: action.payload  }
         case EXIT_PREVIEW:
-            return { preview: false, placeid: '' }
+            return { preview: false, placeId: '' }
         default:
             return state
     }

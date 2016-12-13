@@ -18,27 +18,23 @@ class ListViewItem extends Component {
     static propTypes = {
         placeId: PropTypes.string.isRequired,
     }
-    constructor() {
-        super()
-        this.state = {
-            location: [],
-            isLoading: true,
-        }
-    }
+
     componentWillMount() {
         this.props.getLocationDetails(this.props.placeId)
     }
     render() {
-        if (this.state.isLoading) {
+        
+        if (this.props.isLoading) {
             return (
                 <Loader />
             )
         } else {
-            const loc = this.state.location.results[0]
+            const loc = this.props.locationDetails.results[0]
             const lat = loc.geometry.location.lat
             const lng = loc.geometry.location.lng
             const address = loc.formatted_address
             const addressArray = address.split(',')
+            console.log("placeid", this.props.placeId)
             return (
                 <TouchableOpacity onPress={() => { } } >
                     <View style={styles.locationContainer}>
@@ -66,6 +62,7 @@ class ListViewItem extends Component {
 const mapStateToProps = (state) => ({
     locationDetails: state.map.locationDetails,
     placeId: state.button.placeId,
+    isLoading: state.map.isLoading,
 })
 const mapDispatchToProps = {
     getLocationDetails,
