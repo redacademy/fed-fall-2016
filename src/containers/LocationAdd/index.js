@@ -17,7 +17,8 @@ import {
     MapBlock,
     // RatingBlock,
 } from '../../components'
-
+let h = height * 0.16,
+    w = width * 0.82
 class LocationAdd extends Component {
 
     //TODO: update locationHome to pass in place object instead of individual items like this
@@ -37,7 +38,7 @@ class LocationAdd extends Component {
         lat: PropTypes.number.isRequired,
         lng: PropTypes.number.isRequired,
     }
-
+    
     render() {
         return (
             <ScrollView>
@@ -45,7 +46,7 @@ class LocationAdd extends Component {
                 <View style={styles.filterContainer}>
                     <FilterList showHeader={false} />
                 </View>
-                    <MapBlock lat={this.props.lat} lng={this.props.lng} zoom={17} width={(width * 0.82)} height={(height * 0.16)} pinScale={0.4} pinColor={colors.salmon} iconName={'starbaby-face'} />
+                    <MapBlock lat={this.props.lat} lng={this.props.lng} zoom={17} width={w} height={h} pinScale={0.4} pinColor={colors.salmon} iconName={'starbaby-face'} />
                 <View style={styles.buttonContainer}>
                     <Button>
                         <Text style={textStyles.textStyle4}>SUBMIT</Text>
