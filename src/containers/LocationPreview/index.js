@@ -52,6 +52,11 @@ class LocationPreview extends Component {
         const destinationLongitude = this.props.locationDetails.geometry.location.lng
         Linking.openURL(`https://www.google.ca/maps/dir/${userLatitude},${userLongitude}/${destinationLatitude},${destinationLongitude}`)
     }
+    componentDidUpdate() {
+        if (this.state.location && this.state.isLoading) {
+            this.setState({ isLoading: false, })
+        }
+    }
 
     render() {
         if (this.state.isLoading) {
