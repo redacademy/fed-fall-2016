@@ -29,7 +29,7 @@ class RateLocation extends Component {
 
                 <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around', marginBottom: 50 }}>
                 
-
+                
                {/*
                 {
                     this.ratees.map((ratee, index) => {

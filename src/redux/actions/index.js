@@ -42,6 +42,9 @@ export const RATING_QUIET = 'RATING_QUIET'
 export const ENTER_RATE_LOCATION = 'ENTER_RATE_LOCATION'
 export const RATE = 'RATE'
 export const UNRATE = 'UNRATE'
+export const SUBMIT_RATING = 'SUBMIT_RATING'
+export const EXIT_RATE_LOCATION = 'EXIT_RATE_LOCATION'
+export const RATE_FEEDBACK = 'RATE_FEEDBACK'
 
 export const ROUTE_SET = 'ROUTE_SET'
 
@@ -143,7 +146,7 @@ export const enterRateLocation = () => ({
     type: ENTER_RATE_LOCATION,
 })
 
-export const rate = ({prop, value}) => {
+export const rate = ({prop, value, score}) => {
     switch(prop){
       case 'quality':
       case 'cleanliness':
@@ -151,7 +154,7 @@ export const rate = ({prop, value}) => {
       case 'quiet':
         return {
           type: RATE,
-          payload: {prop, value},
+          payload: {prop, value, score},
         }
       default: 
         return null
@@ -228,4 +231,20 @@ export const getLocationDetails = (placeid) => {
                 })
         }
     }
+}
+
+export const submitRating = (placeid, rating) => {
+  return function (dispatch) {
+      fetch(`http://45.55.2.200/api/location/${placeid}/rating/add`, {
+        method: 'POST',
+        headers: new Headers({
+          'Content-Type': 'application/json'
+        }),
+        body: JSON.stringify(rating),
+      })
+      .then(() => {
+        dispatch({ type: EXIT_RATE_LOCATION })
+        dispatch({ type: RATE_FEEDBACK })
+      })
+  }
 }

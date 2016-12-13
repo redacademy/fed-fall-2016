@@ -1,26 +1,31 @@
 import React, { Component } from 'react'
-import { View, Animated, Text, TouchableHighlight } from 'react-native'
+import { View, Animated, Text } from 'react-native'
 import { connect } from 'react-redux'
 import {
     exitPreview,
     getLocationDetails,
     setCardPosition,
     enterRateLocation,
-    rate,
-    unrate,
+    submitRating,
 } from '../../redux/actions'
 import styles from './styles'
-import { Card, AddressBlock, Button } from '../../components'
+import { Card, AddressBlock, Button, CardHeader } from '../../components'
 import { textStyles } from '../../config/styles'
-import IconOptionalTitleRectangularBorder from '../../icons/IconOptionalTitleRectangularBorder'
-import IconOptionalTitleRectangularFill from '../../icons/IconOptionalTitleRectangularFill'
+import { RatingButton } from '../../containers'
+
 class Preview extends Component {
     constructor(props){
         super(props)
 
         this.position = new Animated.Value(this.props.cardPosition)
+        this.ratees = [
+            { attribute: 'quality', iconName: 'quality-ribbon'},
+            { attribute: 'cleanliness', iconName: 'cleanliness'},
+            { attribute: 'nursingFriendly', iconName: 'breast-feeding'},
+            { attribute: 'quiet', iconName: 'quiet'}                            
+        ]
     }
-
+    
     componentWillMount() {
         this.currentState = 'card'
         this.avCardY = new Animated.Value(340)
@@ -66,20 +71,18 @@ class Preview extends Component {
             }, 375)
         }  
     }
-
-    // use a closure
-    _rate(prop){
-        var self = this
-        return function(){
-            self.props.rate({prop: prop, value: true})
+    
+    _submitRating(){
+        const rating = {
+            rating: {
+                userId: 'FACETOES',
+                quality: this.props.quality ? 3 : 1,
+                clean: this.props.cleanliness ? 3 : 1,
+                nursing: this.props.nursing ? 3 : 1,
+                quiet: this.props.quiet ? 3 : 1,
+            }
         }
-    }
-
-    _unrate(prop){
-        var self = this
-        return function(){
-            self.props.unrate({prop: prop, value: false})
-        }
+        this.props.submitRating(this.props.placeid, rating)
     }
 
     render() {
@@ -98,27 +101,26 @@ class Preview extends Component {
                     }}
                  >
                     <Card>
+                        {/* ADD CARD HEADER IN HERE */}
+                        
+                        {this.props.feedback ? <Text>Thank you for your rating.</Text> : null}
                         {this.props.rateLocation ? null : <Text onPress={this.props.enterRateLocation}>Rate Icon</Text>}
                         {this.props.rateLocation ? 
-                            <View style={{flex: 1}} >
+                            <View style={styles.cardContainer}>
                                 <AddressBlock title={this.props.place.place} addressLine1={this.props.place.line1} addressLine2={this.props.place.line2}/>
                                 
-                                <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around', marginBottom: 50 }}>
-                                {this.props.quality ? <IconOptionalTitleRectangularFill onPressFn={this._unrate('quality')} size={130} backgroundColor="#aecc83" iconName="quality-ribbon" />
-                                : <IconOptionalTitleRectangularBorder onPressFn={this._rate('quality')} size={125} iconColor="#e28385" iconName="quality-ribbon"/>}
-
-                                {this.props.cleanliness ? <IconOptionalTitleRectangularFill onPressFn={this._unrate('cleanliness')} size={125} backgroundColor="#aecc83" iconName="cleanliness" />
-                                : <IconOptionalTitleRectangularBorder onPressFn={this._rate('cleanliness')} size={125} iconColor="#e28385" iconName="cleanliness"/>}
-
-                                {this.props.nursingFriendly ? <IconOptionalTitleRectangularFill onPressFn={this._unrate('nursingFriendly')} size={125} backgroundColor="#aecc83" iconName="breast-feeding" />
-                                : <IconOptionalTitleRectangularBorder onPressFn={this._rate('nursingFriendly')} size={125} iconColor="#e28385" iconName="breast-feeding"/>}
-
-                                {this.props.quiet ? <IconOptionalTitleRectangularFill onPressFn={this._unrate('quiet')} size={125} backgroundColor="#aecc83" iconName="quiet" />
-                                : <IconOptionalTitleRectangularBorder onPressFn={this._rate('quiet')} size={125} iconColor="#e28385" iconName="quiet"/>}
-                                
-                                </View>
+                                <View style={styles.rateContainer}>
+                                {
+                                    this.ratees.map((ratee) => {
+                                        return <View style={styles.ratingButton}>
+                                            <RatingButton style={styles.ratingButton} attribute={ratee.attribute} iconName={ratee.iconName} />
+                                        </View>
                     
-                                <Button style={{ alignSelf: 'flex-end' }}>
+                                    })
+                                }
+                                </View>
+                                
+                                <Button onPressFn={this._submitRating.bind(this)} style={styles.submitButton}>
                                     <Text style={textStyles.textStyle4}>SUBMIT</Text>
                                 </Button>
                             </View>
@@ -140,6 +142,7 @@ const mapStateToProps = (state) => ({
     cleanliness: state.button.cleanliness,
     nursingFriendly: state.button.nursingFriendly,
     quiet: state.button.quiet,
+    feedback: state.button.feedback,
 })
 
 const mapDispatchToProps = {
@@ -147,8 +150,7 @@ const mapDispatchToProps = {
     getLocationDetails,
     setCardPosition,
     enterRateLocation,
-    rate,
-    unrate,
+    submitRating,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Preview)
