@@ -33,21 +33,30 @@ class MapDot extends Component {
                 borderRadius: size * 0.5,
             }}>
                 <View style={{
-                    height: size * 0.51,
-                    width: size * 0.51,
-                    backgroundColor: 'white',
+                    height: size * 0.60,
+                    width: size * 0.60,
+                    backgroundColor: 'rgba(0, 0, 0, 0.02)',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    borderRadius: size * 0.51 * 0.5,
+                    borderRadius: size * 0.60 * 0.5,
                 }}>
                     <View style={{
-                        height: size * 0.38,
-                        width: size * 0.38,
-                        backgroundColor: color || colors.blush,
+                        height: size * 0.51,
+                        width: size * 0.51,
+                        backgroundColor: 'white',
                         justifyContent: 'center',
                         alignItems: 'center',
-                        borderRadius: size * 0.38 * 0.5,
+                        borderRadius: size * 0.51 * 0.5,
                     }}>
+                        <View style={{
+                            height: size * 0.38,
+                            width: size * 0.38,
+                            backgroundColor: color || colors.blush,
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            borderRadius: size * 0.38 * 0.5,
+                        }}>
+                        </View>
                     </View>
                 </View>
             </View>
