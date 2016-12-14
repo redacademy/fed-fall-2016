@@ -20,7 +20,7 @@ let h = height * 0.16,
 
 class LocationPreview extends Component {
     static propTypes = {
-        placeId: PropTypes.string.isRequired,
+        placeid: PropTypes.string.isRequired,
     }
     constructor(props) {
         super(props)
@@ -35,7 +35,7 @@ class LocationPreview extends Component {
         this.showDirections = this.showDirections.bind(this)
     }
     componentWillMount() {
-        this.props.getLocationDetails(this.props.placeId)
+        this.props.getLocationDetails(this.props.placeid)
 
         navigator.geolocation.getCurrentPosition((userLocation) => {
             this.setState({

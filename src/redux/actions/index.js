@@ -24,9 +24,9 @@ export const searchTextChange = (text) => ({
   payload: text,
 })
 
-export const enterPreview = (placeId) => ({
+export const enterPreview = (placeid) => ({
     type: ENTER_PREVIEW,
-    payload: placeId,
+    payload: placeid,
 })
 
 export const exitPreview = () => ({
@@ -48,10 +48,10 @@ export const setCardPosition = (position) => {
     }
 }
 
-export const setSelectedCard = (card, placeId, locationList) => dispatch => {
+export const setSelectedCard = (card, placeid, locationList) => dispatch => {
     switch (card) {
         case 'LocationAdd':
-            dispatch({ type: LOCATION_ADD_LOAD, payload: placeId })
+            dispatch({ type: LOCATION_ADD_LOAD, payload: placeid })
             return dispatch(setCardPosition('full'))
         case 'LocationFilter':
             dispatch({ type: LOCATION_FILTER_LOAD })
@@ -61,10 +61,10 @@ export const setSelectedCard = (card, placeId, locationList) => dispatch => {
             return dispatch(setCardPosition('full'))
         case 'LocationPreview':
             dispatch({ type: LOCATION_ISLOADING_RESET })
-            dispatch({ type: LOCATION_VIEW_LOAD, payload: placeId })
+            dispatch({ type: LOCATION_VIEW_LOAD, payload: placeid })
             return dispatch(setCardPosition('half'))
         case 'LocationRate':
-            dispatch({ type: LOCATION_RATE_LOAD, payload: placeId })
+            dispatch({ type: LOCATION_RATE_LOAD, payload: placeid })
             return dispatch(setCardPosition('full'))
         // case 'UserLocationList':
         //   return { type: USER_LOCATION_LIST_LOAD, payload: locationList }

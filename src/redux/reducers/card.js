@@ -18,7 +18,7 @@ const initialState = {
     selectedCard: '',
     history: [],
     cardVisible: false,
-    placeId: '',
+    placeid: '',
     locationList: {},
 }
 
@@ -31,17 +31,17 @@ export default (state = initialState, action) => {
         case CARD_TO_POSITION_DIRECTIONS:
             return { ...state, cardPosition: 420, cardVisible: true }
         case CARD_TO_POSITION_HIDDEN:    
-            return { ...state, cardPosition: 700, cardVisible: false, placeId: '' } //, history: history.pop() }   //? or should this be on the individual screens as they exit?
+            return { ...state, cardPosition: 700, cardVisible: false, placeid: '' } //, history: history.pop() }   //? or should this be on the individual screens as they exit?
         case LOCATION_ADD_LOAD:
-            return {...state, selectedCard: 'LocationAdd' } //, placeId: action.payload ? //, history: history.concat('LocationAdd') }
+            return {...state, selectedCard: 'LocationAdd' } //, placeid: action.payload ? //, history: history.concat('LocationAdd') }
         case LOCATION_FILTER_LOAD:
             return {...state, selectedCard: 'LocationFilter' } //, history: history.concat('LocationFilter') }
         case LOCATION_LIST_LOAD:
             return {...state, selectedCard: 'LocationList', locationList: action.payload } //, history: history.concat('LocationList') }
         case LOCATION_RATE_LOAD:
-            return {...state, selectedCard: 'LocationRate', placeId: action.payload } //, history: history.concat('LocationRate') }
+            return {...state, selectedCard: 'LocationRate', placeid: action.payload } //, history: history.concat('LocationRate') }
         case LOCATION_VIEW_LOAD:
-            return {...state, selectedCard: 'LocationPreview', placeId: action.payload } //, history: history.concat('LocationPreview') }
+            return {...state, selectedCard: 'LocationPreview', placeid: action.payload } //, history: history.concat('LocationPreview') }
         // case USER_LOCATION_LIST_LOAD:
         //     return {...state, selectedCard: 'UserLocationList', locationList: action.payload}
         default:
