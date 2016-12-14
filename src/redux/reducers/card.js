@@ -21,7 +21,7 @@ const initialState = {
     cardVisible: false,
     placeid: '',
     locationList: {},
-    locationAdd: false,
+    locationAdd: false
 }
 
 export default (state = initialState, action) => {

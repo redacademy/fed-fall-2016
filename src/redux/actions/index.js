@@ -55,6 +55,7 @@ export const setCardPosition = (position) => (dispatch) => {
 }
 
 export const setSelectedCard = (card, placeid, locationList) => dispatch => {
+    
     switch (card) {
         case 'LocationAdd':
             dispatch({ type: LOCATION_ADD_LOAD, payload: placeid })

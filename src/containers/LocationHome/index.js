@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Text, View, TouchableOpacity, Dimensions } from 'react-native'
 import MapView from 'react-native-maps'
+import ScaleClickMarker from '../LocationHome/ScaleClickMarker'
 import styles from './styles'
 import { buttonSize, colors, textStyles } from '../../config/styles'
 import autoBind from 'react-autobind'
@@ -47,6 +48,7 @@ class LocationHome extends Component {
             overlay: false,
             region,
             markers: [],
+            pinRefs: []
         }
     }
     componentWillMount() {
@@ -100,21 +102,21 @@ class LocationHome extends Component {
         if (this.props.cardVisible === true)
             return <Preview />
     }
+
+   
     render() {
         const pins = this.props.pins.map((pin, i) => {
-            return <MapView.Marker
-                key={i}
-                coordinate={{
-                    longitude: pin.location.long, // not lng
-                    latitude: pin.location.lat,
-                }}
-                onPress={ this._onPinPush.bind(this, pin.placeid)} // not placeid
-                >
-                <MapPin
+            return <ScaleClickMarker 
+                    onPressFn={this._onPinPush.bind(this, pin.placeid)}
+                    placeid={pin.placeid}
+                    key={i}
+                    coordinate={{
+                        longitude: pin.location.long, // not lng
+                        latitude: pin.location.lat,
+                    }}
                     scale="0.5"
                     amenities={{ changeTable: true, nursingRoom: false }}
                     />
-            </MapView.Marker>
         })
 
         return (
