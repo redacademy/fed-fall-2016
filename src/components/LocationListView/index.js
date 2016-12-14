@@ -14,7 +14,7 @@ class LocationListView extends Component {
 
     componentWillMount() {
         this.props.pins.forEach((pin) => {
-            this.props.getLocationDetails(pin.placeid)
+            this.props.getLocationDetails(pin.obj.placeId)
         });
     }
 

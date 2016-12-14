@@ -50,10 +50,11 @@ class LocationHome extends Component {
         }
     }
     componentWillMount() {
-        this.props.generateMapPins()
+        this._setUserCurrentLocation()
+        
     }
     componentDidMount() {
-        this._setUserCurrentLocation()
+        this.props.generateMapPins(this.state.region.longitude, this.state.region.latitude)
     }
     _toggleOverlay() {
         this.setState({ overlay: !this.state.overlay })
@@ -105,8 +106,8 @@ class LocationHome extends Component {
             return <MapView.Marker
                 key={i}
                 coordinate={{
-                    longitude: pin.location.long, // not lng
-                    latitude: pin.location.lat,
+                    longitude: pin.obj.loc[0], // not lng
+                    latitude: pin.obj.loc[1],
                 }}
                 onPress={ this._onPinPush.bind(this, pin.placeid)} // not placeid
                 >

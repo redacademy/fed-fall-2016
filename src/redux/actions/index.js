@@ -79,9 +79,9 @@ export const setSelectedCard = (card, placeid, locationList) => dispatch => {
 }
 
 // Thunks down here
-export const generateMapPins = () => {
+export const generateMapPins = (longitude, latitude) => {
     return function (dispatch) {
-        fetch('http://45.55.2.200/api/location', {
+        fetch(`http://45.55.2.200/api/location/near/${longitude}/${latitude}`, {
             method: 'GET',
             headers: new Headers({
                 'Content-Type': 'application/json',
