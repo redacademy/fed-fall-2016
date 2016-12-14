@@ -39,6 +39,7 @@ Rating Bar
     }}
     /> 
  */
+
 class RatingBar extends Component {
     static propTypes = {
         ratings: PropTypes.object.isRequired, // ratings object fetched from db
@@ -51,16 +52,17 @@ class RatingBar extends Component {
         }
     }
     render() {
-        console.log(this.props.ratings)
+        const size = this.props.size ? this.props.size : this.state.size
         const { title, ratings } = this.props
-        const { size } = this.state
         return (
             <View
                 onLayout={
                     (event) => {
-                        this.setState({
-                            size: event.nativeEvent.layout.width / 4 * .9,
-                        })
+                        if (!this.props.size) {
+                            this.setState({
+                                size: event.nativeEvent.layout.width / 4 * .9,
+                            })
+                        }
                     }
                 }
                 style={{

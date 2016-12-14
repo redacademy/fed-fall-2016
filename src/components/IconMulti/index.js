@@ -47,7 +47,12 @@ class IconMulti extends Component {
         const { circular, iconColor, fillColor, name, title, border } = this.props
         return (
             <View
-                onLayout={(event) => this.setState({ size: event.nativeEvent.layout.width })}
+                onLayout={(event) => {
+                    if (!this.props.size) {
+                        this.setState({ size: event.nativeEvent.layout.width })
+                    }
+                }
+                }
                 style={{ alignItems: 'center', justifyContent: 'flex-start' }}
                 >
                 <View style={
