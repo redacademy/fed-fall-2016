@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import { Text, ScrollView, Dimensions } from 'react-native'
+import { Text, ScrollView } from 'react-native'
 import { colors, textStyles } from '../../config/styles'
 
 // Redux 
@@ -29,8 +29,6 @@ class LocationAdd extends Component {
     //          }
     // />
     static propTypes = {
-        locationAdd: PropTypes.bool.isRequired,
-
         title: PropTypes.string.isRequired,
         addressLine1: PropTypes.string,
         addressLine2: PropTypes.string,
@@ -41,7 +39,6 @@ class LocationAdd extends Component {
     }
 
     render() {
-        if (this.props.locationAdd === true) {
             return (
                 <ScrollView>
                     <AddressBlock title={this.props.title} addressLine1={this.props.addressLine1} addressLine2={this.props.addressLine2} />
@@ -53,11 +50,9 @@ class LocationAdd extends Component {
                 </ScrollView>
             )
         }
-    }
 }
 
 const mapStateToProps = (state) => ({
-    locationAdd: state.card.locationAdd,
 })
 
 const mapDispatchToProps = {

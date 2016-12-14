@@ -1,26 +1,22 @@
 // Action type declarations here
-export const ON_SEARCH_CHANGE = 'ON_SEARCH_CHANGE'
-export const ENTER_PREVIEW = 'ENTER_PREVIEW'
-export const EXIT_PREVIEW = 'EXIT_PREVIEW'
-export const LOCATION_DATA_ALL = 'LOCATION_DATA_ALL'
-export const LOCATION_DATA_DETAILS = 'LOCATION_DATA_DETAILS'
-export const ENTER_LOCATION_ADD = 'ENTER_LOCATION_ADD'
-export const EXIT_LOCATION_ADD = 'EXIT_LOCATION_ADD'
 export const CARD_TO_POSITION_FULL = 'CARD_TO_POSITION_FULL'
 export const CARD_TO_POSITION_HALF = 'CARD_TO_POSITION_HALF'
 export const CARD_TO_POSITION_DIRECTIONS = 'CARD_TO_POSITION_DIRECTIONS'
 export const CARD_TO_POSITION_HIDDEN = 'CARD_TO_POSITION_HIDDEN'
-export const GOT_ALL_LOCATION_DATA = 'GOT_ALL_LOCATION_DATA'
-export const GOT_LOCATION_DETAILS = 'GOT_LOCATION_DETAILS'
+export const ENTER_PREVIEW = 'ENTER_PREVIEW'
+export const EXIT_PREVIEW = 'EXIT_PREVIEW'
 export const LOCATION_ADD_LOAD = 'LOCATION_ADD_LOAD'
 export const LOCATION_ADD_EXIT = 'LOCATION_ADD_EXIT'
 export const LOCATION_FILTER_LOAD = 'LOCATION_FILTER_LOAD'
-export const LOCATION_FILTER_EXIT = 'LOCATION_FILTER_EXIT'
+export const LOCATION_DATA_ALL = 'LOCATION_DATA_ALL'
+export const LOCATION_DATA_DETAILS = 'LOCATION_DATA_DETAILS'
+export const LOCATION_VIEW_LOAD = 'LOCATION_VIEW_LOAD'
+export const ON_SEARCH_CHANGE = 'ON_SEARCH_CHANGE'
 
 // Action creators here
 export const searchTextChange = (text) => ({
-    type: ON_SEARCH_CHANGE,
-    payload: text,
+  type: ON_SEARCH_CHANGE,
+  payload: text,
 })
 
 export const enterPreview = (placeId) => ({
@@ -29,32 +25,36 @@ export const enterPreview = (placeId) => ({
 })
 
 export const exitPreview = () => ({
-    type: EXIT_PREVIEW,
+  type: EXIT_PREVIEW,
 })
 
-
 export const setCardPosition = (position) => {
-  switch(position){
-    case 'full': 
+  switch (position) {
+    case 'full':
       return { type: CARD_TO_POSITION_FULL }
     case 'half':
       return { type: CARD_TO_POSITION_HALF }
     case 'directions':
       return { type: CARD_TO_POSITION_DIRECTIONS }
-    case 'hidden': 
+    case 'hidden':
       return { type: CARD_TO_POSITION_HIDDEN }
-    default: 
+    default:
       return null
   }
 }
 
-//******************************************* locationFilter
-export const locationFilterLoad = () => ({
-    type: LOCATION_FILTER_LOAD,
-})
-export const locationFilterExit = () => ({
-    type: LOCATION_FILTER_EXIT,
-})
+export const setSelectedCard = (card, placeId = -1) => {
+  switch (card) {
+    case 'LocationAdd':
+      return { type: LOCATION_ADD_LOAD, payload: placeId }
+    case 'LocationPreview':
+      return { type: LOCATION_VIEW_LOAD, payload: placeId }
+    case 'LocationFilter':
+      return { type: LOCATION_FILTER_LOAD }
+    default:
+      return null
+  }
+}
 
 // Thunks down here
 export const generateMapPins = () => {

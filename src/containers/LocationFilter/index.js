@@ -1,45 +1,36 @@
-import React, { Component, PropTypes } from 'react'
-import { View, Text, Dimensions } from 'react-native'
-import { colors, textStyles } from '../../config/styles'
+import React, { Component } from 'react'
+import { View, Text } from 'react-native'
+import { textStyles } from '../../config/styles'
 
 // Redux 
 import { connect } from 'react-redux'
 
-// import {
-// } from '../../redux/actions'
-
 // Components
 import {
-    AddressBlock,
     Button,
-    // RatingBlock,
+    FilterList,
 } from '../../components'
 
 class LocationFilter extends Component {
-
-    static propTypes = {
-        locationFilter: PropTypes.bool.isRequired,
-    }
-
     render() {
-        if (this.props.locationFilter === true) {
-            return (
-                <View>
-                    <Text> Testing...</Text>
-                </View>
-            )
-        }
+        return (
+            <View style={{flex:1}}>
+                <FilterList showHeader={true} />
+                <Button onPress={() => alert('apply filter!')}>
+                    <Text style={textStyles.textStyle4}>APPLY FILTER</Text>
+                </Button>
+            </View>
+        )
     }
 }
-/*
-                    <FilterList showHeader={true} />
-                    <Button onPress={()=> alert('apply filter!')}>
-                        <Text style={textStyles.textStyle4}>APPLY FILTER</Text>
-                    </Button>
-*/ 
+    /*
+                <FilterList showHeader={true} />
+                <Button onPress={() => alert('apply filter!')}>
+                    <Text style={textStyles.textStyle4}>APPLY FILTER</Text>
+                </Button>
+    */
 
 const mapStateToProps = (state) => ({
-    locationFilter: state.card.locationFilter,
 })
 
 const mapDispatchToProps = {
