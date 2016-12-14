@@ -16,7 +16,7 @@ export const LOCATION_RATE_LOAD = 'LOCATION_RATE_LOAD'
 export const LOCATION_ISLOADING_RESET = 'LOCATION_ISLOADING_RESET'
 export const LOCATION_VIEW_LOAD = 'LOCATION_VIEW_LOAD'
 export const ON_SEARCH_CHANGE = 'ON_SEARCH_CHANGE'
-export const LOCATION_LIST_DETAILS = 'LOCATION_LIST_DETAILS'
+export const LOCATION_ADD_BUTTON_SWITCH = 'LOCATION_ADD_BUTTON_SWITCH'
 
 // Action creators here
 export const searchTextChange = (text) => ({
@@ -33,16 +33,22 @@ export const exitPreview = () => ({
   type: EXIT_PREVIEW,
 })
 
-export const setCardPosition = (position) => {
+export const locationAddButton = (addLocationButtonSwitch) => ({
+    type: LOCATION_ADD_BUTTON_SWITCH,
+    payload: addLocationButtonSwitch,
+})
+
+export const setCardPosition = (position) => (dispatch) => {
     switch (position) {
         case 'full':
-            return { type: CARD_TO_POSITION_FULL }
+            return dispatch({ type: CARD_TO_POSITION_FULL })
         case 'half':
-            return { type: CARD_TO_POSITION_HALF }
+            return dispatch({ type: CARD_TO_POSITION_HALF })
         case 'directions':
-            return { type: CARD_TO_POSITION_DIRECTIONS }
+            return dispatch({ type: CARD_TO_POSITION_DIRECTIONS })
         case 'hidden':
-            return { type: CARD_TO_POSITION_HIDDEN }
+            dispatch({ type: LOCATION_ISLOADING_RESET })
+            return dispatch({ type: CARD_TO_POSITION_HIDDEN })
         default:
             return null
     }
@@ -54,13 +60,12 @@ export const setSelectedCard = (card, placeid, locationList) => dispatch => {
             dispatch({ type: LOCATION_ADD_LOAD, payload: placeid })
             return dispatch(setCardPosition('full'))
         case 'LocationFilter':
-            dispatch({ type: LOCATION_FILTER_LOAD })
+            dispatch({ type: LOCATION_FILTER_LOAD }) //, payload: placeid })
             return dispatch(setCardPosition('full'))
         case 'LocationList':
             dispatch({ type: LOCATION_LIST_LOAD, payload: locationList })
             return dispatch(setCardPosition('full'))
         case 'LocationPreview':
-            dispatch({ type: LOCATION_ISLOADING_RESET })
             dispatch({ type: LOCATION_VIEW_LOAD, payload: placeid })
             return dispatch(setCardPosition('half'))
         case 'LocationRate':
@@ -89,10 +94,13 @@ export const generateMapPins = () => {
 
 
 export const getLocationDetails = (placeid) => {
+    console.log('getLocationDetails placeid: ', placeid)
   return function (dispatch) {
     if(placeid) {
     console.log('getting place...', placeid)
-    fetch(`https://maps.googleapis.com/maps/api/geocode/json?place_id=${placeid}&key=AIzaSyB2WkbsqNDjsiz8i831IVn1piVIq5OeiCI`, {
+    const fetchURL = `https://maps.googleapis.com/maps/api/geocode/json?place_id=${placeid}&key=AIzaSyB2WkbsqNDjsiz8i831IVn1piVIq5OeiCI` 
+    console.log('fetchURL', fetchURL)
+    fetch(fetchURL, {
       method: 'GET',
       headers: new Headers({
         'Content-Type': 'application/json',
