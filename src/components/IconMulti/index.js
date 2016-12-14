@@ -85,7 +85,7 @@ class IconMulti extends Component {
                         <Text style={{
                             textAlign: 'center',
                             fontFamily: 'Rubik-Regular',
-                            fontSize: 15,
+                            fontSize: 13,
                             color: colors.warmGrey,
                         }}>
                             {iconTitleMapper[name]}

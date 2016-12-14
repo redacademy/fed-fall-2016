@@ -2,7 +2,7 @@ const iconTitleMapper = {
   'add': '',
   'baby-change-table': 'CHANGE\nTABLE',
   'bottle': 'NURSING\nROOM',
-  'breast-feeding': 'NURSING',
+  'breast-feeding': 'NURSING\nROOM',
   'cleanliness': 'CLEAN',
   'diaper': '',
   'exit': '',
