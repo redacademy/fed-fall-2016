@@ -1,19 +1,17 @@
 import { StyleSheet } from 'react-native'
-import { colors } from '../../config/styles'
+import { colors } from '../../../config/styles'
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        maxHeight: 250,
-        justifyContent: 'space-between',
     },
     button: {
-        alignItems: 'center',
+        alignItems: 'center', //icon
         justifyContent: 'center',
-        backgroundColor: colors.whiteTwo,
-        height: 60,
-        width: 60,
-        borderRadius: 30,
+        backgroundColor: colors.white,
+        height: 50,
+        width: 50,
+        borderRadius: 25,
         shadowColor: colors.warmGrey,
         shadowOpacity: 0.6,
         shadowOffset: { width: 1, height: -2 },
@@ -21,7 +19,7 @@ const styles = StyleSheet.create({
     },
     icon: {
         color: colors.warmGrey,
-        fontSize: 30,
+        fontSize: 20,
     },
 })
 

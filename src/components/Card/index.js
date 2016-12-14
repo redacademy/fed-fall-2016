@@ -8,6 +8,8 @@ import {
     LocationPreview,
 } from '../../containers/'
 
+import { LocationListView } from '../../components'
+
 class Card extends Component {
 
     constructor(props) {
@@ -28,6 +30,8 @@ class Card extends Component {
                             />)
                 case 'LocationFilter':
                     return <LocationFilter />
+                case 'LocationList':
+                    return <LocationListView />
                 case 'LocationPreview':
                     return <LocationPreview placeId={this.props.placeId} />
                 default:

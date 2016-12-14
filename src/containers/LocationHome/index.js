@@ -3,6 +3,8 @@ import { View, Text, Dimensions, TouchableOpacity } from 'react-native'
 import MapView from 'react-native-maps'
 import styles from './styles'
 import { colors, textStyles, buttonSize } from '../../config/styles'
+import Icon from '../../components/Icon/index'
+import autoBind from 'react-autobind'
 
 // Redux 
 import { connect } from 'react-redux'
@@ -18,6 +20,7 @@ import {
 import {
     Preview,
     SearchBar,
+    LocationAdd
 } from '../index'
 
 // Components
@@ -25,43 +28,31 @@ import {
     ButtonClickableTitle,
     IconMulti,
     LocationCustomCallout,
-    LocationHomeBottomButton,
-    LocationHomeOptionsBar,
+    MapBlock,
     MapPin,
     OptionsBarButton,
-} from '../../components'
+    OptionsBar,
+    BottomButton,
+    MapMarker
+    // RatingBlock,
+} from '../../components' 
 
+import region from './region'
 
-// Initialize Variables
 const { width, height } = Dimensions.get('window')
-const LATITUDE = 49.263432
-const LONGITUDE = -123.137952
-const ASPECT_RATIO = width / height
-const LATITUDE_DELTA = .01
-const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO
 
 class LocationHome extends Component {
 
     constructor(props) {
         super(props)
+        autoBind(this)
 
         this.state = {
             overlay: false,
-            region: {
-                latitude: LATITUDE,
-                longitude: LONGITUDE,
-                latitudeDelta: LATITUDE_DELTA,
-                longitudeDelta: LONGITUDE_DELTA,
-            },
+            region,
             markers: [],
             _locationAdd: false, /*required for location add modal*/
         }
-
-        this._toggleOverlay = this._toggleOverlay.bind(this)
-        this._preview = this._preview.bind(this)
-        this._setUserCurrentLocation = this._setUserCurrentLocation.bind(this)
-        this._onRegionChangeComplete = this._onRegionChangeComplete.bind(this)
-        this._onFilterButtonPress = this._onFilterButtonPress.bind(this)
     }
     componentWillMount() {
         this.props.generateMapPins()
@@ -76,31 +67,30 @@ class LocationHome extends Component {
     }
     _setUserCurrentLocation() {
         navigator.geolocation.getCurrentPosition(
-            (position) => {
+            ({ coords }) => {
                 this.setState({
-                    region: {
-                        latitude: position.coords.latitude,
-                        longitude: position.coords.longitude,
-                        latitudeDelta: LATITUDE_DELTA,
-                        longitudeDelta: LONGITUDE_DELTA,
-                    },
+                    region:Object.assign({}, region,  {
+                        latitude: coords.latitude,
+                        longitude: coords.longitude,
+                    }),
                 })
                 this.map.animateToRegion(this.state.region, 1000)
             },
             (error) => alert(error.message),
             { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
         )
-        this.watchID = navigator.geolocation.watchPosition((position) => {
-            this.setState({
-                region: {
-                    latitude: position.coords.latitude,
-                    longitude: position.coords.longitude,
-                    latitudeDelta: LATITUDE_DELTA,
-                    longitudeDelta: LONGITUDE_DELTA,
-                },
+        this.watchID = navigator.geolocation.watchPosition(
+            ({ coords }) => {
+                this.setState({
+                   region:Object.assign({}, region,  {
+                        latitude: coords.latitude,
+                        longitude: coords.longitude,
+                    }),
             })
         })
     }
+    
+
     _onRegionChangeComplete(region) {
         /* as user moves around the map, update the current state
         */
@@ -116,6 +106,10 @@ class LocationHome extends Component {
     _onFilterButtonPress() {
         this.props.setSelectedCard('LocationFilter')
     }
+    _onListButtonPress() {
+        this.props.setSelectedCard('LocationList')
+    }
+
     _preview() {
         if ((this.props.preview === true) || (this.props.cardVisible === true)) {
             return (
@@ -123,8 +117,8 @@ class LocationHome extends Component {
             )
         }
     }
+    
     render() {
-        // const icon = this.props.pins.mapPin
         const pins = this.props.pins.map((pin, i) => {
             return <MapView.Marker
                 key={i}
@@ -151,31 +145,12 @@ class LocationHome extends Component {
                     followsUserLocation
                     onRegionChange={region => this._onRegionChangeComplete(region)}
                     >
-                   
+
 
                     {pins}
 
                     {this.state.locationAdd ?
-                        <MapView.Marker
-                            coordinate={{ latitude: this.state.region.latitude, longitude: this.state.region.longitude }}
-                            pinColor={colors.blush}
-                            flat={true}
-                            >
-                            <MapView.Callout tooltip={true} style={{ width: width * 0.5, height: height * 0.25, backgroundColor: 'transparent' }} setSelected={true}>
-                                <LocationCustomCallout>
-                                    <View style={styles.locationAddContainer}>
-                                        <Text style={textStyles.textStyle6}>New Location</Text>
-                                        <Text style={styles.separator}></Text>
-                                        <Text style={[{ padding: 5 }, textStyles.textStyle7]}>Press & Hold to Move</Text>
-                                        <View>
-                                            <TouchableOpacity onPress={() => this._onLocationAddPress()}>
-                                                <IconMulti name={"add"} size={buttonSize.optionBar} circular border iconColor={colors.blush} />
-                                            </TouchableOpacity>
-                                        </View>
-                                    </View>
-                                </LocationCustomCallout>
-                            </MapView.Callout>
-                        </MapView.Marker>
+                        <MapMarker />
                         :
                         null
                     }
@@ -183,11 +158,11 @@ class LocationHome extends Component {
 
                 {(this.props.cardVisible) ? null : (
                     <View style={styles.optionsBarContainer}>
-                        <LocationHomeOptionsBar>
+                        <OptionsBar>
                             <OptionsBarButton onPress={() => this._setUserCurrentLocation()} iconName={"location"} />
-                            <OptionsBarButton onPress={() => this.setState({ locationAdd: !this.state.locationAdd })} iconName={"add"} />
-                            <OptionsBarButton onPress={() => alert('pressed user!')} iconName={"user"} />
-                        </LocationHomeOptionsBar>
+                            <OptionsBarButton onPress={() => this.setState({ addLocation: !this.state.addLocation })} iconName={"add"} />
+                            <OptionsBarButton onPress={() => this._onPinPush()} iconName={"user"} />
+                        </OptionsBar>
                     </View>
 
                 )}
@@ -196,6 +171,7 @@ class LocationHome extends Component {
                 {this.state.overlay ? <View style={[styles.overlay]} /> : <View />}
 
                 {/* Filter options */}
+
                 {(this.state.overlay)
                     ? (
                         <View style={styles.bottomButtons}>
@@ -208,7 +184,7 @@ class LocationHome extends Component {
                 {(this.props.cardVisible) ? null : (
                     <View style={styles.searchContainer}>
                         <SearchBar />
-                        <LocationHomeBottomButton onPress={this._toggleOverlay} />
+                        <BottomButton onPress={this._toggleOverlay} />
                     </View>
                 )}
 

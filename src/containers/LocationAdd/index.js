@@ -6,6 +6,7 @@ const { width, height } = Dimensions.get('window')
 
 // Redux 
 import { connect } from 'react-redux'
+
 // import {
 // } from '../../redux/actions'
 
@@ -19,7 +20,9 @@ import {
 } from '../../components'
 let h = height * 0.16,
     w = width * 0.82
+
 class LocationAdd extends Component {
+
 
     //TODO: update locationHome to pass in place object instead of individual items like this
     //instead ?>format to be determined by db schema

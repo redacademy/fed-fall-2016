@@ -16,11 +16,12 @@ export const LOCATION_RATE_LOAD = 'LOCATION_RATE_LOAD'
 export const LOCATION_ISLOADING_RESET = 'LOCATION_ISLOADING_RESET'
 export const LOCATION_VIEW_LOAD = 'LOCATION_VIEW_LOAD'
 export const ON_SEARCH_CHANGE = 'ON_SEARCH_CHANGE'
+export const LOCATION_LIST_DETAILS = 'LOCATION_LIST_DETAILS'
 
 // Action creators here
 export const searchTextChange = (text) => ({
-    type: ON_SEARCH_CHANGE,
-    payload: text,
+  type: ON_SEARCH_CHANGE,
+  payload: text,
 })
 
 export const enterPreview = (placeId) => ({
@@ -29,7 +30,7 @@ export const enterPreview = (placeId) => ({
 })
 
 export const exitPreview = () => ({
-    type: EXIT_PREVIEW,
+  type: EXIT_PREVIEW,
 })
 
 export const setCardPosition = (position) => {
@@ -86,15 +87,22 @@ export const generateMapPins = () => {
     }
 }
 
-export const getLocationDetails = (placeId) => {
-    return function (dispatch) {
-        fetch(`https://maps.googleapis.com/maps/api/geocode/json?place_id=${placeId}&key=AIzaSyB2WkbsqNDjsiz8i831IVn1piVIq5OeiCI`, {
-            method: 'GET',
-            headers: new Headers({
-                'Content-Type': 'application/json',
-            }),
-        })
-            .then(response => response.json())
-            .then(locationDetails => dispatch({ type: 'LOCATION_DATA_DETAILS', payload: locationDetails }))
+
+export const getLocationDetails = (placeid) => {
+  return function (dispatch) {
+    if(placeid) {
+    console.log('getting place...', placeid)
+    fetch(`https://maps.googleapis.com/maps/api/geocode/json?place_id=${placeid}&key=AIzaSyB2WkbsqNDjsiz8i831IVn1piVIq5OeiCI`, {
+      method: 'GET',
+      headers: new Headers({
+        'Content-Type': 'application/json',
+      }),
+    })
+      .then(response => response.json())
+      .then(locationDetails => {
+        console.log('got place, dispatching...', locationDetails) 
+        dispatch({ type: 'LOCATION_DATA_DETAILS', payload: locationDetails })
+      })
     }
+  }
 }
