@@ -13,6 +13,7 @@ export const LOCATION_FILTER_LOAD = 'LOCATION_FILTER_LOAD'
 // export const LOCATION_FILTER_SUBMIT = 'LOCATION_FILTER_SUBMIT'
 export const LOCATION_LIST_LOAD = 'LOCATION_LIST_LOAD'
 export const LOCATION_RATE_LOAD = 'LOCATION_RATE_LOAD'
+export const LOCATION_ISLOADING_RESET = 'LOCATION_ISLOADING_RESET'
 export const LOCATION_VIEW_LOAD = 'LOCATION_VIEW_LOAD'
 export const ON_SEARCH_CHANGE = 'ON_SEARCH_CHANGE'
 
@@ -58,6 +59,7 @@ export const setSelectedCard = (card, placeId, locationList) => dispatch => {
             dispatch({ type: LOCATION_LIST_LOAD, payload: locationList })
             return dispatch(setCardPosition('full'))
         case 'LocationPreview':
+            dispatch({ type: LOCATION_ISLOADING_RESET })
             dispatch({ type: LOCATION_VIEW_LOAD, payload: placeId })
             return dispatch(setCardPosition('half'))
         case 'LocationRate':

@@ -15,6 +15,8 @@ import {
 import styles from './style'
 import { colors, textStyles } from '../../config/styles'
 const { width, height } = Dimensions.get('window')
+let h = height * 0.16,
+    w = width * 0.82
 
 class LocationPreview extends Component {
     static propTypes = {
@@ -52,21 +54,16 @@ class LocationPreview extends Component {
         const destinationLongitude = this.props.locationDetails.geometry.location.lng
         Linking.openURL(`https://www.google.ca/maps/dir/${userLatitude},${userLongitude}/${destinationLatitude},${destinationLongitude}`)
     }
-    componentDidUpdate() {
-        if (this.state.location && this.state.isLoading) {
-            this.setState({ isLoading: false, })
-        }
-    }
 
     render() {
-        if (this.state.isLoading) {
+        if (this.props.isLoading) {
             return (
                 <Loader />
             )
         } else {
-            const lat = this.state.location.results[0].geometry.location.lat
-            const lng = this.state.location.results[0].geometry.location.lng
-            const address = this.state.location.results[0].formatted_address
+            const lat = this.props.locationDetails.geometry.location.lat
+            const lng = this.props.locationDetails.geometry.location.lng
+            const address = this.props.locationDetails.formatted_address
             const addressArray = address.split(',')
 
             return (
@@ -75,7 +72,8 @@ class LocationPreview extends Component {
                     <View style={styles.filterContainer}>
                         <FilterList showHeader={false} />
                     </View>
-                    <MapBlock lat={lat} lng={lng} zoom={18} width={width * 0.82} height={height * 0.16} pinScale={0.4} pinColor={colors.salmon} iconName={'starbaby-face'} />
+
+                    <MapBlock lat={lat} lng={lng} zoom={18} width={w} height={h} pinScale={0.4} pinColor={colors.salmon} iconName={'starbaby-face'} />
                     <View style={styles.buttonContainer}>
                         <Button onPressFn={this.showDirections} style={{ justifyContent: 'flex-end' }}>
                             <Text style={textStyles.textStyle4}>GO</Text>
@@ -91,6 +89,7 @@ class LocationPreview extends Component {
 const mapStateToProps = (state) => ({
     placeid: state.button.placeid,
     locationDetails: state.map.locationDetails,
+    isLoading: state.map.isLoading,
 })
 
 const mapDispatchToProps = {
