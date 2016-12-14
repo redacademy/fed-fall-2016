@@ -33,7 +33,7 @@ class Card extends Component {
                 case 'LocationList':
                     return <LocationListView />
                 case 'LocationPreview':
-                    return <LocationPreview placeId={this.props.placeId} />
+                    return <LocationPreview placeid={this.props.placeid} />
                 default:
                     return <Text>No Card for selected Action</Text>
             }
@@ -54,7 +54,7 @@ class Card extends Component {
 const mapStateToProps = (state) => ({
     selectedCard: state.card.selectedCard,
     cardVisible: state.card.cardVisible,
-    placeId: state.card.placeId,
+    placeid: state.card.placeid,
 })
 
 const mapDispatchToProps = {
