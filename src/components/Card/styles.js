@@ -5,7 +5,7 @@ const { height, width } = Dimensions.get('window')
 
 export const styles = StyleSheet.create({
     cardContainer: {
-        backgroundColor: colors.white,
+        backgroundColor: colors.whiteThree,
         height: height * 0.945,
         marginRight: 10,
         marginLeft: 10,
@@ -17,13 +17,24 @@ export const styles = StyleSheet.create({
         padding: 20,
         width: width * 0.945,
         borderRadius: 12,
-        flexDirection: 'column'
+        flexDirection: 'column',
+        alignItems: 'center',
     },
     CardContent: {
-         flexDirection: 'column',
-         flex: 1,
-         justifyContent: 'flex-end',
-      }
+        flexDirection: 'column',
+        flex: 1,
+        justifyContent: 'flex-end',
+    },
+    cardPuller: {
+        width: width * 0.11,
+        borderRadius: width * 0.11 * 0.4,
+        height: width * 0.11 * 0.5 * 0.3,
+        marginBottom: 6,
+        marginTop: -10,
+        backgroundColor: colors.lightGrey,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
 })
 
 export default styles

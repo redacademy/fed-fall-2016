@@ -8,6 +8,7 @@ export const colors = {
     darkPeach: '#e77474',
     //--------------------------------------"grey"-ish
     greyish: '#acacac',
+    lightGrey: '#cacaca',
     warmGrey: '#7f7f7f',
     warmGreyTwo: '#969696',
     warmGreyThree: '#7f7e7e',
@@ -20,6 +21,7 @@ export const colors = {
     //--------------------------------------"white"-ish
     white: '#ffffff',
     whiteTwo: '#fdfdfd',
+    whiteThree: '#f8f8f8',
 }
 
 //internal, for use 
