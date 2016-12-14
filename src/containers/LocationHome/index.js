@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-import { View, Text, Dimensions, TouchableOpacity } from 'react-native'
+import { View } from 'react-native'
 import MapView from 'react-native-maps'
 import styles from './styles'
-import { colors, textStyles, buttonSize } from '../../config/styles'
-import Icon from '../../components/Icon/index'
+import { buttonSize } from '../../config/styles'
 import autoBind from 'react-autobind'
 
 // Redux 
@@ -20,29 +19,22 @@ import {
 import {
     Preview,
     SearchBar,
-    LocationAdd
 } from '../index'
 
 // Components
 import {
     ButtonClickableTitle,
     IconMulti,
-    LocationCustomCallout,
-    MapBlock,
     MapPin,
     OptionsBarButton,
     OptionsBar,
     BottomButton,
     MapMarker
-    // RatingBlock,
 } from '../../components' 
 
 import region from './region'
 
-const { width, height } = Dimensions.get('window')
-
 class LocationHome extends Component {
-
     constructor(props) {
         super(props)
         autoBind(this)
@@ -61,9 +53,7 @@ class LocationHome extends Component {
         this._setUserCurrentLocation()
     }
     _toggleOverlay() {
-        this.setState({
-            overlay: !this.state.overlay,
-        })
+        this.setState({ overlay: !this.state.overlay })
     }
     _setUserCurrentLocation() {
         navigator.geolocation.getCurrentPosition(
@@ -89,48 +79,35 @@ class LocationHome extends Component {
             })
         })
     }
-    
-
     _onRegionChangeComplete(region) {
         /* as user moves around the map, update the current state
         */
         this.setState({ region })
     }
-    _onPinPush(placeId) {
-        // console.log('_onPinPush(placeId) ', placeId)
-        this.props.setSelectedCard('LocationPreview', placeId)
+    _onPinPush(placeid) {
+        this.props.setSelectedCard('LocationPreview', placeid)
     }
     _onLocationAddPress() {
         this.props.setSelectedCard('LocationAdd')
     }
-    _onFilterButtonPress() {
-        this.props.setSelectedCard('LocationFilter')
-    }
-    _onListButtonPress() {
-        this.props.setSelectedCard('LocationList')
-    }
-
     _preview() {
-        if ((this.props.preview === true) || (this.props.cardVisible === true)) {
-            return (
-                <Preview />
-            )
-        }
+        if (this.props.cardVisible === true)
+            return <Preview />
     }
-    
     render() {
         const pins = this.props.pins.map((pin, i) => {
+            console.log('pin: ', pin)
             return <MapView.Marker
                 key={i}
                 coordinate={{
                     longitude: pin.location.long, // not lng
                     latitude: pin.location.lat,
                 }}
-                onPress={this._onPinPush.bind(this, pin.placeid)} // not placeId
+                onPress={this._onPinPush.bind(this, pin.placeid)} // not placeid
                 >
                 <MapPin
                     scale="0.5"
-                    amenities={{ changeTable: false, nursingRoom: true }}
+                    amenities={{ changeTable: true, nursingRoom: false }}
                     />
             </MapView.Marker>
         })
@@ -146,10 +123,9 @@ class LocationHome extends Component {
                     onRegionChange={region => this._onRegionChangeComplete(region)}
                     >
 
-
                     {pins}
 
-                    {this.state.locationAdd ?
+                    {this.state._locationAdd ?
                         <MapMarker />
                         :
                         null
@@ -160,7 +136,7 @@ class LocationHome extends Component {
                     <View style={styles.optionsBarContainer}>
                         <OptionsBar>
                             <OptionsBarButton onPress={() => this._setUserCurrentLocation()} iconName={"location"} />
-                            <OptionsBarButton onPress={() => this.setState({ addLocation: !this.state.addLocation })} iconName={"add"} />
+                            <OptionsBarButton onPress={() => this.setState({ _addLocation: !this.state._addLocation })} iconName={"add"} />
                             <OptionsBarButton onPress={() => this._onPinPush()} iconName={"user"} />
                         </OptionsBar>
                     </View>
@@ -175,8 +151,8 @@ class LocationHome extends Component {
                 {(this.state.overlay)
                     ? (
                         <View style={styles.bottomButtons}>
-                            <ButtonClickableTitle title={'List'} iconName={'sort-list'} iconSize={buttonSize.searchBar} onPress={() => { console.log('List Pressed') } } />
-                            <ButtonClickableTitle title={'Filter'} iconName={'filter'} iconSize={buttonSize.searchBar} onPress={this._onFilterButtonPress} />
+                            <ButtonClickableTitle title={'List'} iconName={'sort-list'} iconSize={buttonSize.searchBar} onPress={() => this.props.setSelectedCard('LocationList')} />
+                            <ButtonClickableTitle title={'Filter'} iconName={'filter'} iconSize={buttonSize.searchBar} onPress={() => this.props.setSelectedCard('LocationFilter')} />
                         </View>
                     )
                     : null
