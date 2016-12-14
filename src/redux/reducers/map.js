@@ -23,7 +23,7 @@ export default (state = initialState, action) => {
         case LOCATION_LIST_DETAILS:
             return {...state, isLoadingList: false, locationList: action.payload}
         case LOCATION_ISLOADING_RESET:
-            return {...state, isLoading: true, isLoadingList: true }
+            return {...state, isLoading: true, isLoadingList: true, locationList: [] }
         default:
             return state
     }
