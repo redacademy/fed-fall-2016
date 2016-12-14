@@ -16,16 +16,14 @@ class AddressBlock extends Component {
             <View style={styles.container}>
                 <Text style={textStyles.textStyle6}>{this.props.title}</Text>
                 {
-                    this.props.addressLine1 ?
-                        <Text style={textStyles.textStyle7}>{this.props.addressLine1}</Text>
-                        :
-                        null
+                    this.props.addressLine1 
+                        ? <Text style={textStyles.textStyle7}>{this.props.addressLine1}</Text>
+                        : null
                 }
                 {
-                    this.props.addressLine2 ?
-                        <Text style={textStyles.textStyle7}>{this.props.addressLine2}</Text>
-                        :
-                        null
+                    this.props.addressLine2 
+                        ? <Text style={textStyles.textStyle7}>{this.props.addressLine2}</Text>
+                        : null
                 }
             </View>
         )

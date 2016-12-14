@@ -1,38 +1,36 @@
 import React, { Component } from 'react'
-import { View, Text, Dimensions, TouchableOpacity, ScrollView } from 'react-native'
+import { View, Text, Dimensions, TouchableOpacity } from 'react-native'
 import MapView from 'react-native-maps'
 import styles from './styles'
-import { colors, textStyles } from '../../config/styles'
-import Icon from '../../components/Icon/index'
+import { colors, textStyles, buttonSize } from '../../config/styles'
 
 // Redux 
 import { connect } from 'react-redux'
 import {
     enterPreview,
-    enterLocationAdd,
     generateMapPins,
     getLocationDetails,
     setCardPosition,
+    setSelectedCard,
 } from '../../redux/actions'
 
 // Containers
-import { SearchBar, Preview, LocationPreview } from '../index'
+import {
+    Preview,
+    SearchBar,
+} from '../index'
 
 // Components
 import {
-    AddressBlock,
-    BottomButtonFilterButton,
-    BottomButtonListButton,
-    Button,
-    FilterList,
+    ButtonClickableTitle,
+    IconMulti,
     LocationCustomCallout,
     LocationHomeBottomButton,
     LocationHomeOptionsBar,
-    MapBlock,
     MapPin,
     OptionsBarButton,
-    // RatingBlock,
 } from '../../components'
+
 
 // Initialize Variables
 const { width, height } = Dimensions.get('window')
@@ -56,21 +54,25 @@ class LocationHome extends Component {
                 longitudeDelta: LONGITUDE_DELTA,
             },
             markers: [],
-            addLocation: false,
+            _locationAdd: false, /*required for location add modal*/
         }
 
         this._toggleOverlay = this._toggleOverlay.bind(this)
-        this._onPinPush = this._onPinPush.bind(this)
         this._preview = this._preview.bind(this)
+        this._setUserCurrentLocation = this._setUserCurrentLocation.bind(this)
         this._onRegionChangeComplete = this._onRegionChangeComplete.bind(this)
-        this._onLocationAddPress = this._onLocationAddPress.bind(this)
-        this._locationPreview = this._locationPreview.bind(this)
+        this._onFilterButtonPress = this._onFilterButtonPress.bind(this)
     }
     componentWillMount() {
         this.props.generateMapPins()
     }
     componentDidMount() {
         this._setUserCurrentLocation()
+    }
+    _toggleOverlay() {
+        this.setState({
+            overlay: !this.state.overlay,
+        })
     }
     _setUserCurrentLocation() {
         navigator.geolocation.getCurrentPosition(
@@ -99,100 +101,42 @@ class LocationHome extends Component {
             })
         })
     }
-
-    _toggleOverlay() {
-        this.setState({
-            overlay: !this.state.overlay,
-        })
-    }
-
-    _onPinPush(placeid) {
-        this.props.enterPreview(placeid)
-        this.props.setCardPosition('half')
-    }
-
-    _onLocationAddPress() {
-        this.props.enterLocationAdd()
-    }
-
-    _locationPreview() {
-        if (this.props.locationAdd === true) {
-            return (
-                <Preview>
-                    <ScrollView>
-                        <AddressBlock title={"RED Academy"} addressLine1={"1490 W Broadway #200"} addressLine2={"Vancouver, BC V6H 4E8"} />
-                        <FilterList showHeader={false} />
-                        <MapBlock lat={49.2634046} lng={-123.1404133} zoom={17} width={width - 80} height={120} pinScale={0.4} pinColor={'red'} iconName={'starbaby-face'} />
-                        <Button style={{ alignSelf: 'flex-end' }}>
-                            <Text style={textStyles.textStyle4}>SUBMIT</Text>
-                        </Button>
-                    </ScrollView>
-                </Preview>
-            )
-        }
-    }
-    _filterPreview() {
-        if (this.props.filter === true) {
-            return (
-                <Preview>
-                    <FilterList showHeader={true} />
-                    <Button style={{ alignSelf: 'flex-end' }}>
-                        <Text style={textStyles.textStyle4}>SUBMIT</Text>
-                    </Button>
-                </Preview>
-            )
-        }
-    }
-    /*
-                        <AddressBlock title={"RED Academy"} addressLine1={"1490 W Broadway #200"} addressLine2={"Vancouver, BC V6H 4E8"} />
-    */
     _onRegionChangeComplete(region) {
         /* as user moves around the map, update the current state
         */
         this.setState({ region })
     }
-
+    _onPinPush(placeId) {
+        // console.log('_onPinPush(placeId) ', placeId)
+        this.props.setSelectedCard('LocationPreview', placeId)
+    }
+    _onLocationAddPress() {
+        this.props.setSelectedCard('LocationAdd')
+    }
+    _onFilterButtonPress() {
+        this.props.setSelectedCard('LocationFilter')
+    }
     _preview() {
-        if (this.props.preview === true) {
-
-            {/* Go to the preview container to add to the card! */ }
+        if ((this.props.preview === true) || (this.props.cardVisible === true)) {
             return (
-                <Preview>
-                    <LocationPreview placeId={this.props.placeid} />
-                </Preview>
+                <Preview />
             )
         }
     }
-
-    // shouldComponentUpdate(nextProps, nextState) {
-    //     console.log('shouldComponentUpdate?')
-    //     if (this.state.pins !== nextState.pins) {
-    //     console.log('true')
-    //         return true
-    //     }
-    //     console.log('true')
-    //     return false
-    // }
-
     render() {
-        let bottomButtonStatus = null
-
-        if (this.state.overlay) {
-            bottomButtonStatus = <View><BottomButtonListButton /><BottomButtonFilterButton /></View>
-        }
-        const icon = this.props.pins.mapPin
+        // const icon = this.props.pins.mapPin
         const pins = this.props.pins.map((pin, i) => {
             return <MapView.Marker
                 key={i}
                 coordinate={{
-                    longitude: pin.location.long,
+                    longitude: pin.location.long, // not lng
                     latitude: pin.location.lat,
                 }}
-                onPress={() => this._onPinPush(pin.placeid)}
+                onPress={this._onPinPush.bind(this, pin.placeid)} // not placeId
                 >
                 <MapPin
                     scale="0.5"
-                    amenities={{changeTable: false, nursingRoom: true}}
+                    amenities={{ changeTable: false, nursingRoom: true }}
                     />
             </MapView.Marker>
         })
@@ -211,9 +155,8 @@ class LocationHome extends Component {
 
                     {pins}
 
-                    {this.state.addLocation ?
+                    {this.state.locationAdd ?
                         <MapView.Marker
-                            // ref={ref => { this.marker = ref } }    //required for closing pin when "add clicked"
                             coordinate={{ latitude: this.state.region.latitude, longitude: this.state.region.longitude }}
                             pinColor={colors.blush}
                             flat={true}
@@ -226,9 +169,7 @@ class LocationHome extends Component {
                                         <Text style={[{ padding: 5 }, textStyles.textStyle7]}>Press & Hold to Move</Text>
                                         <View>
                                             <TouchableOpacity onPress={() => this._onLocationAddPress()}>
-                                                <View style={styles.button}>
-                                                    <Icon style={styles.icon} name={"add"} size={60} />
-                                                </View>
+                                                <IconMulti name={"add"} size={buttonSize.optionBar} circular border iconColor={colors.blush} />
                                             </TouchableOpacity>
                                         </View>
                                     </View>
@@ -240,15 +181,13 @@ class LocationHome extends Component {
                     }
                 </MapView>
 
-                {(this.props.preview || this.props.locationAdd) ? null : (
-                    <View style={styles.optionsContainer}>
-                        <View style={styles.optionsBar}>
-                            <LocationHomeOptionsBar>
-                                <OptionsBarButton onPress={() => this._setUserCurrentLocation()} iconName={"location"} />
-                                <OptionsBarButton onPress={() => this.setState({ addLocation: !this.state.addLocation })} iconName={"add"} />
-                                <OptionsBarButton onPress={() => this._onPinPush()} iconName={"user"} />
-                            </LocationHomeOptionsBar>
-                        </View>
+                {(this.props.cardVisible) ? null : (
+                    <View style={styles.optionsBarContainer}>
+                        <LocationHomeOptionsBar>
+                            <OptionsBarButton onPress={() => this._setUserCurrentLocation()} iconName={"location"} />
+                            <OptionsBarButton onPress={() => this.setState({ locationAdd: !this.state.locationAdd })} iconName={"add"} />
+                            <OptionsBarButton onPress={() => alert('pressed user!')} iconName={"user"} />
+                        </LocationHomeOptionsBar>
                     </View>
 
                 )}
@@ -257,40 +196,44 @@ class LocationHome extends Component {
                 {this.state.overlay ? <View style={[styles.overlay]} /> : <View />}
 
                 {/* Filter options */}
-                <View style={styles.bottomButtons}>{bottomButtonStatus}</View>
-
-                {(this.props.preview || this.props.locationAdd) ? null : (
-                    <View style={{ position: 'absolute', bottom: 680 }}>
-                        <View style={styles.bottomContainer}>
-                            <SearchBar />
-                            <LocationHomeBottomButton onPress={this._toggleOverlay} />
+                {(this.state.overlay)
+                    ? (
+                        <View style={styles.bottomButtons}>
+                            <ButtonClickableTitle title={'List'} iconName={'sort-list'} iconSize={buttonSize.searchBar} onPress={() => { console.log('List Pressed') } } />
+                            <ButtonClickableTitle title={'Filter'} iconName={'filter'} iconSize={buttonSize.searchBar} onPress={this._onFilterButtonPress} />
                         </View>
+                    )
+                    : null
+                }
+                {(this.props.cardVisible) ? null : (
+                    <View style={styles.searchContainer}>
+                        <SearchBar />
+                        <LocationHomeBottomButton onPress={this._toggleOverlay} />
                     </View>
                 )}
 
                 {this._preview()}
-                {this._locationPreview()}
-
             </View>
         )
     }
 }
 
 const mapStateToProps = (state) => ({
-    preview: state.button.preview,
-    locationAdd: state.button.locationAdd,
-    pins: state.map.generatedLocationData,
+    selectedCard: state.card.selectedCard,
+    cardVisible: state.card.cardVisible,
     locationDetails: state.map.locationDetails,
+    pins: state.map.generatedLocationData,
     placeid: state.button.placeid,
     yVal: state.card.yVal,
+    preview: state.button.preview,
 })
 
 const mapDispatchToProps = {
     enterPreview,
-    enterLocationAdd,
     generateMapPins,
     getLocationDetails,
     setCardPosition,
+    setSelectedCard,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LocationHome)

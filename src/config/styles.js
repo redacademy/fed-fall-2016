@@ -23,7 +23,34 @@ export const colors = {
     whiteTwo: '#fdfdfd',
     whiteThree: '#f8f8f8',
 }
+/*
+import { colors, padding, shadows, buttonSize, textStyles } from '../../config/styles'
 
+        shadowOpacity: shadows.opacity,
+        shadowOffset: { width: shadows.offset.width, height: shadows.offset.width },
+        shadowRadius: shadows.radius,
+*/
+export const shadows = {
+    opacity: 0.6,
+    offset: { width: 1, height: 2 },
+    radius: 3,
+}
+export const padding = {
+    deviceTop: 30,
+    deviceRight: 20,
+    deviceBottom: 20,
+    deviceLeft: 20,
+    top: 10,
+    right: 10,
+    bottom: 10,
+    left: 10,
+}
+
+export const buttonSize = {
+    optionBar: 50,
+    searchBar: 50,
+    listFilter: 42,
+}
 //internal, for use 
 const fonts = {
     itimRegular: 'Itim-Regular',
@@ -52,11 +79,6 @@ const fontSize = {
         pt: 22.5,
         pixel: 30,
         em: 1.875,
-    },
-    eighteenPoint: {
-        pt: 18,
-        pixel: 24,
-        em: 1.5,
     },
     fifteenPoint: {
         pt: 15,
@@ -153,7 +175,7 @@ export const textStyles = {
     },
     textStyle16: {
         fontFamily: fonts.rubikLight,
-        fontSize: fontSize.eighteenPoint.pixel,
+        fontSize: 19,
         color: colors.darkGreyBlue,
     },
     textStyle17: {

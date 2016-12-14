@@ -1,8 +1,13 @@
-import { LOCATION_DATA_DETAILS, LOCATION_DATA_ALL } from '../actions'
+import { 
+    LOCATION_DATA_DETAILS, 
+    LOCATION_DATA_ALL, 
+    LOCATION_ISLOADING_RESET
+} from '../actions'
 
 const initialState = {
     generatedLocationData: [],
     locationDetails: {},
+    isLoading: true,
 }
 
 export default (state = initialState, action) => {
@@ -10,7 +15,9 @@ export default (state = initialState, action) => {
         case LOCATION_DATA_ALL:
             return {...state, generatedLocationData: action.payload }
         case LOCATION_DATA_DETAILS:
-            return {...state, locationDetails: action.payload.results[0] } 
+            return {...state, isLoading: false, locationDetails: action.payload.results[0] } 
+        case LOCATION_ISLOADING_RESET:
+            return {...state, isLoading: true }
         default:
             return state
     }

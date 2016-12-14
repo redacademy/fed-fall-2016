@@ -1,20 +1,21 @@
 import { StyleSheet, Dimensions } from 'react-native'
-import { colors } from '../../config/styles'
+import { colors, padding, shadows } from '../../config/styles'
 
 const { height, width } = Dimensions.get('window')
 
 export const styles = StyleSheet.create({
     cardContainer: {
-        backgroundColor: colors.whiteThree,
-        height: height * 0.945,
-        marginRight: 10,
-        marginLeft: 10,
-        marginTop: 30,
+        backgroundColor: colors.white,
+        height: height * 0.925,
+        marginTop: padding.deviceTop,
+        marginRight: padding.right,
+        marginLeft: padding.left,
+        marginBottom: padding.deviceBottom,
         shadowColor: colors.warmGrey,
-        shadowOpacity: 1,
-        shadowOffset: { width: 0.2, height: 1 },
-        shadowRadius: 2,
-        padding: 20,
+        shadowOpacity: shadows.opacity,
+        shadowOffset: { width: shadows.offset.width, height: shadows.offset.width },
+        shadowRadius: shadows.radius,
+        padding: padding.deviceLeft,
         width: width * 0.945,
         borderRadius: 12,
         flexDirection: 'column',
@@ -33,7 +34,7 @@ export const styles = StyleSheet.create({
         marginTop: -10,
         backgroundColor: colors.lightGrey,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
 })
 
