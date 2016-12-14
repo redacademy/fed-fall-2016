@@ -23,15 +23,16 @@ class LocationListView extends Component {
     }
 
     render() {
+        console.log('LocationListView: props ', this.props)
         return (
-            <View style={{ flex: 1, justifyContent: 'flex-start' }}>
+            <View style={styles.container}>
                 <View style={styles.title}>
                     <Text>List View</Text>
                 </View>
                 <ScrollView>
                     {
                         this.props.locationList.map((location, i) => (
-                            <View key={`lvi${i}`} style={{ height: 100 }}>
+                            <View key={`lvi${i}`} style={{ height: 150 }}>
                                 <ListViewItem location={location} />
                             </View>
                         ))
@@ -43,7 +44,7 @@ class LocationListView extends Component {
 }
 const mapStateToProps = (state) => ({
     pins: state.map.generatedLocationData,
-    locationList: state.map.locationList
+    locationList: state.map.locationList,
 })
 
 const mapDispatchToProps = {
@@ -51,18 +52,3 @@ const mapDispatchToProps = {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LocationListView)
-
-    // <View style= {{ flex: 1, justifyContent: 'flex-start' }}>
-    //     <View style={styles.title}>
-    //         <Text>List View</Text>
-    //     </View>
-    //     <ScrollView>
-    //         {
-    //             this.props.pins.map((pin, i) => (
-    //                 <View key={`lvi${i}`} style={{ height: 100 }}>
-    //                     <ListViewItem placeid={pin.placeid} />
-    //                 </View>
-    //             ))
-    //         }
-    //     </ScrollView>
-    //     </View >

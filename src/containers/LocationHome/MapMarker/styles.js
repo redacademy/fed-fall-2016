@@ -1,6 +1,6 @@
 import { StyleSheet, Dimensions } from 'react-native'
 const { height } = Dimensions.get('window')
-import { colors } from '../../../config/styles'
+import { colors, buttonSize } from '../../../config/styles'
 
 const styles = StyleSheet.create({
     mapContainer: {
@@ -17,9 +17,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: colors.white,
-        height: 48,
-        width: 48,
-        borderRadius: 24,
+        height: buttonSize.optionBar,
+        width: buttonSize.optionBar,
+        borderRadius: buttonSize.optionBar*0.5,
         borderColor: colors.blush,
         borderWidth: 2,
     },

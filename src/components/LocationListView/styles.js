@@ -4,6 +4,7 @@ import { colors } from '../../config/styles'
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        justifyContent: 'flex-start'
     },
     separator: {
         flex: 1,
