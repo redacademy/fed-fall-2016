@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
-import { View } from 'react-native'
+import { Text, View, TouchableOpacity, Dimensions } from 'react-native'
 import MapView from 'react-native-maps'
 import styles from './styles'
-import { buttonSize } from '../../config/styles'
+import { buttonSize, colors, textStyles } from '../../config/styles'
 import autoBind from 'react-autobind'
+const { width, height } = Dimensions.get('window')
+const w = width*0.5, h = height*0.25
 
 // Redux 
 import { connect } from 'react-redux'
@@ -13,10 +15,15 @@ import {
     getLocationDetails,
     setCardPosition,
     setSelectedCard,
+    locationAddButton,
 } from '../../redux/actions'
 
-// Containers
 import {
+    BottomButton,
+    LocationCustomCallout,
+    MapMarker,
+    OptionsBarButton,
+    OptionsBar,
     Preview,
     SearchBar,
 } from '../index'
@@ -24,13 +31,10 @@ import {
 // Components
 import {
     ButtonClickableTitle,
+    Icon,
     IconMulti,
     MapPin,
-    OptionsBarButton,
-    OptionsBar,
-    BottomButton,
-    MapMarker
-} from '../../components' 
+} from '../../components'
 
 import region from './region'
 
@@ -43,7 +47,6 @@ class LocationHome extends Component {
             overlay: false,
             region,
             markers: [],
-            _locationAdd: false, /*required for location add modal*/
         }
     }
     componentWillMount() {
@@ -59,7 +62,7 @@ class LocationHome extends Component {
         navigator.geolocation.getCurrentPosition(
             ({ coords }) => {
                 this.setState({
-                    region:Object.assign({}, region,  {
+                    region: Object.assign({}, region, {
                         latitude: coords.latitude,
                         longitude: coords.longitude,
                     }),
@@ -72,12 +75,12 @@ class LocationHome extends Component {
         this.watchID = navigator.geolocation.watchPosition(
             ({ coords }) => {
                 this.setState({
-                   region:Object.assign({}, region,  {
+                    region: Object.assign({}, region, {
                         latitude: coords.latitude,
                         longitude: coords.longitude,
                     }),
+                })
             })
-        })
     }
     _onRegionChangeComplete(region) {
         /* as user moves around the map, update the current state
@@ -88,6 +91,9 @@ class LocationHome extends Component {
         this.props.setSelectedCard('LocationPreview', placeid)
     }
     _onLocationAddPress() {
+        this.props.locationAddButton(!this.props.locationAdd)
+    }
+    _locationAddPress() {
         this.props.setSelectedCard('LocationAdd')
     }
     _preview() {
@@ -96,14 +102,13 @@ class LocationHome extends Component {
     }
     render() {
         const pins = this.props.pins.map((pin, i) => {
-            console.log('pin: ', pin)
             return <MapView.Marker
                 key={i}
                 coordinate={{
                     longitude: pin.location.long, // not lng
                     latitude: pin.location.lat,
                 }}
-                onPress={this._onPinPush.bind(this, pin.placeid)} // not placeid
+                onPress={ this._onPinPush.bind(this, pin.placeid)} // not placeid
                 >
                 <MapPin
                     scale="0.5"
@@ -125,8 +130,28 @@ class LocationHome extends Component {
 
                     {pins}
 
-                    {this.state._locationAdd ?
-                        <MapMarker />
+                    {(this.props.locationAdd) ?
+                        <MapView.Marker
+                            coordinate={{ latitude: this.state.region.latitude, longitude: this.state.region.longitude }}
+                            pinColor={colors.blush}
+                            flat={true}
+                            >
+                            <MapView.Callout tooltip={true} style={{ width: w, height: h, backgroundColor: 'transparent' }} setSelected={true}>
+                                <LocationCustomCallout>
+                                    <View style={styles.locationAddContainer}>
+                                        <Text style={textStyles.textStyle6}>New Location</Text>
+                                        <Text style={[{ padding: 5 }, textStyles.textStyle7]}>Press & Hold to Move</Text>
+                                        <View>
+                                            <TouchableOpacity onPress={() => this._locationAddPress()}>
+                                                <View style={styles.button}>
+                                                <IconMulti name={"add"} size={buttonSize.optionBar} circular border iconColor={colors.blush} />
+                                                </View>
+                                            </TouchableOpacity>
+                                        </View>
+                                    </View>
+                                </LocationCustomCallout>
+                            </MapView.Callout>
+                        </MapView.Marker>
                         :
                         null
                     }
@@ -136,8 +161,8 @@ class LocationHome extends Component {
                     <View style={styles.optionsBarContainer}>
                         <OptionsBar>
                             <OptionsBarButton onPress={() => this._setUserCurrentLocation()} iconName={"location"} />
-                            <OptionsBarButton onPress={() => this.setState({ _addLocation: !this.state._addLocation })} iconName={"add"} />
-                            <OptionsBarButton onPress={() => this._onPinPush()} iconName={"user"} />
+                            <OptionsBarButton onPress={() => this._onLocationAddPress()} iconName={"add"} />
+                            <OptionsBarButton onPress={() => console.log('user button pressed')} iconName={"user"} />
                         </OptionsBar>
                     </View>
 
@@ -178,6 +203,7 @@ const mapStateToProps = (state) => ({
     placeid: state.button.placeid,
     yVal: state.card.yVal,
     preview: state.button.preview,
+    locationAdd: state.card.locationAdd,
 })
 
 const mapDispatchToProps = {
@@ -186,6 +212,7 @@ const mapDispatchToProps = {
     getLocationDetails,
     setCardPosition,
     setSelectedCard,
+    locationAddButton,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LocationHome)
