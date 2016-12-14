@@ -46,12 +46,13 @@ class AmenitiesBar extends Component {
                 }
                 style={styles.amenitiesContainer}
                 >
-                {amenities.privacy ? iconRenderer('mask', size) : null}
+                {amenities.private ? iconRenderer('mask', size) : null}
                 {amenities.changeTable ? iconRenderer('baby-change-table', size) : null}
-                {amenities.washroomFemale ? iconRenderer('female', size) : null}
-                {amenities.washroomMale ? iconRenderer('male', size) : null}
+                {amenities.nursingRoom ? iconRenderer('breast-feeding', size) : null}
+                {amenities.washroomWomen ? iconRenderer('female', size) : null}
+                {amenities.washroomMen ? iconRenderer('male', size) : null}
                 {amenities.washroomFamily ? iconRenderer('family', size) : null}
-                {amenities.requiresKey ? iconRenderer('key', size) : null}
+                {amenities.keyRequired ? iconRenderer('key', size) : null}
                 {amenities.strollerAccessible ? iconRenderer('stroller-accessible', size) : iconRenderer('stroller-inaccessible', size)}
             </View>
         )
