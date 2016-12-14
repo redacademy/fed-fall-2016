@@ -14,6 +14,7 @@ import { connect } from 'react-redux'
 import { getStaticMap } from './getStaticMap'
 import {
     setCardPosition,
+    setSelectedCard,
 } from '../../redux/actions'
 const { width, height, } = Dimensions.get('window')
 
@@ -31,9 +32,9 @@ class ListViewItem extends Component {
             const lng = this.props.location.geometry.location.lng
             const address = this.props.location.formatted_address
             const addressArray = address.split(',')
-
+            console.log("props>>>>>>", this.props)
             return (
-                <TouchableOpacity onPress={() => this.props.setSelectedCard('LocationList')} >
+                <TouchableOpacity onPress={() => this.props.setSelectedCard('LocationPreview', this.props.placeid)} >
                     <View style={styles.locationContainer}>
                         <Image
                             style={styles.map}
@@ -56,7 +57,7 @@ class ListViewItem extends Component {
                                 }}
                                 />
                                 </View>
-                            <Text style={styles.locationDetails}>32 Metres</Text>
+                            <Text style={styles.locationDetails}>22 metres</Text>
                         </View>
 
                     </View>
@@ -65,10 +66,17 @@ class ListViewItem extends Component {
         }
     }
 }
-
-
 const mapStateToProps = (state) => ({
+    selectedCard: state.card.selectedCard,
+    placeid: state.button.placeid,
     isLoading: state.map.isLoading,
 })
 
-export default connect(mapStateToProps)(ListViewItem)
+
+const mapDispatchToProps = {
+    setCardPosition,
+    setSelectedCard,
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListViewItem)
