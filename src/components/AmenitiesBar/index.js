@@ -32,10 +32,18 @@ class AmenitiesBar extends Component {
     }
     render() {
         const { amenities } = this.props
-        const { size } = this.state
+        const size = this.props.size ? this.props.size : this.state.size
         return (
             <View
-                onLayout={(event) => this.setState({ size: event.nativeEvent.layout.width / 4 })}
+                onLayout={
+                    (event) => {
+                        if (!this.props.size) {
+                            this.setState({
+                                size: event.nativeEvent.layout.width / 4,
+                            })
+                        }
+                    }
+                }
                 style={styles.amenitiesContainer}
                 >
                 {amenities.privacy ? iconRenderer('mask', size) : null}
