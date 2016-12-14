@@ -1,13 +1,15 @@
-import { StyleSheet, Dimensions } from 'react-native'
-import { colors } from '../../config/styles'
-const { width, height } = Dimensions.get('window')
+import { StyleSheet } from 'react-native'
+import { padding } from '../../config/styles'
 
 const styles = StyleSheet.create({
-  buttonText: {
-      color: colors.white,
-      fontWeight: 'bold',
-      fontSize: 20,
-  }
+    filterContainer: {
+        paddingTop: padding.deviceTop,
+        paddingBottom: padding.deviceBottom,
+    },
+    buttonContainer: {
+        paddingTop: padding.deviceTop,
+        paddingBottom: padding.bottom,
+    },
 })
 
 export default styles
