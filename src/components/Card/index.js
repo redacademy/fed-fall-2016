@@ -7,6 +7,8 @@ import {
     LocationFilter,
     LocationPreview,
 } from '../../containers/'
+
+import { LocationListView } from '../../components'
 const { width } = Dimensions.get('window')
 
 class Card extends Component {
@@ -29,6 +31,8 @@ class Card extends Component {
                             />)
                 case 'LocationFilter':
                     return <LocationFilter />
+                case 'LocationList':
+                    return <LocationListView />
                 case 'LocationPreview':
                     return <LocationPreview placeId={this.props.placeId} />
                 default:

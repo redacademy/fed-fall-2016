@@ -37,8 +37,6 @@ import {
     // RatingBlock,
 } from '../../components' 
 
-import LocationAddPreview from './LocationAddPreview'
-
 import region from './region'
 
 const { width, height } = Dimensions.get('window')
@@ -61,6 +59,7 @@ class LocationHome extends Component {
         this._setUserCurrentLocation = this._setUserCurrentLocation.bind(this)
         this._onRegionChangeComplete = this._onRegionChangeComplete.bind(this)
         this._onFilterButtonPress = this._onFilterButtonPress.bind(this)
+        this._onListButtonPress = this._onListButtonPress.bind(this)
 
     }
     componentWillMount() {
@@ -116,6 +115,10 @@ class LocationHome extends Component {
         this.props.setCardPosition('full')
 
     }
+    _onListButtonPress() {
+        this.props.setSelectedCard('LocationList')
+        this.props.setCardPosition('full')
+    }
 
     _preview() {
         if ((this.props.preview === true) || (this.props.cardVisible === true)) {
@@ -140,7 +143,7 @@ class LocationHome extends Component {
         if (this.state.overlay) {
             bottomButtonStatus = (
                 <View>
-                    <BottomButtonListButton />
+                    <BottomButtonListButton  onPress={this._onListButtonPress} />
                     <BottomButtonFilterButton onPress={this._onFilterButtonPress} />
                 </View>
             )

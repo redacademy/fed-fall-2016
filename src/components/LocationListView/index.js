@@ -1,44 +1,68 @@
 import React, { Component } from 'react'
 import {
     View,
-    ListView,
+    ScrollView,
     Text
 } from 'react-native'
 import styles from './styles'
 import ListViewItem from '../ListViewItem'
-import { mockLocations } from '../../assets/mockData.js'
+import { getLocationDetails } from '../../redux/actions'
+import { connect } from 'react-redux'
+
 
 class LocationListView extends Component {
-    constructor(props) {
-        super(props)
-        this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 })
-        this.state = {
-            dataSource: this.ds.cloneWithRows(mockLocations),
-        }
+
+    componentWillMount() {
+        this.props.pins.forEach((pin) => {
+            this.props.getLocationDetails(pin.placeid)
+        });
     }
+
+    componentWillReceiveProps(nextProps) {
+        console.log(nextProps.locationList);
+    }
+
     render() {
-        console.log(this.state.dataSource)
         return (
-            <View>
+            <View style={{ flex: 1, justifyContent: 'flex-start' }}>
                 <View style={styles.title}>
                     <Text>List View</Text>
                 </View>
-                <ListView
-                    dataSource={this.state.dataSource}
-                    renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
-                    renderRow={(data) => <ListViewItem placeId={data} />}
-                    />
+                <ScrollView>
+                    {
+                        this.props.locationList.map((location, i) => (
+                            <View key={`lvi${i}`} style={{ height: 100 }}>
+                                <ListViewItem location={location} />
+                            </View>
+                        ))
+                    }
+                </ScrollView>
             </View>
         )
     }
 }
+const mapStateToProps = (state) => ({
+    pins: state.map.generatedLocationData,
+    locationList: state.map.locationList
+})
 
-export default LocationListView
-
-
-function renderSeparator(sectionId, rowId) {
- return (<View />)
+const mapDispatchToProps = {
+    getLocationDetails,
 }
 
+export default connect(mapStateToProps, mapDispatchToProps)(LocationListView)
 
-
+    // <View style= {{ flex: 1, justifyContent: 'flex-start' }}>
+    //     <View style={styles.title}>
+    //         <Text>List View</Text>
+    //     </View>
+    //     <ScrollView>
+    //         {
+    //             this.props.pins.map((pin, i) => (
+    //                 <View key={`lvi${i}`} style={{ height: 100 }}>
+    //                     <ListViewItem placeid={pin.placeid} />
+    //                 </View>
+    //             ))
+    //         }
+    //     </ScrollView>
+    //     </View >

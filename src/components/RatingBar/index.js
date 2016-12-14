@@ -21,7 +21,6 @@ class RatingBar extends Component {
         }
     }
     render() {
-        console.log(this)
         return (
             <View
                 onLayout={

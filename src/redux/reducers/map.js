@@ -1,9 +1,10 @@
-import { LOCATION_DATA_DETAILS, LOCATION_DATA_ALL } from '../actions'
+import { LOCATION_DATA_DETAILS, LOCATION_DATA_ALL, LOCATION_LIST_DETAILS } from '../actions'
 
 const initialState = {
     generatedLocationData: [],
-    locationDetails: {},
+    locationList: [],
     isLoading: true,
+    isLoadingList: true,
 }
 
 export default (state = initialState, action) => {
@@ -11,8 +12,10 @@ export default (state = initialState, action) => {
         case LOCATION_DATA_ALL:
             return {...state, generatedLocationData: action.payload }
         case LOCATION_DATA_DETAILS:
-        console.log(action.payload)
-            return {...state, isLoading: false, locationDetails: action.payload } 
+            const newList = state.locationList.concat(action.payload.results)
+            return {...state, isLoading: false, locationList:  newList} 
+        case LOCATION_LIST_DETAILS:
+            return {...state, isLoadingList: false, locationList: action.payload}
         default:
             return state
     }
