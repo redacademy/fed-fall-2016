@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View } from 'react-native'
+import { View, Text } from 'react-native'
 import { IconMulti } from '../../components'
 import {
     rate,
@@ -32,6 +32,7 @@ class RatingButton extends Component {
         switch(this.state.step) {
             case 1:
                 return (
+                    <View>
                     <View style={{height: 130, width: 130, marginLeft: 10}}>
                         <HalfButton
                             onPressTopFn={() => {
@@ -45,10 +46,21 @@ class RatingButton extends Component {
                             }}
                         />
                     </View>
+                    <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+                            <Text style={{color: 'gray', marginTop: 5, marginBottom: 10}}>{this.props.rateeTitle}</Text>
+                        </View>
+                        </View>
                 )
             case 2: 
                 const i = this.props[this.props.attribute] ? icon.up : icon.down 
-                return <IconMulti name={i.name} fillColor={i.color} onPressFn={() => this.setState({ step: 1})} iconColor="white" size={130} border />
+                return (
+                    <View>
+                        <IconMulti name={i.name} fillColor={i.color} onPressFn={() => this.setState({ step: 1})} iconColor="white" size={130} border />
+                        <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+                            <Text style={{color: 'gray', marginTop: 5, marginBottom: 10, fontSize: 12}}>{this.props.rateeTitle}</Text>
+                        </View>
+                    </View>
+                )
             default: 
                 return (
                     <View>
@@ -59,6 +71,9 @@ class RatingButton extends Component {
                             border
                             onPressFn={() => this.setState({ step: 1 })}
                         />
+                        <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+                            <Text style={{color: 'gray', marginTop: 5, marginBottom: 10}}>{this.props.rateeTitle}</Text>
+                        </View>
                     </View>
                 )
         }

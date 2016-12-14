@@ -9,7 +9,7 @@ import {
     submitRating,
 } from '../../redux/actions'
 import styles from './styles'
-import { Card, AddressBlock, Button, CardHeader } from '../../components'
+import { Card, AddressBlock, Button, CardHeaderTitle } from '../../components'
 import { textStyles } from '../../config/styles'
 import { RatingButton } from '../../containers'
 
@@ -19,10 +19,10 @@ class Preview extends Component {
 
         this.position = new Animated.Value(this.props.cardPosition)
         this.ratees = [
-            { attribute: 'quality', iconName: 'quality-ribbon'},
-            { attribute: 'cleanliness', iconName: 'cleanliness'},
-            { attribute: 'nursingFriendly', iconName: 'breast-feeding'},
-            { attribute: 'quiet', iconName: 'quiet'}                            
+            { attribute: 'quality', iconName: 'quality-ribbon', title: 'QUALITY'},
+            { attribute: 'cleanliness', iconName: 'cleanliness', title: 'CLEAN'},
+            { attribute: 'nursingFriendly', iconName: 'breast-feeding', title: 'NURSING FRIENDLY'},
+            { attribute: 'quiet', iconName: 'quiet', title: 'QUIET'}                            
         ]
     }
     
@@ -101,7 +101,8 @@ class Preview extends Component {
                     }}
                  >
                     <Card>
-                        {/* ADD CARD HEADER IN HERE */}
+                        {this.props.rateLocation ? <CardHeaderTitle amenities={{nursingRoom: true}} title="Please rate" /> : null}
+                        
                         
                         {this.props.feedback ? <Text>Thank you for your rating.</Text> : null}
                         {this.props.rateLocation ? null : <Text onPress={this.props.enterRateLocation}>Rate Icon</Text>}
@@ -113,9 +114,8 @@ class Preview extends Component {
                                 {
                                     this.ratees.map((ratee) => {
                                         return <View style={styles.ratingButton}>
-                                            <RatingButton style={styles.ratingButton} attribute={ratee.attribute} iconName={ratee.iconName} />
+                                            <RatingButton style={styles.ratingButton} rateeTitle={ratee.title} attribute={ratee.attribute} iconName={ratee.iconName} />
                                         </View>
-                    
                                     })
                                 }
                                 </View>
