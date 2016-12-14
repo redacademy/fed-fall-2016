@@ -106,6 +106,10 @@ class LocationHome extends Component {
     _onFilterButtonPress() {
         this.props.setSelectedCard('LocationFilter')
     }
+    _onListButtonPress() {
+        this.props.setSelectedCard('LocationList')
+    }
+
     _preview() {
         if ((this.props.preview === true) || (this.props.cardVisible === true)) {
             return (
