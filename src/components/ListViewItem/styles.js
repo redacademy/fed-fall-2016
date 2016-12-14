@@ -48,6 +48,8 @@ const styles = StyleSheet.create({
     ratingBar: {
         // margin: 1,
         height: 40,
+        minWidth: 180,
+        maxWidth: 180,
     },
 })
 
