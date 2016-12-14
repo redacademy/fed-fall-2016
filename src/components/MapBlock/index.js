@@ -16,10 +16,8 @@ class MapBlock extends Component {
         iconName: PropTypes.string.isRequired,
     }
     render() {
-        console.log(this.props)
         const url = `https://maps.googleapis.com/maps/api/staticmap?center=${this.props.lat},${this.props.lng}&zoom=${this.props.zoom}&size=${this.props.width}x${this.props.height}&maptype=roadmap&label:%20&key=AIzaSyB2WkbsqNDjsiz8i831IVn1piVIq5OeiCI`
 
-        console.log('url: ', url)
         return (
             <Image
                 style={{
