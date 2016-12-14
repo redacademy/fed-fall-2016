@@ -26,8 +26,8 @@ class LocationListView extends Component {
         console.log('LocationListView: props ', this.props)
         return (
             <View style={styles.container}>
-                <View style={styles.title}>
-                    <Text>List View</Text>
+                <View style={styles.titleBox}>
+                    <Text style={styles.title}>List View</Text>
                 </View>
                 <ScrollView>
                     {

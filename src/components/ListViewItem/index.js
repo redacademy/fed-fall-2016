@@ -1,9 +1,10 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 import {
     View,
     Text,
     Image,
-    TouchableOpacity
+    TouchableOpacity,
+    Dimensions
 } from 'react-native'
 import styles from './styles'
 import Loader from '../Loader'
@@ -11,7 +12,12 @@ import RatingBar from '../RatingBar'
 import MapPin from '../MapPin'
 import { connect } from 'react-redux'
 import { getStaticMap } from './getStaticMap'
-import { colors } from '../../config/styles'
+import {
+    setCardPosition,
+} from '../../redux/actions'
+const { width, height, } = Dimensions.get('window')
+
+// import { colors } from '../../config/styles'
 
 class ListViewItem extends Component {
 
@@ -21,14 +27,13 @@ class ListViewItem extends Component {
                 <Loader />
             )
         } else {
-            // const loc = this.props.locationDetails
             const lat = this.props.location.geometry.location.lat
             const lng = this.props.location.geometry.location.lng
             const address = this.props.location.formatted_address
             const addressArray = address.split(',')
 
             return (
-                <TouchableOpacity onPress={() => { } } >
+                <TouchableOpacity onPress={() => this.props.setSelectedCard('LocationList')} >
                     <View style={styles.locationContainer}>
                         <Image
                             style={styles.map}
@@ -36,11 +41,21 @@ class ListViewItem extends Component {
                             >
                             <MapPin scale="0.4" amenities={{ nursingRoom: true, changeTable: true }} />
                         </Image>
-                        <View style={styles.detailsContainer}>
+                        <View>
                             <Text style={styles.locationTitle}>{addressArray[0]}</Text>
                             <Text style={styles.locationDetails}>
                                 {addressArray[1]}
                             </Text>
+                            <View style={styles.ratingBar}>
+                            <RatingBar
+                                ratings={{
+                                    quality: 'HIGH',
+                                    clean: 'MEDIUM',
+                                    nursing: 'LOW',
+                                    quiet: 'MEDIUM',
+                                }}
+                                />
+                                </View>
                             <Text style={styles.locationDetails}>32 Metres</Text>
                         </View>
 
@@ -50,6 +65,8 @@ class ListViewItem extends Component {
         }
     }
 }
+
+
 const mapStateToProps = (state) => ({
     isLoading: state.map.isLoading,
 })
