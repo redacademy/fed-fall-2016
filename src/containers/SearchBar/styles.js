@@ -1,23 +1,21 @@
-import { StyleSheet, Dimensions } from 'react-native'
-import { colors } from '../../config/styles'
+import { StyleSheet } from 'react-native'
+import { colors, shadows, buttonSize } from '../../config/styles'
 
 const styles = StyleSheet.create({
     TextInput: {
-        height: 52,
-        width: Dimensions.get('window').width / 1.45,
-        borderRadius: 22,
-        paddingTop: 5,
-        paddingBottom: 5,
-        paddingLeft: 20,
-        paddingRight: 20,
+        flex: 4,
+        height: buttonSize.searchBar,
+        borderRadius: buttonSize.searchBar/2,
+        paddingTop: 5,      //inside text input area
+        paddingBottom: 5,   //inside text input area
+        paddingLeft: 20,    //inside text input area
+        paddingRight: 20,   //inside text input area
         backgroundColor: colors.white,
         fontSize: 18,
-        marginLeft: 15,
-        marginRight: 15,
         shadowColor: colors.warmGrey,
-        shadowOpacity: 0.6,
-        shadowOffset: { width: 1, height: -2 },
-        shadowRadius: 3,
+        shadowOpacity: shadows.opacity,
+        shadowOffset: { width: shadows.offset.width, height: shadows.offset.width },
+        shadowRadius: shadows.radius,
     },
 })
 

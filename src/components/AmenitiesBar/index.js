@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { View } from 'react-native'
 import IconMulti from '../IconMulti'
+import styles from './styles'
 
 const iconRenderer = (name, size) => (
     <View
@@ -35,12 +36,7 @@ class AmenitiesBar extends Component {
         return (
             <View
                 onLayout={(event) => this.setState({ size: event.nativeEvent.layout.width / 4 })}
-                style={{
-                    flexDirection: 'row',
-                    flexWrap: 'wrap',
-                    alignItems: 'flex-start',
-                    justifyContent: 'space-between',
-                }}
+                style={styles.amenitiesContainer}
                 >
                 {amenities.privacy ? iconRenderer('mask', size) : null}
                 {amenities.changeTable ? iconRenderer('baby-change-table', size) : null}

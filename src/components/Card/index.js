@@ -1,5 +1,5 @@
 import React, { Component, } from 'react'
-import { View, Text, Dimensions } from 'react-native'
+import { View, Text } from 'react-native'
 import { connect } from 'react-redux'
 import { styles } from './styles'
 import {
@@ -7,7 +7,6 @@ import {
     LocationFilter,
     LocationPreview,
 } from '../../containers/'
-const { width } = Dimensions.get('window')
 
 class Card extends Component {
 
@@ -25,7 +24,7 @@ class Card extends Component {
                     return (
                         <LocationAdd
                             title={"RED Academy"} addressLine1={"1490 W Broadway #200"} addressLine2={"Vancouver, BC V6H 4E8"}
-                            lat={49.2634046} lng={-123.1404133} width={width - 80} height={120}
+                            lat={49.2634046} lng={-123.1404133}
                             />)
                 case 'LocationFilter':
                     return <LocationFilter />

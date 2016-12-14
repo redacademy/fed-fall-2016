@@ -1,6 +1,6 @@
 import { StyleSheet, Dimensions } from 'react-native'
 const { width, height } = Dimensions.get('window')
-import { colors } from '../../config/styles'
+import { colors, padding, buttonSize } from '../../config/styles'
 
 const styles = StyleSheet.create({
     mainContainer: {
@@ -10,37 +10,42 @@ const styles = StyleSheet.create({
     mapContainer: {
         height: height,
     },
-    bottomContainer: {
-        flexDirection: 'row',
+    searchContainer: {
+        position: 'absolute', 
+        bottom: height+padding.deviceBottom,
         zIndex: 1,
+        flex: 1,
+        flexDirection: 'row',
+        paddingLeft: padding.deviceLeft,
+        paddingRight: padding.deviceRight,
     },
     overlay: {
         flex: 1,
         position: 'absolute',
         left: 0,
         top: 0,
-        opacity: 0.5,
-        backgroundColor: colors.white,
+        opacity: 0.61,
+        backgroundColor: colors.warmGrey,
         width: width,
         height: height,
 
     },
-    optionsContainer: {
+    optionsBarContainer: {
+        // marginTop: padding.deviceTop,
+        height: buttonSize.optionBar*3+padding.bottom*3,
+        width: buttonSize.optionBar,
+        minWidth: buttonSize.optionBar,
+        minHeight: buttonSize.optionBar*3,
         position: 'absolute',
-        top: 0,
-        right: 0,
-    },
-    optionsBar: {
-        height: 225,
-        width: 80,
-        position: 'absolute',
-        top: 5,
-        right: 3,
+        top: padding.deviceTop,
+        right: padding.deviceRight,
+        alignItems: 'center',
+        justifyContent: 'flex-end',
     },
     bottomButtons: {
         alignItems: 'flex-end',
-        height: 100,
-        paddingRight: 21,
+        height: buttonSize.listFilter*2 + padding.bottom,
+        paddingRight: padding.deviceRight+(buttonSize.searchBar-buttonSize.listFilter)/2,
         bottom: 750,
         right: 0,
         position: 'absolute',
@@ -50,20 +55,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         alignItems: 'center',
         justifyContent: 'center',
-    },
-    button: {                       // new location button on custom callout
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: colors.white,
-        height: 48,
-        width: 48,
-        borderRadius: 24,
-        borderColor: colors.blush,
-        borderWidth: 2,
-    },
-    icon: {                       // icon for new location button on custom callout
-        color: colors.blush,
-        fontSize: 20,
     },
 })
 
