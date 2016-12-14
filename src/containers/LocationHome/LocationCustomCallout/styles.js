@@ -1,7 +1,7 @@
 import {
     StyleSheet,
 } from 'react-native'
-import { colors } from '../../config/styles'
+import { colors, shadows } from '../../../config/styles'
 
 export const styles = StyleSheet.create({
     container: {
@@ -20,9 +20,9 @@ export const styles = StyleSheet.create({
         borderColor: colors.white,
         borderWidth: 0.5,
         shadowColor: colors.warmGrey,
-        shadowOpacity: 1,
-        shadowOffset: { width: 0.2, height: 1 },
-        shadowRadius: 1,
+        shadowOpacity: shadows.opacity,
+        shadowOffset: { width: shadows.offset.width, height: shadows.offset.width },
+        shadowRadius: shadows.radius,
     },
     amount: {
         flex: 1,
@@ -43,8 +43,8 @@ export const styles = StyleSheet.create({
         alignSelf: 'center',
         marginTop: -0.5,
         shadowColor: colors.warmGrey,
-        shadowOpacity: 1,
-        shadowOffset: { width: 0.2, height: 1 },
-        shadowRadius: 1,
+        shadowOpacity: shadows.opacity,
+        shadowOffset: { width: shadows.offset.width, height: shadows.offset.width },
+        shadowRadius: shadows.radius,
     },
 })

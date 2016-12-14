@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { colors } from '../../../config/styles'
+import { buttonSize, colors, padding, shadows } from '../../../config/styles'
 
 const styles = StyleSheet.create({
     container: {
@@ -12,14 +12,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: colors.white,
-        height: 60,
-        width: 60,
-        borderRadius: 30,
+        height: buttonSize.searchBar,
+        width: buttonSize.searchBar,
+        borderRadius: buttonSize.searchBar*0.5,
         shadowColor: colors.warmGrey,
-        shadowOpacity: 0.6,
-        shadowOffset: { width: 1, height: -2 },
-        shadowRadius: 3,
-        marginLeft: 10,
+        shadowOpacity: shadows.opacity,
+        shadowOffset: { width: shadows.offset.width, height: shadows.offset.width },
+        shadowRadius: shadows.radius,
+        marginLeft: padding.left,
     },
     icon: {
         color: colors.warmGrey,

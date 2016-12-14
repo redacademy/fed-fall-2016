@@ -32,7 +32,7 @@ class LocationPreview extends Component {
             isLoading: true,
         }
 
-        this.showDirections = this.showDirections.bind(this)
+        this._showDirections = this._showDirections.bind(this)
     }
     componentWillMount() {
         this.props.getLocationDetails(this.props.placeid)
@@ -46,7 +46,7 @@ class LocationPreview extends Component {
             (error) => console.log(error),
             { enableHighAccuracy: true })
     }
-    showDirections() {
+    _showDirections() {
         const userLatitude = this.state.latitude
         const userLongitude = this.state.longitude
         const destinationLatitude = this.props.locationDetails.geometry.location.lat
@@ -60,34 +60,46 @@ class LocationPreview extends Component {
                 <Loader />
             )
         } else {
-            const lat = this.props.locationDetails.geometry.location.lat
-            const lng = this.props.locationDetails.geometry.location.lng
-            const address = this.props.locationDetails.formatted_address
+            const result = this.props.locationList[0]
+            const lat = result.geometry.location.lat
+            const lng = result.geometry.location.lng
+            const address = result.formatted_address
             const addressArray = address.split(',')
+            let title='', addressLine1='', addressLine2=''
 
+            if(addressArray[0]) title = addressArray[0]
+            if(addressArray[1]) addressLine1 = addressArray[1]
+            if(addressArray[2]) addressLine2 = addressArray[2]
+            if(addressArray[3]) addressLine2 = addressLine2+addressArray[3]
+
+            if(result){
             return (
                 <ScrollView>
-                    <AddressBlock title={addressArray[0]} addressLine1={addressArray[1]} addressLine2={addressArray[2]} />
+                    <AddressBlock title={title} addressLine1={addressLine1} addressLine2={addressLine2} />
                     <View style={styles.filterContainer}>
                         <FilterList showHeader={false} />
                     </View>
 
                     <MapBlock lat={lat} lng={lng} zoom={18} width={w} height={h} pinScale={0.4} pinColor={colors.salmon} iconName={'starbaby-face'} />
                     <View style={styles.buttonContainer}>
-                        <Button onPressFn={this.showDirections} style={{ justifyContent: 'flex-end' }}>
+                        <Button onPressFn={this._showDirections}>
                             <Text style={textStyles.textStyle4}>GO</Text>
                         </Button>
                     </View>
 
                 </ScrollView>
-            )
+            )} else {
+                return (
+                    <Text>Location Details Missing for placeid: {this.props.placeid}</Text>
+                )
+            }
+
         }
     }
 }
 
 const mapStateToProps = (state) => ({
-    placeid: state.button.placeid,
-    locationDetails: state.map.locationDetails,
+    locationList: state.map.locationList,
     isLoading: state.map.isLoading,
 })
 
