@@ -32,6 +32,7 @@ export const LOCATION_RATE_LOAD = 'LOCATION_RATE_LOAD'
 export const LOCATION_ISLOADING_RESET = 'LOCATION_ISLOADING_RESET'
 export const LOCATION_VIEW_LOAD = 'LOCATION_VIEW_LOAD'
 export const ON_SEARCH_CHANGE = 'ON_SEARCH_CHANGE'
+export const LOCATION_SUGGESTION_LIST_LOAD = 'LOCATION_SUGGESTION_LIST_LOAD'
 //rating
 export const RATING_CLEAR = 'RATING_CLEAR'
 // // export const RATING_LOAD = 'RATING_LOAD'
@@ -73,6 +74,11 @@ export const locationAddToggleButton = (addLocationButtonSwitch) => ({
     payload: addLocationButtonSwitch,
 })
 
+export const loadLocationSuggestions = (suggestionList) => ({
+  type: LOCATION_SUGGESTION_LIST_LOAD,
+  payload: suggestionList,
+})
+
 export const setCardPosition = (position) => (dispatch) => {
     switch (position) {
         case 'full':
@@ -89,12 +95,15 @@ export const setCardPosition = (position) => (dispatch) => {
     }
 }
 
-export const setSelectedCard = (card, placeid, locationList, full) => dispatch => {
+export const setSelectedCard = (card, placeid, locationList, full, suggestions) => dispatch => {
 
     switch (card) {
         case 'LocationAdd':
             dispatch({ type: LOCATION_ADD_LOAD, payload: placeid })
             return dispatch(setCardPosition('full'))
+        case 'LocationSuggestions':
+          ret
+          //return dispatch(setCardPosition('full'))
         case 'LocationFilter':
             dispatch({ type: FILTER_CLEAR_VALUES })
             dispatch({ type: LOCATION_FILTER_LOAD })
@@ -156,7 +165,7 @@ export const rate = ({prop, value, score}) => {
           type: RATE,
           payload: {prop, value, score},
         }
-      default: 
+      default:
         return null
     }
 }
@@ -171,7 +180,7 @@ export const unrate = ({prop, value}) => {
           type: UNRATE,
           payload: {prop, value},
         }
-      default: 
+      default:
         return null
     }
 }
@@ -195,19 +204,19 @@ export const generateMapPins = (longitude, latitude) => {
 }
 
 export const addNewLocation = (location) => {
+
     return function (dispatch) {
         fetch('http://45.55.2.200/api/location/new', {
             method: 'POST',
             headers: new Headers({
-                // 'Accept': 'application/json',
                 'Content-Type': 'application/json; charset=UTF-8',
             }),
             body: JSON.stringify(location),
         })
             .then(mapData => {
-                setCardPosition('hidden')
-                locationAddToggleButton(false)
-                console.log('mapData', mapData)
+                dispatch(setCardPosition('hidden'));
+                dispatch(locationAddToggleButton(false))
+                dispatch(generateMapPins(location.loc[0], location.loc[1]));
             })
     }
 }
@@ -226,12 +235,12 @@ export const getLocationDetails = (placeid) => {
             })
                 .then(response => response.json())
                 .then(locationDetails => {
-                    console.log('getLocationDetails = locationDetails: ', locationDetails)
                     dispatch({ type: 'LOCATION_DATA_DETAILS', payload: locationDetails })
                 })
         }
     }
 }
+
 
 export const submitRating = (placeid, rating) => {
   console.log('PLACEID ', placeid)
@@ -249,4 +258,12 @@ export const submitRating = (placeid, rating) => {
         dispatch({ type: RATE_FEEDBACK })
       })
   }
+}
+
+export const locationDetailsForAdd = (lat, lng) => {
+    const fetchURL = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=AIzaSyB2WkbsqNDjsiz8i831IVn1piVIq5OeiCI`
+    return fetch(fetchURL, {
+        method: 'GET',
+    })
+    .then(response => response.json())
 }
