@@ -3,7 +3,7 @@ import { Provider } from 'react-redux'
 import store from './redux/store'
 import './realm'
 
-import LocationHome from '../src/containers/LocationHome'
+import LocationHome from './containers/LocationHome'
 
 // default navigation: vertical
 export default class ChangedAndFed extends Component {

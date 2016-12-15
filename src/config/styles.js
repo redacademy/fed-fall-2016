@@ -59,10 +59,10 @@ export const mapBlock = {
     smallRectangle: {
         h: height * 0.16,
         w: width * 0.82,
-    }
+    },
 }
 //internal, for use 
-const fonts = {
+export const fonts = {
     itimRegular: 'Itim-Regular',
     rubikLight: 'Rubik-Light',
     rubikRegular: 'Rubik-Regular',
