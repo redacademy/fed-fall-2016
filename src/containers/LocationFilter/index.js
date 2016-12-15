@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text } from 'react-native'
 import { textStyles } from '../../config/styles'
-import { styles } from './styles'
+import styles from './styles'
 // Redux 
 import { connect } from 'react-redux'
 import {
