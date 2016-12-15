@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { View } from 'react-native'
 import IconMulti from '../IconMulti'
 import styles from './styles'
+import { colors } from '../../config/styles'
 
 const iconRenderer = (name, size) => (
     <View
@@ -44,7 +45,7 @@ class AmenitiesBar extends Component {
                         }
                     }
                 }
-                style={styles.amenitiesContainer}
+                style={[styles.amenitiesContainer, {borderRadius: size * .1, borderColor: colors.whiteTwo, borderWidth: 4, backgroundColor: 'white'}]}
                 >
                 {amenities.private ? iconRenderer('mask', size) : null}
                 {amenities.changeTable ? iconRenderer('baby-change-table', size) : null}
