@@ -8,12 +8,7 @@ import styles from './styles'
 import ListViewItem from '../ListViewItem'
 import { getLocationDetails } from '../../redux/actions'
 import { connect } from 'react-redux'
-
-const mongoFilter = (arrayToFilter, googlePlaceId) => arrayToFilter.filter((pin) => {
-    if (pin.obj.placeId === googlePlaceId) {
-        return pin
-    }
-})
+import { mongoFilter } from '../../config/functions'
 
 class LocationListView extends Component {
 
