@@ -50,6 +50,7 @@ export const buttonSize = {
     optionBar: 50,
     searchBar: 50,
     listFilter: 42,
+    filterButton: 85,
 }
 //internal, for use 
 const fonts = {

@@ -21,7 +21,7 @@ class FilterList extends Component {
                     <View style={styles.iconContainer}>
                         {
                             filterList.map((filterIcon, i) => (
-                            <FilterButton key={`filter${i}`} iconName={filterIcon.iconName} iconText={filterIcon.iconText} iconSize={iconSize} isSelected={filterIcon.isSelected}/>
+                            <FilterButton key={`filter${i}`} iconName={filterIcon.iconName} iconText={filterIcon.iconText} altIconName={filterIcon.altIconName} altIconText={filterIcon.altIconText} iconSize={iconSize} isSelected={filterIcon.isSelected}/>
                             ))
                         }
                     </View>
@@ -32,12 +32,3 @@ class FilterList extends Component {
 }
 
 export default FilterList
-
-/*
-TODO: 
-    DONE ---1) Add a border around when selecting between male/female options
-    2) inital state when selecting should be unselected
-    DONE ---3) need male/female icons
-    4) need to add Submit button 
-------------------------------
-*/
