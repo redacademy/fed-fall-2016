@@ -28,17 +28,18 @@ class LocationListView extends Component {
     }
 
     render() {
-        console.log("pins", JSON.stringify(this.props.pins))
         return (
             <View style={styles.container}>
                 <View style={styles.titleBox}>
                     <Text style={styles.title}>List View</Text>
+
                 </View>
                 <ScrollView>
                     {
                         this.props.locationList.map((location, i) => (
                             <View key={`lvi${i}`} style={{ height: 110 }}>
                                 <ListViewItem location={location} mongoData={mongoFilter(this.props.pins, location.place_id)}/>
+
                             </View>
                         ))
                     }
