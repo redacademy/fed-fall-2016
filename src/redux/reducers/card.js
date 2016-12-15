@@ -1,4 +1,4 @@
-import { 
+import {
     CARD_TO_POSITION_DIRECTIONS,
     CARD_TO_POSITION_FULL,
     CARD_TO_POSITION_HIDDEN,
@@ -32,7 +32,7 @@ export default (state = initialState, action) => {
             return { ...state, cardPosition: 340, cardVisible: true }
         case CARD_TO_POSITION_DIRECTIONS:
             return { ...state, cardPosition: 420, cardVisible: true }
-        case CARD_TO_POSITION_HIDDEN:    
+        case CARD_TO_POSITION_HIDDEN:
             return { ...state, cardPosition: 700, cardVisible: false, placeid: '' } //, history: history.pop() }   //? or should this be on the individual screens as they exit?
         case LOCATION_ADD_BUTTON_SWITCH:
             return {...state, locationAdd: action.payload }
