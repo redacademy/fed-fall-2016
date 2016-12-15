@@ -23,6 +23,10 @@ class LocationRating extends Component {
         ]
     }
 
+    componentWillMount(){
+        console.log(this.props.locationList[0].formatted_address)
+    }
+
     _submitRating(){
         const rating = {
             rating: {
@@ -38,14 +42,31 @@ class LocationRating extends Component {
     }
 // <AddressBlock title={this.props.place.place} addressLine1={this.props.place.line1} addressLine2={this.props.place.line2}/>
     render(){
+         const result = this.props.locationList[0]
+            const lat = result.geometry.location.lat
+            const lng = result.geometry.location.lng
+            const address = result.formatted_address
+            const addressArray = address.split(',')
+            let title='', addressLine1='', addressLine2=''
+
+            if(addressArray[0]) title = addressArray[0]
+            if(addressArray[1]) addressLine1 = addressArray[1]
+            if(addressArray[2]) addressLine2 = addressArray[2]
+            if(addressArray[3]) addressLine2 = addressLine2+addressArray[3]
+
+            console.log('1',addressLine1)
+            console.log('2',addressLine2)
+            console.log('title',title)
+        
         return (
                 <View style={styles.cardContainer}>
-                    <AddressBlock title={"hey"} addressLine1={"fdss"} addressLine2={"sdfds"}/>
+                    
+                    <AddressBlock title={title} addressLine1={addressLine1} addressLine2={addressLine2}/>
                     
                     <View style={styles.rateContainer}>
                     {
                         this.ratees.map((ratee) => {
-                            return <View style={styles.ratingButton}>
+                            return <View style={[styles.ratingButton, { marginBottom: 10 }]}>
                                 <RatingButton style={styles.ratingButton} rateeTitle={ratee.title} attribute={ratee.attribute} iconName={ratee.iconName} />
                             </View>
                         })
@@ -67,6 +88,7 @@ const mapStateToProps = (state) => ({
     clean: state.button.cleanliness,
     nursing: state.button.nursingFriendly,
     quiet: state.button.quiet,
+    locationList: state.map.locationList,
 })
 
 const mapDispatchToProps = {
