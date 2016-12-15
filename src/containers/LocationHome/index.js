@@ -106,17 +106,18 @@ class LocationHome extends Component {
 
     render() {
         const pins = this.props.pins.map((pin, i) => {
-            return <ScaleClickMarker
-                onPressFn={this._onPinPush.bind(this, pin.obj.placeId)}
-                placeid={pin.placeid}
-                key={i}
-                coordinate={{
-                    longitude: pin.obj.loc[0], // not lng
-                    latitude: pin.obj.loc[1],
-                }}
-                scale="0.5"
-                amenities={{ changeTable: true, nursingRoom: false }}
-                />
+
+            return <ScaleClickMarker 
+                    onPressFn={this._onPinPush.bind(this, pin.obj.placeId)}
+                    placeid={pin.placeid}
+                    key={i}
+                    coordinate={{
+                        longitude: pin.obj.loc[0], // not lng
+                        latitude: pin.obj.loc[1],
+                    }}
+                    scale="0.5"
+                    amenities={ pin.obj.amenities }
+                    />
         })
 
         return (
