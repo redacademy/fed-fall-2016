@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { View, Text, Linking, ScrollView } from 'react-native'
 import {
     getLocationDetails,
+    setSelectedCard,
 } from '../../redux/actions'
 import { connect } from 'react-redux'
 import {
@@ -111,10 +112,12 @@ class LocationPreview extends Component {
 const mapStateToProps = (state) => ({
     locationList: state.map.locationList,
     isLoading: state.map.isLoading,
+    placeid: state.card.placeid,
 })
 
 const mapDispatchToProps = {
     getLocationDetails,
+    setSelectedCard,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LocationPreview)

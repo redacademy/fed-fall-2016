@@ -9,21 +9,13 @@ import {
     submitRating,
 } from '../../redux/actions'
 import styles from './styles'
-import { Card, AddressBlock, Button, CardHeaderTitle } from '../../components'
-import { textStyles } from '../../config/styles'
-import { RatingButton } from '../../containers'
+import { Card } from '../../components'
 
 class Preview extends Component {
     constructor(props){
         super(props)
 
         this.position = new Animated.Value(this.props.cardPosition)
-        this.ratees = [
-            { attribute: 'quality', iconName: 'quality-ribbon', title: 'QUALITY'},
-            { attribute: 'cleanliness', iconName: 'cleanliness', title: 'CLEAN'},
-            { attribute: 'nursingFriendly', iconName: 'breast-feeding', title: 'NURSING FRIENDLY'},
-            { attribute: 'quiet', iconName: 'quiet', title: 'QUIET'}                            
-        ]
     }
     
     componentWillMount() {
@@ -71,19 +63,6 @@ class Preview extends Component {
             }, 375)
         }  
     }
-    
-    _submitRating(){
-        const rating = {
-            rating: {
-                userId: 'FACETOES',
-                quality: this.props.quality ? 3 : 1,
-                clean: this.props.cleanliness ? 3 : 1,
-                nursing: this.props.nursing ? 3 : 1,
-                quiet: this.props.quiet ? 3 : 1,
-            }
-        }
-        this.props.submitRating(this.props.placeid, rating)
-    }
 
     render() {
         const cardAnimation = { transform: [{ translateY: this.position }] }
@@ -101,30 +80,7 @@ class Preview extends Component {
                     }}
                  >
                     <Card>
-                        {this.props.rateLocation ? <CardHeaderTitle amenities={{nursingRoom: true}} title="Please rate" /> : null}
-                        
-                        
-                        {this.props.feedback ? <Text>Thank you for your rating.</Text> : null}
-                        {this.props.rateLocation ? null : <Text onPress={this.props.enterRateLocation}>Rate Icon</Text>}
-                        {this.props.rateLocation ? 
-                            <View style={styles.cardContainer}>
-                                <AddressBlock title={this.props.place.place} addressLine1={this.props.place.line1} addressLine2={this.props.place.line2}/>
-                                
-                                <View style={styles.rateContainer}>
-                                {
-                                    this.ratees.map((ratee) => {
-                                        return <View style={styles.ratingButton}>
-                                            <RatingButton style={styles.ratingButton} rateeTitle={ratee.title} attribute={ratee.attribute} iconName={ratee.iconName} />
-                                        </View>
-                                    })
-                                }
-                                </View>
-                                
-                                <Button onPressFn={this._submitRating.bind(this)} style={styles.submitButton}>
-                                    <Text style={textStyles.textStyle4}>SUBMIT</Text>
-                                </Button>
-                            </View>
-                        : this.props.children}
+                        { this.props.children}
                     </Card>
                  </Animated.View>
             </View>
@@ -134,7 +90,6 @@ class Preview extends Component {
 
 const mapStateToProps = (state) => ({
     locationDetails: state.map.locationDetails,
-    place: state.map,
     placeid: state.button.placeid,
     cardPosition: state.card.cardPosition,
     rateLocation: state.button.rateLocation,

@@ -106,7 +106,7 @@ export const setSelectedCard = (card, placeid, locationList, full) => dispatch =
             dispatch({ type: LOCATION_VIEW_LOAD, payload: placeid })
             const cardPosition = full ? 'full' : 'half'
             return dispatch(setCardPosition(cardPosition))
-        case 'LocationRate':
+        case 'LocationRating':
             dispatch({ type: LOCATION_RATE_LOAD, payload: placeid })
             return dispatch(setCardPosition('full'))
         default:

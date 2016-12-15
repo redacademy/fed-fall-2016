@@ -6,6 +6,7 @@ import {
     LocationAdd,
     LocationFilter,
     LocationPreview,
+    LocationRating,
 } from '../../containers/'
 
 import { LocationListView } from '../../components'
@@ -34,6 +35,8 @@ class Card extends Component {
                     return <LocationListView />
                 case 'LocationPreview':
                     return <LocationPreview placeid={this.props.placeid} locationDetails={this.props.locationDetails} />
+                case 'LocationRating':
+                    return <LocationRating placeid={this.props.placeid} />
                 default:
                     return <Text>No Card for selected Action</Text>
             }
