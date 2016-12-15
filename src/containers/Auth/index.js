@@ -1,17 +1,12 @@
 import React, { Component } from 'react'
-import { View, Text, TextInput, TouchableHighlight } from 'react-native'
-// import { connect } from 'react-redux'
+import { View, Text, TextInput, TouchableOpacity } from 'react-native'
+import { connect } from 'react-redux'
 import styles from './styles'
 import { colors } from '../../config/styles'
 import StarBabyFace from '../../components/StarBabyFace'
+import { routeSet } from '../../redux/actions'
 
-class AuthScreen extends Component {
-  static route = {
-    navigationBar: {
-      title: 'Login',
-      backgroundColor: 'lightgrey',
-    },
-  }
+class Auth extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -30,7 +25,7 @@ class AuthScreen extends Component {
         </View>
 
         <View style={[styles.card, styles.shadow]}>
-          
+
           <View style={styles.cardNub} />
 
           <View style={styles.input}>
@@ -51,11 +46,11 @@ class AuthScreen extends Component {
               value={this.state.password} />
           </View>
 
-          <TouchableHighlight onPress={() => { } }>
+          <TouchableOpacity onPress={() => this.props.routeSet('home')}>
             <View style={[styles.submit]}>
               <Text style={styles.submitText}>LOGIN</Text>
             </View>
-          </TouchableHighlight>
+          </TouchableOpacity>
 
         </View>
       </View >
@@ -63,4 +58,8 @@ class AuthScreen extends Component {
   }
 }
 
-export default AuthScreen
+const mapDispatchToProps = {
+  routeSet,
+}
+
+export default connect(null, mapDispatchToProps)(Auth)

@@ -5,6 +5,7 @@ import MapReducer from './map'
 import CardReducer from './card'
 import FilterReducer from './filter'
 import RatingReducer from './rating'
+import RouteReducer from './route'
 
 const rootReducer = combineReducers({
     input: InputReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
     card: CardReducer,
     filter: FilterReducer,
     rating: RatingReducer,
+    route: RouteReducer,
 })
 
 export default rootReducer

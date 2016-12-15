@@ -40,7 +40,14 @@ export const RATING_CLEAN = 'RATING_CLEAN'
 export const RATING_NURSING = 'RATING_NURSING'
 export const RATING_QUIET = 'RATING_QUIET'
 
+export const ROUTE_SET = 'ROUTE_SET'
+
 // Action creators here
+export const routeSet = (route) => ({
+    type: ROUTE_SET,
+    payload: { route },
+})
+
 export const searchTextChange = (text) => ({
     type: ON_SEARCH_CHANGE,
     payload: text,
