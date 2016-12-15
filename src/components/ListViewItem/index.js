@@ -16,7 +16,10 @@ import {
     setCardPosition,
     setSelectedCard,
 } from '../../redux/actions'
+import { ratingSummaryCalculator } from '../../config/functions'
 // import { colors } from '../../config/styles'
+
+
 
 class ListViewItem extends Component {
 
@@ -50,12 +53,7 @@ class ListViewItem extends Component {
                             <View style={styles.ratingBar}>
                             <RatingBar
                                 size={40}
-                                ratings={{
-                                    quality: 'HIGH',
-                                    clean: 'MEDIUM',
-                                    nursing: 'LOW',
-                                    quiet: 'MEDIUM',
-                                }}
+                                ratings={ratingSummaryCalculator(this.props.mongoData[0].obj.ratingSummary)}
                                 />
                                 </View>
                             <Text style={styles.locationDetails}>{distance}m</Text>
