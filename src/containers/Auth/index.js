@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, TextInput, TouchableHighlight } from 'react-native'
 // import { connect } from 'react-redux'
 import styles from './styles'
+import { colors } from '../../config/styles'
 import StarBabyFace from '../../components/StarBabyFace'
 
 class AuthScreen extends Component {
@@ -23,7 +24,7 @@ class AuthScreen extends Component {
       <View style={styles.container}>
 
         <View style={styles.top}>
-          <StarBabyFace scale={1} />
+          <StarBabyFace scale={1} fill={colors.darkGreyBlue} />
           <Text style={styles.headerText}>CHANGED</Text>
           <Text style={[styles.headerText]}><Text style={styles.headerPlus}>+</Text>FED</Text>
         </View>

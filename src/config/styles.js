@@ -59,7 +59,7 @@ export const mapBlock = {
     smallRectangle: {
         h: height * 0.16,
         w: width * 0.82,
-    }
+    },
 }
 //internal, for use 
 export const fonts = {
