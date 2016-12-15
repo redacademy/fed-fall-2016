@@ -209,15 +209,14 @@ export const addNewLocation = (location) => {
         fetch('http://45.55.2.200/api/location/new', {
             method: 'POST',
             headers: new Headers({
-                // 'Accept': 'application/json',
                 'Content-Type': 'application/json; charset=UTF-8',
             }),
             body: JSON.stringify(location),
         })
             .then(mapData => {
-                setCardPosition('hidden')
-                locationAddToggleButton(false)
-                console.log('mapData', mapData)
+                dispatch(setCardPosition('hidden'));
+                dispatch(locationAddToggleButton(false))
+                dispatch(generateMapPins(location.loc[0], location.loc[1]));
             })
     }
 }
@@ -265,9 +264,6 @@ export const locationDetailsForAdd = (lat, lng) => {
     const fetchURL = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=AIzaSyB2WkbsqNDjsiz8i831IVn1piVIq5OeiCI`
     return fetch(fetchURL, {
         method: 'GET',
-        headers: new Headers({
-            'Content-Type': 'application/json',
-        }),
     })
     .then(response => response.json())
 }

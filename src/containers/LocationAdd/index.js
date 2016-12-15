@@ -7,97 +7,105 @@ import styles from './styles'
 import { connect } from 'react-redux'
 
 import {
-    locationDetailsForAdd,
-    loadLocationSuggestions,
-    addNewLocation
+  locationDetailsForAdd,
+  loadLocationSuggestions,
+  addNewLocation
 } from '../../redux/actions'
 
 // Components
 import {
-    AddressBlock,
-    Button,
-    FilterList,
+  AddressBlock,
+  Button,
+  FilterList,
 } from '../../components'
 
 class LocationAdd extends Component {
 
-    static propTypes = {
-        placeid: PropTypes.string,
-        title: PropTypes.string.isRequired,
-        addressLine1: PropTypes.string,
-        addressLine2: PropTypes.string,
-        lat: PropTypes.number.isRequired,
-        lng: PropTypes.number.isRequired,
-    }
+  static propTypes = {
+    placeid: PropTypes.string,
+    title: PropTypes.string.isRequired,
+    addressLine1: PropTypes.string,
+    addressLine2: PropTypes.string,
+    lat: PropTypes.number.isRequired,
+    lng: PropTypes.number.isRequired,
+  }
 
-    _addLocation() {
+  _addLocation() {
 
-        locationDetailsForAdd(this.props.lat, this.props.lng)
-        .then((response) => {
-            this.props.loadLocationSuggestions(response.results);
-          });
-        // const location = {
-        //     placeId: this.props.placeid,
-        //     loc: [this.props.lng, this.props.lat],
-        //     rating: {
-        //         userId: "scottbrandyfergtrace",
-        //         quality: this.props.quality,
-        //         clean: this.props.clean,
-        //         nursing: this.props.nursing,
-        //         quiet: this.props.quiet,
-        //     },
-        //     createdBy: "scottbrandyfergtrace",
-        //     amenities: {
-        //         changeTable: this.props.changeTable,
-        //         nursingRoom: this.props.nursingRoom,
-        //         mensBathroom: this.props.mensBathroom,
-        //         womensBathroom: this.props.womensBathroom,
-        //         familyBathroom: this.props.familyBathroom,
-        //         privacy: this.props.privacy,
-        //         strollerAccess: this.props.strollerAccess,
-        //         requiresKey: this.props.requiresKey,
-        //     },
-        // }
-        //this.props.addNewLocation(location)
-    }
+    locationDetailsForAdd(this.props.lat, this.props.lng)
+      .then((response) => {
 
-    render() {
-        return (
-            <ScrollView >
-                <AddressBlock title={this.props.title} addressLine1={this.props.addressLine1} addressLine2={this.props.addressLine2} />
-                <View style={styles.filterContainer}>
-                    <FilterList providingFilters={false} showHeader={false} readOnly={false}/>
-                </View>
-                <View style={styles.buttonContainer}>
-                    <Button onPress={this._addLocation.bind(this)}>
-                        <Text style={textStyles.textStyle4}>SUBMIT</Text>
-                    </Button>
-                </View>
+        const location = {
+          placeId: response.results[0].place_id,
+          loc: [this.props.lng, this.props.lat],
+          ratingSummary: {
+            quality: this.props.quality,
+            clean: this.props.clean,
+            nursing: this.props.nursing,
+            quiet: this.props.quiet,
+            totalRaters: 1,
+          },
+          rating: {
+            userId: "DemoUser",
+            quality: this.props.quality,
+            clean: this.props.clean,
+            nursing: this.props.nursing,
+            quiet: this.props.quiet,
+          },
+          createdBy: "DemoUser",
+          amenities: {
+            changeTable: this.props.changeTable,
+            nursingRoom: this.props.nursingRoom,
+            mensBathroom: this.props.mensBathroom,
+            womensBathroom: this.props.womensBathroom,
+            familyBathroom: this.props.familyBathroom,
+            privacy: this.props.privacy,
+            strollerAccess: this.props.strollerAccess,
+            requiresKey: this.props.requiresKey,
+          },
+        }
+        this.props.addNewLocation(location)
+      });
 
-            </ScrollView>
-        )
-    }
+  }
+
+  render() {
+    return (
+      <ScrollView >
+        <AddressBlock title={this.props.title} addressLine1={this.props.addressLine1} addressLine2={this.props.addressLine2} />
+        <View style={styles.filterContainer}>
+          <FilterList providingFilters={false} showHeader={false} readOnly={false} />
+        </View>
+        <View style={styles.buttonContainer}>
+          <Button onPress={this._addLocation.bind(this)}>
+            <Text style={textStyles.textStyle4}>SUBMIT</Text>
+          </Button>
+        </View>
+
+      </ScrollView>
+    )
+  }
 }
 
 const mapStateToProps = (state) => ({
-    changeTable: state.filter.changeTable,
-    nursingRoom: state.filter.nursingRoom,
-    mensBathroom: state.filter.mensBathroom,
-    womensBathroom: state.filter.womensBathroom,
-    familyBathroom: state.filter.familyBathroom,
-    privacy: state.filter.privacy,
-    strollerAccess: state.filter.strollerAccess,
-    requiresKey: state.filter.requiresKey,
-    quality: state.rating.quality,
-    clean: state.rating.clean,
-    nursing: state.rating.nursing,
-    quiet: state.rating.quiet,
-    userId: state.rating.userId,
+  changeTable: state.filter.changeTable,
+  nursingRoom: state.filter.nursingRoom,
+  mensBathroom: state.filter.mensBathroom,
+  womensBathroom: state.filter.womensBathroom,
+  familyBathroom: state.filter.familyBathroom,
+  privacy: state.filter.privacy,
+  strollerAccess: state.filter.strollerAccess,
+  requiresKey: state.filter.requiresKey,
+  quality: state.rating.quality,
+  clean: state.rating.clean,
+  nursing: state.rating.nursing,
+  quiet: state.rating.quiet,
+  userId: state.rating.userId,
 })
 
 const mapDispatchToProps = {
-    addNewLocation,
-    loadLocationSuggestions
+  addNewLocation,
+  loadLocationSuggestions
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LocationAdd)

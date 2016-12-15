@@ -6,6 +6,7 @@ import {
 } from 'react-native'
 import styles from './styles'
 import ListViewItem from '../ListViewItem'
+import UnsavedListViewItem from '../ListViewItem/unsavedList'
 import { getLocationDetails } from '../../redux/actions'
 import { connect } from 'react-redux'
 import { mongoFilter } from '../../config/functions'
@@ -22,15 +23,17 @@ class LocationListView extends Component {
         return (
             <View style={styles.container}>
                 <View style={styles.titleBox}>
-                    <Text style={styles.title}>List View</Text>
-
+                    <Text style={styles.title}>{this.props.locationSuggestions ? 'Select your Location' : 'List View'}</Text>
                 </View>
                 <ScrollView>
                     {
                         this.props.locationList.map((location, i) => (
                             <View key={`lvi${i}`} style={{ height: 110 }}>
+                                { this.props.locationSuggestions ?
+                                  <UnsavedListViewItem location={location} />
+                                :
                                 <ListViewItem location={location} mongoData={mongoFilter(this.props.pins, location.place_id)} placeid={location.place_id}/>
-
+                                }
                             </View>
                         ))
                     }
@@ -41,7 +44,6 @@ class LocationListView extends Component {
 }
 const mapStateToProps = (state) => ({
     pins: state.map.generatedLocationData,
-    locationList: state.map.locationList,
 })
 
 const mapDispatchToProps = {

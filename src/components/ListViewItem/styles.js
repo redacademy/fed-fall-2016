@@ -37,8 +37,16 @@ const styles = StyleSheet.create({
         height: 40,
         minWidth: 180,
         maxWidth: 180,
-
     },
+    unsavedMap: {
+        height: 100,
+        width: 262,
+        marginTop: 5,
+        marginRight: 5,
+        marginBottom: 5,
+        alignItems: 'center',
+        justifyContent: 'center',
+    }
 })
 
 export default styles

@@ -9,7 +9,8 @@ import {
     LocationRating,
 } from '../../containers/'
 
-import { LocationListView, LocationSuggestions } from '../../components'
+import LocationListView from '../LocationListView'
+import LocationSuggestions from '../LocationSuggestions'
 
 class Card extends Component {
 
@@ -30,11 +31,11 @@ class Card extends Component {
                             lat={49.2634046} lng={-123.1404133}
                             />)
                 case 'LocationSuggestions':
-                  return <View><Text>WTF</Text></View>
+                  return <LocationSuggestions />
                 case 'LocationFilter':
                     return <LocationFilter />
                 case 'LocationList':
-                    return <LocationListView />
+                    return <LocationListView  locationList={this.props.locationList}/>
                 case 'LocationPreview':
                     return <LocationPreview placeid={this.props.placeid} locationDetails={this.props.locationDetails} />
                 case 'LocationRating':
@@ -63,6 +64,7 @@ const mapStateToProps = (state) => ({
     locationDetails: state.card.placeid ? state.map.generatedLocationData.filter((location) => {
           return location.obj.placeId === state.card.placeid
       })[0].obj : {},
+    locationList: state.map.locationList,
 })
 
 const mapDispatchToProps = {
