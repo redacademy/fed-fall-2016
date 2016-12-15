@@ -55,11 +55,7 @@ const mapStateToProps = (state) => ({
     selectedCard: state.card.selectedCard,
     cardVisible: state.card.cardVisible,
     placeid: state.card.placeid,
-    locationDetails: (function(){
-      return state.map.generatedLocationData.filter((location) => {
-          return location.obj.placeId === state.card.placeid
-      })[0].obj
-    })(),
+    locationDetails: []
 })
 
 const mapDispatchToProps = {
