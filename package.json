@@ -35,7 +35,6 @@
     "react-native-svg": "^4.4.0",
     "react-native-vector-icons": "^3.0.0",
     "react-redux": "^3.1.0",
-    "realm": "^0.15.0",
     "react-transform-hmr": "^1.0.4",
     "redux": "^3.6.0",
     "redux-thunk": "^2.1.0",
