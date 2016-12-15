@@ -70,7 +70,7 @@ class LocationHome extends Component {
                 this.map.animateToRegion(this.state.region, 1000)
             },
             (error) => alert(error.message),
-            { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+            { enableHighAccuracy: false, timeout: 20000, maximumAge: 10000 }
         )
 
        navigator.geolocation.watchPosition(

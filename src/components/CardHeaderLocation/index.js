@@ -38,7 +38,7 @@ class CardHeaderLocation extends Component {
     }
 
     render() {
-        const { size } = this.state
+        const size = this.props.width ? this.props.width / 7.25 : this.state.size
         return (
             <View
                 onLayout={this.props.width
