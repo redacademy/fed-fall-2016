@@ -34,7 +34,7 @@ class LocationPreview extends Component {
 
         this._showDirections = this._showDirections.bind(this)
     }
-    componentWillMount() {
+    componentDidMount() {
         this.props.getLocationDetails(this.props.placeid)
 
         navigator.geolocation.getCurrentPosition((userLocation) => {

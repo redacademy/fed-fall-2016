@@ -25,7 +25,7 @@ class RatingButton extends Component {
             isDefault: true,
         }
     }
-    componentWillMount() {
+    componentDidMount() {
             this.setState({ 
                 iconStateIndex: this.props.defaultStateIndex, 
                 defaultStateIndex: this.props.defaultStateIndex, 
