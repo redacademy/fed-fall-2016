@@ -8,6 +8,7 @@ import { connect } from 'react-redux'
 
 import {
     locationDetailsForAdd,
+    loadLocationSuggestions,
     addNewLocation
 } from '../../redux/actions'
 
@@ -32,11 +33,9 @@ class LocationAdd extends Component {
     _addLocation() {
 
         locationDetailsForAdd(this.props.lat, this.props.lng)
-        .then((location) => {
-            //TODO: show user list of possible locations.
-            // When user selects location, save it and reload the map.
-
-        })
+        .then((response) => {
+            this.props.loadLocationSuggestions(response.results);
+          });
         // const location = {
         //     placeId: this.props.placeid,
         //     loc: [this.props.lng, this.props.lat],
@@ -70,7 +69,7 @@ class LocationAdd extends Component {
                     <FilterList providingFilters={false} showHeader={false} readOnly={false}/>
                 </View>
                 <View style={styles.buttonContainer}>
-                    <Button onPress={() => this._addLocation()}>
+                    <Button onPress={this._addLocation.bind(this)}>
                         <Text style={textStyles.textStyle4}>SUBMIT</Text>
                     </Button>
                 </View>
@@ -98,6 +97,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     addNewLocation,
+    loadLocationSuggestions
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LocationAdd)

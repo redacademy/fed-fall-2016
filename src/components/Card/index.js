@@ -9,7 +9,7 @@ import {
     LocationRating,
 } from '../../containers/'
 
-import { LocationListView } from '../../components'
+import { LocationListView, LocationSuggestions } from '../../components'
 
 class Card extends Component {
 
@@ -29,6 +29,8 @@ class Card extends Component {
                             title={"RED Academy"} addressLine1={"1490 W Broadway #200"} addressLine2={"Vancouver, BC V6H 4E8"}
                             lat={49.2634046} lng={-123.1404133}
                             />)
+                case 'LocationSuggestions':
+                  return <View><Text>WTF</Text></View>
                 case 'LocationFilter':
                     return <LocationFilter />
                 case 'LocationList':

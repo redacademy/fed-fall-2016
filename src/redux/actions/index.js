@@ -32,6 +32,7 @@ export const LOCATION_RATE_LOAD = 'LOCATION_RATE_LOAD'
 export const LOCATION_ISLOADING_RESET = 'LOCATION_ISLOADING_RESET'
 export const LOCATION_VIEW_LOAD = 'LOCATION_VIEW_LOAD'
 export const ON_SEARCH_CHANGE = 'ON_SEARCH_CHANGE'
+export const LOCATION_SUGGESTION_LIST_LOAD = 'LOCATION_SUGGESTION_LIST_LOAD'
 //rating
 export const RATING_CLEAR = 'RATING_CLEAR'
 // // export const RATING_LOAD = 'RATING_LOAD'
@@ -73,6 +74,11 @@ export const locationAddToggleButton = (addLocationButtonSwitch) => ({
     payload: addLocationButtonSwitch,
 })
 
+export const loadLocationSuggestions = (suggestionList) => ({
+  type: LOCATION_SUGGESTION_LIST_LOAD,
+  payload: suggestionList,
+})
+
 export const setCardPosition = (position) => (dispatch) => {
     switch (position) {
         case 'full':
@@ -89,12 +95,15 @@ export const setCardPosition = (position) => (dispatch) => {
     }
 }
 
-export const setSelectedCard = (card, placeid, locationList, full) => dispatch => {
+export const setSelectedCard = (card, placeid, locationList, full, suggestions) => dispatch => {
 
     switch (card) {
         case 'LocationAdd':
             dispatch({ type: LOCATION_ADD_LOAD, payload: placeid })
             return dispatch(setCardPosition('full'))
+        case 'LocationSuggestions':
+          ret
+          //return dispatch(setCardPosition('full'))
         case 'LocationFilter':
             dispatch({ type: FILTER_CLEAR_VALUES })
             dispatch({ type: LOCATION_FILTER_LOAD })
