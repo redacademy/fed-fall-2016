@@ -69,7 +69,7 @@ class RatingBar extends Component {
                     flexDirection: 'row',
                     flexWrap: 'nowrap',
                     justifyContent: 'space-around',
-                    alignItems: 'center',
+                    alignItems: 'flex-start',
                 }}
                 >
                 <IconMulti
