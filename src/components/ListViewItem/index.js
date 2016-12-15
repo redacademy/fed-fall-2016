@@ -16,8 +16,6 @@ import {
     setCardPosition,
     setSelectedCard,
 } from '../../redux/actions'
-const { width, height, } = Dimensions.get('window')
-
 // import { colors } from '../../config/styles'
 
 class ListViewItem extends Component {
@@ -32,7 +30,6 @@ class ListViewItem extends Component {
             const lng = this.props.location.geometry.location.lng
             const address = this.props.location.formatted_address
             const addressArray = address.split(',')
-            console.log("props>>>>>>", this.props)
             return (
                 <TouchableOpacity onPress={() => this.props.setSelectedCard('LocationPreview', this.props.placeid)} >
                     <View style={styles.locationContainer}>
@@ -49,6 +46,7 @@ class ListViewItem extends Component {
                             </Text>
                             <View style={styles.ratingBar}>
                             <RatingBar
+                                size={40}
                                 ratings={{
                                     quality: 'HIGH',
                                     clean: 'MEDIUM',

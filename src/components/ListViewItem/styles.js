@@ -9,8 +9,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         borderBottomWidth: StyleSheet.hairlineWidth,
         borderBottomColor: colors.lightGrey,
-        borderWidth: 1,
-        borderColor: 'red',
     },
     map: {
         height: 120,
@@ -20,14 +18,7 @@ const styles = StyleSheet.create({
         marginBottom: 5,
         alignItems: 'center',
         justifyContent: 'center',
-         borderWidth: 1,
-        borderColor: 'red',
     },
-    // detailsContainer: {
-    //     padding: 5,
-    //      borderWidth: 1,
-    //     borderColor: 'red',
-    // },
     locationTitle: {
         marginTop: 1,
         height: 20,
@@ -37,19 +28,16 @@ const styles = StyleSheet.create({
         color: colors.darkGreyBlue,
     },
     locationDetails: {
-        height: 30,
-        // marginLeft: 3,
+        height: 25,
         paddingTop: 3,
         paddingBottom: 3,
         color: colors.lightGrey,
-         borderWidth: 1,
-        borderColor: 'red',
     },
     ratingBar: {
-        // margin: 1,
         height: 40,
         minWidth: 180,
         maxWidth: 180,
+
     },
 })
 
