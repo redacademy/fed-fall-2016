@@ -10,6 +10,7 @@ import {
     setSelectedCard,
 } from '../../redux/actions'
 import Button from '../../components/Button'
+import CardHeaderTitle from '../../components/CardHeaderTitle'
 
 class LocationRating extends Component {
     constructor(props){
@@ -53,10 +54,14 @@ class LocationRating extends Component {
             if(addressArray[1]) addressLine1 = addressArray[1]
             if(addressArray[2]) addressLine2 = addressArray[2]
             if(addressArray[3]) addressLine2 = addressLine2+addressArray[3]
+
+                console.log(this)
+        console.log(this.props.locationList)
         
+
         return (
                 <View style={styles.cardContainer}>
-                    
+                    <CardHeaderTitle title={"Please rate"} />
                     <AddressBlock title={title} addressLine1={addressLine1} addressLine2={addressLine2}/>
                     
                     <View style={styles.rateContainer}>

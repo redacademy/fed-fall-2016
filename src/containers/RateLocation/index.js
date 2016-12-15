@@ -9,6 +9,7 @@ import {
     rate,
     unrate,
 } from '../../redux/actions'
+import CardHeaderTitle from '../../components/CardHeaderTitle'
 
 class RateLocation extends Component {
     constructor(props){
