@@ -18,10 +18,6 @@ class LocationListView extends Component {
         });
     }
 
-    componentWillReceiveProps(nextProps) {
-        console.log(nextProps.locationList);
-    }
-
     render() {
         return (
             <View style={styles.container}>

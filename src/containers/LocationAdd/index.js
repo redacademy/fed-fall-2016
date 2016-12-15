@@ -3,7 +3,7 @@ import { View, Text, ScrollView } from 'react-native'
 import { colors, textStyles, mapBlock } from '../../config/styles'
 import styles from './styles'
 
-// Redux 
+// Redux
 import { connect } from 'react-redux'
 
 import {
@@ -16,21 +16,10 @@ import {
     Button,
     FilterList,
     MapBlock,
-    // RatingBlock,
 } from '../../components'
 
 class LocationAdd extends Component {
-    //TODO: update locationHome to pass in place object instead of individual items like this
-    //instead ?>format to be determined by db schema
-    // <LocationAdd 
-    //      location:
-    //          {
-    //              title: req, addressLine1: opt, addressLine2 opt,
-    //              position: { lat: req, lng: req }
-    //          },
-    //          width: req,
-    //          height: req,
-    // />
+
     static propTypes = {
         placeid: PropTypes.string,
         title: PropTypes.string.isRequired,
@@ -73,7 +62,6 @@ class LocationAdd extends Component {
                 <View style={styles.filterContainer}>
                     <FilterList providingFilters={false} showHeader={false} readOnly={false}/>
                 </View>
-                <MapBlock useMapDot={true} lat={this.props.lat} lng={this.props.lng} zoom={17} width={mapBlock.smallRectangle.w} height={mapBlock.smallRectangle.h} />
                 <View style={styles.buttonContainer}>
                     <Button onPress={() => this._handleOnPress()}>
                         <Text style={textStyles.textStyle4}>SUBMIT</Text>

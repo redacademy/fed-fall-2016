@@ -8,12 +8,12 @@ const styles = StyleSheet.create({
     },
 
     locationAddContainer: {
-        flex: 1, 
+        flex: 1,
         backgroundColor: 'transparent',
         alignItems: 'center',
         justifyContent: 'center',
     },
-    button: {                       // new location button on custom callout
+    button: {
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: colors.white,
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
         borderColor: colors.blush,
         borderWidth: 2,
     },
-    icon: {                       // icon for new location button on custom callout
+    icon: {
         color: colors.blush,
         fontSize: 20,
     },

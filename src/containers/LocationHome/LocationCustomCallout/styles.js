@@ -14,7 +14,6 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         alignSelf: 'flex-start',
         backgroundColor: colors.white,
-        // paddingHorizontal: 10,
         paddingVertical: 12,
         borderRadius: 12,
         borderColor: colors.white,
@@ -23,6 +22,7 @@ export const styles = StyleSheet.create({
         shadowOpacity: shadows.opacity,
         shadowOffset: { width: shadows.offset.width, height: shadows.offset.width },
         shadowRadius: shadows.radius,
+
     },
     amount: {
         flex: 1,
@@ -34,6 +34,7 @@ export const styles = StyleSheet.create({
         borderTopColor: colors.white,
         alignSelf: 'center',
         marginTop: -32,
+        zIndex: -10,
     },
     arrowBorder: {
         backgroundColor: 'transparent',
@@ -43,8 +44,8 @@ export const styles = StyleSheet.create({
         alignSelf: 'center',
         marginTop: -0.5,
         shadowColor: colors.warmGrey,
-        shadowOpacity: shadows.opacity,
-        shadowOffset: { width: shadows.offset.width, height: shadows.offset.width },
+        shadowOpacity: shadows.opacity - 0.2,
+        shadowOffset: { width: shadows.offset.width, height: 5 },
         shadowRadius: shadows.radius,
     },
 })

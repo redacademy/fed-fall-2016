@@ -8,7 +8,7 @@ import autoBind from 'react-autobind'
 const { width, height } = Dimensions.get('window')
 const w = width * 0.5, h = height * 0.25
 
-// Redux 
+// Redux
 import { connect } from 'react-redux'
 import {
     enterPreview,
@@ -22,7 +22,6 @@ import {
 import {
     BottomButton,
     LocationCustomCallout,
-    MapMarker,
     OptionsBarButton,
     OptionsBar,
     Preview,
@@ -32,9 +31,7 @@ import {
 // Components
 import {
     ButtonClickableTitle,
-    Icon,
     IconMulti,
-    MapPin,
 } from '../../components'
 
 import region from './region'
@@ -48,13 +45,12 @@ class LocationHome extends Component {
             overlay: false,
             region,
             markers: [],
-            pinRefs: []
+            pinRefs: [],
         }
-    }
-    componentWillMount() {
-        this._setUserCurrentLocation()
 
+        this._setUserCurrentLocation()
     }
+
     componentDidMount() {
         this.props.generateMapPins(this.state.region.longitude, this.state.region.latitude)
     }
@@ -62,6 +58,7 @@ class LocationHome extends Component {
         this.setState({ overlay: !this.state.overlay })
     }
     _setUserCurrentLocation() {
+        console.log('rendering');
         navigator.geolocation.getCurrentPosition(
             ({ coords }) => {
                 this.setState({
@@ -75,7 +72,8 @@ class LocationHome extends Component {
             (error) => alert(error.message),
             { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
         )
-        this.watchID = navigator.geolocation.watchPosition(
+
+       navigator.geolocation.watchPosition(
             ({ coords }) => {
                 this.setState({
                     region: Object.assign({}, region, {
@@ -107,7 +105,7 @@ class LocationHome extends Component {
     render() {
         const pins = this.props.pins.map((pin, i) => {
 
-            return <ScaleClickMarker 
+            return <ScaleClickMarker
                     onPressFn={this._onPinPush.bind(this, pin.obj.placeId)}
                     placeid={pin.placeid}
                     key={i}

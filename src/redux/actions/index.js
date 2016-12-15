@@ -98,7 +98,7 @@ export const setSelectedCard = (card, placeid, locationList, full) => dispatch =
             return dispatch(setCardPosition('full'))
         case 'LocationPreview':
             dispatch({ type: LOCATION_VIEW_LOAD, payload: placeid })
-            const cardPosition = full ? 'full' : 'half';
+            const cardPosition = full ? 'full' : 'half'
             return dispatch(setCardPosition(cardPosition))
         case 'LocationRate':
             dispatch({ type: LOCATION_RATE_LOAD, payload: placeid })
@@ -133,9 +133,7 @@ export const updateFilterValue = (filter, isSelected) => dispatch => {
     }
 }
 export const applyFilterToPins = (filters) => dispatch => {
-    console.log(filters)
     return true
-    // return dispatch(locationAddToggleButton(false))
 }
 
 export const updateRatingValue = (rating, isSelected) => dispatch => {
@@ -165,7 +163,6 @@ export const generateMapPins = (longitude, latitude) => {
         })
             .then(response => response.json())
             .then(mapData => {
-                console.log('generateMapPins = mapData: ', mapData)
                 dispatch({ type: 'LOCATION_DATA_ALL', payload: mapData })
             })
     }
