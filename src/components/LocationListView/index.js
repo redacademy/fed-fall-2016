@@ -33,7 +33,7 @@ class LocationListView extends Component {
                     {
                         this.props.locationList.map((location, i) => (
                             <View key={`lvi${i}`} style={{ height: 110 }}>
-                                <ListViewItem location={location} mongoData={mongoFilter(this.props.pins, location.place_id)}/>
+                                <ListViewItem location={location} mongoData={mongoFilter(this.props.pins, location.place_id)} placeid={location.place_id}/>
 
                             </View>
                         ))
