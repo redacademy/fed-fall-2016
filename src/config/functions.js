@@ -43,3 +43,9 @@ export const ratingSummaryCalculator = (input) => {
   
   return {quality: quality, clean: clean, nursing: nursing, quiet: quiet} 
 }
+
+export const mongoFilter = (arrayToFilter, googlePlaceId) => arrayToFilter.filter((pin) => {
+    if (pin.obj.placeId === googlePlaceId) {
+        return pin
+    }
+})
