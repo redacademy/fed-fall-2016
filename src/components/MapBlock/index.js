@@ -1,8 +1,12 @@
 import React, { Component, PropTypes } from 'react'
+import { buttonSize } from '../../config/styles'
 import {
     Image
 } from 'react-native'
-import MapPin from '../MapPin'
+import {
+    MapDot,
+    MapPin
+} from '../../components'
 
 class MapBlock extends Component {
     static proptTypes = {
@@ -11,9 +15,10 @@ class MapBlock extends Component {
         zoom: PropTypes.number.isRequired,
         width: PropTypes.number.isRequired,
         height: PropTypes.number.isRequired,
-        pinScale: PropTypes.number.isRequired,
-        pinColor: PropTypes.string.isRequired,
-        iconName: PropTypes.string.isRequired,
+        pinScale: PropTypes.number,
+        pinColor: PropTypes.string,
+        iconName: PropTypes.string,
+        useMapDot: PropTypes.bool,
     }
     render() {
         const url = `https://maps.googleapis.com/maps/api/staticmap?center=${this.props.lat},${this.props.lng}&zoom=${this.props.zoom}&size=${this.props.width}x${this.props.height}&maptype=roadmap&label:%20&key=AIzaSyB2WkbsqNDjsiz8i831IVn1piVIq5OeiCI`
@@ -29,10 +34,14 @@ class MapBlock extends Component {
                 }}
                 source={{ url: url }}
                 >
-                <MapPin
-                    scale={this.props.pinScale}
-                    amenities={{ nursingRoom: true, changeTable: true }}
-                    />
+                {
+                    this.props.useMapDot
+                        ? <MapDot size={buttonSize.searchBar} />
+                        : <MapPin
+                            scale={this.props.pinScale}
+                            amenities={{ nursingRoom: true, changeTable: true }}
+                            />
+                }
             </Image>
         )
     }

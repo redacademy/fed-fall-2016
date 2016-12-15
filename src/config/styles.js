@@ -1,3 +1,6 @@
+import { Dimensions } from 'react-native'
+const { width, height } = Dimensions.get('window')
+    
 export const colors = {
     //--------------------------------------"pink"-ish
     beige: '#f8fbf4',
@@ -51,6 +54,12 @@ export const buttonSize = {
     searchBar: 50,
     listFilter: 42,
     filterButton: 85,
+}
+export const mapBlock = {
+    smallRectangle: {
+        h: height * 0.16,
+        w: width * 0.82,
+    }
 }
 //internal, for use 
 const fonts = {

@@ -6,7 +6,7 @@ import styles from './styles'
 import { buttonSize, colors, textStyles } from '../../config/styles'
 import autoBind from 'react-autobind'
 const { width, height } = Dimensions.get('window')
-const w = width*0.5, h = height*0.25
+const w = width * 0.5, h = height * 0.25
 
 // Redux 
 import { connect } from 'react-redux'
@@ -16,7 +16,7 @@ import {
     getLocationDetails,
     setCardPosition,
     setSelectedCard,
-    locationAddButton,
+    locationAddToggleButton,
 } from '../../redux/actions'
 
 import {
@@ -53,7 +53,7 @@ class LocationHome extends Component {
     }
     componentWillMount() {
         this._setUserCurrentLocation()
-        
+
     }
     componentDidMount() {
         this.props.generateMapPins(this.state.region.longitude, this.state.region.latitude)
@@ -94,7 +94,7 @@ class LocationHome extends Component {
         this.props.setSelectedCard('LocationPreview', placeid)
     }
     _onLocationAddPress() {
-        this.props.locationAddButton(!this.props.locationAdd)
+        this.props.locationAddToggleButton(!this.props.locationAdd)
     }
     _locationAddPress() {
         this.props.setSelectedCard('LocationAdd')
@@ -103,20 +103,20 @@ class LocationHome extends Component {
         if (this.props.cardVisible === true)
             return <Preview />
     }
-   
+
     render() {
         const pins = this.props.pins.map((pin, i) => {
-            return <ScaleClickMarker 
-                    onPressFn={this._onPinPush.bind(this, pin.obj.placeId)}
-                    placeid={pin.placeid}
-                    key={i}
-                    coordinate={{
-                        longitude: pin.obj.loc[0], // not lng
-                        latitude: pin.obj.loc[1],
-                    }}
-                    scale="0.5"
-                    amenities={{ changeTable: true, nursingRoom: false }}
-                    />
+            return <ScaleClickMarker
+                onPressFn={this._onPinPush.bind(this, pin.obj.placeId)}
+                placeid={pin.placeid}
+                key={i}
+                coordinate={{
+                    longitude: pin.obj.loc[0], // not lng
+                    latitude: pin.obj.loc[1],
+                }}
+                scale="0.5"
+                amenities={{ changeTable: true, nursingRoom: false }}
+                />
         })
 
         return (
@@ -130,7 +130,9 @@ class LocationHome extends Component {
                     onRegionChange={region => this._onRegionChangeComplete(region)}
                     >
 
-                    {pins}
+                    {(this.props.locationAdd) ? null :(
+                        pins )
+                    }
 
                     {(this.props.locationAdd) ?
                         <MapView.Marker
@@ -146,7 +148,7 @@ class LocationHome extends Component {
                                         <View>
                                             <TouchableOpacity onPress={() => this._locationAddPress()}>
                                                 <View style={styles.button}>
-                                                <IconMulti name={"add"} size={buttonSize.optionBar} circular border iconColor={colors.blush} />
+                                                    <IconMulti name={"add"} size={buttonSize.optionBar} circular border iconColor={colors.blush} />
                                                 </View>
                                             </TouchableOpacity>
                                         </View>
@@ -214,7 +216,35 @@ const mapDispatchToProps = {
     getLocationDetails,
     setCardPosition,
     setSelectedCard,
-    locationAddButton,
+    locationAddToggleButton,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LocationHome)
+
+
+
+                    // {(this.props.locationAdd) ?
+                    //     <MapView.Marker
+                    //         coordinate={{ latitude: this.state.region.latitude, longitude: this.state.region.longitude }}
+                    //         pinColor={colors.blush}
+                    //         flat={true}
+                    //         >
+                    //         <MapView.Callout tooltip={true} style={{ width: w, height: h, backgroundColor: 'transparent' }} setSelected={true}>
+                    //             <LocationCustomCallout>
+                    //                 <View style={styles.locationAddContainer}>
+                    //                     <Text style={textStyles.textStyle6}>New Location</Text>
+                    //                     <Text style={[{ padding: 5 }, textStyles.textStyle7]}>Press & Hold to Move</Text>
+                    //                     <View>
+                    //                         <TouchableOpacity onPress={() => this._locationAddPress()}>
+                    //                             <View style={styles.button}>
+                    //                                 <IconMulti name={"add"} size={buttonSize.optionBar} circular border iconColor={colors.blush} />
+                    //                             </View>
+                    //                         </TouchableOpacity>
+                    //                     </View>
+                    //                 </View>
+                    //             </LocationCustomCallout>
+                    //         </MapView.Callout>
+                    //     </MapView.Marker>
+                    //     :
+                    //     null
+                    // }

@@ -55,7 +55,7 @@ export const exitPreview = () => ({
     type: EXIT_PREVIEW,
 })
 
-export const locationAddButton = (addLocationButtonSwitch) => ({
+export const locationAddToggleButton = (addLocationButtonSwitch) => ({
     type: LOCATION_ADD_BUTTON_SWITCH,
     payload: addLocationButtonSwitch,
 })
@@ -126,8 +126,10 @@ export const updateFilterValue = (filter, isSelected) => dispatch => {
             return null
     }
 }
-export const getFilterListValues = () => dispatch => {
-    return dispatch(locationAddButton(false))
+export const applyFilterToPins = (filters) => dispatch => {
+    console.log(filters)
+    return true
+    // return dispatch(locationAddToggleButton(false))
 }
 
 export const updateRatingValue = (rating, isSelected) => dispatch => {
@@ -148,15 +150,20 @@ export const updateRatingValue = (rating, isSelected) => dispatch => {
 // Thunks down here
 // OUR SERVER....
 export const generateMapPins = (longitude, latitude) => {
+    const fetchURL = `http://45.55.2.200/api/location/near/${longitude}/${latitude}`
+    // console.log(fetchURL)
     return function (dispatch) {
-        fetch(`http://45.55.2.200/api/location/near/${longitude}/${latitude}`, {
+        fetch(fetchURL, {
             method: 'GET',
             headers: new Headers({
                 'Content-Type': 'application/json',
             }),
         })
             .then(response => response.json())
-            .then(mapData => dispatch({ type: 'LOCATION_DATA_ALL', payload: mapData }))
+            .then(mapData => {
+                console.log('generateMapPins = mapData: ', mapData)
+                dispatch({ type: 'LOCATION_DATA_ALL', payload: mapData })
+            })
     }
 }
 
@@ -172,6 +179,7 @@ export const addNewLocation = (location) => {
         })
             .then(mapData => {
                 setCardPosition('hidden')
+                locationAddToggleButton(false)
                 console.log('mapData', mapData)
             })
     }
@@ -180,8 +188,9 @@ export const addNewLocation = (location) => {
 //GOOGLE MAPS API
 export const getLocationDetails = (placeid) => {
     return function (dispatch) {
-        if(placeid) {
+        if (placeid) {
             const fetchURL = `https://maps.googleapis.com/maps/api/geocode/json?place_id=${placeid}&key=AIzaSyB2WkbsqNDjsiz8i831IVn1piVIq5OeiCI`
+            // console.log(fetchURL)
             fetch(fetchURL, {
                 method: 'GET',
                 headers: new Headers({
@@ -190,6 +199,7 @@ export const getLocationDetails = (placeid) => {
             })
                 .then(response => response.json())
                 .then(locationDetails => {
+                    console.log('getLocationDetails = locationDetails: ', locationDetails)
                     dispatch({ type: 'LOCATION_DATA_DETAILS', payload: locationDetails })
                 })
         }

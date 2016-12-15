@@ -27,27 +27,42 @@ class FilterButton extends Component {
         altIconName: PropTypes.string,
         iconSize: PropTypes.number.isRequired,
         isSelected: PropTypes.bool,
+        readOnly: PropTypes.bool,
     }
-    constructor(props) {
-        super(props)
+    constructor() {
+        super()
         this.state = {
-            isSelected: props.isSelected || false,
+            isSelected: false,
             width: 0,
-            altIconName: (props.altIconName ? props.altIconName : props.iconName),
-            altIconText: (props.altIconText ? props.altIconText : props.iconText),
+            altIconName: 'marker',
+            altIconText: 'marker',
         }
-        this.handlePress = this.handlePress.bind(this)
+        this._handlePress = this._handlePress.bind(this)
     }
-    handlePress() {
-        this.props.updateFilterValue(this.props.iconName, !this.state.isSelected)
-        this.setState({ isSelected: !this.state.isSelected })
+    _handlePress() {
+        if (!this.props.readOnly) {
+            this.props.updateFilterValue(this.props.iconName, !this.state.isSelected)
+            this.setState({ isSelected: !this.state.isSelected })
 
-        if (this.props.onPress)
-            this.props.onPress()
+            if (this.props.onPress)
+                this.props.onPress()
+
+                // console.log('_handlePress state', this.state)
+        }
+    }
+    componentDidMount() {
+            this.setState({ isSelected: this.props.isSelected })
+
+            if(this.props.altIconName) this.setState({ altIconName: this.props.altIconName }) 
+                else this.setState({ altIconName: this.props.iconName }) 
+            if(this.props.altIconText) this.setState({ altIconText: this.props.altIconText })
+                else this.setState({ altIconText: this.props.iconText }) 
+
+                // console.log('componentDidMount state', this.state)
     }
     render() {
         return (
-            <TouchableOpacity onPress={this.handlePress}>
+            <TouchableOpacity onPress={this._handlePress}>
                 {this.state.isSelected ?
                     <View style={containerStyle}>
                         <View style={[styles.button, styles.buttonSelected]}>
@@ -66,17 +81,17 @@ class FilterButton extends Component {
             </TouchableOpacity>
         )
     }
- }
+}
 
 const mapStateToProps = (state) => ({
-//     changeTable: state.card.changeTable,
-//     nursingRoom: state.card.nursingRoom,
-//     mensBathroom: state.card.mensBathroom,
-//     womensBathroom: state.card.womensBathroom,
-//     familyBathroom: state.card.familyBathroom,
-//     private: state.card.private,
-//     strollerAccess: state.card.strollerAccess,
-//     requiresKey: state.card.requiresKey,
+    //     changeTable: state.card.changeTable,
+    //     nursingRoom: state.card.nursingRoom,
+    //     mensBathroom: state.card.mensBathroom,
+    //     womensBathroom: state.card.womensBathroom,
+    //     familyBathroom: state.card.familyBathroom,
+    //     private: state.card.private,
+    //     strollerAccess: state.card.strollerAccess,
+    //     requiresKey: state.card.requiresKey,
 })
 
 const mapDispatchToProps = {
@@ -114,7 +129,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(FilterButton)
                 // />
 /*
 
-            <TouchableOpacity onPress={this.handlePress}>
+            <TouchableOpacity onPress={this._handlePress}>
                 {this.state.isSelected ?
                     <View style={containerStyle}>
                         <View style={[styles.button, styles.buttonSelected]}>

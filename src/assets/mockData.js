@@ -10,17 +10,35 @@ locations: [{
     image urls,
 }]
 */
+export const mockLocationsForAddLocations = [
+    {
+        placeid: "ChIJKQRjajVyhlQRWwpJX5rvnN4",
+        name: 'The Boathouse Restaurant Kitsilano',
+    },  //amenities: change-table, mens/womens washroom, stroller-access
+    {
+        placeid: "ChIJOVR8yUpyhlQR1zklFwmDZKQ",
+        name: 'Starbucks, 1500 Yew',
+    },  //amenities: change-table, mens/womens washroom, stroller-access
+    {
+        placeid: "ChIJzfhG5M5zhlQRvzj0UOkElDY",
+        name: 'Kids Market, Granville Island',
+    },  //amenities: change-table, womens washroom, stroller-access
+    {
+        placeid: "ChIJG3q8d85zhlQRIH1pyAsVpEc",
+        name: 'Granville Island Public Market',
+    },  //amenities: change-table, family washroom, stroller-access, private
+]
 export const mockLocations = [
-     "ChIJW2wi48ZzhlQRMrotX09z9xw",
-     "ChIJ2xyFx-FzhlQR7AmrwU4HwFk",
-     "ChIJbW0YnsdzhlQR2mtc9pcWMWw",
-     "ChIJP2FxnsdzhlQRtGPPIr583EQ",
-     "ChIJx_AshMdzhlQRNYTKRxzKHGE",
-     "ChIJ5Qg8CcdzhlQRLVzT-a95-FA",
-     "ChIJh_Vsb8dzhlQRo3zWwxVDwbI",
-     "ChIJFfDeDsdzhlQRqU3zGHTmMuk",
-     "ChIJVTbKnMdzhlQR2eJyHFphPec",
-     "ChIJk5Qv1cdzhlQRC9m9Hes_il8",
+    "ChIJW2wi48ZzhlQRMrotX09z9xw",
+    "ChIJ2xyFx-FzhlQR7AmrwU4HwFk",
+    "ChIJbW0YnsdzhlQR2mtc9pcWMWw",
+    "ChIJP2FxnsdzhlQRtGPPIr583EQ",
+    "ChIJx_AshMdzhlQRNYTKRxzKHGE",
+    "ChIJ5Qg8CcdzhlQRLVzT-a95-FA",
+    "ChIJh_Vsb8dzhlQRo3zWwxVDwbI",
+    "ChIJFfDeDsdzhlQRqU3zGHTmMuk",
+    "ChIJVTbKnMdzhlQR2eJyHFphPec",
+    "ChIJk5Qv1cdzhlQRC9m9Hes_il8",
 ]
 /*
 users: [{
@@ -35,57 +53,57 @@ export const mockUsers = [{
     name: "Bonnie Francis",
     email: "bonnie@mail.com",
     password: "Francis1",
-},{
+}, {
     id: 1,
     name: "Bob Frank",
     email: "frank@mail.com",
     password: "Frank1",
-},{
+}, {
     id: 2,
     name: "Fanny May",
     email: "fanny@mail.com",
     password: "Fanny1",
-},{
+}, {
     id: 3,
     name: "Fred Man",
     email: "fred@mail.com",
     password: "FredMan1",
-},{
+}, {
     id: 4,
     name: "Sarah Cooper",
     email: "sarah@mail.com",
     password: "Sarah1",
-},{
+}, {
     id: 5,
     name: "Stephen Chen",
     email: "stephen@mail.com",
     password: "Stephen1",
-},{
+}, {
     id: 6,
     name: "Tamara Smith",
     email: "tamara@mail.com",
     password: "Tamara1",
-},{
+}, {
     id: 7,
     name: "Tim Sutherland",
     email: "tim@mail.com",
     password: "Sutherland1",
-},{
+}, {
     id: 8,
     name: "Marie Kwon",
     email: "marie@mail.com",
     password: "Marie1",
-},{
+}, {
     id: 9,
     name: "Mohammad Khan",
     email: "mohammad@mail.com",
     password: "Mohammad1",
-},{
+}, {
     id: 10,
     name: "Suzy Major",
     email: "suzy@mail.com",
     password: "Major1",
-},{
+}, {
     id: 11,
     name: "Seth Minor",
     email: "seth@mail.com",
@@ -102,8 +120,8 @@ const HIGH = "HIGH"
 export const mockFullLocations = [{
     id: 0,
     title: "Boston Pizza",
-    addressL1:"1333 W Broadway #190",
-    addressL2:"Vancouver, BC V6H 4C1",
+    addressL1: "1333 W Broadway #190",
+    addressL2: "Vancouver, BC V6H 4C1",
     place_id: "ChIJW2wi48ZzhlQRMrotX09z9xw",
     coordinate: {
         latitude: 49.26363504526748,
@@ -131,8 +149,8 @@ export const mockFullLocations = [{
 }, {
     id: 1,
     title: "Dennys",
-    addressL1:"1296 W Broadway",
-    addressL2:"Vancouver, BC V6H 1G6",
+    addressL1: "1296 W Broadway",
+    addressL2: "Vancouver, BC V6H 1G6",
     place_id: "ChIJ2xyFx-FzhlQR7AmrwU4HwFk",
     coordinate: {
         latitude: 49.26327075476226,
@@ -160,8 +178,8 @@ export const mockFullLocations = [{
 }, {
     id: 2,
     title: "McDonalds",
-    addressL1:"1482 W Broadway",
-    addressL2:"Vancouver, BC V6H 1H4",
+    addressL1: "1482 W Broadway",
+    addressL2: "Vancouver, BC V6H 1H4",
     place_id: "ChIJbW0YnsdzhlQR2mtc9pcWMWw",
     coordinate: {
         latitude: 49.26340736541866,
@@ -189,8 +207,8 @@ export const mockFullLocations = [{
 }, {
     id: 3,
     title: "Blenz",
-    addressL1:"2506 Granville St",
-    addressL2:"Vancouver, BC V6H 3G8",
+    addressL1: "2506 Granville St",
+    addressL2: "Vancouver, BC V6H 3G8",
     place_id: "ChIJP2FxnsdzhlQRtGPPIr583EQ",
     coordinate: {
         latitude: 49.26341516675726,
@@ -218,8 +236,8 @@ export const mockFullLocations = [{
 }, {
     id: 4,
     title: "Cactus Club",
-    addressL1:"1530 W Broadway",
-    addressL2:"Vancouver, BC V6J 5K9",
+    addressL1: "1530 W Broadway",
+    addressL2: "Vancouver, BC V6J 5K9",
     place_id: "ChIJx_AshMdzhlQRNYTKRxzKHGE",
     coordinate: {
         latitude: 49.26336347313966,
@@ -247,8 +265,8 @@ export const mockFullLocations = [{
 }, {
     id: 5,
     title: "Masa Japanese Restaurant",
-    addressL1:"Canada, 1418 W Broadway",
-    addressL2:"Vancouver, BC V6H 1H4",
+    addressL1: "Canada, 1418 W Broadway",
+    addressL2: "Vancouver, BC V6H 1H4",
     place_id: "ChIJ5Qg8CcdzhlQRLVzT-a95-FA",
     coordinate: {
         latitude: 49.26338133296119,
@@ -276,8 +294,8 @@ export const mockFullLocations = [{
 }, {
     id: 6,
     title: "Vancouver Public Library, Firehall Branch",
-    addressL1:"1455 W 10th Ave",
-    addressL2:"Vancouver, BC V6H 4C5",
+    addressL1: "1455 W 10th Ave",
+    addressL2: "Vancouver, BC V6H 4C5",
     place_id: "ChIJh_Vsb8dzhlQRo3zWwxVDwbI",
     coordinate: {
         latitude: 49.26283545734029,
@@ -305,8 +323,8 @@ export const mockFullLocations = [{
 }, {
     id: 7,
     title: "JOEY Broadway",
-    addressL1:"1424 W Broadway",
-    addressL2:"Vancouver, BC V6H 1H4",
+    addressL1: "1424 W Broadway",
+    addressL2: "Vancouver, BC V6H 1H4",
     place_id: "ChIJFfDeDsdzhlQRqU3zGHTmMuk",
     coordinate: {
         latitude: 49.26323518987539,
@@ -334,8 +352,8 @@ export const mockFullLocations = [{
 }, {
     id: 8,
     title: "Starbucks",
-    addressL1:"2505 Granville St",
-    addressL2:"Vancouver, BC V6H 3G7",
+    addressL1: "2505 Granville St",
+    addressL2: "Vancouver, BC V6H 3G7",
     place_id: "ChIJVTbKnMdzhlQR2eJyHFphPec",
     coordinate: {
         latitude: 49.26311999384853,
@@ -363,8 +381,8 @@ export const mockFullLocations = [{
 }, {
     id: 9,
     title: "Pauls Omelettery",
-    addressL1:"2211 Granville St",
-    addressL2:"Vancouver, BC V6H 3G1",
+    addressL1: "2211 Granville St",
+    addressL2: "Vancouver, BC V6H 3G1",
     place_id: "ChIJk5Qv1cdzhlQRC9m9Hes_il8",
     coordinate: {
         latitude: 49.26592322194549,

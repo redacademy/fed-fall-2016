@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import { View, Text, Linking, ScrollView, Dimensions } from 'react-native'
+import { View, Text, Linking, ScrollView } from 'react-native'
 import {
     getLocationDetails,
 } from '../../redux/actions'
@@ -13,10 +13,7 @@ import {
     //RatingBlock
 } from '../../components'
 import styles from './style'
-import { colors, textStyles } from '../../config/styles'
-const { width, height } = Dimensions.get('window')
-let h = height * 0.16,
-    w = width * 0.82
+import { colors, textStyles, mapBlock } from '../../config/styles'
 
 class LocationPreview extends Component {
     static propTypes = {
@@ -61,34 +58,59 @@ class LocationPreview extends Component {
             )
         } else {
             const result = this.props.locationList[0]
+            // const amenity = this.props.locationList[0].obj.amenities
+
+            // console.log('LocationPreview result', result)
+
+            let amenities = [
+                { iconName: 'baby-change-table', iconText: 'CHANGE TABLE', isSelected: true },
+                { iconName: 'bottle', iconText: 'NURSING ROOM', isSelected: false },
+                { iconName: 'male', iconText: 'MENS', isSelected: true },
+                { iconName: 'female', iconText: 'WOMENS', isSelected: false },
+                { iconName: 'family', iconText: 'FAMILY', isSelected: false },
+                { iconName: 'mask', iconText: 'PRIVATE', isSelected: true },
+                { iconName: 'stroller-accessible', iconText: 'STROLLER\nACCESS', altIconName: 'stroller-inaccessible', altIconText: 'STROLLER\nINACCESS', isSelected: false },
+                { iconName: 'key', iconText: 'REQUIRES KEY', isSelected: true },
+            ]
+            // let amenities = [
+            //     { iconName: 'baby-change-table', iconText: 'CHANGE TABLE', isSelected: amenity.changeTable },
+            //     { iconName: 'bottle', iconText: 'NURSING ROOM', isSelected: amenity.nursingRoom },
+            //     { iconName: 'male', iconText: 'MENS', isSelected: amenity.mensBathroom },
+            //     { iconName: 'female', iconText: 'WOMENS', isSelected: amenity.womensBathroom },
+            //     { iconName: 'family', iconText: 'FAMILY', isSelected: amenity.familyBathroom },
+            //     { iconName: 'mask', iconText: 'PRIVATE', isSelected: amenity.privacy },
+            //     { iconName: 'stroller-accessible', iconText: 'STROLLER\nACCESS', altIconName: 'stroller-inaccessible', altIconText: 'STROLLER\nINACCESS', isSelected: amenity.strollerAccess },
+            //     { iconName: 'key', iconText: 'REQUIRES KEY', isSelected: amenity.requiresKey },
+            // ]
             const lat = result.geometry.location.lat
             const lng = result.geometry.location.lng
             const address = result.formatted_address
             const addressArray = address.split(',')
-            let title='', addressLine1='', addressLine2=''
+            let title = '', addressLine1 = '', addressLine2 = ''
 
-            if(addressArray[0]) title = addressArray[0]
-            if(addressArray[1]) addressLine1 = addressArray[1]
-            if(addressArray[2]) addressLine2 = addressArray[2]
-            if(addressArray[3]) addressLine2 = addressLine2+addressArray[3]
+            if (addressArray[0]) title = addressArray[0]
+            if (addressArray[1]) addressLine1 = addressArray[1]
+            if (addressArray[2]) addressLine2 = addressArray[2]
+            if (addressArray[3]) addressLine2 = addressLine2 + addressArray[3]
+            // filterList={amenity} 
+            if (result) {
+                // console.log('amenities: ', amenities)
+                return (
+                    <ScrollView>
+                        <AddressBlock title={title} addressLine1={addressLine1} addressLine2={addressLine2} />
+                        <View style={styles.filterContainer}>
+                            <FilterList filterList={amenities} providingFilters={true} showHeader={false} readOnly={true} />
+                        </View>
+                        <MapBlock useMapDot={true} lat={this.props.lat} lng={this.props.lng} zoom={17} width={mapBlock.smallRectangle.w} height={mapBlock.smallRectangle.h} />
+                        <View style={styles.buttonContainer}>
+                            <Button onPressFn={this._showDirections}>
+                                <Text style={textStyles.textStyle4}>GO</Text>
+                            </Button>
+                        </View>
 
-            if(result){
-            return (
-                <ScrollView>
-                    <AddressBlock title={title} addressLine1={addressLine1} addressLine2={addressLine2} />
-                    <View style={styles.filterContainer}>
-                        <FilterList showHeader={false} />
-                    </View>
-
-                    <MapBlock lat={lat} lng={lng} zoom={18} width={w} height={h} pinScale={0.4} pinColor={colors.salmon} iconName={'starbaby-face'} />
-                    <View style={styles.buttonContainer}>
-                        <Button onPressFn={this._showDirections}>
-                            <Text style={textStyles.textStyle4}>GO</Text>
-                        </Button>
-                    </View>
-
-                </ScrollView>
-            )} else {
+                    </ScrollView>
+                )
+            } else {
                 return (
                     <Text>Location Details Missing for placeid: {this.props.placeid}</Text>
                 )

@@ -1,14 +1,12 @@
 import React, { Component, PropTypes } from 'react'
-import { View, Text, ScrollView, Dimensions } from 'react-native'
-import { colors, textStyles } from '../../config/styles'
+import { View, Text, ScrollView } from 'react-native'
+import { colors, textStyles, mapBlock } from '../../config/styles'
 import styles from './styles'
-const { width, height } = Dimensions.get('window')
 
 // Redux 
 import { connect } from 'react-redux'
 
 import {
-    getFilterListValues,
     addNewLocation
 } from '../../redux/actions'
 
@@ -20,8 +18,6 @@ import {
     MapBlock,
     // RatingBlock,
 } from '../../components'
-let h = height * 0.16,
-    w = width * 0.82
 
 class LocationAdd extends Component {
     //TODO: update locationHome to pass in place object instead of individual items like this
@@ -45,8 +41,6 @@ class LocationAdd extends Component {
     }
 
     _handleOnPress() {
-        this.props.getFilterListValues()
-        
         const location = {
             placeId: this.props.placeid,
             loc: [this.props.lng, this.props.lat],
@@ -74,12 +68,12 @@ class LocationAdd extends Component {
 
     render() {
         return (
-            <ScrollView>
+            <ScrollView >
                 <AddressBlock title={this.props.title} addressLine1={this.props.addressLine1} addressLine2={this.props.addressLine2} />
                 <View style={styles.filterContainer}>
-                    <FilterList showHeader={false} />
+                    <FilterList providingFilters={false} showHeader={false} readOnly={false}/>
                 </View>
-                <MapBlock lat={this.props.lat} lng={this.props.lng} zoom={17} width={w} height={h} pinScale={0.4} pinColor={colors.salmon} iconName={'starbaby-face'} />
+                <MapBlock useMapDot={true} lat={this.props.lat} lng={this.props.lng} zoom={17} width={mapBlock.smallRectangle.w} height={mapBlock.smallRectangle.h} />
                 <View style={styles.buttonContainer}>
                     <Button onPress={() => this._handleOnPress()}>
                         <Text style={textStyles.textStyle4}>SUBMIT</Text>
@@ -108,7 +102,6 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-    getFilterListValues,
     addNewLocation,
 }
 
