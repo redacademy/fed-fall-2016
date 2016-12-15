@@ -6,7 +6,8 @@ import { connect } from 'react-redux'
 import { textStyles } from '../../config/styles'
 import RatingButton from '../RatingButton'
 import {
-    submitRating
+    submitRating,
+    setSelectedCard,
 } from '../../redux/actions'
 import Button from '../../components/Button'
 
@@ -33,12 +34,13 @@ class LocationRating extends Component {
             }
         }
         this.props.submitRating(this.props.placeid, rating)
+        this.props.setSelectedCard('LocationPreview', this.props.placeid)
     }
-
+// <AddressBlock title={this.props.place.place} addressLine1={this.props.place.line1} addressLine2={this.props.place.line2}/>
     render(){
         return (
                 <View style={styles.cardContainer}>
-                    <AddressBlock title={this.props.place.place} addressLine1={this.props.place.line1} addressLine2={this.props.place.line2}/>
+                    <AddressBlock title={"hey"} addressLine1={"fdss"} addressLine2={"sdfds"}/>
                     
                     <View style={styles.rateContainer}>
                     {
@@ -61,10 +63,15 @@ class LocationRating extends Component {
 const mapStateToProps = (state) => ({
     placeid: state.card.placeid,
     place: state.map,
+    quality: state.button.quality,
+    clean: state.button.cleanliness,
+    nursing: state.button.nursingFriendly,
+    quiet: state.button.quiet,
 })
 
 const mapDispatchToProps = {
     submitRating,
+    setSelectedCard,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LocationRating)

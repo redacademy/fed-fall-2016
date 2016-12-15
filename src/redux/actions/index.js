@@ -234,6 +234,8 @@ export const getLocationDetails = (placeid) => {
 }
 
 export const submitRating = (placeid, rating) => {
+  console.log('PLACEID ', placeid)
+  console.log('RATING ' , rating)
   return function (dispatch) {
       fetch(`http://45.55.2.200/api/location/${placeid}/rating/add`, {
         method: 'POST',

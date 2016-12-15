@@ -113,6 +113,7 @@ const mapStateToProps = (state) => ({
     locationList: state.map.locationList,
     isLoading: state.map.isLoading,
     placeid: state.card.placeid,
+    feedback: state.button.feedback
 })
 
 const mapDispatchToProps = {
