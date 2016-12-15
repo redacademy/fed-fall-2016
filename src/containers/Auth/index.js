@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, TextInput, TouchableOpacity } from 'react-native'
+import { KeyboardAvoidingView, View, Text, TextInput, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import styles from './styles'
 import { colors } from '../../config/styles'
@@ -24,35 +24,41 @@ class Auth extends Component {
           <Text style={[styles.headerText]}><Text style={styles.headerPlus}>+</Text>FED</Text>
         </View>
 
-        <View style={[styles.card, styles.shadow]}>
+        <KeyboardAvoidingView
+          behavior='position'
+          keyboardVerticalOffset={300}>
 
-          <View style={styles.cardNub} />
+          <View style={[styles.card, styles.shadow]}>
 
-          <View style={styles.input}>
-            <TextInput
-              style={styles.inputText}
-              placeholder='LOGIN'
-              onChangeText={email => this.setState({ email })}
-              value={this.state.email} />
-          </View>
+            <View style={styles.cardNub} /> 
 
-          <View style={styles.divider} />
-
-          <View style={styles.input}>
-            <TextInput
-              style={styles.inputText}
-              placeholder='PASSWORD'
-              onChangeText={password => this.setState({ password })}
-              value={this.state.password} />
-          </View>
-
-          <TouchableOpacity onPress={() => this.props.routeSet('home')}>
-            <View style={[styles.submit]}>
-              <Text style={styles.submitText}>LOGIN</Text>
+            <View style={styles.input}>
+              <TextInput
+                style={styles.inputText}
+                placeholder='LOGIN'
+                onChangeText={email => this.setState({ email })}
+                value={this.state.email} />
             </View>
-          </TouchableOpacity>
 
-        </View>
+            <View style={styles.divider} />
+
+            <View style={styles.input}>
+              <TextInput
+                style={styles.inputText}
+                placeholder='PASSWORD'
+                secureTextEntry
+                onChangeText={password => this.setState({ password })}
+                value={this.state.password} />
+            </View>
+
+            <TouchableOpacity onPress={() => this.props.routeSet('home')}>
+              <View style={[styles.submit]}>
+                <Text style={styles.submitText}>LOGIN</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+
+        </KeyboardAvoidingView>
       </View >
     )
   }

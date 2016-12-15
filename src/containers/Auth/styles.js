@@ -8,6 +8,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-between',
     backgroundColor: colors.darkGreyBlue,
+    marginTop: -275,
   },
   top: {
     flex: 8,
@@ -26,6 +27,7 @@ const styles = StyleSheet.create({
     color: colors.darkPeach,
   },
   card: {
+    marginTop: -300,
     backgroundColor: colors.white,
     flex: 5,
     flexDirection: 'column',
