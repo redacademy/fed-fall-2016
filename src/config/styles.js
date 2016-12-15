@@ -62,7 +62,7 @@ export const mapBlock = {
     }
 }
 //internal, for use 
-const fonts = {
+export const fonts = {
     itimRegular: 'Itim-Regular',
     rubikLight: 'Rubik-Light',
     rubikRegular: 'Rubik-Regular',
