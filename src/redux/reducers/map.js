@@ -20,17 +20,13 @@ const initialState = {
 export default (state = initialState, action) => {
     switch (action.type) {
         case LOCATION_DATA_ALL:
-            console.log('DATA ALL', action.payload)
             return {...state, generatedLocationData: action.payload }
         case LOCATION_DATA_DETAILS:
-            console.log('DATA DETAILS', action.payload)
             const newList = state.locationList.concat(action.payload.results)
             return {...state, isLoading: false, locationList:  newList}
         case LOCATION_LIST_DETAILS:
-        console.log('LIST DETAILS', action.payload)
             return {...state, isLoadingList: false, locationList: action.payload}
         case LOCATION_ISLOADING_RESET:
-            console.log('IS LOADING', action.payload)
             return {...state, isLoading: true, isLoadingList: true, locationList: [] }
         default:
             return state

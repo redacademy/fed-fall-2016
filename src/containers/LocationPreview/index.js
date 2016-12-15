@@ -45,6 +45,7 @@ class LocationPreview extends Component {
             (error) => console.log(error),
             { enableHighAccuracy: true })
     }
+    
     _showDirections() {
         const result = this.props.locationList[0]
         const destinationLat = result.geometry.location.lat
@@ -120,7 +121,8 @@ const mapStateToProps = (state) => ({
     locationList: state.map.locationList,
     isLoading: state.map.isLoading,
     placeid: state.card.placeid,
-    feedback: state.button.feedback
+    feedback: state.button.feedback,
+    locationDetails: state.map.locationDetails,
 })
 
 const mapDispatchToProps = {
