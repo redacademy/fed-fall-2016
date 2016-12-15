@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { View, Text, Linking, ScrollView } from 'react-native'
 import {
     getLocationDetails,
+    setSelectedCard,
 } from '../../redux/actions'
 import { connect } from 'react-redux'
 import {
@@ -10,6 +11,7 @@ import {
     FilterList,
     Loader,
     MapBlock,
+    CardHeaderLocation,
     //RatingBlock
 } from '../../components'
 import styles from './style'
@@ -43,12 +45,16 @@ class LocationPreview extends Component {
             (error) => console.log(error),
             { enableHighAccuracy: true })
     }
+    
     _showDirections() {
+        const result = this.props.locationList[0]
+        const destinationLat = result.geometry.location.lat
+        const destinationLong =result.geometry.location.lng
+
         const userLatitude = this.state.latitude
         const userLongitude = this.state.longitude
-        const destinationLatitude = this.props.locationDetails.geometry.location.lat
-        const destinationLongitude = this.props.locationDetails.geometry.location.lng
-        Linking.openURL(`https://www.google.ca/maps/dir/${userLatitude},${userLongitude}/${destinationLatitude},${destinationLongitude}`)
+      
+        Linking.openURL(`https://www.google.ca/maps/dir/${userLatitude},${userLongitude}/${destinationLat},${destinationLong}`)
     }
 
     render() {
@@ -59,6 +65,9 @@ class LocationPreview extends Component {
         } else {
             const result = this.props.locationList[0]
             const amenityList = this.props.locationDetails.amenities 
+            console.log(this.props)
+            console.log('DETAILS ',this.props.locationDetails)
+            console.log('LIST ', amenityList)
 
             let amenities = [
                 { iconName: 'baby-change-table', iconText: 'CHANGE TABLE', isSelected: amenityList.changeTable },
@@ -70,10 +79,12 @@ class LocationPreview extends Component {
                 { iconName: 'stroller-accessible', iconText: 'STROLLER\nACCESS', altIconName: 'stroller-inaccessible', altIconText: 'STROLLER\nINACCESS', isSelected: amenityList.strollerAccess },
                 { iconName: 'key', iconText: 'REQUIRES KEY', isSelected: amenityList.requiresKey },
             ]
+
             const lat = result.geometry.location.lat
             const lng = result.geometry.location.lng
             const address = result.formatted_address
             const addressArray = address.split(',')
+
             let title = '', addressLine1 = '', addressLine2 = ''
 
             if (addressArray[0]) title = addressArray[0]
@@ -84,9 +95,10 @@ class LocationPreview extends Component {
             if (result) {
                 // console.log('amenities: ', amenities)
                 return (
-                    <ScrollView>
+                    <ScrollView showsVerticalScrollIndicator={false}>
+                    <CardHeaderLocation onPressFn={() => this.props.setSelectedCard('LocationRating', this.props.placeid)} amenities={{changeTable: true, nursingRoom: true}} width={400} />
                         <AddressBlock title={title} addressLine1={addressLine1} addressLine2={addressLine2} />
-                        <View style={styles.filterContainer}>
+                        <View style={[styles.filterContainer, {flex: 1}]}>
                             <FilterList filterList={amenities} providingFilters={true} showHeader={false} readOnly={true} />
                         </View>
                         <MapBlock useMapDot={true} lat={lat} lng={lng} zoom={17} width={mapBlock.smallRectangle.w} height={mapBlock.smallRectangle.h} />
@@ -111,10 +123,12 @@ class LocationPreview extends Component {
 const mapStateToProps = (state) => ({
     locationList: state.map.locationList,
     isLoading: state.map.isLoading,
+    feedback: state.button.feedback,
 })
 
 const mapDispatchToProps = {
     getLocationDetails,
+    setSelectedCard,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LocationPreview)

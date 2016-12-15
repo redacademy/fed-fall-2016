@@ -33,6 +33,8 @@ class IconMulti extends Component {
         size: PropTypes.number,             // expands to fill the bounds of the View (or whatever) it's contained within
         circular: PropTypes.bool,           // defaults to square if nothing
         border: PropTypes.bool,           // omits the border
+        width: PropTypes.number,
+        style: PropTypes.object,
     }
 
     constructor() {
@@ -69,6 +71,7 @@ class IconMulti extends Component {
                     >
                     <View>
                         <Icon
+                            onPress={this.props.onPressFn}
                             name={name}
                             size={size * (circular ? 0.5 : 0.75)}
                             color={iconColor || (fillColor ? colors.whiteTwo : colors.warmGrey)}

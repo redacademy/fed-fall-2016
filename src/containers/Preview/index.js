@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
-import { View, Animated } from 'react-native'
+import { View, Animated, Text } from 'react-native'
 import { connect } from 'react-redux'
 import {
     exitPreview,
     getLocationDetails,
-    setCardPosition
+    setCardPosition,
+    enterRateLocation,
+    submitRating,
 } from '../../redux/actions'
 import styles from './styles'
 import { Card } from '../../components'
-
 
 class Preview extends Component {
     constructor(props){
@@ -16,7 +17,7 @@ class Preview extends Component {
 
         this.position = new Animated.Value(this.props.cardPosition)
     }
-
+    
     componentWillMount() {
         this.currentState = 'card'
         this.avCardY = new Animated.Value(340)
@@ -62,7 +63,7 @@ class Preview extends Component {
             }, 375)
         }  
     }
-    
+
     render() {
         const cardAnimation = { transform: [{ translateY: this.position }] }
         return (
@@ -79,23 +80,32 @@ class Preview extends Component {
                     }}
                  >
                     <Card>
-                        {this.props.children}
+                        { this.props.children}
                     </Card>
                  </Animated.View>
             </View>
         )
     }
 }
+
 const mapStateToProps = (state) => ({
     locationDetails: state.map.locationDetails,
     placeid: state.button.placeid,
     cardPosition: state.card.cardPosition,
+    rateLocation: state.button.rateLocation,
+    quality: state.button.quality,
+    cleanliness: state.button.cleanliness,
+    nursingFriendly: state.button.nursingFriendly,
+    quiet: state.button.quiet,
+    feedback: state.button.feedback,
 })
 
 const mapDispatchToProps = {
     exitPreview,
     getLocationDetails,
     setCardPosition,
+    enterRateLocation,
+    submitRating,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Preview)

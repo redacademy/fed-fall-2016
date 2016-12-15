@@ -43,7 +43,7 @@ export default (state = initialState, action) => {
         case LOCATION_LIST_LOAD:
             return {...state, selectedCard: 'LocationList', locationList: action.payload } //, history: history.concat('LocationList') }
         case LOCATION_RATE_LOAD:
-            return {...state, selectedCard: 'LocationRate', placeid: action.payload } //, history: history.concat('LocationRate') }
+            return {...state, selectedCard: 'LocationRating', placeid: action.payload } //, history: history.concat('LocationRate') }
         case LOCATION_VIEW_LOAD:
             return {...state, selectedCard: 'LocationPreview', placeid: action.payload } //, history: history.concat('LocationPreview') }
         // case USER_LOCATION_LIST_LOAD:

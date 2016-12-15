@@ -12,3 +12,5 @@ export { default as LocationPreview } from './LocationPreview'
 export { default as Preview } from './Preview'
 export { default as SearchBar } from './SearchBar'
 
+export { default as RatingButton } from './RatingButton'
+export { default as LocationRating } from './LocationRating'

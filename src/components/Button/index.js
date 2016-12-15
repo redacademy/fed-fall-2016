@@ -15,6 +15,8 @@ class Button extends Component {
     _handlePress() {
         if (this.props.onPress)
             this.props.onPress()
+        if (this.props.onPressFn)
+            this.props.onPressFn()
     }
     render() {
         return (

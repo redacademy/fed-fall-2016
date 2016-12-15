@@ -39,6 +39,12 @@ export const RATING_QUALITY = 'RATING_QUALITY'
 export const RATING_CLEAN = 'RATING_CLEAN'
 export const RATING_NURSING = 'RATING_NURSING'
 export const RATING_QUIET = 'RATING_QUIET'
+export const ENTER_RATE_LOCATION = 'ENTER_RATE_LOCATION'
+export const RATE = 'RATE'
+export const UNRATE = 'UNRATE'
+export const SUBMIT_RATING = 'SUBMIT_RATING'
+export const EXIT_RATE_LOCATION = 'EXIT_RATE_LOCATION'
+export const RATE_FEEDBACK = 'RATE_FEEDBACK'
 
 export const ROUTE_SET = 'ROUTE_SET'
 
@@ -100,7 +106,7 @@ export const setSelectedCard = (card, placeid, locationList, full) => dispatch =
             dispatch({ type: LOCATION_VIEW_LOAD, payload: placeid })
             const cardPosition = full ? 'full' : 'half'
             return dispatch(setCardPosition(cardPosition))
-        case 'LocationRate':
+        case 'LocationRating':
             dispatch({ type: LOCATION_RATE_LOAD, payload: placeid })
             return dispatch(setCardPosition('full'))
         default:
@@ -136,21 +142,41 @@ export const applyFilterToPins = (filters) => dispatch => {
     return true
 }
 
-export const updateRatingValue = (rating, isSelected) => dispatch => {
-    switch (rating) {
-        case 'quality':
-            return dispatch({ type: RATING_QUALITY, payload: isSelected })
-        case 'clean':
-            return dispatch({ type: RATING_CLEAN, payload: isSelected })
-        case 'nursing':
-            return dispatch({ type: RATING_NURSING, payload: isSelected })
-        case 'quiet':
-            return dispatch({ type: RATING_QUIET, payload: isSelected })
-        default:
-            return null
+export const enterRateLocation = () => ({
+    type: ENTER_RATE_LOCATION,
+})
+
+export const rate = ({prop, value, score}) => {
+    switch(prop){
+      case 'quality':
+      case 'cleanliness':
+      case 'nursingFriendly':
+      case 'quiet':
+        return {
+          type: RATE,
+          payload: {prop, value, score},
+        }
+      default: 
+        return null
     }
 }
 
+export const unrate = ({prop, value}) => {
+    switch(prop){
+      case 'quality':
+      case 'cleanliness':
+      case 'nursingFriendly':
+      case 'quiet':
+        return {
+          type: UNRATE,
+          payload: {prop, value},
+        }
+      default: 
+        return null
+    }
+}
+
+// Thunks down here
 // OUR SERVER....
 export const generateMapPins = (longitude, latitude) => {
     const fetchURL = `http://45.55.2.200/api/location/near/${longitude}/${latitude}`
@@ -205,4 +231,22 @@ export const getLocationDetails = (placeid) => {
                 })
         }
     }
+}
+
+export const submitRating = (placeid, rating) => {
+  console.log('PLACEID ', placeid)
+  console.log('RATING ' , rating)
+  return function (dispatch) {
+      fetch(`http://45.55.2.200/api/location/${placeid}/rating/add`, {
+        method: 'POST',
+        headers: new Headers({
+          'Content-Type': 'application/json'
+        }),
+        body: JSON.stringify(rating),
+      })
+      .then(() => {
+        dispatch({ type: EXIT_RATE_LOCATION })
+        dispatch({ type: RATE_FEEDBACK })
+      })
+  }
 }
