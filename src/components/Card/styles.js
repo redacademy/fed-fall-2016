@@ -5,7 +5,7 @@ const { height, width } = Dimensions.get('window')
 
 export const styles = StyleSheet.create({
     cardContainer: {
-        backgroundColor: colors.white,
+        backgroundColor: colors.whiteThree,
         height: height * 0.925,
         marginTop: padding.deviceTop,
         marginRight: padding.right,
