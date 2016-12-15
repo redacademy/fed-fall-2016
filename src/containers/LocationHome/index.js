@@ -52,10 +52,11 @@ class LocationHome extends Component {
         }
     }
     componentWillMount() {
-        this.props.generateMapPins()
+        this._setUserCurrentLocation()
+        
     }
     componentDidMount() {
-        this._setUserCurrentLocation()
+        this.props.generateMapPins(this.state.region.longitude, this.state.region.latitude)
     }
     _toggleOverlay() {
         this.setState({ overlay: !this.state.overlay })
@@ -102,7 +103,6 @@ class LocationHome extends Component {
         if (this.props.cardVisible === true)
             return <Preview />
     }
-
    
     render() {
         const pins = this.props.pins.map((pin, i) => {
@@ -111,8 +111,8 @@ class LocationHome extends Component {
                     placeid={pin.placeid}
                     key={i}
                     coordinate={{
-                        longitude: pin.location.long, // not lng
-                        latitude: pin.location.lat,
+                        longitude: pin.obj.loc[0], // not lng
+                        latitude: pin.obj.loc[1],
                     }}
                     scale="0.5"
                     amenities={{ changeTable: true, nursingRoom: false }}

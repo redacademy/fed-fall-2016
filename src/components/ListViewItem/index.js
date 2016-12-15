@@ -1,9 +1,10 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 import {
     View,
     Text,
     Image,
-    TouchableOpacity
+    TouchableOpacity,
+    Dimensions
 } from 'react-native'
 import styles from './styles'
 import Loader from '../Loader'
@@ -11,7 +12,14 @@ import RatingBar from '../RatingBar'
 import MapPin from '../MapPin'
 import { connect } from 'react-redux'
 import { getStaticMap } from './getStaticMap'
-import { colors } from '../../config/styles'
+import {
+    setCardPosition,
+    setSelectedCard,
+} from '../../redux/actions'
+import { ratingSummaryCalculator } from '../../config/functions'
+// import { colors } from '../../config/styles'
+
+
 
 class ListViewItem extends Component {
 
@@ -21,27 +29,34 @@ class ListViewItem extends Component {
                 <Loader />
             )
         } else {
-            // const loc = this.props.locationDetails
             const lat = this.props.location.geometry.location.lat
             const lng = this.props.location.geometry.location.lng
             const address = this.props.location.formatted_address
             const addressArray = address.split(',')
-
+            const distance = (this.props.mongoData[0].dis).toFixed(0)
+    
+            console.log("THIS", this)
             return (
-                <TouchableOpacity onPress={() => { } } >
+                <TouchableOpacity onPress={() => this.props.setSelectedCard('LocationPreview', this.props.placeid)} >
                     <View style={styles.locationContainer}>
                         <Image
                             style={styles.map}
                             source={{ url: getStaticMap(lat, lng) }}
                             >
-                            <MapPin scale="0.4" amenities={{ nursingRoom: true, changeTable: true }} />
+                            <MapPin scale="0.4" amenities={this.props.mongoData[0].obj.amenities} />
                         </Image>
-                        <View style={styles.detailsContainer}>
+                        <View>
                             <Text style={styles.locationTitle}>{addressArray[0]}</Text>
                             <Text style={styles.locationDetails}>
                                 {addressArray[1]}
                             </Text>
-                            <Text style={styles.locationDetails}>32 Metres</Text>
+                            <View style={styles.ratingBar}>
+                            <RatingBar
+                                size={40}
+                                ratings={ratingSummaryCalculator(this.props.mongoData[0].obj.ratingSummary)}
+                                />
+                                </View>
+                            <Text style={styles.locationDetails}>{distance}m</Text>
                         </View>
 
                     </View>
@@ -51,7 +66,16 @@ class ListViewItem extends Component {
     }
 }
 const mapStateToProps = (state) => ({
+    selectedCard: state.card.selectedCard,
+    placeid: state.button.placeid,
     isLoading: state.map.isLoading,
 })
 
-export default connect(mapStateToProps)(ListViewItem)
+
+const mapDispatchToProps = {
+    setCardPosition,
+    setSelectedCard,
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListViewItem)

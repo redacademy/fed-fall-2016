@@ -34,3 +34,12 @@ export const mapPinColorChooser = (amenities) => {
     }
     return colors.darkGreyBlue
 }
+
+export const ratingSummaryCalculator = (input) => {
+  const quality = input.quality / input.totalRaters
+  const clean = input.clean / input.totalRaters
+  const nursing = input.nursing / input.totalRaters
+  const quiet = input.quiet / input.totalRaters
+  
+  return {quality: quality, clean: clean, nursing: nursing, quiet: quiet} 
+}

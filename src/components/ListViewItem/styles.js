@@ -1,31 +1,43 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet, Dimensions } from 'react-native'
+import { colors } from '../../config/styles'
+const { width } = Dimensions.get('window')
 
 const styles = StyleSheet.create({
     locationContainer: {
         flex: 1,
+        width: width,
         flexDirection: 'row',
-        margin: 5,
+        borderBottomWidth: StyleSheet.hairlineWidth,
+        borderBottomColor: colors.lightGrey,
     },
     map: {
-        height: 120,
-        width: 120,
-        margin: 5,
+        height: 100,
+        width: 100,
+        marginTop: 5,
+        marginRight: 5,
+        marginBottom: 5,
         alignItems: 'center',
         justifyContent: 'center',
     },
-    detailsContainer: {
-        flex: 1,
-    },
     locationTitle: {
+        marginTop: 1,
+        height: 20,
+        maxWidth: 200,
         marginLeft: 3,
         fontSize: 18,
-        color: 'rgb(45, 76, 96)',
+        color: colors.darkGreyBlue,
     },
     locationDetails: {
-        marginLeft: 3,
+        height: 25,
         paddingTop: 3,
         paddingBottom: 3,
-        color: 'rgb(127, 127, 127)',
+        color: colors.lightGrey,
+    },
+    ratingBar: {
+        height: 40,
+        minWidth: 180,
+        maxWidth: 180,
+
     },
 })
 
