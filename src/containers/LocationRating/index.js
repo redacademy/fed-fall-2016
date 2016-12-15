@@ -24,6 +24,10 @@ class LocationRating extends Component {
         ]
     }
 
+    componentWillMount(){
+        console.log(this.props.place.place)
+    }
+
     _submitRating(){
         const rating = {
             rating: {
@@ -37,7 +41,7 @@ class LocationRating extends Component {
         this.props.submitRating(this.props.placeid, rating)
         this.props.setSelectedCard('LocationPreview', this.props.placeid)
     }
-
+    //<AddressBlock title={this.props.place.place} addressLine1={this.props.place.line1} addressLine2={this.props.place.line2}/>
     render(){
          const result = this.props.locationList[0]
             const lat = result.geometry.location.lat
