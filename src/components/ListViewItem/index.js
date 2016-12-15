@@ -67,7 +67,6 @@ class ListViewItem extends Component {
 }
 const mapStateToProps = (state) => ({
     selectedCard: state.card.selectedCard,
-    placeid: state.button.placeid,
     isLoading: state.map.isLoading,
 })
 
