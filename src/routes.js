@@ -1,12 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
-// import Auth from './containers/Auth'
+import Auth from './containers/Auth'
 import LocationHome from './containers/LocationHome'
 
 const Router = ({route}) => {
   switch (route) {
-    // case 'login':
-    //   return <Auth />
+    case 'login':
+      return <Auth />
     case 'home':
       return <LocationHome />
     default:
