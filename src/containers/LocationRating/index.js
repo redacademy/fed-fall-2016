@@ -30,9 +30,9 @@ class LocationRating extends Component {
     _submitRating(){
         const rating = {
             rating: {
-                userId: 'FACETOES',
+                userId: 'robo',
                 quality: this.props.quality ? 3 : 1,
-                clean: this.props.cleanliness ? 3 : 1,
+                clean: this.props.clean ? 3 : 1,
                 nursing: this.props.nursing ? 3 : 1,
                 quiet: this.props.quiet ? 3 : 1,
             }
@@ -53,10 +53,6 @@ class LocationRating extends Component {
             if(addressArray[1]) addressLine1 = addressArray[1]
             if(addressArray[2]) addressLine2 = addressArray[2]
             if(addressArray[3]) addressLine2 = addressLine2+addressArray[3]
-
-            console.log('1',addressLine1)
-            console.log('2',addressLine2)
-            console.log('title',title)
         
         return (
                 <View style={styles.cardContainer}>

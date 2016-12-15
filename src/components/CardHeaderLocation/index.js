@@ -72,6 +72,7 @@ class CardHeaderLocation extends Component {
                             iconColor={colors.salmon}
                             border
                             circular
+                            onPressFn={this.props.onPressFn}
                             />
                     }
                     {this.props.alreadyRated
@@ -83,6 +84,7 @@ class CardHeaderLocation extends Component {
                             iconColor={colors.salmon}
                             border
                             circular
+                            onPressFn={this.props.onPressFn}
                             />
                     }
                 </View>
