@@ -156,7 +156,7 @@ export const rate = ({prop, value, score}) => {
           type: RATE,
           payload: {prop, value, score},
         }
-      default: 
+      default:
         return null
     }
 }
@@ -171,7 +171,7 @@ export const unrate = ({prop, value}) => {
           type: UNRATE,
           payload: {prop, value},
         }
-      default: 
+      default:
         return null
     }
 }
@@ -195,6 +195,7 @@ export const generateMapPins = (longitude, latitude) => {
 }
 
 export const addNewLocation = (location) => {
+
     return function (dispatch) {
         fetch('http://45.55.2.200/api/location/new', {
             method: 'POST',
@@ -226,12 +227,12 @@ export const getLocationDetails = (placeid) => {
             })
                 .then(response => response.json())
                 .then(locationDetails => {
-                    console.log('getLocationDetails = locationDetails: ', locationDetails)
                     dispatch({ type: 'LOCATION_DATA_DETAILS', payload: locationDetails })
                 })
         }
     }
 }
+
 
 export const submitRating = (placeid, rating) => {
   console.log('PLACEID ', placeid)
@@ -249,4 +250,15 @@ export const submitRating = (placeid, rating) => {
         dispatch({ type: RATE_FEEDBACK })
       })
   }
+}
+
+export const locationDetailsForAdd = (lat, lng) => {
+    const fetchURL = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=AIzaSyB2WkbsqNDjsiz8i831IVn1piVIq5OeiCI`
+    return fetch(fetchURL, {
+        method: 'GET',
+        headers: new Headers({
+            'Content-Type': 'application/json',
+        }),
+    })
+    .then(response => response.json())
 }

@@ -7,6 +7,7 @@ import styles from './styles'
 import { connect } from 'react-redux'
 
 import {
+    locationDetailsForAdd,
     addNewLocation
 } from '../../redux/actions'
 
@@ -15,7 +16,6 @@ import {
     AddressBlock,
     Button,
     FilterList,
-    MapBlock,
 } from '../../components'
 
 class LocationAdd extends Component {
@@ -29,30 +29,37 @@ class LocationAdd extends Component {
         lng: PropTypes.number.isRequired,
     }
 
-    _handleOnPress() {
-        const location = {
-            placeId: this.props.placeid,
-            loc: [this.props.lng, this.props.lat],
-            rating: {
-                userId: "scottbrandyfergtrace",
-                quality: this.props.quality,
-                clean: this.props.clean,
-                nursing: this.props.nursing,
-                quiet: this.props.quiet,
-            },
-            createdBy: "scottbrandyfergtrace",
-            amenities: {
-                changeTable: this.props.changeTable,
-                nursingRoom: this.props.nursingRoom,
-                mensBathroom: this.props.mensBathroom,
-                womensBathroom: this.props.womensBathroom,
-                familyBathroom: this.props.familyBathroom,
-                privacy: this.props.privacy,
-                strollerAccess: this.props.strollerAccess,
-                requiresKey: this.props.requiresKey,
-            },
-        }
-        this.props.addNewLocation(location)
+    _addLocation() {
+
+        locationDetailsForAdd(this.props.lat, this.props.lng)
+        .then((location) => {
+            //TODO: show user list of possible locations.
+            // When user selects location, save it and reload the map.
+
+        })
+        // const location = {
+        //     placeId: this.props.placeid,
+        //     loc: [this.props.lng, this.props.lat],
+        //     rating: {
+        //         userId: "scottbrandyfergtrace",
+        //         quality: this.props.quality,
+        //         clean: this.props.clean,
+        //         nursing: this.props.nursing,
+        //         quiet: this.props.quiet,
+        //     },
+        //     createdBy: "scottbrandyfergtrace",
+        //     amenities: {
+        //         changeTable: this.props.changeTable,
+        //         nursingRoom: this.props.nursingRoom,
+        //         mensBathroom: this.props.mensBathroom,
+        //         womensBathroom: this.props.womensBathroom,
+        //         familyBathroom: this.props.familyBathroom,
+        //         privacy: this.props.privacy,
+        //         strollerAccess: this.props.strollerAccess,
+        //         requiresKey: this.props.requiresKey,
+        //     },
+        // }
+        //this.props.addNewLocation(location)
     }
 
     render() {
@@ -63,7 +70,7 @@ class LocationAdd extends Component {
                     <FilterList providingFilters={false} showHeader={false} readOnly={false}/>
                 </View>
                 <View style={styles.buttonContainer}>
-                    <Button onPress={() => this._handleOnPress()}>
+                    <Button onPress={() => this._addLocation()}>
                         <Text style={textStyles.textStyle4}>SUBMIT</Text>
                     </Button>
                 </View>
