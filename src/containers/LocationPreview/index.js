@@ -62,16 +62,16 @@ class LocationPreview extends Component {
 
             // console.log('LocationPreview result', result)
 
-            let amenities = [
-                { iconName: 'baby-change-table', iconText: 'CHANGE TABLE', isSelected: true },
-                { iconName: 'bottle', iconText: 'NURSING ROOM', isSelected: false },
-                { iconName: 'male', iconText: 'MENS', isSelected: true },
-                { iconName: 'female', iconText: 'WOMENS', isSelected: false },
-                { iconName: 'family', iconText: 'FAMILY', isSelected: false },
-                { iconName: 'mask', iconText: 'PRIVATE', isSelected: true },
-                { iconName: 'stroller-accessible', iconText: 'STROLLER\nACCESS', altIconName: 'stroller-inaccessible', altIconText: 'STROLLER\nINACCESS', isSelected: false },
-                { iconName: 'key', iconText: 'REQUIRES KEY', isSelected: true },
-            ]
+            // let amenities = [
+            //     { iconName: 'baby-change-table', iconText: 'CHANGE TABLE', isSelected: true },
+            //     { iconName: 'bottle', iconText: 'NURSING ROOM', isSelected: false },
+            //     { iconName: 'male', iconText: 'MENS', isSelected: true },
+            //     { iconName: 'female', iconText: 'WOMENS', isSelected: false },
+            //     { iconName: 'family', iconText: 'FAMILY', isSelected: false },
+            //     { iconName: 'mask', iconText: 'PRIVATE', isSelected: true },
+            //     { iconName: 'stroller-accessible', iconText: 'STROLLER\nACCESS', altIconName: 'stroller-inaccessible', altIconText: 'STROLLER\nINACCESS', isSelected: false },
+            //     { iconName: 'key', iconText: 'REQUIRES KEY', isSelected: true },
+            // ]
             // let amenities = [
             //     { iconName: 'baby-change-table', iconText: 'CHANGE TABLE', isSelected: amenity.changeTable },
             //     { iconName: 'bottle', iconText: 'NURSING ROOM', isSelected: amenity.nursingRoom },
@@ -92,14 +92,14 @@ class LocationPreview extends Component {
             if (addressArray[1]) addressLine1 = addressArray[1]
             if (addressArray[2]) addressLine2 = addressArray[2]
             if (addressArray[3]) addressLine2 = addressLine2 + addressArray[3]
-            // filterList={amenity} 
+            // filterList={amenity}
             if (result) {
                 // console.log('amenities: ', amenities)
                 return (
                     <ScrollView>
                         <AddressBlock title={title} addressLine1={addressLine1} addressLine2={addressLine2} />
                         <View style={styles.filterContainer}>
-                            <FilterList filterList={amenities} providingFilters={true} showHeader={false} readOnly={true} />
+                            <FilterList filterList={this.props.amenities} providingFilters={true} showHeader={false} readOnly={true} />
                         </View>
                         <MapBlock useMapDot={true} lat={this.props.lat} lng={this.props.lng} zoom={17} width={mapBlock.smallRectangle.w} height={mapBlock.smallRectangle.h} />
                         <View style={styles.buttonContainer}>
