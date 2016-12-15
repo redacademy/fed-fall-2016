@@ -7,15 +7,18 @@ import {
 import { connect } from 'react-redux'
 import {
     AddressBlock,
+    AmenitiesBar,
     Button,
+    CardHeaderLocation,
     FilterList,
     Loader,
     MapBlock,
-    CardHeaderLocation,
     //RatingBlock
+    RatingBar,
 } from '../../components'
-import styles from './style'
+import styles from './styles'
 import { colors, textStyles, mapBlock } from '../../config/styles'
+import { ratingSummaryCalculator } from '../../config/functions'
 
 class LocationPreview extends Component {
     static propTypes = {
@@ -45,29 +48,28 @@ class LocationPreview extends Component {
             (error) => console.log(error),
             { enableHighAccuracy: true })
     }
-    
+
     _showDirections() {
         const result = this.props.locationList[0]
         const destinationLat = result.geometry.location.lat
-        const destinationLong =result.geometry.location.lng
+        const destinationLong = result.geometry.location.lng
 
         const userLatitude = this.state.latitude
         const userLongitude = this.state.longitude
-      
+
         Linking.openURL(`https://www.google.ca/maps/dir/${userLatitude},${userLongitude}/${destinationLat},${destinationLong}`)
     }
 
     render() {
+        console.log('HERE COMES LocationPreview!!!!')
+        console.log(this)
         if (this.props.isLoading) {
             return (
                 <Loader />
             )
         } else {
             const result = this.props.locationList[0]
-            const amenityList = this.props.locationDetails.amenities 
-            console.log(this.props)
-            console.log('DETAILS ',this.props.locationDetails)
-            console.log('LIST ', amenityList)
+            const amenityList = this.props.locationDetails.amenities
 
             let amenities = [
                 { iconName: 'baby-change-table', iconText: 'CHANGE TABLE', isSelected: amenityList.changeTable },
@@ -93,21 +95,24 @@ class LocationPreview extends Component {
             if (addressArray[3]) addressLine2 = addressLine2 + addressArray[3]
 
             if (result) {
-                // console.log('amenities: ', amenities)
+                console.log('amenities: ', this)
                 return (
                     <ScrollView showsVerticalScrollIndicator={false}>
-                    <CardHeaderLocation onPressFn={() => this.props.setSelectedCard('LocationRating', this.props.placeid)} amenities={{changeTable: true, nursingRoom: true}} width={400} />
+                        <CardHeaderLocation onPressFn={() => this.props.setSelectedCard('LocationRating', this.props.placeid)} amenities={this.props.locationDetails.amenities} width={400} />
+                        <View style={{ height: 15 }} />
                         <AddressBlock title={title} addressLine1={addressLine1} addressLine2={addressLine2} />
-                        <View style={[styles.filterContainer, {flex: 1}]}>
-                            <FilterList filterList={amenities} providingFilters={true} showHeader={false} readOnly={true} />
-                        </View>
-                        <MapBlock useMapDot={true} lat={lat} lng={lng} zoom={17} width={mapBlock.smallRectangle.w} height={mapBlock.smallRectangle.h} />
+                        <View style={{ height: 20 }} />
+                        <RatingBar
+                            title
+                            ratings={ratingSummaryCalculator(this.props.locationDetails.ratingSummary)}
+                            />
+                        <AmenitiesBar amenities={this.props.locationDetails.amenities} size={70} />
+                        <MapBlock useMapDot={true} lat={this.props.locationDetails.loc[1]} lng={this.props.locationDetails.loc[0]} zoom={16} width={300} height={200} />
                         <View style={styles.buttonContainer}>
                             <Button onPressFn={this._showDirections}>
                                 <Text style={textStyles.textStyle4}>GO</Text>
                             </Button>
                         </View>
-
                     </ScrollView>
                 )
             } else {

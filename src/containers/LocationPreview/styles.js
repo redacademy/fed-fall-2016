@@ -10,6 +10,16 @@ const styles = StyleSheet.create({
         paddingTop: padding.deviceTop,
         paddingBottom: padding.bottom,
     },
+    ratingBar: {
+        height: 40,
+        minWidth: 180,
+        maxWidth: 180,
+    },
+    amenitiesBar: {
+        height: 20,
+        minWidth: 350,
+        maxWidth: 350,
+    },
 })
 
 export default styles
