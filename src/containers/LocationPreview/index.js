@@ -104,6 +104,7 @@ class LocationPreview extends Component {
                         <View style={{ height: 20 }} />
                         <RatingBar
                             title
+                            size={300}
                             ratings={ratingSummaryCalculator(this.props.locationDetails.ratingSummary)}
                             />
                         <AmenitiesBar amenities={this.props.locationDetails.amenities} size={70} />

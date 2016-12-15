@@ -52,7 +52,7 @@ class RatingBar extends Component {
         }
     }
     render() {
-        const size = this.props.size ? this.props.size : this.state.size
+        const size = this.props.size ? this.props.size / 4 * .9 : this.state.size
         const { title, ratings } = this.props
         return (
             <View

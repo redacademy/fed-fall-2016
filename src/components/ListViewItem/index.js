@@ -51,7 +51,7 @@ class ListViewItem extends Component {
                             </Text>
                             <View style={styles.ratingBar}>
                             <RatingBar
-                                size={40}
+                                size={170}
                                 ratings={ratingSummaryCalculator(this.props.mongoData[0].obj.ratingSummary)}
                                 />
                                 </View>
