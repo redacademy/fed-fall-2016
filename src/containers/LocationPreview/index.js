@@ -65,6 +65,9 @@ class LocationPreview extends Component {
         } else {
             const result = this.props.locationList[0]
             const amenityList = this.props.locationDetails.amenities 
+            console.log(this.props)
+            console.log('DETAILS ',this.props.locationDetails)
+            console.log('LIST ', amenityList)
 
             let amenities = [
                 { iconName: 'baby-change-table', iconText: 'CHANGE TABLE', isSelected: amenityList.changeTable },
@@ -120,9 +123,7 @@ class LocationPreview extends Component {
 const mapStateToProps = (state) => ({
     locationList: state.map.locationList,
     isLoading: state.map.isLoading,
-    placeid: state.card.placeid,
     feedback: state.button.feedback,
-    locationDetails: state.map.locationDetails,
 })
 
 const mapDispatchToProps = {

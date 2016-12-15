@@ -26,6 +26,7 @@ class RateLocation extends Component {
     render(){
         return (
             <View style={{flex: 1, paddingBottom: 20}} >
+                <CardHeaderTitle title={"Please rate"} amenities={{changeTable: true, nursingRoom: true}} />
                 <AddressBlock title={this.props.place.place} addressLine1={this.props.place.line1} addressLine2={this.props.place.line2}/>
 
                 <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around', marginBottom: 50 }}>
