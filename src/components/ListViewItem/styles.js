@@ -11,8 +11,8 @@ const styles = StyleSheet.create({
         borderBottomColor: colors.lightGrey,
     },
     map: {
-        height: 120,
-        width: 120,
+        height: 100,
+        width: 100,
         marginTop: 5,
         marginRight: 5,
         marginBottom: 5,

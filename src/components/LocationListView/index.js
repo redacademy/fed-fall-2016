@@ -23,6 +23,7 @@ class LocationListView extends Component {
     }
 
     render() {
+        console.log("pins", JSON.stringify(this.props.pins))
         return (
             <View style={styles.container}>
                 <View style={styles.titleBox}>
@@ -31,8 +32,8 @@ class LocationListView extends Component {
                 <ScrollView>
                     {
                         this.props.locationList.map((location, i) => (
-                            <View key={`lvi${i}`} style={{ height: 130 }}>
-                                <ListViewItem location={location} />
+                            <View key={`lvi${i}`} style={{ height: 110 }}>
+                                <ListViewItem location={location}  />
                             </View>
                         ))
                     }

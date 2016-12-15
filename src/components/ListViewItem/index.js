@@ -30,6 +30,7 @@ class ListViewItem extends Component {
             const lng = this.props.location.geometry.location.lng
             const address = this.props.location.formatted_address
             const addressArray = address.split(',')
+            console.log("THIS", this)
             return (
                 <TouchableOpacity onPress={() => this.props.setSelectedCard('LocationPreview', this.props.placeid)} >
                     <View style={styles.locationContainer}>
