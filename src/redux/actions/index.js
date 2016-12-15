@@ -76,7 +76,7 @@ export const setCardPosition = (position) => (dispatch) => {
     }
 }
 
-export const setSelectedCard = (card, placeid, locationList) => dispatch => {
+export const setSelectedCard = (card, placeid, locationList, full) => dispatch => {
 
     switch (card) {
         case 'LocationAdd':
@@ -91,12 +91,11 @@ export const setSelectedCard = (card, placeid, locationList) => dispatch => {
             return dispatch(setCardPosition('full'))
         case 'LocationPreview':
             dispatch({ type: LOCATION_VIEW_LOAD, payload: placeid })
-            return dispatch(setCardPosition('half'))
+            const cardPosition = full ? 'full' : 'half';
+            return dispatch(setCardPosition(cardPosition))
         case 'LocationRate':
             dispatch({ type: LOCATION_RATE_LOAD, payload: placeid })
             return dispatch(setCardPosition('full'))
-        // case 'UserLocationList':
-        //   return { type: USER_LOCATION_LIST_LOAD, payload: locationList }
         default:
             return null
     }
@@ -147,11 +146,9 @@ export const updateRatingValue = (rating, isSelected) => dispatch => {
     }
 }
 
-// Thunks down here
 // OUR SERVER....
 export const generateMapPins = (longitude, latitude) => {
     const fetchURL = `http://45.55.2.200/api/location/near/${longitude}/${latitude}`
-    // console.log(fetchURL)
     return function (dispatch) {
         fetch(fetchURL, {
             method: 'GET',
