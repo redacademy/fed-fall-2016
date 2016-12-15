@@ -9,6 +9,11 @@ import ListViewItem from '../ListViewItem'
 import { getLocationDetails } from '../../redux/actions'
 import { connect } from 'react-redux'
 
+const mongoFilter = (arrayToFilter, googlePlaceId) => arrayToFilter.filter((pin) => {
+    if (pin.obj.placeId === googlePlaceId) {
+        return pin
+    }
+})
 
 class LocationListView extends Component {
 
@@ -33,7 +38,7 @@ class LocationListView extends Component {
                     {
                         this.props.locationList.map((location, i) => (
                             <View key={`lvi${i}`} style={{ height: 110 }}>
-                                <ListViewItem location={location}  />
+                                <ListViewItem location={location} mongoData={mongoFilter(this.props.pins, location.place_id)}/>
                             </View>
                         ))
                     }

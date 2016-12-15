@@ -30,6 +30,8 @@ class ListViewItem extends Component {
             const lng = this.props.location.geometry.location.lng
             const address = this.props.location.formatted_address
             const addressArray = address.split(',')
+            const distance = (this.props.mongoData[0].dis).toFixed(0)
+    
             console.log("THIS", this)
             return (
                 <TouchableOpacity onPress={() => this.props.setSelectedCard('LocationPreview', this.props.placeid)} >
@@ -56,7 +58,7 @@ class ListViewItem extends Component {
                                 }}
                                 />
                                 </View>
-                            <Text style={styles.locationDetails}>22 metres</Text>
+                            <Text style={styles.locationDetails}>{distance}m</Text>
                         </View>
 
                     </View>
