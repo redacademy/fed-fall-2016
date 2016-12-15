@@ -1,18 +1,19 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Auth from './containers/Auth'
 import LocationHome from './containers/LocationHome'
 
-const Router = ({route}) => {
-  switch (route) {
-    case 'login':
-      return <Auth />
-    case 'home':
-      return <LocationHome />
-    default:
-      return <LocationHome />
+class Router extends Component {
+  render() {
+    switch (this.props.route) {
+      case 'login':
+        return <Auth />
+      default:
+        return <LocationHome />
+    }
   }
 }
+
 
 const mapStateToProps = state => ({
   route: state.route,
