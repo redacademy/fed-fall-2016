@@ -126,7 +126,7 @@ class LocationHome extends Component {
                     style={styles.mapContainer}
                     initialRegion={this.state.region}
                     showsUserLocation
-                    followsUserLocation
+                    followsUserLocation={false}
                     onRegionChange={region => this._onRegionChangeComplete(region)}
                     >
 
