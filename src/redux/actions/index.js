@@ -33,6 +33,7 @@ export const LOCATION_ISLOADING_RESET = 'LOCATION_ISLOADING_RESET'
 export const LOCATION_VIEW_LOAD = 'LOCATION_VIEW_LOAD'
 export const ON_SEARCH_CHANGE = 'ON_SEARCH_CHANGE'
 export const LOCATION_SUGGESTION_LIST_LOAD = 'LOCATION_SUGGESTION_LIST_LOAD'
+export const LOCATION_SET_ADD_LOCATION_COORDS = 'LOCATION_SET_ADD_LOCATION_COORDS'
 //rating
 export const RATING_CLEAR = 'RATING_CLEAR'
 // // export const RATING_LOAD = 'RATING_LOAD'
@@ -54,6 +55,15 @@ export const routeSet = (route) => ({
     type: ROUTE_SET,
     payload: { route },
 })
+
+export const updateAddLocationCoords = ({ region }) => {
+ return {   type: LOCATION_SET_ADD_LOCATION_COORDS,
+    payload: {
+      lat: region.latitude,
+      lng: region.longitude
+    }
+ }
+}
 
 export const searchTextChange = (text) => ({
     type: ON_SEARCH_CHANGE,

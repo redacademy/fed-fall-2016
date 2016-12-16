@@ -17,6 +17,7 @@ import {
     setCardPosition,
     setSelectedCard,
     locationAddToggleButton,
+    updateAddLocationCoords
 } from '../../redux/actions'
 
 import {
@@ -58,7 +59,6 @@ class LocationHome extends Component {
         this.setState({ overlay: !this.state.overlay })
     }
     _setUserCurrentLocation() {
-        console.log('rendering');
         navigator.geolocation.getCurrentPosition(
             ({ coords }) => {
                 this.setState({
@@ -87,6 +87,7 @@ class LocationHome extends Component {
         /* as user moves around the map, update the current state
         */
         this.setState({ region })
+        this.props.updateAddLocationCoords({ region })
     }
     _onPinPush(placeid) {
         this.props.setSelectedCard('LocationPreview', placeid)
@@ -95,7 +96,7 @@ class LocationHome extends Component {
         this.props.locationAddToggleButton(!this.props.locationAdd)
     }
     _locationAddPress() {
-        this.props.setSelectedCard('LocationAdd')
+        this.props.setSelectedCard('LocationAdd');
     }
     _preview() {
         if (this.props.cardVisible === true)
@@ -216,6 +217,7 @@ const mapDispatchToProps = {
     setCardPosition,
     setSelectedCard,
     locationAddToggleButton,
+    updateAddLocationCoords
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LocationHome)

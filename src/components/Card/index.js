@@ -27,8 +27,8 @@ class Card extends Component {
                 case 'LocationAdd':
                     return (
                         <LocationAdd
-                            title={"RED Academy"} addressLine1={"1490 W Broadway #200"} addressLine2={"Vancouver, BC V6H 4E8"}
-                            lat={49.2634046} lng={-123.1404133}
+                            title={"Add a new Location"} addressLine1={""} addressLine2={""}
+                            lat={this.props.addLocationCoords.lat} lng={this.props.addLocationCoords.lng}
                             />)
                 case 'LocationSuggestions':
                   return <LocationSuggestions />
@@ -65,6 +65,7 @@ const mapStateToProps = (state) => ({
           return location.obj.placeId === state.card.placeid
       })[0].obj : {},
     locationList: state.map.locationList,
+    addLocationCoords: state.map.addLocationCoords
 })
 
 const mapDispatchToProps = {

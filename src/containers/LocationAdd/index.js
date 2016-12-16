@@ -38,13 +38,6 @@ class LocationAdd extends Component {
         const location = {
           placeId: response.results[0].place_id,
           loc: [this.props.lng, this.props.lat],
-          ratingSummary: {
-            quality: this.props.quality,
-            clean: this.props.clean,
-            nursing: this.props.nursing,
-            quiet: this.props.quiet,
-            totalRaters: 1,
-          },
           rating: {
             userId: "DemoUser",
             quality: this.props.quality,
