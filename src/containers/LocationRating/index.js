@@ -1,5 +1,5 @@
 import React, { Component} from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, ScrollView } from 'react-native'
 import styles from './style.js'
 import AddressBlock from '../../components/AddressBlock'
 import { connect } from 'react-redux'
@@ -22,10 +22,6 @@ class LocationRating extends Component {
             { attribute: 'nursingFriendly', iconName: 'breast-feeding', title: 'NURSING FRIENDLY'},
             { attribute: 'quiet', iconName: 'quiet', title: 'QUIET'}                            
         ]
-    }
-
-    componentWillMount(){
-        console.log(this.props.place.place)
     }
 
     _submitRating(){
@@ -55,20 +51,21 @@ class LocationRating extends Component {
             if(addressArray[2]) addressLine2 = addressArray[2]
             if(addressArray[3]) addressLine2 = addressLine2+addressArray[3]
 
-                console.log(this)
-        console.log(this.props.locationList)
+
+
         
 
         return (
                 <View style={styles.cardContainer}>
                     <CardHeaderTitle title={"Please rate"} />
+                    <ScrollView>
                     <AddressBlock title={title} addressLine1={addressLine1} addressLine2={addressLine2}/>
                     
                     <View style={styles.rateContainer}>
                     {
-                        this.ratees.map((ratee) => {
-                            return <View style={[styles.ratingButton, { marginBottom: 10 }]}>
-                                <RatingButton style={styles.ratingButton} rateeTitle={ratee.title} attribute={ratee.attribute} iconName={ratee.iconName} />
+                        this.ratees.map((ratee, index) => {
+                            return <View style={[styles.ratingButton, { marginBottom: 10 }]} key={index}>
+                                <RatingButton size={130} style={styles.ratingButton} rateeTitle={ratee.title} attribute={ratee.attribute} iconName={ratee.iconName} />
                             </View>
                         })
                     }
@@ -77,6 +74,7 @@ class LocationRating extends Component {
                     <Button onPressFn={this._submitRating.bind(this)} style={styles.submitButton}>
                         <Text style={textStyles.textStyle4}>SUBMIT</Text>
                     </Button>
+                    </ScrollView>
                 </View>
         )
     }
