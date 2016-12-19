@@ -23,7 +23,16 @@ import { ratingSummaryCalculator } from '../../config/functions'
 
 class ListViewItem extends Component {
 
+    constructor() {
+        super()
+        this.state = {
+            size: 0,
+        }
+    }
+
     render() {
+
+        const size = this.props.size ? this.props.size : this.state.size
         if (this.props.isLoading) {
             return (
                 <Loader />
@@ -49,12 +58,20 @@ class ListViewItem extends Component {
                             <Text style={styles.locationDetails}>
                                 {addressArray[1]}
                             </Text>
-                            <View style={styles.ratingBar}>
-                            <RatingBar
-                                size={170}
-                                ratings={ratingSummaryCalculator(this.props.mongoData[0].obj.ratingSummary)}
-                                />
-                                </View>
+                            <View style={styles.ratingBar}
+                                onLayout={(event) => {
+                                    if (!this.props.size) {
+                                        this.setState({ size: event.nativeEvent.layout.width })
+                                    }
+                                }
+                                }
+                                >
+
+                                <RatingBar
+                                    size={this.props.size * .5}
+                                    ratings={ratingSummaryCalculator(this.props.mongoData[0].obj.ratingSummary)}
+                                    />
+                            </View>
                             <Text style={styles.locationDetails}>{distance}m</Text>
                         </View>
 

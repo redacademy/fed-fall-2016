@@ -12,6 +12,12 @@ import { connect } from 'react-redux'
 import { mongoFilter } from '../../config/functions'
 
 class LocationListView extends Component {
+    constructor() {
+        super()
+        this.state = {
+            size: 0,
+        }
+    }
 
     componentWillMount() {
         this.props.pins.forEach((pin) => {
@@ -26,13 +32,18 @@ class LocationListView extends Component {
                     <Text style={styles.title}>{this.props.locationSuggestions ? 'Select your Location' : 'List View'}</Text>
                 </View>
                 <ScrollView>
+                    <View onLayout={(event) => {
+                        this.setState({ size: event.nativeEvent.layout.width })
+                    }
+                    }
+                        />
                     {
                         this.props.locationList.map((location, i) => (
                             <View key={`lvi${i}`} style={{ height: 110 }}>
-                                { this.props.locationSuggestions ?
-                                  <UnsavedListViewItem location={location} />
-                                :
-                                <ListViewItem location={location} mongoData={mongoFilter(this.props.pins, location.place_id)} placeid={location.place_id}/>
+                                {this.props.locationSuggestions ?
+                                    <UnsavedListViewItem location={location} />
+                                    :
+                                    <ListViewItem location={location} mongoData={mongoFilter(this.props.pins, location.place_id)} placeid={location.place_id} size={this.state.size} />
                                 }
                             </View>
                         ))
