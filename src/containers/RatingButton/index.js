@@ -33,7 +33,7 @@ class RatingButton extends Component {
             case 1:
                 return (
                     <View>
-                    <View style={{height: 130, width: 130, marginLeft: 10}}>
+                    <View style={{height: this.props.size, width: this.props.size, marginLeft: 10}}>
                         <HalfButton
                             onPressTopFn={() => {
                                 this.props.rate({prop: this.props.attribute, value: false})
@@ -55,7 +55,7 @@ class RatingButton extends Component {
                 const i = this.props[this.props.attribute] ? icon.up : icon.down 
                 return (
                     <View>
-                        <IconMulti name={i.name} fillColor={i.color} onPressFn={() => this.setState({ step: 1})} iconColor="white" size={130} border />
+                        <IconMulti name={i.name} fillColor={i.color} onPressFn={() => this.setState({ step: 1})} iconColor="white" size={this.props.size} border />
                         <View style={{flexDirection: 'row', justifyContent: 'center'}}>
                             <Text style={{color: 'gray', marginTop: 5, marginBottom: 10, fontSize: 12}}>{this.props.rateeTitle}</Text>
                         </View>
@@ -67,7 +67,7 @@ class RatingButton extends Component {
                         <IconMulti 
                             name={this.props.iconName}
                             iconColor="#e28385"
-                            size={130}
+                            size={this.props.size}
                             border
                             onPressFn={() => this.setState({ step: 1 })}
                         />
