@@ -166,7 +166,7 @@ class LocationHome extends Component {
                         <OptionsBar>
                             <OptionsBarButton onPress={() => this._setUserCurrentLocation()} iconName={"location"} />
                             <OptionsBarButton onPress={() => this._onLocationAddPress()} iconName={"add"} />
-                            <OptionsBarButton onPress={() => console.log('user button pressed')} iconName={"user"} />
+                            <OptionsBarButton onPress={() => null} iconName={"user"} />
                         </OptionsBar>
                     </View>
 

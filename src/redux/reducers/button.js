@@ -35,13 +35,10 @@ export default (state = initialState, action) => {
         case ENTER_RATE_LOCATION: 
             return {...state, rateLocation: true}
         case EXIT_RATE_LOCATION:
-            console.log('exit')
             return {...state, rateLocation: false}
         case RATE:
-            console.log('RATE')
             return {...state, [action.payload.prop]: true}
         case UNRATE: 
-            console.log('UNRATE')
             return {...state, [action.payload.prop]: false}
         case RATE_FEEDBACK:
             return {...state, feedback: true}

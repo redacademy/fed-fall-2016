@@ -35,7 +35,7 @@ class UnsavedListViewItem extends Component {
 
 
             return (
-                <TouchableOpacity onPress={() => console.log('Save Location!')} >
+                <TouchableOpacity onPress={() => null} >
                     <View style={styles.locationContainer}>
                         <MapBlock useMapDot={true} lat={lat} lng={lng} zoom={16} width={262} height={100} />
                     </View>

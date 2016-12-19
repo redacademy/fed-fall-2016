@@ -47,7 +47,6 @@ class RatingButton extends Component {
     }
 
     render() {
-        console.log('RatingButtonWithState props: ', this.props)
         return (
             <TouchableOpacity onPress={() => this.handlePress()}>
                 {this.state.isDefault ?

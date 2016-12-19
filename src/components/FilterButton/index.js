@@ -46,8 +46,6 @@ class FilterButton extends Component {
 
             if (this.props.onPress)
                 this.props.onPress()
-
-                // console.log('_handlePress state', this.state)
         }
     }
     componentDidMount() {
@@ -57,8 +55,6 @@ class FilterButton extends Component {
                 else this.setState({ altIconName: this.props.iconName }) 
             if(this.props.altIconText) this.setState({ altIconText: this.props.altIconText })
                 else this.setState({ altIconText: this.props.iconText }) 
-
-                // console.log('componentDidMount state', this.state)
     }
     render() {
         return (

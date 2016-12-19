@@ -45,7 +45,7 @@ class LocationPreview extends Component {
                 longitude: userLocation.coords.longitude,
             })
         },
-            (error) => console.log(error),
+            (error) => null,
             { enableHighAccuracy: true })
     }
 
@@ -61,8 +61,6 @@ class LocationPreview extends Component {
     }
 
     render() {
-        console.log('HERE COMES LocationPreview!!!!')
-        console.log(this)
         if (this.props.isLoading) {
             return (
                 <Loader />
@@ -95,7 +93,6 @@ class LocationPreview extends Component {
             if (addressArray[3]) addressLine2 = addressLine2 + addressArray[3]
 
             if (result) {
-                console.log('amenities: ', this)
                 return (
                     <ScrollView showsVerticalScrollIndicator={false}>
                         <CardHeaderLocation onPressFn={() => this.props.setSelectedCard('LocationRating', this.props.placeid)} amenities={this.props.locationDetails.amenities} width={400} />

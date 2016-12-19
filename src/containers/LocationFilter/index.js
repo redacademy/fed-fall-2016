@@ -24,8 +24,6 @@ class LocationFilter extends Component {
         if (this.props.privacy) filters.push({ privacy: this.props.privacy })
         if (this.props.strollerAccess) filters.push({ strollerAccess: this.props.strollerAccess })
         if (this.props.requiresKey) filters.push({ requiresKey: this.props.requiresKey })
-
-        // console.log('filters: ', filters)
         this.props.applyFilterToPins(filters)
     }
     render() {

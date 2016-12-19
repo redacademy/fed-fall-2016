@@ -236,7 +236,6 @@ export const getLocationDetails = (placeid) => {
     return function (dispatch) {
         if (placeid) {
             const fetchURL = `https://maps.googleapis.com/maps/api/geocode/json?place_id=${placeid}&key=AIzaSyB2WkbsqNDjsiz8i831IVn1piVIq5OeiCI`
-            // console.log(fetchURL)
             fetch(fetchURL, {
                 method: 'GET',
                 headers: new Headers({
@@ -253,8 +252,6 @@ export const getLocationDetails = (placeid) => {
 
 
 export const submitRating = (placeid, rating) => {
-  console.log('PLACEID ', placeid)
-  console.log('RATING ' , rating)
   return function (dispatch) {
       fetch(`http://45.55.2.200/api/location/${placeid}/rating/add`, {
         method: 'POST',

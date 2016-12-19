@@ -19,7 +19,6 @@ class MapMarker extends Component {
         this.props.setSelectedCard('LocationAdd')
     }
     render() {
-        console.log('render Marker region:', region)
         return (
             <MapView.Marker
                 coordinate={{ latitude: region.latitude, longitude: region.longitude }}

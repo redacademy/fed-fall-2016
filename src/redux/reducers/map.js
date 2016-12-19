@@ -31,7 +31,6 @@ export default (state = initialState, action) => {
         case LOCATION_ISLOADING_RESET:
             return {...state, isLoading: true, isLoadingList: true, locationList: [] }
         case LOCATION_SET_ADD_LOCATION_COORDS:
-          console.log(action.payload);
             return {...state, addLocationCoords: action.payload }
         default:
             return state
