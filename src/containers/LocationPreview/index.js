@@ -101,10 +101,9 @@ class LocationPreview extends Component {
                         <View style={{ height: 20 }} />
                         <RatingBar
                             title
-                            size={300}
                             ratings={ratingSummaryCalculator(this.props.locationDetails.ratingSummary)}
                             />
-                        <AmenitiesBar amenities={this.props.locationDetails.amenities} size={70} />
+                        <AmenitiesBar amenities={this.props.locationDetails.amenities} />
                         <MapBlock useMapDot={true} lat={this.props.locationDetails.loc[1]} lng={this.props.locationDetails.loc[0]} zoom={16} width={300} height={200} />
                         <View style={styles.buttonContainer}>
                             <Button onPressFn={this._showDirections}>

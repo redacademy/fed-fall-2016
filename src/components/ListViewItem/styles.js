@@ -35,8 +35,8 @@ const styles = StyleSheet.create({
     },
     ratingBar: {
         height: 40,
-        minWidth: 180,
-        maxWidth: 180,
+        minWidth: 158,
+        maxWidth: 158,
     },
     unsavedMap: {
         height: 100,

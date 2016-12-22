@@ -58,19 +58,10 @@ class ListViewItem extends Component {
                             <Text style={styles.locationDetails}>
                                 {addressArray[1]}
                             </Text>
-                            <View style={styles.ratingBar}
-                                onLayout={(event) => {
-                                    if (!this.props.size) {
-                                        this.setState({ size: event.nativeEvent.layout.width })
-                                    }
-                                }
-                                }
-                                >
-
-                                <RatingBar
-                                    size={this.props.size * .5}
-                                    ratings={ratingSummaryCalculator(this.props.mongoData[0].obj.ratingSummary)}
-                                    />
+                            <View style={styles.ratingBar}>
+                            <RatingBar
+                                ratings={ratingSummaryCalculator(this.props.mongoData[0].obj.ratingSummary)}
+                                />
                             </View>
                             <Text style={styles.locationDetails}>{distance}m</Text>
                         </View>
