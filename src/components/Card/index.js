@@ -7,6 +7,7 @@ import {
     LocationFilter,
     LocationPreview,
     LocationRating,
+    UserView,
 } from '../../containers/'
 
 import LocationListView from '../LocationListView'
@@ -31,15 +32,17 @@ class Card extends Component {
                             lat={this.props.addLocationCoords.lat} lng={this.props.addLocationCoords.lng}
                             />)
                 case 'LocationSuggestions':
-                  return <LocationSuggestions />
+                    return <LocationSuggestions />
                 case 'LocationFilter':
                     return <LocationFilter />
                 case 'LocationList':
-                    return <LocationListView  locationList={this.props.locationList}/>
+                    return <LocationListView locationList={this.props.locationList}/>
                 case 'LocationPreview':
                     return <LocationPreview placeid={this.props.placeid} locationDetails={this.props.locationDetails} />
                 case 'LocationRating':
                     return <LocationRating placeid={this.props.placeid} />
+                case 'UserView':
+                    return <UserView />
                 default:
                     return <Text>No Card for selected Action</Text>
             }
@@ -50,7 +53,9 @@ class Card extends Component {
         return (
             <View style={styles.cardContainer}>
                 <View style={styles.cardPuller} />
-                {this._renderCard()}
+                <View style={styles.cardContent}>
+                    {this._renderCard()}
+                </View>
             </View>
         )
     }
@@ -62,8 +67,8 @@ const mapStateToProps = (state) => ({
     cardVisible: state.card.cardVisible,
     placeid: state.card.placeid,
     locationDetails: state.card.placeid ? state.map.generatedLocationData.filter((location) => {
-          return location.obj.placeId === state.card.placeid
-      })[0].obj : {},
+        return location.obj.placeId === state.card.placeid
+    })[0].obj : {},
     locationList: state.map.locationList,
     addLocationCoords: state.map.addLocationCoords
 })

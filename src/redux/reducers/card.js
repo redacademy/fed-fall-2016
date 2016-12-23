@@ -10,6 +10,7 @@ import {
     LOCATION_RATE_LOAD,
     LOCATION_SUGGESTION_LIST_LOAD,
     LOCATION_VIEW_LOAD,
+    USER_VIEW_LOAD,
 } from '../actions'
 
 const initialState = {
@@ -46,6 +47,8 @@ export default (state = initialState, action) => {
             return {...state, selectedCard: 'LocationPreview', placeid: action.payload } //, history: history.concat('LocationPreview') }
         case LOCATION_SUGGESTION_LIST_LOAD:
           return {...state, locationSuggestions: action.payload, selectedCard: 'LocationSuggestions' }
+        case USER_VIEW_LOAD:
+        return {...state, selectedCard: 'UserView'}
         default:
             return state
     }

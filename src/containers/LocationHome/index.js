@@ -92,6 +92,9 @@ class LocationHome extends Component {
     _onPinPush(placeid) {
         this.props.setSelectedCard('LocationPreview', placeid)
     }
+    _onUserPinPush() {
+        this.props.setSelectedCard('UserView')
+    }
     _onLocationAddPress() {
         this.props.locationAddToggleButton(!this.props.locationAdd)
     }
@@ -166,7 +169,7 @@ class LocationHome extends Component {
                         <OptionsBar>
                             <OptionsBarButton onPress={() => this._setUserCurrentLocation()} iconName={"location"} />
                             <OptionsBarButton onPress={() => this._onLocationAddPress()} iconName={"add"} />
-                            <OptionsBarButton onPress={() => null} iconName={"user"} />
+                            <OptionsBarButton onPress={() => this._onUserPinPush()} iconName={"user"} />
                         </OptionsBar>
                     </View>
 

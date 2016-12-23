@@ -34,6 +34,7 @@ export const LOCATION_VIEW_LOAD = 'LOCATION_VIEW_LOAD'
 export const ON_SEARCH_CHANGE = 'ON_SEARCH_CHANGE'
 export const LOCATION_SUGGESTION_LIST_LOAD = 'LOCATION_SUGGESTION_LIST_LOAD'
 export const LOCATION_SET_ADD_LOCATION_COORDS = 'LOCATION_SET_ADD_LOCATION_COORDS'
+export const USER_VIEW_LOAD = 'USER_VIEW_LOAD'
 //rating
 export const RATING_CLEAR = 'RATING_CLEAR'
 // // export const RATING_LOAD = 'RATING_LOAD'
@@ -57,12 +58,13 @@ export const routeSet = (route) => ({
 })
 
 export const updateAddLocationCoords = ({ region }) => {
- return {   type: LOCATION_SET_ADD_LOCATION_COORDS,
-    payload: {
-      lat: region.latitude,
-      lng: region.longitude
+    return {
+        type: LOCATION_SET_ADD_LOCATION_COORDS,
+        payload: {
+            lat: region.latitude,
+            lng: region.longitude
+        }
     }
- }
 }
 
 export const searchTextChange = (text) => ({
@@ -85,8 +87,8 @@ export const locationAddToggleButton = (addLocationButtonSwitch) => ({
 })
 
 export const loadLocationSuggestions = (suggestionList) => ({
-  type: LOCATION_SUGGESTION_LIST_LOAD,
-  payload: suggestionList,
+    type: LOCATION_SUGGESTION_LIST_LOAD,
+    payload: suggestionList,
 })
 
 export const setCardPosition = (position) => (dispatch) => {
@@ -112,8 +114,8 @@ export const setSelectedCard = (card, placeid, locationList, full, suggestions) 
             dispatch({ type: LOCATION_ADD_LOAD, payload: placeid })
             return dispatch(setCardPosition('full'))
         case 'LocationSuggestions':
-          ret
-          //return dispatch(setCardPosition('full'))
+            ret
+        //return dispatch(setCardPosition('full'))
         case 'LocationFilter':
             dispatch({ type: FILTER_CLEAR_VALUES })
             dispatch({ type: LOCATION_FILTER_LOAD })
@@ -127,6 +129,9 @@ export const setSelectedCard = (card, placeid, locationList, full, suggestions) 
             return dispatch(setCardPosition(cardPosition))
         case 'LocationRating':
             dispatch({ type: LOCATION_RATE_LOAD, payload: placeid })
+            return dispatch(setCardPosition('full'))
+        case 'UserView':
+            dispatch({ type: USER_VIEW_LOAD })
             return dispatch(setCardPosition('full'))
         default:
             return null
@@ -166,32 +171,32 @@ export const enterRateLocation = () => ({
 })
 
 export const rate = ({prop, value, score}) => {
-    switch(prop){
-      case 'quality':
-      case 'cleanliness':
-      case 'nursingFriendly':
-      case 'quiet':
-        return {
-          type: RATE,
-          payload: {prop, value, score},
-        }
-      default:
-        return null
+    switch (prop) {
+        case 'quality':
+        case 'cleanliness':
+        case 'nursingFriendly':
+        case 'quiet':
+            return {
+                type: RATE,
+                payload: { prop, value, score },
+            }
+        default:
+            return null
     }
 }
 
 export const unrate = ({prop, value}) => {
-    switch(prop){
-      case 'quality':
-      case 'cleanliness':
-      case 'nursingFriendly':
-      case 'quiet':
-        return {
-          type: UNRATE,
-          payload: {prop, value},
-        }
-      default:
-        return null
+    switch (prop) {
+        case 'quality':
+        case 'cleanliness':
+        case 'nursingFriendly':
+        case 'quiet':
+            return {
+                type: UNRATE,
+                payload: { prop, value },
+            }
+        default:
+            return null
     }
 }
 
@@ -252,19 +257,19 @@ export const getLocationDetails = (placeid) => {
 
 
 export const submitRating = (placeid, rating) => {
-  return function (dispatch) {
-      fetch(`http://45.55.2.200/api/location/${placeid}/rating/add`, {
-        method: 'POST',
-        headers: new Headers({
-          'Content-Type': 'application/json'
-        }),
-        body: JSON.stringify(rating),
-      })
-      .then(() => {
-        dispatch({ type: EXIT_RATE_LOCATION })
-        dispatch({ type: RATE_FEEDBACK })
-      })
-  }
+    return function (dispatch) {
+        fetch(`http://45.55.2.200/api/location/${placeid}/rating/add`, {
+            method: 'POST',
+            headers: new Headers({
+                'Content-Type': 'application/json'
+            }),
+            body: JSON.stringify(rating),
+        })
+            .then(() => {
+                dispatch({ type: EXIT_RATE_LOCATION })
+                dispatch({ type: RATE_FEEDBACK })
+            })
+    }
 }
 
 export const locationDetailsForAdd = (lat, lng) => {
@@ -272,5 +277,5 @@ export const locationDetailsForAdd = (lat, lng) => {
     return fetch(fetchURL, {
         method: 'GET',
     })
-    .then(response => response.json())
+        .then(response => response.json())
 }
