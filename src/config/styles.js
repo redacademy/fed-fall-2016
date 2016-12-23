@@ -1,6 +1,21 @@
 import { Dimensions } from 'react-native'
-const { width, height } = Dimensions.get('window')
-    
+export const { width, height } = Dimensions.get('window')
+export const w = width * 0.945
+export const h = height * 0.925
+
+export const padding = {            //initially based off of iPhone 6s
+    deviceTop: height*0.05281,      //(iPhone 6s: 30px)
+    deviceRight: width*0.0625,      //(iPhone 6s: 20px)
+    deviceBottom: height*0.03521,   //(iPhone 6s: 20px)
+    deviceLeft: width*0.0625,       //(iPhone 6s: 20px)
+    top: height*0.0176,             //(iPhone 6s: 10px)
+    right: width*0.03125,           //(iPhone 6s: 10px)
+    bottom: height*0.0176,          //(iPhone 6s: 10px)
+    left: width*0.03125,            //(iPhone 6s: 10px)
+}
+export const cardWidth = w - padding.deviceLeft - padding.deviceRight
+export const cardHeight = h - padding.deviceTop - padding.deviceBottom
+
 export const colors = {
     //--------------------------------------"pink"-ish
     beige: '#f8fbf4',
@@ -38,22 +53,18 @@ export const shadows = {
     offset: { width: 1, height: 2 },
     radius: 3,
 }
-export const padding = {
-    deviceTop: 30,
-    deviceRight: 20,
-    deviceBottom: 20,
-    deviceLeft: 20,
-    top: 10,
-    right: 10,
-    bottom: 10,
-    left: 10,
-}
 
 export const buttonSize = {
-    optionBar: 50,
-    searchBar: 50,
-    listFilter: 42,
-    filterButton: 85,
+    optionBar: height*0.08, //50,
+    searchBar: height*0.08, //50,
+    listFilter: height*0.07, //42,
+    filterButton: height*0.13,//85(*0.15),
+}
+
+export const iconSize = {
+    mainMapPin: height*0.08,
+    staticMapPin: height*0.08,
+    filterButton: height*0.08,
 }
 export const mapBlock = {
     smallRectangle: {
@@ -69,41 +80,35 @@ export const fonts = {
     rubikMedium: 'Rubik-Medium',
 }
 
+//anything the fontSize list has not been converted to match the current size as suggested by styleguide
 const fontSize = {
     oneHundredTwentyFivePoint: {
         pt: 125,
         pixel: 167,
-        em: 10.438,
     },
     oneHundredPoint: {
         pt: 100,
         pixel: 133,
-        em: 8.313,
     },
     twentyFourPoint: {
         pt: 24,
         pixel: 32,
-        em: 2,
     },
     twentyTwoPointFivePoint: {
         pt: 22.5,
         pixel: 30,
-        em: 1.875,
     },
     fifteenPoint: {
         pt: 15,
         pixel: 21,
-        em: 1.3,
     },
     fourteenPoint: {
         pt: 14,
         pixel: 19,
-        em: 1.2,
     },
     twelvePoint: {
         pt: 12,
         pixel: 16,
-        em: 1,
     },
 }
 

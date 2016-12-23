@@ -49,7 +49,7 @@ class CardHeaderLocation extends Component {
                         })
                     }
                 }
-                style={{ flexDirection: 'row', justifyContent: 'space-between' }}
+                style={{ flexDirection: 'row', justifyContent: 'space-between', flex: 1 }}
                 >
                 <View>
                     <Icon

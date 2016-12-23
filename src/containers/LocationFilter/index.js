@@ -29,7 +29,9 @@ class LocationFilter extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <FilterList showHeader={true} />
+                <View style={styles.filterContainer}>
+                    <FilterList showHeader={true} />
+                </View>
                 <Button onPress={() => this._handleOnPress()}>
                     <Text style={textStyles.textStyle4}>SUBMIT</Text>
                 </Button>

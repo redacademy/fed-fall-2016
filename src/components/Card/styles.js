@@ -1,12 +1,11 @@
 import { StyleSheet, Dimensions } from 'react-native'
-import { colors, padding, shadows } from '../../config/styles'
-
-const { height, width } = Dimensions.get('window')
+import { colors, padding, shadows, w, h, width } from '../../config/styles'
 
 export const styles = StyleSheet.create({
     cardContainer: {
         backgroundColor: colors.whiteThree,
-        height: height * 0.925,
+        height: h,
+        width: w,
         marginTop: padding.deviceTop,
         marginRight: padding.right,
         marginLeft: padding.left,
@@ -16,7 +15,6 @@ export const styles = StyleSheet.create({
         shadowOffset: { width: shadows.offset.width, height: shadows.offset.width },
         shadowRadius: shadows.radius,
         padding: padding.deviceLeft,
-        width: width * 0.945,
         borderRadius: 12,
         flexDirection: 'column',
         alignItems: 'center',

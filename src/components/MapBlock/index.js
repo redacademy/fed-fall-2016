@@ -21,7 +21,9 @@ class MapBlock extends Component {
         useMapDot: PropTypes.bool,
     }
     render() {
-        const url = `https://maps.googleapis.com/maps/api/staticmap?center=${this.props.lat},${this.props.lng}&zoom=${this.props.zoom}&size=${this.props.width}x${this.props.height}&maptype=roadmap&label:%20&key=AIzaSyB2WkbsqNDjsiz8i831IVn1piVIq5OeiCI`
+        const mapWidth = Math.floor(this.props.width)
+        const mapHeight = Math.floor(this.props.height)
+        const url = `https://maps.googleapis.com/maps/api/staticmap?center=${this.props.lat},${this.props.lng}&zoom=${this.props.zoom}&size=${mapWidth}x${mapHeight}&maptype=roadmap&label:%20&key=AIzaSyB2WkbsqNDjsiz8i831IVn1piVIq5OeiCI`
 
         return (
             <Image
