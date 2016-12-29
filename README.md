@@ -1,5 +1,7 @@
 # Changed and Fed
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/674f3bd1fde045578c29096d46c75456)](https://www.codacy.com/app/remember-mackenzie/fed-fall-2016?utm_source=github.com&utm_medium=referral&utm_content=redacademy/fed-fall-2016&utm_campaign=badger)
+
 **Installation Instructions:**
 
 - Clone this repository
