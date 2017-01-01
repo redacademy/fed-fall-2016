@@ -42,33 +42,56 @@ class ListViewItem extends Component {
             const lng = this.props.location.geometry.location.lng
             const address = this.props.location.formatted_address
             const addressArray = address.split(',')
-            const distance = (this.props.mongoData[0].dis).toFixed(0)
-
-            return (
-                <TouchableOpacity onPress={() => this.props.setSelectedCard('LocationPreview', this.props.placeid, undefined, true)} >
-                    <View style={styles.locationContainer}>
-                        <Image
-                            style={styles.map}
-                            source={{ url: getStaticMap(lat, lng) }}
-                            >
-                            <MapPin scale="0.25" amenities={this.props.mongoData[0].obj.amenities} />
-                        </Image>
-                        <View>
-                            <Text style={styles.locationTitle}>{addressArray[0]}</Text>
-                            <Text style={styles.locationDetails}>
-                                {addressArray[1]}
-                            </Text>
-                            <View style={styles.ratingBar}>
-                            <RatingBar
-                                ratings={ratingSummaryCalculator(this.props.mongoData[0].obj.ratingSummary)}
-                                />
+            // console.log('location: ', addressArray[0])
+            if (this.props.mongoData.length > 0) {
+                const distance = (this.props.mongoData[0].dis).toFixed(0)
+                return (
+                    <TouchableOpacity onPress={() => this.props.setSelectedCard('LocationPreview', this.props.placeid, undefined, true)} >
+                        <View style={styles.locationContainer}>
+                            <Image
+                                style={styles.map}
+                                source={{ url: getStaticMap(lat, lng) }}
+                                >
+                                <MapPin scale="0.25" amenities={this.props.mongoData[0].obj.amenities} />
+                            </Image>
+                            <View>
+                                <Text style={styles.locationTitle}>{addressArray[0]}</Text>
+                                <Text style={styles.locationDetails}>
+                                    {addressArray[1]}
+                                </Text>
+                                <View style={styles.ratingBar}>
+                                    <RatingBar
+                                        ratings={ratingSummaryCalculator(this.props.mongoData[0].obj.ratingSummary)}
+                                        />
+                                </View>
+                                <Text style={styles.locationDetails}>{distance}m</Text>
                             </View>
-                            <Text style={styles.locationDetails}>{distance}m</Text>
-                        </View>
 
-                    </View>
-                </TouchableOpacity>
-            )
+                        </View>
+                    </TouchableOpacity>
+                )
+            } else {
+                // console.log('ListViewItem: props', this.props)
+                return (
+                    <TouchableOpacity onPress={() => this.props.setSelectedCard('LocationPreview', this.props.placeid, undefined, true)} >
+                        <View style={styles.locationContainer}>
+                            <Image
+                                style={styles.map}
+                                source={{ url: getStaticMap(lat, lng) }}
+                                >
+                            </Image>
+                            <View>
+                                <Text style={styles.locationTitle}>{addressArray[0]}</Text>
+                                <Text style={styles.locationDetails}>
+                                    {addressArray[1]}
+                                </Text>
+                                <Text style={styles.locationDetails}>information unavailable</Text>
+                            </View>
+
+                        </View>
+                    </TouchableOpacity>
+                )
+            }
         }
     }
 }
