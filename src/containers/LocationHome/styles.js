@@ -45,8 +45,8 @@ const styles = StyleSheet.create({
     bottomButtons: {
         alignItems: 'flex-end',
         height: buttonSize.listFilter*2 + padding.bottom,
-        paddingRight: padding.deviceRight+(buttonSize.searchBar-buttonSize.listFilter)/2,
-        bottom: 750,
+        paddingRight: padding.deviceRight-(buttonSize.searchBar-buttonSize.listFilter)/2,
+        bottom: 1.12*height,
         right: 0,
         position: 'absolute',
     },

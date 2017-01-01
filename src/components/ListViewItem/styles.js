@@ -1,18 +1,17 @@
-import { StyleSheet, Dimensions } from 'react-native'
-import { colors } from '../../config/styles'
-const { width } = Dimensions.get('window')
+import { StyleSheet } from 'react-native'
+import { colors, cardWidth } from '../../config/styles'
 
 const styles = StyleSheet.create({
     locationContainer: {
         flex: 1,
-        width: width,
+        width: cardWidth,
         flexDirection: 'row',
         borderBottomWidth: StyleSheet.hairlineWidth,
         borderBottomColor: colors.lightGrey,
     },
     map: {
         height: 100,
-        width: 100,
+        width: cardWidth/3,
         marginTop: 5,
         marginRight: 5,
         marginBottom: 5,
