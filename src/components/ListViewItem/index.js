@@ -4,7 +4,6 @@ import {
     Text,
     Image,
     TouchableOpacity,
-    Dimensions
 } from 'react-native'
 import styles from './styles'
 import Loader from '../Loader'
@@ -17,9 +16,6 @@ import {
     setSelectedCard,
 } from '../../redux/actions'
 import { ratingSummaryCalculator } from '../../config/functions'
-// import { colors } from '../../config/styles'
-
-
 
 class ListViewItem extends Component {
 
@@ -42,7 +38,6 @@ class ListViewItem extends Component {
             const lng = this.props.location.geometry.location.lng
             const address = this.props.location.formatted_address
             const addressArray = address.split(',')
-            // console.log('location: ', addressArray[0])
             if (this.props.mongoData.length > 0) {
                 const distance = (this.props.mongoData[0].dis).toFixed(0)
                 return (
@@ -71,7 +66,6 @@ class ListViewItem extends Component {
                     </TouchableOpacity>
                 )
             } else {
-                // console.log('ListViewItem: props', this.props)
                 return (
                     <TouchableOpacity onPress={() => this.props.setSelectedCard('LocationPreview', this.props.placeid, undefined, true)} >
                         <View style={styles.locationContainer}>
@@ -100,11 +94,9 @@ const mapStateToProps = (state) => ({
     isLoading: state.map.isLoading,
 })
 
-
 const mapDispatchToProps = {
     setCardPosition,
     setSelectedCard,
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListViewItem)
