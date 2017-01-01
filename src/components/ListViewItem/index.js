@@ -51,7 +51,7 @@ class ListViewItem extends Component {
                             style={styles.map}
                             source={{ url: getStaticMap(lat, lng) }}
                             >
-                            <MapPin scale="0.4" amenities={this.props.mongoData[0].obj.amenities} />
+                            <MapPin scale="0.25" amenities={this.props.mongoData[0].obj.amenities} />
                         </Image>
                         <View>
                             <Text style={styles.locationTitle}>{addressArray[0]}</Text>
