@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { colors } from '../../config/styles'
+import { colors, cardWidth } from '../../config/styles'
 
 const styles = StyleSheet.create({
     cardContainer: {
@@ -23,9 +23,8 @@ const styles = StyleSheet.create({
         alignSelf: 'flex-end',
     },
     ratingButton: {
-        // flex: 1,
-        height: 150,
-        width: 150,
+        height: cardWidth*0.5,
+        width: cardWidth*0.5,
     }
 })
 
