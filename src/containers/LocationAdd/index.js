@@ -67,7 +67,7 @@ class LocationAdd extends Component {
       <ScrollView >
         <AddressBlock title={this.props.title} addressLine1={this.props.addressLine1} addressLine2={this.props.addressLine2} />
         <View style={styles.filterContainer}>
-          <FilterList providingFilters={false} showHeader={false} readOnly={false} />
+          <FilterList providingFilters={false} showHeader={false} readOnly={false} showFilterOnlyIfTrue={false} />
         </View>
         <View style={styles.buttonContainer}>
           <Button onPress={this._addLocation.bind(this)}>

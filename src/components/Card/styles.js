@@ -20,9 +20,7 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
     },
     CardContent: {
-        flexDirection: 'column',
         flex: 1,
-        justifyContent: 'flex-end',
     },
     cardPuller: {
         width: width * 0.11,

@@ -13,27 +13,19 @@ import { styles } from './styles'
 // import IconMulti from '../IconMulti'
 import Icon from '../Icon/index'
 import { colors, textStyles } from '../../config/styles'
-const { width, height } = Dimensions.get('window')
 
-const containerStyle = {
-    alignItems: 'center',
-    height: (height - 20) / 5.5,
-    width: (width - 20) / 2,
-    justifyContent: 'space-around',
-}
 class FilterButton extends Component {
     static propTypes = {
         iconName: PropTypes.string.isRequired,
         altIconName: PropTypes.string,
-        iconSize: PropTypes.number.isRequired,
         isSelected: PropTypes.bool,
         readOnly: PropTypes.bool,
+        noButton:PropTypes.bool
     }
     constructor() {
         super()
         this.state = {
             isSelected: false,
-            width: 0,
             altIconName: 'marker',
             altIconText: 'marker',
         }
@@ -49,45 +41,55 @@ class FilterButton extends Component {
         }
     }
     componentDidMount() {
-            this.setState({ isSelected: this.props.isSelected })
+        this.setState({ isSelected: this.props.isSelected })
 
-            if(this.props.altIconName) this.setState({ altIconName: this.props.altIconName }) 
-                else this.setState({ altIconName: this.props.iconName }) 
-            if(this.props.altIconText) this.setState({ altIconText: this.props.altIconText })
-                else this.setState({ altIconText: this.props.iconText }) 
+        if (this.props.altIconName) this.setState({ altIconName: this.props.altIconName })
+        else this.setState({ altIconName: this.props.iconName })
+        if (this.props.altIconText) this.setState({ altIconText: this.props.altIconText })
+        else this.setState({ altIconText: this.props.iconText })
     }
     render() {
-        return (
-            <TouchableOpacity onPress={this._handlePress}>
-                {this.state.isSelected ?
-                    <View style={containerStyle}>
-                        <View style={[styles.button, styles.buttonSelected]}>
-                            <Icon style={[styles.icon, styles.iconSelected]} name={this.props.iconName} size={this.props.iconSize} color={colors.white} />
+        if (this.props.noButton === true) {
+            // for LocationPreview
+            return (
+                <TouchableOpacity onPress={this._handlePress}>
+                    {
+                        <View style={styles.noButtonContainerStyle}>
+                            <View style={[styles.noButton, styles.buttonDefault]}>
+                                <Icon style={[styles.icon, styles.iconDefault]} name={this.props.iconName} color={colors.white} />
+                            </View>
+                            <Text style={[textStyles.textStyle7, styles.noButtonText]} >{this.props.iconText}</Text>
                         </View>
-                        <Text style={textStyles.textStyle12} >{this.props.iconText}</Text>
-                    </View>
-                    :
-                    <View style={containerStyle}>
-                        <View style={[styles.button, styles.buttonDefault]}>
-                            <Icon style={[styles.icon, styles.iconDefault]} name={this.state.altIconName} size={this.props.iconSize} color={colors.white} />
-                        </View>
-                        <Text style={textStyles.textStyle11} >{this.state.altIconText}</Text>
-                    </View>
-                }
-            </TouchableOpacity>
-        )
+                    }
+                </TouchableOpacity>
+            )
+        } else {
+            // for FilterList and LocationAdd
+            return (
+                <TouchableOpacity onPress={this._handlePress}>
+                    {
+                        this.state.isSelected ?
+                            <View style={styles.containerStyle}>
+                                <View style={[styles.button, styles.buttonSelected]}>
+                                    <Icon style={[styles.icon, styles.iconSelected]} name={this.props.iconName} color={colors.white} />
+                                </View>
+                                <Text style={textStyles.textStyle12} >{this.props.iconText}</Text>
+                            </View>
+                            :
+                            <View style={styles.containerStyle}>
+                                <View style={[styles.button, styles.buttonDefault]}>
+                                    <Icon style={[styles.icon, styles.iconDefault]} name={this.state.altIconName} color={colors.white} />
+                                </View>
+                                <Text style={textStyles.textStyle11} >{this.state.altIconText}</Text>
+                            </View>
+                    }
+                </TouchableOpacity>
+            )
+        }
     }
 }
 
 const mapStateToProps = (state) => ({
-    //     changeTable: state.card.changeTable,
-    //     nursingRoom: state.card.nursingRoom,
-    //     mensBathroom: state.card.mensBathroom,
-    //     womensBathroom: state.card.womensBathroom,
-    //     familyBathroom: state.card.familyBathroom,
-    //     private: state.card.private,
-    //     strollerAccess: state.card.strollerAccess,
-    //     requiresKey: state.card.requiresKey,
 })
 
 const mapDispatchToProps = {
@@ -95,7 +97,6 @@ const mapDispatchToProps = {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(FilterButton)
-// export default FilterButton
 
 // USAGE:
 // import FilterButton from '../FilterButton' 
@@ -106,40 +107,4 @@ export default connect(mapStateToProps, mapDispatchToProps)(FilterButton)
 //     { iconName: 'key', isSelected: true, },
 // ]
 //
-// <FilterButton key={`key${i}`} iconName={filterIcon.iconName} iconSize={iconSize} />
-
-
-                //  (off state)
-                // <IconMulti
-                // name="baby-change-table"
-                // title
-                // border
-                // />
-
-                // (on state)
-                // <IconMulti
-                // name="baby-change-table"
-                // fillColor={colors.blush}
-                // circular
-                // title
-                // />
-/*
-
-            <TouchableOpacity onPress={this._handlePress}>
-                {this.state.isSelected ?
-                    <View style={containerStyle}>
-                        <View style={[styles.button, styles.buttonSelected]}>
-                            <Icon style={[styles.icon, styles.iconSelected]} name={this.props.iconName} size={this.props.iconSize} color={colors.white} />
-                        </View>
-                        <Text style={textStyles.textStyle12} >{this.props.iconText}</Text>
-                    </View>
-                    :
-                    <View style={containerStyle}>
-                        <View style={[styles.button, styles.buttonDefault]}>
-                            <Icon style={[styles.icon, styles.iconDefault]} name={this.state.altIconName} size={this.props.iconSize} color={colors.white} />
-                        </View>
-                        <Text style={textStyles.textStyle11} >{this.props.iconText}</Text>
-                    </View>
-                }
-            </TouchableOpacity>
-*/
+// <FilterButton key={`key${i}`} iconName={filterIcon.iconName}/>

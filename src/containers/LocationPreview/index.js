@@ -7,17 +7,16 @@ import {
 import { connect } from 'react-redux'
 import {
     AddressBlock,
-    AmenitiesBar,
+    // AmenitiesBar,
     Button,
     CardHeaderLocation,
     FilterList,
     Loader,
     MapBlock,
-    //RatingBlock
     RatingBar,
 } from '../../components'
 import styles from './styles'
-import { colors, textStyles, mapBlock } from '../../config/styles'
+import { colors, textStyles, mapBlock, cardWidth, cardHeight, } from '../../config/styles'
 import { ratingSummaryCalculator } from '../../config/functions'
 
 class LocationPreview extends Component {
@@ -48,7 +47,6 @@ class LocationPreview extends Component {
             (error) => null,
             { enableHighAccuracy: true })
     }
-
     _showDirections() {
         const result = this.props.locationList[0]
         const destinationLat = result.geometry.location.lat
@@ -57,59 +55,67 @@ class LocationPreview extends Component {
         const userLatitude = this.state.latitude
         const userLongitude = this.state.longitude
 
-        Linking.openURL(`https://www.google.ca/maps/dir/${userLatitude},${userLongitude}/${destinationLat},${destinationLong}`)
+        Linking.openURL(`https://www.google.ca/maps/dir/${userLatitude},${userLongitude}/${destinationLat},${destinationLong}/data=!4m2!4m1!3e2`) //data=!4m2!4m1!3e2 === default to walking
     }
-
     render() {
         if (this.props.isLoading) {
             return (
                 <Loader />
             )
         } else {
-            const result = this.props.locationList[0]
-            const amenityList = this.props.locationDetails.amenities
 
-            let amenities = [
-                { iconName: 'baby-change-table', iconText: 'CHANGE TABLE', isSelected: amenityList.changeTable },
-                { iconName: 'bottle', iconText: 'NURSING ROOM', isSelected: amenityList.nursingRoom },
-                { iconName: 'male', iconText: 'MENS', isSelected: amenityList.mensBathroom },
-                { iconName: 'female', iconText: 'WOMENS', isSelected: amenityList.womensBathroom },
-                { iconName: 'family', iconText: 'FAMILY', isSelected: amenityList.familyBathroom },
-                { iconName: 'mask', iconText: 'PRIVATE', isSelected: amenityList.privacy },
-                { iconName: 'stroller-accessible', iconText: 'STROLLER\nACCESS', altIconName: 'stroller-inaccessible', altIconText: 'STROLLER\nINACCESS', isSelected: amenityList.strollerAccess },
-                { iconName: 'key', iconText: 'REQUIRES KEY', isSelected: amenityList.requiresKey },
-            ]
+            if (this.props.locationList.length > 0) {
+                const result = this.props.locationList[0]
+                const amenityList = this.props.locationDetails.amenities
+                
+                let amenities = []
+                if (amenityList.changeTable) amenities.push({ iconName: 'baby-change-table', iconText: 'CHANGE\nTABLE', isSelected: amenityList.changeTable })
+                if (amenityList.nursingRoom) amenities.push({ iconName: 'breast-feeding', iconText: 'NURSING\nROOM', isSelected: amenityList.nursingRoom })
+                if (amenityList.washroomMen) amenities.push({ iconName: 'male', iconText: 'MEN\'S\nWASHROOM', isSelected: amenityList.washroomMen })
+                if (amenityList.washroomWomen) amenities.push({ iconName: 'female', iconText: 'WOMEN\'S\nWASHROOM', isSelected: amenityList.washroomWomen })
+                if (amenityList.washroomFamily) amenities.push({ iconName: 'family', iconText: 'FAMILY\nWASHROOM', isSelected: amenityList.washroomFamily })
+                if (amenityList.private) amenities.push({ iconName: 'mask', iconText: 'PRIVATE', isSelected: amenityList.private })
+                if (amenityList.strollerAccessible) amenities.push({ iconName: 'stroller-accessible', iconText: 'STROLLER\nACCESS', altIconName: 'stroller-inaccessible', altIconText: 'STROLLER\nINACCESS', isSelected: amenityList.strollerAccessible })
+                if (amenityList.keyRequired) amenities.push({ iconName: 'key', iconText: 'REQUIRES\nKEY', isSelected: amenityList.keyRequired })
 
-            const lat = result.geometry.location.lat
-            const lng = result.geometry.location.lng
-            const address = result.formatted_address
-            const addressArray = address.split(',')
+                const lat = result.geometry.location.lat
+                const lng = result.geometry.location.lng
+                const address = result.formatted_address
+                const addressArray = address.split(',')
 
-            let title = '', addressLine1 = '', addressLine2 = ''
+                let title = '', addressLine1 = '', addressLine2 = ''
 
-            if (addressArray[0]) title = addressArray[0]
-            if (addressArray[1]) addressLine1 = addressArray[1]
-            if (addressArray[2]) addressLine2 = addressArray[2]
-            if (addressArray[3]) addressLine2 = addressLine2 + addressArray[3]
+                if (addressArray[0]) title = addressArray[0]
+                if (addressArray[1]) addressLine1 = addressArray[1]
+                if (addressArray[2]) addressLine2 = addressArray[2]
+                if (addressArray[3]) addressLine2 = addressLine2 + addressArray[3]
 
-            if (result) {
                 return (
-                    <ScrollView showsVerticalScrollIndicator={false}>
-                        <CardHeaderLocation onPressFn={() => this.props.setSelectedCard('LocationRating', this.props.placeid)} amenities={this.props.locationDetails.amenities} width={400} />
-                        <View style={{ height: 15 }} />
-                        <AddressBlock title={title} addressLine1={addressLine1} addressLine2={addressLine2} />
-                        <View style={{ height: 20 }} />
-                        <RatingBar
-                            title
-                            ratings={ratingSummaryCalculator(this.props.locationDetails.ratingSummary)}
-                            />
-                        <AmenitiesBar amenities={this.props.locationDetails.amenities} />
-                        <MapBlock useMapDot={true} lat={this.props.locationDetails.loc[1]} lng={this.props.locationDetails.loc[0]} zoom={16} width={300} height={200} />
-                        <View style={styles.buttonContainer}>
-                            <Button onPressFn={this._showDirections}>
-                                <Text style={textStyles.textStyle4}>GO</Text>
-                            </Button>
+                    <ScrollView>
+                        <View style={styles.spacer}></View>
+                        <View style={styles.spacer}>
+                            <CardHeaderLocation onPressFn={() => this.props.setSelectedCard('LocationRating', this.props.placeid)} amenities={this.props.locationDetails.amenities} width={cardWidth * 1.52} />
                         </View>
+                        <View style={styles.spacer}>
+                            <AddressBlock title={title} addressLine1={addressLine1} addressLine2={addressLine2} />
+                        </View>
+                        <View style={styles.spacer}>
+                            <RatingBar
+                                title
+                                size={cardWidth}
+                                ratings={ratingSummaryCalculator(this.props.locationDetails.ratingSummary)}
+                                />
+                        </View>
+                        <View style={styles.amenitiesContainer}>
+                            <FilterList filterList={amenities} providingFilters={true} readOnly={true} showFilterOnlyIfTrue={true} />
+                        </View>
+                        <View style={styles.spacer}></View>
+                        <View style={styles.spacer}>
+                            <MapBlock useMapDot={true} lat={this.props.locationDetails.loc[1]} lng={this.props.locationDetails.loc[0]} zoom={16} width={cardWidth} height={cardHeight * 0.2} />
+                        </View>
+                        <Button onPressFn={this._showDirections}>
+                            <Text style={textStyles.textStyle4}>GO</Text>
+                        </Button>
                     </ScrollView>
                 )
             } else {
@@ -117,15 +123,18 @@ class LocationPreview extends Component {
                     <Text>Location Details Missing for placeid: {this.props.placeid}</Text>
                 )
             }
-
         }
     }
 }
-
+/*
+// original
+                        <View style={styles.spacer}>
+                            <AmenitiesBar amenities={this.props.locationDetails.amenities} size={70} />
+                        </View>
+*/
 const mapStateToProps = (state) => ({
     locationList: state.map.locationList,
     isLoading: state.map.isLoading,
-    feedback: state.button.feedback,
 })
 
 const mapDispatchToProps = {
