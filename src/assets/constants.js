@@ -6,7 +6,7 @@ export const HIGH = 1
 
 export const filterList = [
     { iconName: 'baby-change-table', iconText: 'CHANGE TABLE', isSelected: false},
-    { iconName: 'bottle', iconText: 'NURSING ROOM', isSelected: false },
+    { iconName: 'breast-feeding', iconText: 'NURSING ROOM', isSelected: false },
     { iconName: 'male', iconText: 'MENS\nWASHROOM' , isSelected: false}, 
     { iconName: 'female', iconText: 'WOMENS\nWASHROOM' , isSelected: false},
     { iconName: 'family', iconText: 'FAMILY\nWASHROOM', isSelected: false },
