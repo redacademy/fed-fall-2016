@@ -52,9 +52,6 @@ class LocationHome extends Component {
         this._setUserCurrentLocation()
     }
 
-    componentDidMount() {
-        this.props.generateMapPins(this.state.region.longitude, this.state.region.latitude)
-    }
     _toggleOverlay() {
         this.setState({ overlay: !this.state.overlay })
     }
@@ -67,13 +64,14 @@ class LocationHome extends Component {
                         longitude: coords.longitude,
                     }),
                 })
+                this.props.generateMapPins(this.state.region.longitude, this.state.region.latitude)
                 this.map.animateToRegion(this.state.region, 1000)
             },
             (error) => alert(error.message),
             { enableHighAccuracy: false, timeout: 20000, maximumAge: 10000 }
         )
 
-       navigator.geolocation.watchPosition(
+        navigator.geolocation.watchPosition(
             ({ coords }) => {
                 this.setState({
                     region: Object.assign({}, region, {
@@ -83,6 +81,7 @@ class LocationHome extends Component {
                 })
             })
     }
+
     _onRegionChangeComplete(region) {
         /* as user moves around the map, update the current state
         */
@@ -110,16 +109,16 @@ class LocationHome extends Component {
         const pins = this.props.pins.map((pin, i) => {
 
             return <ScaleClickMarker
-                    onPressFn={this._onPinPush.bind(this, pin.obj.placeId)}
-                    placeid={pin.placeid}
-                    key={i}
-                    coordinate={{
-                        longitude: pin.obj.loc[0], // not lng
-                        latitude: pin.obj.loc[1],
-                    }}
-                    scale="0.5"
-                    amenities={ pin.obj.amenities }
-                    />
+                onPressFn={this._onPinPush.bind(this, pin.obj.placeId)}
+                placeid={pin.placeid}
+                key={i}
+                coordinate={{
+                    longitude: pin.obj.loc[0], // not lng
+                    latitude: pin.obj.loc[1],
+                }}
+                scale="0.5"
+                amenities={pin.obj.amenities}
+                />
         })
 
         return (
@@ -133,8 +132,8 @@ class LocationHome extends Component {
                     onRegionChange={region => this._onRegionChangeComplete(region)}
                     >
 
-                    {(this.props.locationAdd) ? null :(
-                        pins )
+                    {(this.props.locationAdd) ? null : (
+                        pins)
                     }
 
                     {(this.props.locationAdd) ?
