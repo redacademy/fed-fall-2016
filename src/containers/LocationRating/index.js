@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, ScrollView } from 'react-native'
+import { View, Text, ScrollView, TouchableOpacity } from 'react-native'
 import styles from './style.js'
 import AddressBlock from '../../components/AddressBlock'
 import { connect } from 'react-redux'
@@ -73,27 +73,29 @@ class LocationRating extends Component {
             <View style={styles.cardContainer}>
                 <CardHeaderTitle title={"Please rate"} />
                 <ScrollView>
-                    <AddressBlock title={title} addressLine1={addressLine1} addressLine2={addressLine2} />
-                    <View style={styles.rateContainer}
-                        onLayout={(event) => {
-                            if (!this.props.size) {
-                                this.setState({ size: event.nativeEvent.layout.width * 0.433 })
+                    <TouchableOpacity activeOpacity={100}>
+                        <AddressBlock title={title} addressLine1={addressLine1} addressLine2={addressLine2} />
+                        <View style={styles.rateContainer}
+                            onLayout={(event) => {
+                                if (!this.props.size) {
+                                    this.setState({ size: event.nativeEvent.layout.width * 0.433 })
+                                }
                             }
-                        }
-                        }
-                        >
-                        {
-                            this.ratees.map((ratee, index) => {
-                                return <View style={[styles.ratingButton, { marginBottom: 10 }]} key={index}>
-                                    <RatingButton size={this.state.size} style={styles.ratingButton} rateeTitle={ratee.title} attribute={ratee.attribute} iconName={ratee.iconName} />
-                                </View>
-                            })
-                        }
-                    </View>
+                            }
+                            >
+                            {
+                                this.ratees.map((ratee, index) => {
+                                    return <View style={[styles.ratingButton, { marginBottom: 10 }]} key={index}>
+                                        <RatingButton size={this.state.size} style={styles.ratingButton} rateeTitle={ratee.title} attribute={ratee.attribute} iconName={ratee.iconName} />
+                                    </View>
+                                })
+                            }
+                        </View>
 
-                    <Button onPressFn={this._submitRating.bind(this)} style={styles.submitButton}>
-                        <Text style={textStyles.textStyle4}>SUBMIT</Text>
-                    </Button>
+                        <Button onPressFn={this._submitRating.bind(this)} style={styles.submitButton}>
+                            <Text style={textStyles.textStyle4}>SUBMIT</Text>
+                        </Button>
+                    </TouchableOpacity>
                 </ScrollView>
             </View>
         )
