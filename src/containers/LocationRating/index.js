@@ -40,10 +40,21 @@ class LocationRating extends Component {
             }
         }
         this.props.submitRating(this.props.placeid, rating)
+        this._regenerateMapPins()
         this.props.setSelectedCard('LocationPreview', this.props.placeid)
-        generateMapPins()
 
     }
+
+    _regenerateMapPins() {
+        navigator.geolocation.getCurrentPosition(
+            ({ coords }) => {
+                this.props.generateMapPins(coords.longitude, coords.latitude)
+            },
+            (error) => alert(error.message),
+            { enableHighAccuracy: false, timeout: 20000, maximumAge: 10000 }
+        )
+    }
+
     //<AddressBlock title={this.props.place.place} addressLine1={this.props.place.line1} addressLine2={this.props.place.line2}/>
     render() {
         const result = this.props.locationList[0]
@@ -102,6 +113,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     submitRating,
     setSelectedCard,
+    generateMapPins,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LocationRating)
