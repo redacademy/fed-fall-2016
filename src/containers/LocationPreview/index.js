@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import { View, Text, Linking, ScrollView } from 'react-native'
+import { View, Text, Linking, ScrollView, TouchableOpacity } from 'react-native'
 import {
     getLocationDetails,
     setSelectedCard,
@@ -92,6 +92,7 @@ class LocationPreview extends Component {
 
                 return (
                     <ScrollView>
+                    <TouchableOpacity activeOpacity={100}>
                         <View style={styles.spacer}></View>
                         <View style={styles.spacer}>
                             <CardHeaderLocation onPressFn={() => this.props.setSelectedCard('LocationRating', this.props.placeid)} amenities={this.props.locationDetails.amenities} width={cardWidth * 1.52} />
@@ -116,6 +117,7 @@ class LocationPreview extends Component {
                         <Button onPressFn={this._showDirections}>
                             <Text style={textStyles.textStyle4}>GO</Text>
                         </Button>
+                        </TouchableOpacity>
                     </ScrollView>
                 )
             } else {
