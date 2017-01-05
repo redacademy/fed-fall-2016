@@ -48,8 +48,7 @@ class LocationPreview extends Component {
             { enableHighAccuracy: true })
     }
     _showDirections() {
-        const lastItem = this.props.locationList.length - 1
-        const result = this.props.locationList[lastItem]
+        const result = this.props.locationList[this.props.locationList.length-1]
         const destinationLat = result.geometry.location.lat
         const destinationLong = result.geometry.location.lng
 
@@ -66,8 +65,7 @@ class LocationPreview extends Component {
         } else {
 
             if (this.props.locationList.length > 0) {
-                const lastItem = this.props.locationList.length - 1
-                const result = this.props.locationList[lastItem]
+                const result = this.props.locationList[this.props.locationList.length-1]
                 const amenityList = this.props.locationDetails.amenities
 
                 let amenities = []
