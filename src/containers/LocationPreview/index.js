@@ -48,7 +48,8 @@ class LocationPreview extends Component {
             { enableHighAccuracy: true })
     }
     _showDirections() {
-        const result = this.props.locationList[0]
+        const lastItem = this.props.locationList.length - 1
+        const result = this.props.locationList[lastItem]
         const destinationLat = result.geometry.location.lat
         const destinationLong = result.geometry.location.lng
 
@@ -65,10 +66,10 @@ class LocationPreview extends Component {
         } else {
 
             if (this.props.locationList.length > 0) {
-                const lastItem = this.props.locationList.length -1
+                const lastItem = this.props.locationList.length - 1
                 const result = this.props.locationList[lastItem]
                 const amenityList = this.props.locationDetails.amenities
-                
+
                 let amenities = []
                 if (amenityList.changeTable) amenities.push({ iconName: 'baby-change-table', iconText: 'CHANGE\nTABLE', isSelected: amenityList.changeTable })
                 if (amenityList.nursingRoom) amenities.push({ iconName: 'breast-feeding', iconText: 'NURSING\nROOM', isSelected: amenityList.nursingRoom })
@@ -93,31 +94,31 @@ class LocationPreview extends Component {
 
                 return (
                     <ScrollView>
-                    <TouchableOpacity activeOpacity={100}>
-                        <View style={styles.spacer}></View>
-                        <View style={styles.spacer}>
-                            <CardHeaderLocation onPressFn={() => this.props.setSelectedCard('LocationRating', this.props.placeid)} amenities={this.props.locationDetails.amenities} width={cardWidth * 1.52} />
-                        </View>
-                        <View style={styles.spacer}>
-                            <AddressBlock title={title} addressLine1={addressLine1} addressLine2={addressLine2} />
-                        </View>
-                        <View style={styles.spacer}>
-                            <RatingBar
-                                title
-                                size={cardWidth}
-                                ratings={ratingSummaryCalculator(this.props.locationDetails.ratingSummary)}
-                                />
-                        </View>
-                        <View style={styles.amenitiesContainer}>
-                            <FilterList filterList={amenities} providingFilters={true} readOnly={true} showFilterOnlyIfTrue={true} />
-                        </View>
-                        <View style={styles.spacer}></View>
-                        <View style={styles.spacer}>
-                            <MapBlock useMapDot={true} lat={this.props.locationDetails.loc[1]} lng={this.props.locationDetails.loc[0]} zoom={16} width={cardWidth} height={cardHeight * 0.2} />
-                        </View>
-                        <Button onPressFn={this._showDirections}>
-                            <Text style={textStyles.textStyle4}>GO</Text>
-                        </Button>
+                        <TouchableOpacity activeOpacity={100}>
+                            <View style={styles.spacer}></View>
+                            <View style={styles.spacer}>
+                                <CardHeaderLocation onPressFn={() => this.props.setSelectedCard('LocationRating', this.props.placeid)} amenities={this.props.locationDetails.amenities} width={cardWidth * 1.52} />
+                            </View>
+                            <View style={styles.spacer}>
+                                <AddressBlock title={title} addressLine1={addressLine1} addressLine2={addressLine2} />
+                            </View>
+                            <View style={styles.spacer}>
+                                <RatingBar
+                                    title
+                                    size={cardWidth}
+                                    ratings={ratingSummaryCalculator(this.props.locationDetails.ratingSummary)}
+                                    />
+                            </View>
+                            <View style={styles.amenitiesContainer}>
+                                <FilterList filterList={amenities} providingFilters={true} readOnly={true} showFilterOnlyIfTrue={true} />
+                            </View>
+                            <View style={styles.spacer}></View>
+                            <View style={styles.spacer}>
+                                <MapBlock useMapDot={true} lat={this.props.locationDetails.loc[1]} lng={this.props.locationDetails.loc[0]} zoom={16} width={cardWidth} height={cardHeight * 0.2} />
+                            </View>
+                            <Button onPressFn={this._showDirections}>
+                                <Text style={textStyles.textStyle4}>GO</Text>
+                            </Button>
                         </TouchableOpacity>
                     </ScrollView>
                 )

@@ -57,7 +57,8 @@ class LocationRating extends Component {
 
     //<AddressBlock title={this.props.place.place} addressLine1={this.props.place.line1} addressLine2={this.props.place.line2}/>
     render() {
-        const result = this.props.locationList[0]
+        const lastItem = this.props.locationList.length - 1
+        const result = this.props.locationList[lastItem]
         const lat = result.geometry.location.lat
         const lng = result.geometry.location.lng
         const address = result.formatted_address
