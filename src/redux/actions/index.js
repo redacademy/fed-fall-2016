@@ -142,6 +142,8 @@ export const updateFilterValue = (filter, isSelected) => dispatch => {
     switch (filter) {
         case 'baby-change-table':
             return dispatch({ type: FILTER_CHANGE_TABLE, payload: isSelected })
+        case 'breast-feeding':
+            return dispatch({ type: FILTER_NURSING_ROOM, payload: isSelected })
         case 'bottle':
             return dispatch({ type: FILTER_NURSING_ROOM, payload: isSelected })
         case 'male':

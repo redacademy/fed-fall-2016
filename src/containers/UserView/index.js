@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, Image } from 'react-native'
 import {
 } from '../../redux/actions'
 import { connect } from 'react-redux'
@@ -11,10 +11,10 @@ class UserView extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text>Planned for a future release:</Text>
-                <Text>- Save your Favourite Locations</Text>
-                <Text>- Last 25 viewed locations</Text>
-                <Text>- View locations you have rated</Text>
+                <Image
+                    style={styles.stretch}
+                    source={require('../../assets/userplaceholder.png')}
+                    />
             </View>
         )
     }
