@@ -48,15 +48,18 @@ class LocationAdd extends Component {
           createdBy: "DemoUser",
           amenities: {
             changeTable: this.props.changeTable,
+            keyRequired: this.props.keyRequired,
             nursingRoom: this.props.nursingRoom,
-            mensBathroom: this.props.mensBathroom,
-            womensBathroom: this.props.womensBathroom,
-            familyBathroom: this.props.familyBathroom,
-            privacy: this.props.privacy,
-            strollerAccess: this.props.strollerAccess,
-            requiresKey: this.props.requiresKey,
+            private: this.props.private,
+            strollerAccessible: this.props.strollerAccessible,
+            washroomMen: this.props.washroomMen,
+            washroomFamily: this.props.washroomFamily,
+            washroomWomen: this.props.washroomWomen,
           },
         }
+        console.log('++++++++++++++++++++++++++++++++')
+        console.log('ADD LOCATION: ', location)
+        console.log('++++++++++++++++++++++++++++++++')
         this.props.addNewLocation(location)
       });
 
@@ -83,12 +86,12 @@ class LocationAdd extends Component {
 const mapStateToProps = (state) => ({
   changeTable: state.filter.changeTable,
   nursingRoom: state.filter.nursingRoom,
-  mensBathroom: state.filter.mensBathroom,
-  womensBathroom: state.filter.womensBathroom,
-  familyBathroom: state.filter.familyBathroom,
-  privacy: state.filter.privacy,
-  strollerAccess: state.filter.strollerAccess,
-  requiresKey: state.filter.requiresKey,
+  washroomMen: state.filter.washroomMen,
+  washroomWomen: state.filter.washroomWomen,
+  washroomFamily: state.filter.washroomFamily,
+  private: state.filter.private,
+  strollerAccessible: state.filter.strollerAccessible,
+  keyRequired: state.filter.keyRequired,
   quality: state.rating.quality,
   clean: state.rating.clean,
   nursing: state.rating.nursing,
@@ -122,12 +125,12 @@ export default connect(mapStateToProps, mapDispatchToProps)(LocationAdd)
         "amenities": {
             "changeTable": true,
             "nursingRoom": true,
-            "mensBathroom": false,
-            "womensBathroom": false,
-            "familyBathroom": true,
+            "washroomMen": false,
+            "washroomWomen": false,
+            "washroomFamily": true,
             "private": false,
-            "strollerAccess": true,
-            "requiresKey": false
+            "strollerAccessible": true,
+            "keyRequired": false
         }
     }
     */

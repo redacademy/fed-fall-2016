@@ -90,6 +90,13 @@ class LocationPreview extends Component {
                 if (addressArray[2]) addressLine2 = addressArray[2]
                 if (addressArray[3]) addressLine2 = addressLine2 + addressArray[3]
 
+                console.log('------------------------------------------')
+                console.log('DISPLYAYING AMENITIES FOR LOCATION..... ')
+                console.log( title )
+                console.log('amenityList', amenityList)
+                console.log('amenities', amenities)
+                console.log('------------------------------------------')
+
                 return (
                     <ScrollView>
                         <TouchableOpacity activeOpacity={100}>

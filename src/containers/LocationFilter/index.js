@@ -18,12 +18,12 @@ class LocationFilter extends Component {
         let filters = []
         if (this.props.changeTable) filters.push({ changeTable: this.props.changeTable })
         if (this.props.nursingRoom) filters.push({ nursingRoom: this.props.nursingRoom })
-        if (this.props.mensBathroom) filters.push({ mensBathroom: this.props.mensBathroom })
-        if (this.props.womensBathroom) filters.push({ womensBathroom: this.props.womensBathroom })
-        if (this.props.familyBathroom) filters.push({ familyBathroom: this.props.familyBathroom })
-        if (this.props.privacy) filters.push({ privacy: this.props.privacy })
-        if (this.props.strollerAccess) filters.push({ strollerAccess: this.props.strollerAccess })
-        if (this.props.requiresKey) filters.push({ requiresKey: this.props.requiresKey })
+        if (this.props.washroomMen) filters.push({ washroomMen: this.props.washroomMen })
+        if (this.props.washroomWomen) filters.push({ washroomWomen: this.props.washroomWomen })
+        if (this.props.washroomFamily) filters.push({ washroomFamily: this.props.washroomFamily })
+        if (this.props.private) filters.push({ private: this.props.private })
+        if (this.props.strollerAccessible) filters.push({ strollerAccessible: this.props.strollerAccessible })
+        if (this.props.keyRequired) filters.push({ keyRequired: this.props.keyRequired })
         this.props.applyFilterToPins(filters)
     }
     render() {
@@ -43,12 +43,12 @@ class LocationFilter extends Component {
 const mapStateToProps = (state) => ({
     changeTable: state.filter.changeTable,
     nursingRoom: state.filter.nursingRoom,
-    mensBathroom: state.filter.mensBathroom,
-    womensBathroom: state.filter.womensBathroom,
-    familyBathroom: state.filter.familyBathroom,
-    privacy: state.filter.privacy,
-    strollerAccess: state.filter.strollerAccess,
-    requiresKey: state.filter.requiresKey,
+    washroomMen: state.filter.washroomMen,
+    washroomWomen: state.filter.washroomWomen,
+    washroomFamily: state.filter.washroomFamily,
+    private: state.filter.private,
+    strollerAccessible: state.filter.strollerAccessible,
+    keyRequired: state.filter.keyRequired,
 })
 
 const mapDispatchToProps = {

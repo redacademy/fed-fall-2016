@@ -20,11 +20,11 @@ storiesOf('AmenitiesBarNoTitle', module)
 
         const story = <AmenitiesBarNoTitle
             amenities={{
-                privacy: privacyVal,
+                private: privacyVal,
                 changeTable: changeTableVal,
                 familyWashroom: familyWashroomVal,
                 washroomGender: [(maleVal ? 'men' : null), femaleVal ? 'women' : null],
-                requiresKey: requiresKeyVal,
+                keyRequired: requiresKeyVal,
                 strollerAccessible: strollerAccessibleVal,
             }}
             width={300}
@@ -38,18 +38,18 @@ storiesOf('AmenitiesBarNoTitle', module)
 
                 <b>&lt;AmenitiesBarNoTitle
                     &nbsp;&nbsp;&nbsp; amenities={{
-                        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; privacy: privacyVal,
+                        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; private: privacyVal,
                         &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; changeTable: changeTableVal,
                         &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; familyWashroom: familyWashroomVal,
                         &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; washroomGender: ['men', 'women'],
-                        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; requiresKey: requiresKeyVal,
+                        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; keyRequired: requiresKeyVal,
                         &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; strollerAccessible: strollerAccessibleVal,
                     &nbsp;&nbsp;&nbsp; }}
                     /></b>
 
                     You will need to pass the prop <b>amenities</b> in. It will be an object with keys of:
                     <ul>
-                    <li>privacy</li><li>changeTable</li><li>familyWashroom</li><li>washroomGender (an array)</li><li>requiresKey</li><li>strollerAccessible</li>
+                    <li>private</li><li>changeTable</li><li>familyWashroom</li><li>washroomGender (an array)</li><li>keyRequired</li><li>strollerAccessible</li>
                     </ul>
 
                     They are all optional, but will need to be set to true or false, with the exception of washroomGender, which will be an array

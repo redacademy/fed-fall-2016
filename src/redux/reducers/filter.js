@@ -14,12 +14,12 @@ import {
 const initialState = {
     changeTable: false,
     nursingRoom: false,
-    mensBathroom: false,
-    womensBathroom: false,
-    familyBathroom: false,
-    privacy: false,
-    strollerAccess: false,
-    requiresKey: false,
+    washroomMen: false,
+    washroomWomen: false,
+    washroomFamily: false,
+    private: false,
+    strollerAccessible: false,
+    keyRequired: false,
 }
 
 export default (state = initialState, action) => {
@@ -31,17 +31,17 @@ export default (state = initialState, action) => {
         case FILTER_NURSING_ROOM:
             return {...state, nursingRoom: action.payload }
         case FILTER_MENS_BATHROOM:
-            return {...state, mensBathroom: action.payload }
+            return {...state, washroomMen: action.payload }
         case FILTER_WOMENS_BATHROOM:
-            return {...state, womensBathroom: action.payload }
+            return {...state, washroomWomen: action.payload }
         case FILTER_FAMILY_BATHROOM:
-            return {...state, familyBathroom: action.payload }
+            return {...state, washroomFamily: action.payload }
         case FILTER_PRIVATE:
-            return {...state, privacy: action.payload }
+            return {...state, private: action.payload }
         case FILTER_STROLLER_ACCESS:
-            return {...state, strollerAccess: action.payload }
+            return {...state, strollerAccessible: action.payload }
         case FILTER_REQUIRES_KEY:
-            return {...state, requiresKey: action.payload }
+            return {...state, keyRequired: action.payload }
         default:
             return state
     }
